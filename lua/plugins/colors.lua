@@ -4,11 +4,15 @@ return {
         "craftzdog/solarized-osaka.nvim",
         lazy = false,
         priority = 1000,
-        opts = {},
+        opts = {
+                transparent = false, -- enable for background
+                terminal_colors = true,
+            },
         config = function(_, opts)
+            require("solarized-osaka").setup(opts)
 
-            -- vim.cmd [[ set background=dark ]]
-            -- vim.cmd [[ colorscheme solarized-osaka ]]
+            vim.cmd [[ set background=dark ]]
+            vim.cmd [[ colorscheme solarized-osaka ]]
 
         end,
     },
@@ -19,9 +23,33 @@ return {
         opts = {},
         config = function(_, opts)
 
-            vim.cmd [[ set background=dark ]]
-            vim.cmd [[ colorscheme modus ]]
+            -- vim.cmd [[ set background=dark ]]
+            -- vim.cmd [[ colorscheme modus ]]
 
         end,
     },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function(_, opts)
+
+            -- vim.cmd [[ set background=dark ]]
+            -- vim.cmd [[ colorscheme kanagawa-wave ]]
+
+        end,
+    },
+    {
+        "rose-pine/neovim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function(_, opts)
+
+            -- vim.cmd [[ set background=dark ]]
+            -- vim.cmd [[ colorscheme rose-pine ]]
+
+        end,
+    }
 }

@@ -1,5 +1,14 @@
 return {
     {
+
+        'echasnovski/mini.pairs',
+        version = false,
+        event = 'VeryLazy',
+        config = function()
+            require('mini.pairs').setup()
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
@@ -21,7 +30,7 @@ return {
            cmp.setup {
                snippet = {
                    expand = function(args)
-                       luasnip.lspexpand(args.body)
+                       luasnip.lsp_expand(args.body)
                    end,
                },
                completion = {

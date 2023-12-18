@@ -15,6 +15,7 @@ return {
         opts = {} --config
     },
     { 'folke/which-key.nvim', opts = {} },
+    
     -- 'nvim-treesitter/playground',
     -- 'JoosepAlviste/nvim-ts-context-commentstring',
     -- 'nvim-treesitter/nvim-treesitter-context',
