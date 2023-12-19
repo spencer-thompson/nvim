@@ -1,6 +1,7 @@
 return {
     {
         "Eandrju/cellular-automaton.nvim",
+        event = "VeryLazy",
         config = function()
             require("cellular-automaton").register_animation {
                 fps = 50,
