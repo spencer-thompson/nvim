@@ -11,11 +11,22 @@ return {
         config = function(_, opts)
             require("solarized-osaka").setup(opts)
 
-            vim.cmd [[ set background=dark ]]
-            vim.cmd [[ colorscheme solarized-osaka ]]
+            -- vim.cmd [[ set background=dark ]]
+            -- vim.cmd [[ colorscheme solarized-osaka ]]
 
         end,
     },
+    {
+        "projekt0n/github-nvim-theme",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("github-theme").setup()
+
+            vim.cmd [[ set background=dark ]]
+            vim.cmd [[ colorscheme github_dark_default ]] -- yessir
+        end,
+    }
     -- {
     --     "miikanissi/modus-themes.nvim",
     --     lazy = false,

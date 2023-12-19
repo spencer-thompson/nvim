@@ -52,7 +52,7 @@ return {
                 },
                 ignore_focus = {},
                 always_divide_middle = true,
-                globalstatus = false,
+                globalstatus = true,
                 refresh = {
                     statusline = 1000,
                     tabline = 1000,
@@ -61,12 +61,12 @@ return {
             },
             sections = {
                 lualine_a = {'mode'},
-                lualine_b = { 'branch', 'diff' },
-                lualine_c = { 'filename', 'buffers' },
+                lualine_b = { 'filename', 'branch' },
+                lualine_c = { 'buffers' },
                 lualine_x = { 'fileformat', 'filetype' },
                 lualine_y = {
-                    { "encoding", separator = " ", padding = { left = 1, right = 0 } },
-                    { "filesize", padding = { left = 0, right = 1 } },
+                    { "encoding", padding = { left = 1, right = 1 } },
+                    { "filesize", padding = { left = 1, right = 1 } },
                 },
                 lualine_z = {
                     function()
@@ -99,6 +99,49 @@ return {
         end,
         config = function(_, opts)
             require('lualine').setup(opts)
+        end,
+    },
+    -- {
+    --     'akinsho/bufferline.nvim',
+    --     version = "*",
+    --     dependencies = 'nvim-tree/nvim-web-devicons',
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require('bufferline').setup {
+    --             options = {
+    --                 mode = "buffers",
+    --                 close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
+    --                 right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
+    --                 left_mouse_command = "buffer %d",    -- can be a string | function, | false see "Mouse actions"
+    --                 middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
+    --                 indicator = {
+    --                     -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+    --                     style = 'underline', -- 'icon' | 'underline' | 'none',
+    --                 },
+    --                 buffer_close_icon = '󰅖',
+    --                 modified_icon = '●',
+    --                 close_icon = '',
+    --                 left_trunc_marker = '',
+    --                 right_trunc_marker = '',
+    --                 offsets = {
+    --                     {
+    --                         filetype = "NvimTree",
+    --                         text = "File Explorer",
+    --                         text_align = "left", -- "left" | "center" | "right"
+    --                         separator = true,
+    --                     },
+    --                 },
+    --                 color_icons = true, -- whether or not to add the filetype icon highlights
+    --             },
+    --         }
+    --     end,
+    -- },
+    {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+            require("statuscol").setup {
+                setopt = true,
+            }
         end,
     },
 }

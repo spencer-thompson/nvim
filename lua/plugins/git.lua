@@ -35,5 +35,7 @@ return {
             end,
         },
 
-    }
+    },
+    { "rhysd/committia.vim", event = "VeryLazy" },
+    { "rhysd/git-messenger.vim", event = "VeryLazy" },
 }
