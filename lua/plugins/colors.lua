@@ -5,7 +5,7 @@ return {
         lazy = false,
         priority = 1000,
         opts = {
-                transparent = false, -- enable for background
+                transparent = true, -- enable for background
                 terminal_colors = true,
             },
         config = function(_, opts)
