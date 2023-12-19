@@ -16,40 +16,40 @@ return {
 
         end,
     },
-    {
-        "miikanissi/modus-themes.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-        config = function(_, opts)
-
-            -- vim.cmd [[ set background=dark ]]
-            -- vim.cmd [[ colorscheme modus ]]
-
-        end,
-    },
-    {
-        "rebelot/kanagawa.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-        config = function(_, opts)
-
-            -- vim.cmd [[ set background=dark ]]
-            -- vim.cmd [[ colorscheme kanagawa-wave ]]
-
-        end,
-    },
-    {
-        "rose-pine/neovim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-        config = function(_, opts)
-
-            -- vim.cmd [[ set background=dark ]]
-            -- vim.cmd [[ colorscheme rose-pine ]]
-
-        end,
-    }
+    -- {
+    --     "miikanissi/modus-themes.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {},
+    --     config = function(_, opts)
+    --
+    --         -- vim.cmd [[ set background=dark ]]
+    --         -- vim.cmd [[ colorscheme modus ]]
+    --
+    --     end,
+    -- },
+    -- {
+    --     "rebelot/kanagawa.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {},
+    --     config = function(_, opts)
+    --
+    --         -- vim.cmd [[ set background=dark ]]
+    --         -- vim.cmd [[ colorscheme kanagawa-wave ]]
+    --
+    --     end,
+    -- },
+    -- {
+    --     "rose-pine/neovim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {},
+    --     config = function(_, opts)
+    --
+    --         -- vim.cmd [[ set background=dark ]]
+    --         -- vim.cmd [[ colorscheme rose-pine ]]
+    --
+    --     end,
+    -- },
 }

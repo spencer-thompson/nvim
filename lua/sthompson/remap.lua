@@ -1,2 +1,2 @@
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = ","
+-- file tree
+-- vim.keymap.set('n', '<leader>e', vim.cmd('NvimTreeToggle'))

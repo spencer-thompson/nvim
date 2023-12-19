@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
 require('lazy').setup({
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    -- { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     spec = {
         { import = 'plugins' },
     },
@@ -30,7 +30,6 @@ require('lazy').setup({
 
         version = false,
     },
-    -- install = { colorscheme = { "solarized-osaka" } },
     checker = { enabled = true },
     performance = {
         rtp = {

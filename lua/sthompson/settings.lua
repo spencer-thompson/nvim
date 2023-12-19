@@ -13,6 +13,9 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
+-- set "~" to "`"
+vim.opt.fillchars = 'eob:`'
+
 -- save undo history
 vim.undofile = true
 
@@ -22,6 +25,6 @@ vim.incsearch = true
 
 
 vim.o.completeopt = 'menuone,noselect'
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8

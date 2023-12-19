@@ -1,6 +1,7 @@
 return {
     {
         "numToStr/Comment.nvim",
+        event = "VeryLazy",
         config = function()
             require("Comment").setup {
                 -- LHS of operator-pending mapping in NORMAL + VISUAL mode

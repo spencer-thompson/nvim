@@ -3,7 +3,7 @@ return {
 
     'tpope/vim-fugitive', -- git stuff
     'tpope/vim-sleuth',
-    'kyazdani42/nvim-web-devicons', 
+    'kyazdani42/nvim-web-devicons',
     'milisims/nvim-luaref', -- lua help
     'tpope/vim-surround', -- [command]s[change][to]
     'tpope/vim-repeat', -- better repeating with plugins
