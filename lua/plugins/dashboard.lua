@@ -29,11 +29,11 @@ return {
                     -- stylua: ignore
                     center = {
                         { action = "Telescope find_files",                  desc = " Find file",       icon = " ", key = "f" },
+                        { action = "Telescope live_grep",                   desc = " Find string",     icon = " ", key = "s" },
                         { action = "ene | startinsert",                     desc = " New file",        icon = " ", key = "n" },
                         { action = "Telescope oldfiles",                    desc = " Recent files",    icon = " ", key = "r" },
-                        { action = "Telescope live_grep",                   desc = " Find text",       icon = " ", key = "g" },
-                        { action = "NvimTreeToggle",                        desc = " File Tree",       icon = "󱏒 ", key = "e" },
-                        { action = 'lua require("persistence").load()',     desc = " Restore Session", icon = " ", key = "s" },
+                        { action = "Neotree toggle",                        desc = " File Tree",       icon = "󱏒 ", key = "e" },
+                        -- { action = 'lua require("persistence").load()',     desc = " Restore Session", icon = " ", key = "s" },
                         -- { action = "LazyExtras",                            desc = " Lazy Extras",     icon = " ", key = "x" },
                         { action = "Lazy",                                  desc = " Plugins",         icon = "󰒲 ", key = "l" },
                         { action = "qa",                                    desc = " Quit",            icon = " ", key = "q" },

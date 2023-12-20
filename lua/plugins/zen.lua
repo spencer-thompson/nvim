@@ -35,6 +35,7 @@ return {
                 context = -1,
                 treesitter = true,
             }
+            vim.keymap.set("n", "<leader>tw", "<cmd>Twilight<CR>")
         end,
     },
 }

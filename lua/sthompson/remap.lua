@@ -3,6 +3,9 @@
 
 local opts = { noremap = true, silent = true }
 
+-- jk to leave insert mode
+vim.keymap.set({"i", "v"}, "jk", "<Esc>")
+
 -- visual block mode
 vim.keymap.set('n', 'vb', '<C-v>')
 
@@ -19,13 +22,16 @@ vim.keymap.set({"i", "n"}, "<C-s>", vim.cmd.write)
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- splits
-vim.keymap.set("n", "<leader>ss", "<cmd>split<CR>", opts)
-vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", opts)
+vim.keymap.set("n", "<leader>hs", "<cmd>split<CR>", opts)
+vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", opts)
 -- move window
 vim.keymap.set({"n", "t"}, "<C-h>", "<C-w>h")
 vim.keymap.set({"n", "t"}, "<C-k>", "<C-w>k")
 vim.keymap.set({"n", "t"}, "<C-j>", "<C-w>j")
 vim.keymap.set({"n", "t"}, "<C-l>", "<C-w>l")
+
+-- quit
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 
 -- quick source
 vim.keymap.set("n", "<leader><leader>", function()

@@ -8,10 +8,10 @@ return {
     { 'tpope/vim-repeat', event = 'VeryLazy' },-- better repeating with plugins
     -- 'tpope/vim-abolish', -- cool words
 
+
     {
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {} --config
     },
-    { 'folke/which-key.nvim', event = 'VeryLazy', opts = {} },
 }
