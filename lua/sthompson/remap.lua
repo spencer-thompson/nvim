@@ -4,7 +4,7 @@
 local opts = { noremap = true, silent = true }
 
 -- jk to leave insert mode
-vim.keymap.set({"i", "v"}, "jk", "<Esc>")
+vim.keymap.set({ "i", "v" }, "jk", "<Esc>")
 
 -- move lines up or down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -36,7 +36,7 @@ vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
 
 -- save
-vim.keymap.set({"i", "n"}, "<C-s>", vim.cmd.write)
+vim.keymap.set({ "i", "n" }, "<C-s>", vim.cmd.write)
 
 --format
 vim.keymap.set("n", "<leader>fo", vim.lsp.buf.format)
@@ -48,10 +48,10 @@ vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 vim.keymap.set("n", "<leader>hs", "<cmd>split<CR>", opts)
 vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", opts)
 -- move window
-vim.keymap.set({"n", "t"}, "<C-h>", "<C-w>h")
-vim.keymap.set({"n", "t"}, "<C-k>", "<C-w>k")
-vim.keymap.set({"n", "t"}, "<C-j>", "<C-w>j")
-vim.keymap.set({"n", "t"}, "<C-l>", "<C-w>l")
+vim.keymap.set({ "n", "t" }, "<C-h>", "<C-w>h")
+vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k")
+vim.keymap.set({ "n", "t" }, "<C-j>", "<C-w>j")
+vim.keymap.set({ "n", "t" }, "<C-l>", "<C-w>l")
 -- move in insert mode
 vim.keymap.set("i", "<A-h>", "<left>")
 vim.keymap.set("i", "<A-k>", "<up>")
@@ -66,4 +66,3 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
-

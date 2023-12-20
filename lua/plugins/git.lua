@@ -1,8 +1,9 @@
 return {
-    { 'tpope/vim-fugitive', event = 'VeryLazy' },
+    { 'tpope/vim-fugitive',      event = 'VeryLazy' },
     {
         "lewis6991/gitsigns.nvim",
         event = "VeryLazy",
+        lazy = true,
         opts = {
             signs = {
                 add = { text = "▎" },
@@ -11,6 +12,12 @@ return {
                 topdelete = { text = "" },
                 changedelete = { text = "▎" },
                 untracked = { text = "▎" },
+            },
+            current_line_blame = true,
+            current_line_blame_formatter = '    - <author> | <author_time:%R [%a %I:%M %p]> | "<summary>"',
+            current_line_blame_opts = {
+                virt_text_pos = 'eol',
+                delay = 200,
             },
             on_attach = function(buffer)
                 local gs = package.loaded.gitsigns
@@ -28,14 +35,18 @@ return {
                 map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
                 map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
                 map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
-                map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+                map("n", "<leader>Gb", function() gs.blame_line({ full = true }) end, "Blame Line")
                 map("n", "<leader>ghd", gs.diffthis, "Diff This")
                 map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+                map("n", "<leader>Gst", gs.toggle_current_line_blame)
             end,
         },
+        config = function(_, opts)
+            require('gitsigns').setup(opts)
+        end,
 
     },
-    { "rhysd/committia.vim", event = "VeryLazy" },
+    { "rhysd/committia.vim",     event = "VeryLazy" },
     { "rhysd/git-messenger.vim", event = "VeryLazy" },
 }

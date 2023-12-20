@@ -1,12 +1,11 @@
 return {
     { "nvim-lua/plenary.nvim", dev = false },
-    { 'folke/neodev.nvim', event = "VeryLazy" },
 
     'kyazdani42/nvim-web-devicons',
-    { 'tpope/vim-sleuth', event = 'VeryLazy' },
-    { 'milisims/nvim-luaref', event = 'VeryLazy' },-- lua help
-    { 'tpope/vim-surround', event = 'VeryLazy' },-- [command]s[change][to]
-    { 'tpope/vim-repeat', event = 'VeryLazy' },-- better repeating with plugins
+    { 'tpope/vim-sleuth',      event = 'VeryLazy' },
+    { 'milisims/nvim-luaref',  event = 'VeryLazy' }, -- lua help
+    { 'tpope/vim-surround',    event = 'VeryLazy' }, -- [command]s[change][to]
+    { 'tpope/vim-repeat',      event = 'VeryLazy' }, -- better repeating with plugins
     -- 'tpope/vim-abolish', -- cool words
 
 

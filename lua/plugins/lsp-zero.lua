@@ -13,7 +13,15 @@ return {
     {
         'williamboman/mason.nvim',
         lazy = false,
+        event = "VeryLazy",
         config = true,
+    },
+    {
+        'folke/neodev.nvim',
+        event = "VeryLazy",
+        config = function()
+            require('neodev').setup({})
+        end,
     },
 
     -- Autocompletion
@@ -88,22 +96,23 @@ return {
             })
 
             lsp_zero.on_attach(function(client, bufnr)
-                -- see :help lsp-zero-keybindings
-                -- to learn the available actions
+                -- see :help lsp-zero-keybindings to learn the available actions
                 lsp_zero.default_keymaps({ buffer = bufnr })
-
-                vim.api.nvim_create_autocmd("BufWritePre", { -- epic format on save
-                    group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-                    end,
-                })
             end)
+
+            lsp_zero.format_on_save({
+                format_opts = {
+                    async = false,
+                    timeout_ms = 10000,
+                },
+                servers = {
+                    ['lua_ls'] = { 'lua' },
+                },
+            })
 
             require('mason-lspconfig').setup({
                 ensure_installed = {
-
+                    "lua_ls",
                 },
                 handlers = {
                     lsp_zero.default_setup,

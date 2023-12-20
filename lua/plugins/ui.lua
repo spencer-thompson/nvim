@@ -11,10 +11,10 @@ return {
                     --"DashboardFooter",
                     "TreesitterContext",
 
-                } -- mason, lazy, lspinfo
+                }                                            -- mason, lazy, lspinfo
             })
             require('transparent').clear_prefix('Dashboard') -- handles dashboard
-            require('transparent').clear_prefix('WhichKey') -- handles which-key
+            require('transparent').clear_prefix('WhichKey')  -- handles which-key
             -- require('transparent').clear_prefix('LspInfo') -- handles annoying lsp msg
             -- require('transparent').clear_prefix('lualine') -- handles which-key
 
@@ -106,11 +106,11 @@ return {
 
             -- you can enable a preset for easier configuration
             presets = {
-                bottom_search = false, -- use a classic bottom cmdline for search
-                command_palette = false, -- position the cmdline and popupmenu together
+                bottom_search = false,         -- use a classic bottom cmdline for search
+                command_palette = false,       -- position the cmdline and popupmenu together
                 long_message_to_split = false, -- long messages will be sent to a split
-                inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true, -- add a border to hover docs and signature help
+                inc_rename = false,            -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = true,         -- add a border to hover docs and signature help
             },
         },
         dependencies = {
@@ -125,14 +125,13 @@ return {
             require("noice").setup(opts)
         end,
     },
-    { -- fun scope animations
+    {                    -- fun scope animations
         "echasnovski/mini.indentscope",
-        lazy = true,
         version = false, -- wait till new 0.7.0 release to put it back on semver
         event = "VeryLazy",
         opts = {
-            -- symbol = "▏",
-            symbol = "│",
+            symbol = "▏",
+            -- symbol = "│",
             options = {
                 border = "both",
                 indent_at_cursor = true,
@@ -165,10 +164,11 @@ return {
     },
     {
         'tomiis4/BufferTabs.nvim',
+        event = "VeryLazy",
         dependencies = {
             'nvim-tree/nvim-web-devicons', -- optional
         },
-        lazy = false,
+        -- lazy = false,
         config = function()
             require('buffertabs').setup({
                 -- config
@@ -183,8 +183,8 @@ return {
             options = {
                 icons_enabled = true,
                 theme = 'auto',
-                component_separators = { left = '', right = ''},
-                section_separators = { left = '', right = ''},
+                component_separators = { left = '', right = '' },
+                section_separators = { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = {},
                     winbar = {},
@@ -199,7 +199,7 @@ return {
                 }
             },
             sections = {
-                lualine_a = {'mode'},
+                lualine_a = { 'mode' },
                 lualine_b = { 'filename', 'branch' },
                 lualine_c = { 'buffers' },
                 lualine_x = { 'fileformat', 'filetype' },
@@ -216,8 +216,8 @@ return {
             inactive_sections = {
                 lualine_a = {},
                 lualine_b = {},
-                lualine_c = {'filename'},
-                lualine_x = {'location'},
+                lualine_c = { 'filename' },
+                lualine_x = { 'location' },
                 lualine_y = {},
                 lualine_z = {}
             },
@@ -282,6 +282,8 @@ return {
     -- },
     {
         "luukvbaal/statuscol.nvim",
+        lazy = true,
+        event = "VeryLazy",
         config = function()
             require("statuscol").setup {
                 setopt = true,
@@ -291,6 +293,7 @@ return {
     {
         'folke/which-key.nvim',
         event = 'VeryLazy',
+        lazy = true,
         opts = {},
         config = function(opts)
             vim.o.timeout = true
