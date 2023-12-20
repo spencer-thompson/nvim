@@ -19,6 +19,7 @@ return {
             -- lua stuff
             "saadparwaiz1/cmp_luasnip",
             "L3MON4D3/LuaSnip",
+            "rafamadriz/friendly-snippets",
             "hrsh7th/cmp-nvim-lua",
         },
         config = function()
@@ -34,14 +35,15 @@ return {
                    end,
                },
                completion = {
-                   completeopt = 'menu,menuone,noinsert',
+                   completeopt = 'menu,menuone,preview,noinsert',
                },
                mapping = cmp.mapping.preset.insert {
-                   ['<C-n>'] = cmp.mapping.select_next_item(),
-                   ['<C-p>'] = cmp.mapping.select_prev_item(),
+                   ['<C-j>'] = cmp.mapping.select_next_item(),
+                   ['<C-k>'] = cmp.mapping.select_prev_item(),
                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
                    ['<C-Space>'] = cmp.mapping.complete {},
+                   ['<C-e>'] = cmp.mapping.abort(),
                    ['<CR>'] = cmp.mapping.confirm {
                        behavior = cmp.ConfirmBehavior.Replace,
                        select = true,
@@ -66,8 +68,9 @@ return {
                    end, { 'i', 's' }),
                },
                sources = {
-                   { name = 'nvim_lsp' },
+                   { name = 'nvim_lsp' }, -- possible lag source?
                    { name = 'luasnip' },
+                   -- { name = "buffer" } -- remove possibly?
                    { name = 'path' },
                },
            }

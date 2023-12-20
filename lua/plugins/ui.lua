@@ -9,12 +9,13 @@ return {
                     "NeoTreeNormal",
                     --"DashboardHeader",
                     --"DashboardFooter",
+                    "TreesitterContext",
 
                 } -- mason, lazy, lspinfo
             })
             require('transparent').clear_prefix('Dashboard') -- handles dashboard
             require('transparent').clear_prefix('WhichKey') -- handles which-key
-            require('transparent').clear_prefix('LspInfo') -- handles annoying lsp msg
+            -- require('transparent').clear_prefix('LspInfo') -- handles annoying lsp msg
             -- require('transparent').clear_prefix('lualine') -- handles which-key
 
             vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<CR>")
@@ -55,11 +56,53 @@ return {
                     ["cmp.entry.get_documentation"] = true,
                 },
             },
+
+            views = {
+                split = {
+                    enter = true,
+                },
+                cmdline_popup = {
+                    position = {
+                        row = 5,
+                        col = "50%",
+                    },
+                    size = {
+                        width = 60,
+                        height = "auto",
+                    },
+                    border = {
+                        style = "none",
+                        padding = { 2, 3 },
+                    },
+                },
+                popupmenu = {
+                    relative = "editor",
+                    position = {
+                        row = 8,
+                        col = "50%",
+                    },
+                    size = {
+                        width = 60,
+                        height = 10,
+                    },
+                    border = {
+                        style = "rounded",
+                        padding = { 0, 1 },
+                    },
+                    win_options = {
+                        winhighlight = {
+                            Normal = "NormalFloat",
+                            FloatBorder = "FloatBorder",
+                        },
+                    },
+                },
+            },
+
             -- you can enable a preset for easier configuration
             presets = {
-                bottom_search = true, -- use a classic bottom cmdline for search
-                command_palette = true, -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
+                bottom_search = false, -- use a classic bottom cmdline for search
+                command_palette = false, -- position the cmdline and popupmenu together
+                long_message_to_split = false, -- long messages will be sent to a split
                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = false, -- add a border to hover docs and signature help
             },
@@ -113,6 +156,19 @@ return {
                 end,
             })
         end,
+    },
+    {
+        'tomiis4/BufferTabs.nvim',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
+        lazy = false,
+        config = function()
+            require('buffertabs').setup({
+                -- config
+            })
+            vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<CR>")
+        end
     },
     { -- bottom line display #TODO Configure
         "nvim-lualine/lualine.nvim",
@@ -177,6 +233,11 @@ return {
         config = function(_, opts)
             require('lualine').setup(opts)
         end,
+    },
+    {
+        "stevearc/dressing.nvim",
+        lazy = true,
+        opts = {},
     },
     -- {
     --     'akinsho/bufferline.nvim',

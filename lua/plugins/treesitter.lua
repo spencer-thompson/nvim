@@ -116,7 +116,7 @@ return {
         event = 'VeryLazy',
         config = function()
             require('treesitter-context').setup()
-            
+            vim.cmd([[hi TreesitterContextBottom gui=underline]])
         end,
     }
 }

@@ -12,7 +12,8 @@ This is *certainly* not all of the plugins included, but rather the plugins that
 
 ### UI
 
-* [Nvim Tree](https://github.com/nvim-tree/nvim-tree.lua/tree/master)
+~~* [Nvim Tree](https://github.com/nvim-tree/nvim-tree.lua/tree/master)~~
+* [Neo Tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
 * [Lua Line](https://github.com/nvim-lualine/lualine.nvim)
 * [Buffer Line](https://github.com/akinsho/bufferline.nvim) - Still not working
 * [Which Key](https://github.com/folke/which-key.nvim)
@@ -31,6 +32,11 @@ This is *certainly* not all of the plugins included, but rather the plugins that
 
 * [Flash](https://github.com/folke/flash.nvim)
 * [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+
+## Dependencies
+
+* [Nerd Font](https://github.com/nvim-neo-tree/neo-tree.nvim)
+* [Rip Grep](https://github.com/BurntSushi/ripgrep)
 
 ## Other Resources
 
