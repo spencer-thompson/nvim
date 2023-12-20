@@ -1,5 +1,6 @@
 return {
     { "nvim-lua/plenary.nvim", dev = false },
+    { 'folke/neodev.nvim', event = "VeryLazy" },
 
     'kyazdani42/nvim-web-devicons',
     { 'tpope/vim-sleuth', event = 'VeryLazy' },

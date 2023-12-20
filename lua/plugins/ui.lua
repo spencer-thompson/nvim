@@ -55,6 +55,12 @@ return {
                     ["vim.lsp.util.stylize_markdown"] = true,
                     ["cmp.entry.get_documentation"] = true,
                 },
+                hover = { -- set for lsp zero
+                    enabled = false,
+                },
+                signature = { -- set for lsp zero
+                    enabled = false,
+                },
             },
 
             views = {
@@ -89,12 +95,12 @@ return {
                         style = "rounded",
                         padding = { 0, 1 },
                     },
-                    win_options = {
-                        winhighlight = {
-                            Normal = "NormalFloat",
-                            FloatBorder = "FloatBorder",
-                        },
-                    },
+                    -- win_options = {
+                    --     winhighlight = {
+                    --         Normal = "NormalFloat",
+                    --         FloatBorder = "FloatBorder",
+                    --     },
+                    -- },
                 },
             },
 
@@ -104,7 +110,7 @@ return {
                 command_palette = false, -- position the cmdline and popupmenu together
                 long_message_to_split = false, -- long messages will be sent to a split
                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false, -- add a border to hover docs and signature help
+                lsp_doc_border = true, -- add a border to hover docs and signature help
             },
         },
         dependencies = {

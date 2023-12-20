@@ -24,7 +24,7 @@ vim.hlsearch = false
 vim.incsearch = true
 
 
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,preview,noinsert'
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8

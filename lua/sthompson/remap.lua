@@ -18,6 +18,7 @@ vim.keymap.set('n', '<S-Tab>', '<C-w>W')
 vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>')
 vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>')
 vim.keymap.set('n', '<leader>c', '<cmd>bdelete<CR>')
+vim.keymap.set('n', '<leader>db', '<cmd>Dashboard<CR>')
 
 -- visual block mode
 vim.keymap.set('n', 'vb', '<C-v>')
