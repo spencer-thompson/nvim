@@ -25,7 +25,9 @@ return {
         'folke/neodev.nvim',
         event = "VeryLazy",
         config = function()
-            require('neodev').setup({})
+            require('neodev').setup({
+                vim.notify('testing')
+            })
         end,
     },
 
@@ -34,6 +36,11 @@ return {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
+
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/cmp-nvim-lua' },
+
             { 'L3MON4D3/LuaSnip' },
         },
         config = function()
@@ -68,6 +75,9 @@ return {
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
                     },
+                    ['<Tab>'] = cmp_action.luasnip_supertab(),
+                    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+
                 }),
                 sources = {
                     { name = 'nvim_lsp' },

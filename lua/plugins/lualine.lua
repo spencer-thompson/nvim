@@ -25,7 +25,7 @@ return {
                 lualine_a = {
                     {
                         function()
-                            return '  | NEOVIM |  '
+                            return 'NEOVIM |  '
                         end,
                         colored = false,
                         icon_only = true,
@@ -181,7 +181,13 @@ return {
                 },
                 lualine_x = {
                     {
-                        function() return require("noice").api.status.command.get() end,
+                        function()
+                            local pressed = require("noice").api.status.command.get()
+                            if pressed == '<20>' then
+                                pressed = '<leader>'
+                            end
+                            return pressed
+                        end,
                         cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
                     },
                     -- {
