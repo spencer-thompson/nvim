@@ -1,24 +1,24 @@
 return {
     {
         'xiyaowong/nvim-transparent',
-        event = 'VimEnter',
+        event = 'vimenter',
         config = function()
             require('transparent').setup({
                 extra_groups = {
-                    "NormalFloat",
-                    "NeoTreeNormal",
-                    --"DashboardHeader",
-                    --"DashboardFooter",
-                    "TreesitterContext",
+                    "normalfloat",
+                    "neotreenormal",
+                    --"dashboardheader",
+                    --"dashboardfooter",
+                    "treesittercontext",
 
                 }                                            -- mason, lazy, lspinfo
             })
-            require('transparent').clear_prefix('Dashboard') -- handles dashboard
-            require('transparent').clear_prefix('WhichKey')  -- handles which-key
-            -- require('transparent').clear_prefix('LspInfo') -- handles annoying lsp msg
+            require('transparent').clear_prefix('dashboard') -- handles dashboard
+            require('transparent').clear_prefix('whichkey')  -- handles which-key
+            -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
             -- require('transparent').clear_prefix('lualine') -- handles which-key
 
-            vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<CR>")
+            vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<cr>")
         end,
     },
     {
@@ -49,18 +49,18 @@ return {
         event = "VeryLazy",
         opts = {
             lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                -- override markdown rendering so that **cmp** and other plugins use **treesitter**
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                     ["vim.lsp.util.stylize_markdown"] = true,
                     ["cmp.entry.get_documentation"] = true,
                 },
-                hover = { -- set for lsp zero
-                    enabled = false,
-                },
-                signature = { -- set for lsp zero
-                    enabled = false,
-                },
+                --     hover = { -- set for lsp zero
+                --         enabled = false,
+                --     },
+                --     signature = { -- set for lsp zero
+                --         enabled = false,
+                --     },
             },
 
             views = {
@@ -95,30 +95,30 @@ return {
                         style = "rounded",
                         padding = { 0, 1 },
                     },
-                    -- win_options = {
-                    --     winhighlight = {
-                    --         Normal = "NormalFloat",
-                    --         FloatBorder = "FloatBorder",
-                    --     },
-                    -- },
+                    win_options = {
+                        winhighlight = {
+                            Normal = "Normal",
+                            FloatBorder = "DiagnosticInfo",
+                        },
+                    },
                 },
             },
 
             -- you can enable a preset for easier configuration
             presets = {
-                bottom_search = false,         -- use a classic bottom cmdline for search
-                command_palette = false,       -- position the cmdline and popupmenu together
-                long_message_to_split = false, -- long messages will be sent to a split
-                inc_rename = false,            -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true,         -- add a border to hover docs and signature help
+                bottom_search = false,        -- use a classic bottom cmdline for search
+                command_palette = true,       -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = true,        -- add a border to hover docs and signature help
             },
         },
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
+            "muniftanjim/nui.nvim",
+            -- optional:
             --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
+            --   if not available, we use `mini` as the fallback
             -- "rcarriga/nvim-notify",
         },
         config = function(_, opts)
@@ -162,21 +162,21 @@ return {
             })
         end,
     },
-    {
-        'tomiis4/BufferTabs.nvim',
-        event = "VeryLazy",
-        dependencies = {
-            'nvim-tree/nvim-web-devicons', -- optional
-        },
-        -- lazy = false,
-        config = function()
-            require('buffertabs').setup({
-                -- config
-            })
-            vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<CR>")
-        end
-    },
-    { -- bottom line display #TODO Configure
+    -- {
+    --     'tomiis4/buffertabs.nvim',
+    --     event = "VeryLazy",
+    --     dependencies = {
+    --         'nvim-tree/nvim-web-devicons', -- optional
+    --     },
+    --     -- lazy = false,
+    --     config = function()
+    --         require('buffertabs').setup({
+    --             -- config
+    --         })
+    --         vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<cr>")
+    --     end
+    -- },
+    { -- bottom line display #todo configure
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = {
@@ -194,14 +194,39 @@ return {
                 globalstatus = true,
                 refresh = {
                     statusline = 1000,
-                    tabline = 1000,
-                    winbar = 1000,
+                    -- tabline = 1000,
+                    -- winbar = 1000,
                 }
             },
             sections = {
                 lualine_a = { 'mode' },
-                lualine_b = { 'filename', 'branch' },
-                lualine_c = { 'buffers' },
+                lualine_b = {
+                    { 'filename' },
+                    { 'branch' },
+                    {
+                        'diagnostics',
+                        sources = { 'nvim_lsp' },
+                        colored = false,
+                    },
+                },
+                lualine_c = {
+                    {
+                        'buffers',
+                        hide_filename_extension = true,
+                        filetype_names = {
+                            telescopeprompt = 'telescope',
+                            dashboard = 'dashboard',
+                            packer = 'packer',
+                            fzf = 'fzf',
+                            alpha = 'alpha'
+                        },
+                        symbols = {
+                            modified = ' ●', -- text to show when the buffer is modified
+                            alternate_file = '#', -- text to show to identify the alternate file
+                            directory = '', -- text to show when the buffer is a directory
+                        },
+                    },
+                },
                 lualine_x = { 'fileformat', 'filetype' },
                 lualine_y = {
                     { "encoding", padding = { left = 1, right = 1 } },
@@ -209,22 +234,29 @@ return {
                 },
                 lualine_z = {
                     function()
-                        return " " .. os.date("%R")
+                        return " " .. os.date("%r")
                     end,
                 },
             },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = { 'filename' },
-                lualine_x = { 'location' },
-                lualine_y = {},
-                lualine_z = {}
-            },
-            tabline = {},
-            winbar = {},
-            inactive_winbar = {},
-            extensions = {}
+            -- inactive_sections = {
+            --     lualine_a = {},
+            --     lualine_b = {},
+            --     lualine_c = { 'filename' },
+            --     lualine_x = { 'location' },
+            --     lualine_y = {},
+            --     lualine_z = {}
+            -- },
+            -- tabline = {
+            --     lualine_a = {},
+            --     lualine_b = { 'buffers' },
+            --     lualine_c = { 'filename' },
+            --     lualine_x = { 'location' },
+            --     lualine_y = {},
+            --     lualine_z = {}
+            -- },
+            -- winbar = {},
+            -- inactive_winbar = {},
+            extensions = { "neo-tree", "lazy" }
         },
         init = function()
             vim.g.lualine_laststatus = vim.o.laststatus
@@ -245,41 +277,43 @@ return {
         lazy = true,
         opts = {},
     },
-    -- {
-    --     'akinsho/bufferline.nvim',
-    --     version = "*",
-    --     dependencies = 'nvim-tree/nvim-web-devicons',
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require('bufferline').setup {
-    --             options = {
-    --                 mode = "buffers",
-    --                 close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
-    --                 right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
-    --                 left_mouse_command = "buffer %d",    -- can be a string | function, | false see "Mouse actions"
-    --                 middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
-    --                 indicator = {
-    --                     -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
-    --                     style = 'underline', -- 'icon' | 'underline' | 'none',
-    --                 },
-    --                 buffer_close_icon = '󰅖',
-    --                 modified_icon = '●',
-    --                 close_icon = '',
-    --                 left_trunc_marker = '',
-    --                 right_trunc_marker = '',
-    --                 offsets = {
-    --                     {
-    --                         filetype = "NvimTree",
-    --                         text = "File Explorer",
-    --                         text_align = "left", -- "left" | "center" | "right"
-    --                         separator = true,
-    --                     },
-    --                 },
-    --                 color_icons = true, -- whether or not to add the filetype icon highlights
-    --             },
-    --         }
-    --     end,
-    -- },
+    {
+        'akinsho/bufferline.nvim',
+        -- version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        event = "VeryLazy",
+        config = function()
+            require('bufferline').setup {
+                options = {
+                    mode = "buffers",
+                    close_command = "bdelete! %d",       -- can be a string | function, | false see "mouse actions"
+                    right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "mouse actions"
+                    left_mouse_command = "buffer %d",    -- can be a string | function, | false see "mouse actions"
+                    middle_mouse_command = nil,          -- can be a string | function, | false see "mouse actions"
+                    indicator = {
+                        -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+                        style = 'underline', -- 'icon' | 'underline' | 'none',
+                    },
+                    buffer_close_icon = '󰅖',
+                    modified_icon = '●',
+                    close_icon = '',
+                    left_trunc_marker = '',
+                    right_trunc_marker = '',
+                    offsets = {
+                        {
+                            filetype = "neo-tree",
+                            text = "Neo-tree",
+                            text_align = "left", -- "left" | "center" | "right"
+                            highlight = "Directory",
+                            separator = true,
+                        },
+                    },
+                    color_icons = true, -- whether or not to add the filetype icon highlights
+                    always_show_bufferline = true,
+                },
+            }
+        end,
+    },
     {
         "luukvbaal/statuscol.nvim",
         lazy = true,

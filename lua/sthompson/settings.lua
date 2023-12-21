@@ -17,6 +17,9 @@ vim.opt.wrap = false
 vim.opt.fillchars = 'eob:`'
 
 -- save undo history
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = vim.fn.stdpath('data') .. '/.undo'
 vim.undofile = true
 
 -- set highlight on search

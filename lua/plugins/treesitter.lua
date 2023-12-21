@@ -111,12 +111,13 @@ return {
         --     require('nvim-treesitter.configs').setup(opts)
         -- end,
     },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        event = 'VeryLazy',
-        config = function()
-            require('treesitter-context').setup()
-            vim.cmd([[hi TreesitterContextBottom gui=underline]])
-        end,
-    }
+    --     {
+    --         'nvim-treesitter/nvim-treesitter-context',
+    --         event = 'VeryLazy',
+    --         config = function()
+    --             require('treesitter-context').setup()
+    --             -- vim.cmd([[hi TreesitterContextBottom]])
+    --             vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<CR>")
+    --         end,
+    --     }
 }
