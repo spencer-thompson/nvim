@@ -27,10 +27,12 @@ vim.hlsearch = false
 vim.incsearch = true
 
 
-vim.o.completeopt = 'menu,menuone,preview,noinsert'
+vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 
 vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 50
+
+vim.opt.showtabline = 2

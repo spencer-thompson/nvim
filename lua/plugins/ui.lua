@@ -55,12 +55,8 @@ return {
                     ["vim.lsp.util.stylize_markdown"] = true,
                     ["cmp.entry.get_documentation"] = true,
                 },
-                --     hover = { -- set for lsp zero
-                --         enabled = false,
-                --     },
-                --     signature = { -- set for lsp zero
-                --         enabled = false,
-                --     },
+                --     hover = {enabled = false },
+                --     signature = { enabled = false },
             },
 
             views = {
@@ -176,144 +172,210 @@ return {
     --         vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<cr>")
     --     end
     -- },
-    { -- bottom line display #todo configure
-        "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        opts = {
-            options = {
-                icons_enabled = true,
-                theme = 'auto',
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
-                disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
-                },
-                ignore_focus = {},
-                always_divide_middle = true,
-                globalstatus = true,
-                refresh = {
-                    statusline = 1000,
-                    -- tabline = 1000,
-                    -- winbar = 1000,
-                }
-            },
-            sections = {
-                lualine_a = { 'mode' },
-                lualine_b = {
-                    { 'filename' },
-                    { 'branch' },
-                    {
-                        'diagnostics',
-                        sources = { 'nvim_lsp' },
-                        colored = false,
-                    },
-                },
-                lualine_c = {
-                    {
-                        'buffers',
-                        hide_filename_extension = true,
-                        filetype_names = {
-                            telescopeprompt = 'telescope',
-                            dashboard = 'dashboard',
-                            packer = 'packer',
-                            fzf = 'fzf',
-                            alpha = 'alpha'
-                        },
-                        symbols = {
-                            modified = ' ●', -- text to show when the buffer is modified
-                            alternate_file = '#', -- text to show to identify the alternate file
-                            directory = '', -- text to show when the buffer is a directory
-                        },
-                    },
-                },
-                lualine_x = { 'fileformat', 'filetype' },
-                lualine_y = {
-                    { "encoding", padding = { left = 1, right = 1 } },
-                    { "filesize", padding = { left = 1, right = 1 } },
-                },
-                lualine_z = {
-                    function()
-                        return " " .. os.date("%r")
-                    end,
-                },
-            },
-            -- inactive_sections = {
-            --     lualine_a = {},
-            --     lualine_b = {},
-            --     lualine_c = { 'filename' },
-            --     lualine_x = { 'location' },
-            --     lualine_y = {},
-            --     lualine_z = {}
-            -- },
-            -- tabline = {
-            --     lualine_a = {},
-            --     lualine_b = { 'buffers' },
-            --     lualine_c = { 'filename' },
-            --     lualine_x = { 'location' },
-            --     lualine_y = {},
-            --     lualine_z = {}
-            -- },
-            -- winbar = {},
-            -- inactive_winbar = {},
-            extensions = { "neo-tree", "lazy" }
-        },
-        init = function()
-            vim.g.lualine_laststatus = vim.o.laststatus
-            if vim.fn.argc(-1) > 0 then
-                -- set an empty statusline till lualine loads
-                vim.o.statusline = " "
-            else
-                -- hide the statusline on the starter page
-                vim.o.laststatus = 0
-            end
-        end,
-        config = function(_, opts)
-            require('lualine').setup(opts)
-        end,
-    },
+    -- { -- bottom line display #todo configure
+    --     "nvim-lualine/lualine.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --         options = {
+    --             icons_enabled = true,
+    --             theme = 'auto',
+    --             component_separators = { left = '', right = '' },
+    --             section_separators = { left = '', right = '' },
+    --             disabled_filetypes = {
+    --                 statusline = {},
+    --                 winbar = {},
+    --             },
+    --             ignore_focus = {},
+    --             always_divide_middle = false,
+    --             globalstatus = true,
+    --             refresh = {
+    --                 statusline = 1000,
+    --                 tabline = 1000,
+    --                 winbar = 1000,
+    --             }
+    --         },
+    --         sections = {
+    --             lualine_a = { 'mode' },
+    --             lualine_b = {
+    --                 { 'filename' },
+    --                 { 'branch' },
+    --                 {
+    --                     'diagnostics',
+    --                     sources = { 'nvim_diagnostic', 'nvim_lsp' },
+    --                     sections = { 'error', 'warn', 'info', 'hint' },
+    --                     diagnostics_color = {          -- Same values as the general color option can be used here.
+    --                         error = 'DiagnosticError', -- Changes diagnostics' error color.
+    --                         warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
+    --                         info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
+    --                         hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
+    --                     },
+    --                     colored = false,
+    --                 },
+    --             },
+    --             lualine_c = {
+    --                 {
+    --                     'buffers',
+    --                     hide_filename_extension = true,
+    --                     filetype_names = {
+    --                         telescopeprompt = 'telescope',
+    --                         dashboard = 'dashboard',
+    --                         packer = 'packer',
+    --                         fzf = 'fzf',
+    --                         alpha = 'alpha'
+    --                     },
+    --                     symbols = {
+    --                         modified = ' ●', -- text to show when the buffer is modified
+    --                         alternate_file = '#', -- text to show to identify the alternate file
+    --                         directory = '', -- text to show when the buffer is a directory
+    --                     },
+    --                 },
+    --             },
+    --             lualine_x = {
+    --                 { 'fileformat' },
+    --                 { 'filetype' },
+    --                 {
+    --                     require("lazy.status").updates,
+    --                     cond = require("lazy.status").has_updates,
+    --                 },
+    --             },
+    --             lualine_y = {
+    --                 { "encoding", padding = { left = 1, right = 1 } },
+    --                 { "filesize", padding = { left = 1, right = 1 } },
+    --             },
+    --             lualine_z = {
+    --                 {
+    --                     'datetime',
+    --                     style = 'default',
+    --                 },
+    --             },
+    --         },
+    --         -- inactive_sections = {
+    --         --     lualine_a = {},
+    --         --     lualine_b = {},
+    --         --     lualine_c = { 'filename' },
+    --         --     lualine_x = { 'location' },
+    --         --     lualine_y = {},
+    --         --     lualine_z = {}
+    --         -- },
+    --         tabline = {
+    --             lualine_a = {
+    --                 -- {
+    --                 --     'filetype',
+    --                 --     colored = false,
+    --                 --     icon_only = true,
+    --                 -- },
+    --                 {
+    --                     'filename',
+    --                     file_status = true,     -- Displays file status (readonly status, modified status)
+    --                     newfile_status = false, -- Display new file status (new file means no write after created)
+    --                     path = 0,               -- 0: Just the filename
+    --                     -- 1: Relative path
+    --                     -- 2: Absolute path
+    --                     -- 3: Absolute path, with tilde as the home directory
+    --                     -- 4: Filename and parent dir, with tilde as the home directory
+    --
+    --                     -- shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
+    --                     -- for other components. (terrible name, any suggestions?)
+    --                     symbols = {
+    --                         modified = '[+]',      -- Text to show when the file is modified.
+    --                         readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+    --                         unnamed = '[No Name]', -- Text to show for unnamed buffers.
+    --                         newfile = '[New]',     -- Text to show for newly created file before first write
+    --                     }
+    --                 }
+    --             },
+    --             lualine_b = {
+    --                 {
+    --                     'buffers',
+    --                     hide_filename_extension = true,
+    --                     filetype_names = {
+    --                         TelescopePrompt = 'Telescope',
+    --                         dashboard = 'Dashboard',
+    --                         -- packer = 'Packer',
+    --                         fzf = 'FZF',
+    --                         alpha = 'Alpha',
+    --                         lazy = 'Lazy',
+    --                     },
+    --                     symbols = {
+    --                         modified = ' ●', -- text to show when the buffer is modified
+    --                         alternate_file = '#', -- text to show to identify the alternate file
+    --                         directory = '', -- text to show when the buffer is a directory
+    --                     },
+    --                 },
+    --             },
+    --             lualine_c = {},
+    --             lualine_x = { 'fileformat' },
+    --             lualine_y = {},
+    --             lualine_z = { 'fileformat' }
+    --         },
+    --         winbar = { lualine_a = { 'datetime' } },
+    --         -- inactive_winbar = {},
+    --         extensions = { "neo-tree", "lazy" }
+    --     },
+    --     init = function()
+    --         vim.g.lualine_laststatus = vim.o.laststatus
+    --         if vim.fn.argc(-1) > 0 then
+    --             -- set an empty statusline till lualine loads
+    --             vim.o.statusline = " "
+    --         else
+    --             -- hide the statusline on the starter page
+    --             vim.o.laststatus = 0
+    --         end
+    --     end,
+    --     config = function(_, opts)
+    --         require('lualine').setup(opts)
+    --     end,
+    -- },
     {
         "stevearc/dressing.nvim",
         lazy = true,
         opts = {},
     },
-    {
-        'akinsho/bufferline.nvim',
-        -- version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        event = "VeryLazy",
-        config = function()
-            require('bufferline').setup {
-                options = {
-                    mode = "buffers",
-                    close_command = "bdelete! %d",       -- can be a string | function, | false see "mouse actions"
-                    right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "mouse actions"
-                    left_mouse_command = "buffer %d",    -- can be a string | function, | false see "mouse actions"
-                    middle_mouse_command = nil,          -- can be a string | function, | false see "mouse actions"
-                    indicator = {
-                        -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
-                        style = 'underline', -- 'icon' | 'underline' | 'none',
-                    },
-                    buffer_close_icon = '󰅖',
-                    modified_icon = '●',
-                    close_icon = '',
-                    left_trunc_marker = '',
-                    right_trunc_marker = '',
-                    offsets = {
-                        {
-                            filetype = "neo-tree",
-                            text = "Neo-tree",
-                            text_align = "left", -- "left" | "center" | "right"
-                            highlight = "Directory",
-                            separator = true,
-                        },
-                    },
-                    color_icons = true, -- whether or not to add the filetype icon highlights
-                    always_show_bufferline = true,
-                },
-            }
-        end,
-    },
+    -- {
+    --     'akinsho/bufferline.nvim',
+    --     version = "*",
+    --     dependencies = 'nvim-tree/nvim-web-devicons',
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require('bufferline').setup {
+    --             options = {
+    --                 mode = "buffers",
+    --                 close_command = "bdelete! %d",       -- can be a string | function, | false see "mouse actions"
+    --                 right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "mouse actions"
+    --                 left_mouse_command = "buffer %d",    -- can be a string | function, | false see "mouse actions"
+    --                 middle_mouse_command = nil,          -- can be a string | function, | false see "mouse actions"
+    --                 diagnostics = "nvim_lsp",
+    --                 -- indicator = {
+    --                 --     -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+    --                 --     style = 'underline', -- 'icon' | 'underline' | 'none',
+    --                 -- },
+    --                 buffer_close_icon = '󰅖',
+    --                 modified_icon = '●',
+    --                 close_icon = '',
+    --                 left_trunc_marker = '',
+    --                 right_trunc_marker = '',
+    --                 offsets = {
+    --                     {
+    --                         filetype = "neo-tree",
+    --                         text = "Explorer",
+    --                         text_align = "left", -- "left" | "center" | "right"
+    --                         highlight = "Directory",
+    --                         separator = true,
+    --                     },
+    --                 },
+    --                 tab_size = 20,
+    --                 color_icons = true,        -- whether or not to add the filetype icon highlights
+    --                 always_show_bufferline = true,
+    --                 separator_style = "thick", -- "slant", -- | "slope" | "thick" | "thin" | { 'any', 'any' },
+    --                 hover = {
+    --                     enabled = true,
+    --                     delay = 200,
+    --                     reveal = { 'close' }
+    --                 },
+    --             },
+    --         }
+    --     end,
+    -- },
     {
         "luukvbaal/statuscol.nvim",
         lazy = true,
