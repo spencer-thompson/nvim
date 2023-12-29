@@ -5,15 +5,14 @@ return {
         lazy = true,
         priority = 1000,
         opts = {
-                transparent = true, -- enable for background
-                terminal_colors = true,
-            },
+            transparent = true, -- enable for background
+            terminal_colors = true,
+        },
         config = function(_, opts)
             require("solarized-osaka").setup(opts)
 
             -- vim.cmd [[ set background=dark ]]
             -- vim.cmd [[ colorscheme solarized-osaka ]]
-
         end,
     },
     {
@@ -23,10 +22,10 @@ return {
         config = function()
             require("github-theme").setup()
 
-            vim.cmd [[ set background=dark ]]
-            vim.cmd [[ colorscheme github_dark_default ]] -- yessir
+            -- vim.cmd [[ set background=dark ]]
+            -- vim.cmd [[ colorscheme github_dark_default ]] -- yessir
         end,
-    }
+    },
     -- {
     --     "miikanissi/modus-themes.nvim",
     --     lazy = false,
@@ -39,18 +38,16 @@ return {
     --
     --     end,
     -- },
-    -- {
-    --     "rebelot/kanagawa.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     opts = {},
-    --     config = function(_, opts)
-    --
-    --         -- vim.cmd [[ set background=dark ]]
-    --         -- vim.cmd [[ colorscheme kanagawa-wave ]]
-    --
-    --     end,
-    -- },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function(_, opts)
+            vim.cmd [[ set background=dark ]]
+            vim.cmd [[ colorscheme kanagawa-wave ]]
+        end,
+    },
     -- {
     --     "rose-pine/neovim",
     --     lazy = false,

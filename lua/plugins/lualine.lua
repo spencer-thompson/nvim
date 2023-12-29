@@ -21,15 +21,25 @@ return {
                     winbar = 1000,
                 }
             },
+
+            --[[ TOP BAR ]]
+
             tabline = {
                 lualine_a = {
                     {
                         function()
-                            return 'NEOVIM |  '
+                            return 'NEOVIM'
                         end,
                         colored = false,
                         icon_only = true,
                     },
+                    {
+                        function()
+                            return ''
+                        end,
+                        colored = false,
+                        icon_only = true,
+                    }
                 },
                 lualine_b = {
                     {
@@ -43,12 +53,14 @@ return {
                             alpha = 'Alpha',
                             lazy = 'Lazy',
                         },
+                        separator = '',
                         symbols = {
-                            modified = ' ●', -- text to show when the buffer is modified
-                            alternate_file = '#', -- text to show to identify the alternate file
-                            directory = '', -- text to show when the buffer is a directory
+                            modified = ' ● ', -- text to show when the buffer is modified
+                            alternate_file = ' # ', -- text to show to identify the alternate file
+                            directory = '  ', -- text to show when the buffer is a directory
                         },
                     },
+                    -- { function() return '' end, draw_empty = true },
                 },
                 lualine_c = {},
                 lualine_x = {
@@ -65,43 +77,55 @@ return {
                 lualine_z = { 'fileformat' }
             },
 
-            winbar = {
-                lualine_a = {
-                    {
-                        'windows',
-                        show_filename_only = true,
-                        hide_filename_extension = true,
-                        show_modified_status = true,
-                        mode = 0,
-                        filetype_names = {
-                            TelescopePrompt = 'Telescope',
-                            dashboard = 'Dashboard',
-                            -- packer = 'Packer',
-                            fzf = 'FZF',
-                            alpha = 'Alpha'
-                        },
+            --[[ BAR FOR EACH WINDOW ]]
 
-                    },
-                },
+            winbar = {
+                lualine_a = {},
                 lualine_b = {
+
                     {
-                        'diff',
+                        'filename',
+                        file_status = true,
                         symbols = {
-                            added = '+ ',
-                            modified = '~ ',
-                            removed = '- ',
-                        },
-                        source = function()
-                            local gitsigns = vim.b.gitsigns_status_dict
-                            if gitsigns then
-                                return {
-                                    added = gitsigns.added,
-                                    modified = gitsigns.changed,
-                                    removed = gitsigns.removed,
-                                }
-                            end
-                        end,
+                            modified = '[+]',      -- Text to show when the file is modified.
+                            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+                            unnamed = '[No Name]', -- Text to show for unnamed buffers.
+                            newfile = '[New]',     -- Text to show for newly created file before first write
+                        }
                     },
+                    -- {
+                    --     'windows',
+                    --     show_filename_only = true,
+                    --     hide_filename_extension = true,
+                    --     show_modified_status = true,
+                    --     mode = 0,
+                    --     filetype_names = {
+                    --         TelescopePrompt = 'Telescope',
+                    --         dashboard = 'Dashboard',
+                    --         -- packer = 'Packer',
+                    --         fzf = 'FZF',
+                    --         alpha = 'Alpha'
+                    --     },
+                    --
+                    -- },
+                    -- {
+                    --     'diff',
+                    --     symbols = {
+                    --         added = '+ ',
+                    --         modified = '~ ',
+                    --         removed = '- ',
+                    --     },
+                    --     source = function()
+                    --         local gitsigns = vim.b.gitsigns_status_dict
+                    --         if gitsigns then
+                    --             return {
+                    --                 added = gitsigns.added,
+                    --                 modified = gitsigns.changed,
+                    --                 removed = gitsigns.removed,
+                    --             }
+                    --         end
+                    --     end,
+                    -- },
                 },
                 lualine_c = {
                     {
@@ -119,7 +143,7 @@ return {
                 },
                 lualine_x = {
                     { function() return '[%L]' end },
-                    { 'progress' },
+                    -- { 'progress' },
                 },
                 lualine_y = {
                     {
@@ -136,23 +160,34 @@ return {
                                 last_search .. '" : ' .. '[' .. searchcount.current .. '/' .. searchcount.total .. ']'
                         end,
                     },
-                    { "filesize", padding = { left = 1, right = 1 } },
-                },
-                lualine_z = {
+                    -- { "filesize", padding = { left = 1, right = 1 } },
                     {
                         'filetype',
                         fmt = string.upper,
                         colored = false,
                         icon = { align = 'right' },
-                    }
+                    },
+                },
+                lualine_z = {
+
                 }
             },
+
+            --[[ BAR FOR INACTIVE WINDOWS ]]
+
             inactive_winbar = {
                 lualine_a = {},
                 lualine_b = {},
                 lualine_c = { 'filename' },
-                lualine_x = { '%L' },
-                lualine_y = {},
+                lualine_x = { function() return '[%L]' end },
+                lualine_y = {
+                    {
+                        'filetype',
+                        fmt = string.lower,
+                        colored = false,
+                        icon = { align = 'right' },
+                    }
+                },
                 lualine_z = {}
             },
 
@@ -160,24 +195,54 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = {
                     { 'branch' },
+                    {
+                        'diff',
+                        symbols = {
+                            added = '+ ',
+                            modified = '~ ',
+                            removed = '- ',
+                        },
+                        source = function()
+                            local gitsigns = vim.b.gitsigns_status_dict
+                            if gitsigns then
+                                return {
+                                    added = gitsigns.added,
+                                    modified = gitsigns.changed,
+                                    removed = gitsigns.removed,
+                                }
+                            end
+                        end,
+                    }
                 },
                 lualine_c = {
+                    { function() return '' end, draw_empty = true },
                     {
-                        'buffers',
-                        hide_filename_extension = true,
-                        filetype_names = {
-                            telescopeprompt = 'telescope',
-                            dashboard = 'dashboard',
-                            packer = 'packer',
-                            fzf = 'fzf',
-                            alpha = 'alpha'
-                        },
+                        'filename',
+                        path = 1,
+
                         symbols = {
                             modified = ' ●', -- text to show when the buffer is modified
                             alternate_file = '#', -- text to show to identify the alternate file
                             directory = '', -- text to show when the buffer is a directory
                         },
                     },
+                    { function() return '' end, draw_empty = true },
+                    -- {
+                    --     'buffers',
+                    --     hide_filename_extension = true,
+                    --     filetype_names = {
+                    --         telescopeprompt = 'telescope',
+                    --         dashboard = 'dashboard',
+                    --         packer = 'packer',
+                    --         fzf = 'fzf',
+                    --         alpha = 'alpha'
+                    --     },
+                    --     symbols = {
+                    --         modified = ' ●', -- text to show when the buffer is modified
+                    --         alternate_file = '#', -- text to show to identify the alternate file
+                    --         directory = '', -- text to show when the buffer is a directory
+                    --     },
+                    -- },
                 },
                 lualine_x = {
                     {
