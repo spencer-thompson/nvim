@@ -64,9 +64,10 @@ return {
                 },
             }
             -- Enable telescope fzf native, if installed
-            pcall(require('telescope').load_extension('fzf'))
+            pcall(require('telescope').load_extension, 'fzf')
             require('telescope').load_extension('noice')
             -- pcall(require('telescope').extensions.notify.notify())
+            require('telescope').load_extension('notify')
 
             -- Setup keymaps i guess
             local builtin = require('telescope.builtin')
@@ -78,6 +79,7 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Telescope Find Git Files" })
             vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
             vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Telescope Find Commands" })
+            -- vim.keymap.set('n', '<leader>fn', require('telescope').extensions.notify.notify())
         end,
 
     },

@@ -18,13 +18,13 @@ return {
             ensure_installed = {
                 'bash',
                 'c',
-                'cpp',
+                -- 'cpp',
                 'go',
-                'javascript',
+                -- 'javascript',
                 'lua',
                 'python',
-                'rust',
-                'tsx',
+                -- 'rust',
+                -- 'tsx',
                 'vimdoc',
                 'vim',
             },
@@ -37,7 +37,7 @@ return {
                 keymaps = {
                     init_selection = '<c-space>',
                     node_incremental = '<c-space>',
-                    scope_incremental = '<c-s',
+                    scope_incremental = '<c-s>',
                     node_decremental = '<M-space>',
                 },
             },
@@ -92,6 +92,7 @@ return {
             },
         },
         config = function(_, opts)
+            require 'nvim-treesitter.install'.compilers = { "clang" }
             require('nvim-treesitter.configs').setup(opts)
             vim.cmd [[ TSUpdate ]]
         end,
