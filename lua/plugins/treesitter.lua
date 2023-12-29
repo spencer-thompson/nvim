@@ -30,8 +30,11 @@ return {
             },
 
             auto_install = false,
-            highlight = { enable = true },
-            indent = { enabl = true },
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+            indent = { enable = true },
             incremental_selection = {
                 enable = true,
                 keymaps = {
@@ -92,7 +95,7 @@ return {
             },
         },
         config = function(_, opts)
-            require 'nvim-treesitter.install'.compilers = { "clang" }
+            require('nvim-treesitter.install').compilers = { "clang" }
             require('nvim-treesitter.configs').setup(opts)
             vim.cmd [[ TSUpdate ]]
         end,
