@@ -3,17 +3,18 @@ return {
         'nvim-treesitter/nvim-treesitter',
         version = false,
         build = ':TSUpdate',
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
+        -- lazy = false,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-treesitter/playground',
             'JoosepAlviste/nvim-ts-context-commentstring',
         },
-        cmd = {
-            'TSUpdateSync',
-            'TSUpdate',
-            'TSInstall'
-        },
+        -- cmd = {
+        --     'TSUpdateSync',
+        --     'TSUpdate',
+        --     'TSInstall'
+        -- },
         opts = {
             ensure_installed = {
                 'bash',
@@ -94,10 +95,10 @@ return {
                 },
             },
         },
-        config = function(_, opts)
+        config = function(opts)
             require('nvim-treesitter.install').compilers = { "clang" }
             require('nvim-treesitter.configs').setup(opts)
-            vim.cmd [[ TSUpdate ]]
+            -- vim.cmd [[ TSUpdate ]]
         end,
         -- ---@param opts TSConfig
         -- config = function(_, opts)

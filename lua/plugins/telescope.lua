@@ -4,6 +4,7 @@ return {
         tag = '0.1.5',
         -- or                              , branch = '0.1.x',
         event = 'VeryLazy',
+        -- priority = 100,
         dependencies = {
 
             "nvim-telescope/telescope-file-browser.nvim",
@@ -26,10 +27,35 @@ return {
 
             require('telescope').setup {
                 defaults = {
-                    prompt_prefix = '  ',
+                    prompt_prefix = '> ',
+                    selection_caret = '> ',
+                    entry_prefix = '  ',
+                    multi_icon = '<>',
                     sorting_strategy = "ascending",
                     layout_config = {
+                        width = 0.95,
+                        height = 0.85,
+
                         prompt_position = "top",
+                        horizontal = {
+                            preview_width = function(_, cols, _)
+                                if cols > 200 then
+                                    return math.floor(cols * 0.4)
+                                else
+                                    return math.floor(cols * 0.6)
+                                end
+                            end,
+                        },
+                        vertical = {
+                            width = 0.9,
+                            height = 0.95,
+                            preview_height = 0.5,
+                        },
+                        flex = {
+                            horizontal = {
+                                preview_width = 0.9,
+                            },
+                        },
                     },
 
                     mappings = {
@@ -67,7 +93,6 @@ return {
             pcall(require('telescope').load_extension, 'fzf')
             require('telescope').load_extension('noice')
             -- pcall(require('telescope').extensions.notify.notify())
-            require('telescope').load_extension('notify')
 
             -- Setup keymaps i guess
             local builtin = require('telescope.builtin')
@@ -79,7 +104,9 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Telescope Find Git Files" })
             vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
             vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Telescope Find Commands" })
-            -- vim.keymap.set('n', '<leader>fn', require('telescope').extensions.notify.notify())
+
+            -- local notify = require('telescope').load_extension('notify')
+            -- vim.keymap.set('n', '<leader>fn', notify.notify())
         end,
 
     },

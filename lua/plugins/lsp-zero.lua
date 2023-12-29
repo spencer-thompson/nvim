@@ -12,7 +12,7 @@ return {
             -- Disable automatic setup, we are doing it manually
             vim.g.lsp_zero_extend_cmp = 0
             vim.g.lsp_zero_extend_lspconfig = 0
-            require('neodev').setup({})
+            require('neodev').setup()
         end,
     },
     {
@@ -25,9 +25,7 @@ return {
         'folke/neodev.nvim',
         event = "VeryLazy",
         config = function()
-            require('neodev').setup({
-                vim.notify('testing')
-            })
+            require('neodev').setup()
         end,
     },
 
@@ -109,6 +107,16 @@ return {
                 hint = '⚑',
                 info = '»'
             })
+
+            -- lsp_zero.configure('lua-language-server', {
+            --     settings = {
+            --         Lua = {
+            --             diagnostics = {
+            --                 globals = { 'vim' }
+            --             }
+            --         }
+            --     }
+            -- })
 
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings to learn the available actions

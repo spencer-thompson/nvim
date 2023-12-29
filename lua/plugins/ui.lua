@@ -36,10 +36,11 @@ return {
                 vim.api.nvim_win_set_config(win, { zindex = 100 })
             end,
             render = "wrapped-compact",
+            fps = 60,
         },
-        init = function()
-            vim.notify = require("notify")
-        end,
+        -- init = function()
+        --     vim.notify = require("notify")
+        -- end,
         config = function(_, opts)
             require("notify").setup(opts)
         end,
@@ -121,9 +122,9 @@ return {
             require("noice").setup(opts)
         end,
     },
-    {                    -- fun scope animations
+    {                  -- fun scope animations
         "echasnovski/mini.indentscope",
-        version = false, -- wait till new 0.7.0 release to put it back on semver
+        version = '*', -- wait till new 0.7.0 release to put it back on semver
         event = "VeryLazy",
         opts = {
             symbol = "▏",
@@ -133,9 +134,23 @@ return {
                 indent_at_cursor = true,
                 try_as_border = true,
             },
+            draw = {
+                delay = 50,
+                -- animation = require('mini.indentscope').gen_animation.exponential({
+                --     easing = 'out',
+                --     duration = 100,
+                --     unit = 'total',
+                -- })
+            }
         },
         config = function(_, opts)
-            require('mini.indentscope').setup(opts)
+            local indent_scope = require('mini.indentscope')
+            indent_scope.setup(opts)
+            indent_scope.gen_animation.exponential({
+                easing = 'out',
+                duration = 100,
+                unit = 'step',
+            })
         end,
         init = function()
             vim.api.nvim_create_autocmd("filetype", {
