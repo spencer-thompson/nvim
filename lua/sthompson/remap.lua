@@ -61,7 +61,7 @@ vim.keymap.set("i", "<A-l>", "<right>")
 -- quit
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "!!pyfiglet<CR>")
 -- quick source
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")

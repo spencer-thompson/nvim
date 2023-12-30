@@ -10,13 +10,21 @@ return {
                     --"dashboardheader",
                     --"dashboardfooter",
                     "treesittercontext",
-
-                }                                            -- mason, lazy, lspinfo
+                    "floattitle",
+                    "floatborder",
+                    "title"
+                }                                               -- mason, lazy, lspinfo
             })
-            require('transparent').clear_prefix('dashboard') -- handles dashboard
-            require('transparent').clear_prefix('whichkey')  -- handles which-key
+            require('transparent').clear_prefix('dashboard')    -- handles dashboard
+            require('transparent').clear_prefix('whichkey')     -- handles which-key
+            -- require('transparent').clear_prefix('pmenu')     -- handles
+            require('transparent').clear_prefix('telescope')    -- handles telescope
+            require('transparent').clear_prefix('noicecmdline') -- handles noice
+            require('transparent').clear_prefix('gitsigns')
+            -- require('transparent').clear_prefix('lualine_c')    -- handles lualine
+            -- require('transparent').clear_prefix('lualine_x')
             -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
-            -- require('transparent').clear_prefix('lualine') -- handles which-key
+            -- require('transparent').clear_prefix('lualine')   -- handles which-key
 
             vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<cr>")
         end,
@@ -66,15 +74,15 @@ return {
                 },
                 cmdline_popup = {
                     position = {
-                        row = 5,
+                        row = 10,
                         col = "50%",
                     },
                     size = {
-                        width = 60,
+                        width = 80,
                         height = "auto",
                     },
                     border = {
-                        style = "none",
+                        style = "single",
                         padding = { 2, 3 },
                     },
                 },
@@ -99,6 +107,13 @@ return {
                         },
                     },
                 },
+                lsp = {
+                    progress = {
+                        enabled = true,
+                        format = "lsp_progress",
+                        format_done = "lsp_progress_done",
+                    }
+                }
             },
 
             -- you can enable a preset for easier configuration

@@ -10,7 +10,8 @@ return {
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = { "dashboard" },
-                    winbar = {},
+                    winbar = { "dashboard" },
+                    tabline = { "dashboard" },
                 },
                 ignore_focus = {},
                 always_divide_middle = false,
@@ -142,10 +143,10 @@ return {
                     },
                 },
                 lualine_x = {
-                    { function() return '[%L]' end },
                     -- { 'progress' },
                 },
                 lualine_y = {
+                    { function() return '[%L]' end },
                     {
                         function()
                             if vim.v.hlsearch == 0 then
@@ -215,18 +216,18 @@ return {
                     }
                 },
                 lualine_c = {
-                    { function() return '' end, draw_empty = true },
+                    { function() return '' end, draw_empty = true },
                     {
                         'filename',
-                        path = 1,
+                        path = 3,
 
                         symbols = {
-                            modified = ' ●', -- text to show when the buffer is modified
-                            alternate_file = '#', -- text to show to identify the alternate file
-                            directory = '', -- text to show when the buffer is a directory
+                            modified = ' ● ', -- text to show when the buffer is modified
+                            alternate_file = ' # ', -- text to show to identify the alternate file
+                            directory = '  ', -- text to show when the buffer is a directory
                         },
                     },
-                    { function() return '' end, draw_empty = true },
+                    -- { function() return '' end, draw_empty = true },
                     -- {
                     --     'buffers',
                     --     hide_filename_extension = true,
