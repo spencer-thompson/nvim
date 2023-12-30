@@ -17,7 +17,7 @@ return {
                 always_divide_middle = false,
                 globalstatus = true,
                 refresh = {
-                    statusline = 1000,
+                    statusline = 100,
                     tabline = 1000,
                     winbar = 1000,
                 }
@@ -193,7 +193,20 @@ return {
             },
 
             sections = {
-                lualine_a = { 'mode' },
+                lualine_a = {
+                    { 'mode' },
+                    {
+                        "macro-recording",
+                        fmt = function()
+                            local recording_register = vim.fn.reg_recording()
+                            if recording_register == "" then
+                                return ""
+                            else
+                                return "Recording @" .. recording_register
+                            end
+                        end
+                    },
+                },
                 lualine_b = {
                     { 'branch' },
                     {

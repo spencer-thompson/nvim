@@ -67,6 +67,15 @@ return {
                 --     hover = {enabled = false },
                 --     signature = { enabled = false },
             },
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "search_count",
+                    },
+                    opts = { skip = true },
+                },
+            },
 
             views = {
                 split = {
@@ -85,6 +94,12 @@ return {
                         style = "single",
                         padding = { 2, 3 },
                     },
+                    win_options = {
+                        winhighlight = {
+                            Normal = "Normal",
+                            FloatBorder = "FloatBorder",
+                        }
+                    }
                 },
                 popupmenu = {
                     relative = "editor",
@@ -97,7 +112,7 @@ return {
                         height = 10,
                     },
                     border = {
-                        style = "rounded",
+                        style = "single",
                         padding = { 0, 1 },
                     },
                     win_options = {
@@ -202,160 +217,6 @@ return {
     --         vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<cr>")
     --     end
     -- },
-    -- { -- bottom line display #todo configure
-    --     "nvim-lualine/lualine.nvim",
-    --     event = "VeryLazy",
-    --     opts = {
-    --         options = {
-    --             icons_enabled = true,
-    --             theme = 'auto',
-    --             component_separators = { left = '', right = '' },
-    --             section_separators = { left = '', right = '' },
-    --             disabled_filetypes = {
-    --                 statusline = {},
-    --                 winbar = {},
-    --             },
-    --             ignore_focus = {},
-    --             always_divide_middle = false,
-    --             globalstatus = true,
-    --             refresh = {
-    --                 statusline = 1000,
-    --                 tabline = 1000,
-    --                 winbar = 1000,
-    --             }
-    --         },
-    --         sections = {
-    --             lualine_a = { 'mode' },
-    --             lualine_b = {
-    --                 { 'filename' },
-    --                 { 'branch' },
-    --                 {
-    --                     'diagnostics',
-    --                     sources = { 'nvim_diagnostic', 'nvim_lsp' },
-    --                     sections = { 'error', 'warn', 'info', 'hint' },
-    --                     diagnostics_color = {          -- Same values as the general color option can be used here.
-    --                         error = 'DiagnosticError', -- Changes diagnostics' error color.
-    --                         warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
-    --                         info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
-    --                         hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
-    --                     },
-    --                     colored = false,
-    --                 },
-    --             },
-    --             lualine_c = {
-    --                 {
-    --                     'buffers',
-    --                     hide_filename_extension = true,
-    --                     filetype_names = {
-    --                         telescopeprompt = 'telescope',
-    --                         dashboard = 'dashboard',
-    --                         packer = 'packer',
-    --                         fzf = 'fzf',
-    --                         alpha = 'alpha'
-    --                     },
-    --                     symbols = {
-    --                         modified = ' ●', -- text to show when the buffer is modified
-    --                         alternate_file = '#', -- text to show to identify the alternate file
-    --                         directory = '', -- text to show when the buffer is a directory
-    --                     },
-    --                 },
-    --             },
-    --             lualine_x = {
-    --                 { 'fileformat' },
-    --                 { 'filetype' },
-    --                 {
-    --                     require("lazy.status").updates,
-    --                     cond = require("lazy.status").has_updates,
-    --                 },
-    --             },
-    --             lualine_y = {
-    --                 { "encoding", padding = { left = 1, right = 1 } },
-    --                 { "filesize", padding = { left = 1, right = 1 } },
-    --             },
-    --             lualine_z = {
-    --                 {
-    --                     'datetime',
-    --                     style = 'default',
-    --                 },
-    --             },
-    --         },
-    --         -- inactive_sections = {
-    --         --     lualine_a = {},
-    --         --     lualine_b = {},
-    --         --     lualine_c = { 'filename' },
-    --         --     lualine_x = { 'location' },
-    --         --     lualine_y = {},
-    --         --     lualine_z = {}
-    --         -- },
-    --         tabline = {
-    --             lualine_a = {
-    --                 -- {
-    --                 --     'filetype',
-    --                 --     colored = false,
-    --                 --     icon_only = true,
-    --                 -- },
-    --                 {
-    --                     'filename',
-    --                     file_status = true,     -- Displays file status (readonly status, modified status)
-    --                     newfile_status = false, -- Display new file status (new file means no write after created)
-    --                     path = 0,               -- 0: Just the filename
-    --                     -- 1: Relative path
-    --                     -- 2: Absolute path
-    --                     -- 3: Absolute path, with tilde as the home directory
-    --                     -- 4: Filename and parent dir, with tilde as the home directory
-    --
-    --                     -- shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-    --                     -- for other components. (terrible name, any suggestions?)
-    --                     symbols = {
-    --                         modified = '[+]',      -- Text to show when the file is modified.
-    --                         readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
-    --                         unnamed = '[No Name]', -- Text to show for unnamed buffers.
-    --                         newfile = '[New]',     -- Text to show for newly created file before first write
-    --                     }
-    --                 }
-    --             },
-    --             lualine_b = {
-    --                 {
-    --                     'buffers',
-    --                     hide_filename_extension = true,
-    --                     filetype_names = {
-    --                         TelescopePrompt = 'Telescope',
-    --                         dashboard = 'Dashboard',
-    --                         -- packer = 'Packer',
-    --                         fzf = 'FZF',
-    --                         alpha = 'Alpha',
-    --                         lazy = 'Lazy',
-    --                     },
-    --                     symbols = {
-    --                         modified = ' ●', -- text to show when the buffer is modified
-    --                         alternate_file = '#', -- text to show to identify the alternate file
-    --                         directory = '', -- text to show when the buffer is a directory
-    --                     },
-    --                 },
-    --             },
-    --             lualine_c = {},
-    --             lualine_x = { 'fileformat' },
-    --             lualine_y = {},
-    --             lualine_z = { 'fileformat' }
-    --         },
-    --         winbar = { lualine_a = { 'datetime' } },
-    --         -- inactive_winbar = {},
-    --         extensions = { "neo-tree", "lazy" }
-    --     },
-    --     init = function()
-    --         vim.g.lualine_laststatus = vim.o.laststatus
-    --         if vim.fn.argc(-1) > 0 then
-    --             -- set an empty statusline till lualine loads
-    --             vim.o.statusline = " "
-    --         else
-    --             -- hide the statusline on the starter page
-    --             vim.o.laststatus = 0
-    --         end
-    --     end,
-    --     config = function(_, opts)
-    --         require('lualine').setup(opts)
-    --     end,
-    -- },
     {
         "stevearc/dressing.nvim",
         lazy = true,
@@ -427,4 +288,17 @@ return {
             require('which-key').setup(opts)
         end,
     },
+    {
+        "TobinPalmer/Tip.nvim",
+        event = "VimEnter",
+        config = function()
+            -- Default config
+            -- @type Tip.config
+            require("tip").setup({
+                seconds = 2,
+                title = "Tip!",
+                url = "https://vtip.43z.one",
+            })
+        end,
+    }
 }

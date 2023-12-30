@@ -14,4 +14,9 @@ return {
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {} --config
     },
+    -- {
+    --     "m4xshen/hardtime.nvim",
+    --     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    --     opts = {}
+    -- },
 }

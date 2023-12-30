@@ -5,6 +5,7 @@ local opts = { noremap = true, silent = true }
 
 -- jk to leave insert mode
 vim.keymap.set({ "i", "v" }, "jk", "<Esc>")
+vim.keymap.set("t", "jk", "<C-\\><C-n>") -- same thing but for terminal mode
 
 -- move lines up or down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

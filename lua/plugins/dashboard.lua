@@ -15,30 +15,34 @@ return {
             --        _\///_____\/////____\//////////_____\/////___________\///________\///__\///___\///___\///__
             -- ]]
 
+            -- local day = vim.api.nvim_cmd(
+
+
             local day = vim.api.nvim_exec2(
-                '!pyfiglet -f train ' .. os.date('%A'),
+                '!pyfiglet --font=slant_relief -w 120 ' .. os.date('%A'),
                 { output = true }
             ).output
 
-            local day = vim.api.nvim_cmd(
-                {
-                    cmd = '!pyfiglet -f train ' .. os.date('%A'),
-                    bang = true,
-                    -- args = {
-                    --     'pyfiglet',
-                    --     '--font=train',
-                    --     os.date('%A'),
-                    -- },
-                },
-                { output = true }
-            )
+            local newlinePos = string.find(day, "\n")
+            if newlinePos then
+                day = string.sub(day, newlinePos + 1)
+            end
 
-            local logo = string.rep("\n", 4) .. day .. string.rep("\n", 4)
-            -- local logo = string.rep("\n", 4) ..
-            --     vim.api.nvim_exec2(
-            --         '!pyfiglet ' .. os.date('%A'),
-            --         { output = true }
-            --     ).output .. string.rep("\n", 4)
+            local day = string.rep("\n", 4) .. day .. string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
+
+
+            local logo = vim.api.nvim_exec2(
+                '!pyfiglet --font=slant_relief -w 120 Neovim',
+                { output = true }
+            ).output
+
+            local newlinePos = string.find(logo, "\n")
+            if newlinePos then
+                logo = string.sub(logo, newlinePos + 1)
+            end
+
+            local logo = string.rep("\n", 4) .. logo .. string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
+
 
             local opts = {
                 theme = "doom",
@@ -48,7 +52,7 @@ return {
                     statusline = false,
                 },
                 config = {
-                    header = vim.split(logo, "\n"),
+                    header = vim.split(day, "\n"),
                     -- stylua: ignore
                     center = {
                         { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
@@ -64,7 +68,21 @@ return {
                     footer = function()
                         local stats = require("lazy").stats()
                         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                        return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+                        local lazy_msg = {
+                            "⚡ Neovim loaded " ..
+                            stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
+                        }
+                        local logo_stuff = vim.split(logo, "\n")
+                        for i = 1, #logo_stuff do
+                            table.insert(lazy_msg, logo_stuff[i])
+                        end
+
+                        return lazy_msg
+                        -- return {
+                        --     "⚡ Neovim loaded " ..
+                        --     stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+                        --     -- vim.split(logo, "\n"), -- .. vim.split(logo, "\n")
+                        -- }
                     end,
                 },
             }
@@ -86,6 +104,11 @@ return {
             end
 
             return opts
+        end,
+        config = function(_, opts)
+            -- require('dashboard').setup(opts(randomFont(pyfiglet_fonts)))
+            -- require('dashboard').setup(opts(randomFont()))
+            require('dashboard').setup(opts)
         end,
     },
     -- {
