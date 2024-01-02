@@ -19,8 +19,10 @@ return {
             ensure_installed = {
                 'bash',
                 'c',
+                'dockerfile',
                 -- 'cpp',
                 'go',
+                'html',
                 -- 'javascript',
                 'lua',
                 'python',
@@ -28,6 +30,7 @@ return {
                 -- 'tsx',
                 'vimdoc',
                 'vim',
+                'yaml',
             },
 
             auto_install = false,
