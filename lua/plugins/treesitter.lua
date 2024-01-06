@@ -1,7 +1,7 @@
 return {
     {
         'nvim-treesitter/nvim-treesitter',
-        version = false,
+        -- version = false,
         build = ':TSUpdate',
         -- event = 'VeryLazy',
         -- lazy = false,
@@ -25,6 +25,8 @@ return {
                 'html',
                 -- 'javascript',
                 'lua',
+                'markdown',
+                'markdown_inline',
                 'python',
                 -- 'rust',
                 -- 'tsx',
@@ -101,7 +103,7 @@ return {
         config = function(opts)
             require('nvim-treesitter.install').compilers = { "clang" }
             require('nvim-treesitter.configs').setup(opts)
-            -- vim.cmd [[ TSUpdate ]]
+            vim.cmd [[ TSUpdate ]]
         end,
         -- ---@param opts TSConfig
         -- config = function(_, opts)
