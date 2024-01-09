@@ -24,6 +24,9 @@ return {
 
         config = function()
             local actions = require("telescope.actions")
+            local builtin = require('telescope.builtin')
+            local browser = require('telescope').extensions.file_browser
+
 
             require('telescope').setup {
                 defaults = {
@@ -59,6 +62,9 @@ return {
                     },
 
                     mappings = {
+                        n = {
+                            ['<C-h>'] = browser.actions.goto_home_dir,
+                        },
                         i = {
                             ['<Esc>'] = actions.close,
                             ['<C-a>'] = actions.toggle_all,
@@ -66,6 +72,10 @@ return {
                             ['<C-d>'] = false,
                             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
                             ["<C-j>"] = actions.move_selection_next,     -- move to next result
+                            ['<C-x>'] = browser.actions.remove,
+                            ['<C-r>'] = browser.actions.rename,
+
+
                         },
                     },
                     file_ignore_patterns = {},
@@ -91,11 +101,11 @@ return {
             }
             -- Enable telescope fzf native, if installed
             pcall(require('telescope').load_extension, 'fzf')
-            require('telescope').load_extension('noice')
-            -- pcall(require('telescope').extensions.notify.notify())
+            require('telescope').load_extension('noice')        -- noice extension
+            require('telescope').load_extension('file_browser') -- file browser
+            -- require('telescope').extensions.notify.notify())
 
             -- Setup keymaps i guess
-            local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope Find Files" })
             vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = "Telescope Find String" })
             vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Telescope Buffers" })
@@ -104,6 +114,9 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Telescope Find Git Files" })
             vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
             vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Telescope Find Commands" })
+
+            -- file broswer
+            vim.keymap.set('n', '<leader>fd', browser.file_browser)
 
             -- local notify = require('telescope').load_extension('notify')
             -- vim.keymap.set('n', '<leader>fn', notify.notify())
