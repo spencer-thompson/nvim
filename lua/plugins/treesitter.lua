@@ -3,8 +3,8 @@ return {
         'nvim-treesitter/nvim-treesitter',
         -- version = false,
         build = ':TSUpdate',
-        -- event = 'VeryLazy',
-        -- lazy = false,
+        event = 'VeryLazy',
+        lazy = false,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-treesitter/playground',
@@ -35,7 +35,7 @@ return {
                 'yaml',
             },
 
-            auto_install = false,
+            auto_install = true,
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
@@ -101,7 +101,7 @@ return {
             },
         },
         config = function(opts)
-            require('nvim-treesitter.install').compilers = { "clang" }
+            -- require('nvim-treesitter.install').compilers = { "clang" }
             require('nvim-treesitter.configs').setup(opts)
             vim.cmd [[ TSUpdate ]]
         end,
