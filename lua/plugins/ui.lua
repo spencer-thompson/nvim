@@ -105,7 +105,7 @@ return {
                         height = "auto",
                     },
                     border = {
-                        style = "single",
+                        style = "none",
                         padding = { 2, 3 },
                     },
                     win_options = {
