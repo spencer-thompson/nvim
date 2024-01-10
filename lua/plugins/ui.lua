@@ -1,7 +1,7 @@
 return {
     {
         'xiyaowong/nvim-transparent',
-        event = 'vimenter',
+        event = 'VimEnter',
         config = function()
             require('transparent').setup({
                 extra_groups = {
@@ -21,6 +21,7 @@ return {
             require('transparent').clear_prefix('telescope')    -- handles telescope
             require('transparent').clear_prefix('noicecmdline') -- handles noice
             require('transparent').clear_prefix('gitsigns')
+            require('transparent').clear_prefix('diagnosticsign')
             -- require('transparent').clear_prefix('lualine_c')    -- handles lualine
             -- require('transparent').clear_prefix('lualine_x')
             -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg

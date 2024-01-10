@@ -50,11 +50,21 @@ return {
                 -- Can be used to ignore certain lines when doing linewise motions.
                 --    Can be string (lua regex)
                 --    Or function (that returns lua regex)
-                    -- ignore = nil,
-                }
+                -- ignore = nil,
+            }
 
-                local comment_ft = require "Comment.ft"
-                comment_ft.set("lua", { "--%s", "--[[%s]]" })
-            end,
+            local comment_ft = require "Comment.ft"
+            comment_ft.set("lua", { "--%s", "--[[%s]]" })
+        end,
+    },
+    {
+        "folke/todo-comments.nvim",
+        event = "VeryLazy",
+        dependecies = { "nvim-lua/plenary.nvim" }, -- TODO
+        keys = {
+            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
         },
+        config = true,
     }
+}

@@ -18,6 +18,16 @@ vim.opt.ignorecase = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+vim.opt.showbreak = string.rep(" ", 3)
+vim.opt.linebreak = true
+
+vim.opt.formatoptions = vim.opt.formatoptions
+    - "a" -- autoformatting is bad
+    - "t" -- no autoformatting
+    + "c"
+    + "q" -- allow formatting comments w/ gq
+    - "o" -- O and o, don't continue comments
+    + "r" -- unless pressing enter
 
 -- set "~" to "`"
 vim.opt.fillchars = {
@@ -35,7 +45,7 @@ vim.opt.fillchars = {
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath('data') .. '/.undo'
-vim.undofile = true
+vim.opt.undofile = true
 
 -- set highlight on search
 vim.hlsearch = false

@@ -4,7 +4,7 @@ return {
         event = 'VeryLazy',
         lazy = true,
     },
-    -- {
+    -- { -- TODO: figure out
     --     'David-Kunz/gen.nvim',
     --     event = 'VeryLazy',
     --     lazy = true,
