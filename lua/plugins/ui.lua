@@ -55,6 +55,19 @@ return {
         end,
     },
     {
+        "RRethy/vim-illuminate",
+        event = "VeryLazy",
+        config = function()
+            require('illuminate').configure({
+                delay = 0,
+                large_file_cutoff = 2000,
+                large_file_overrides = {
+                    providers = { "lsp" },
+                },
+            })
+        end
+    },
+    {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
