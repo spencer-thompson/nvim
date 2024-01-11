@@ -21,9 +21,12 @@ vim.opt.wrap = false
 vim.opt.showbreak = string.rep(" ", 3)
 vim.opt.linebreak = true
 
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+
 vim.opt.formatoptions = vim.opt.formatoptions
-    - "a" -- autoformatting is bad
-    - "t" -- no autoformatting
+    - "a" -- auto formatting is bad
+    - "t" -- no auto formatting
     + "c"
     + "q" -- allow formatting comments w/ gq
     - "o" -- O and o, don't continue comments

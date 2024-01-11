@@ -59,12 +59,17 @@ return {
         event = "VeryLazy",
         config = function()
             require('illuminate').configure({
-                delay = 0,
+                delay = 200,
                 large_file_cutoff = 2000,
                 large_file_overrides = {
                     providers = { "lsp" },
                 },
             })
+
+            -- change the highlight style
+            vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
         end
     },
     {
