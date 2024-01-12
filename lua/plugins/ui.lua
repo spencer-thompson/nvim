@@ -27,7 +27,7 @@ return {
             -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
             -- require('transparent').clear_prefix('lualine')   -- handles which-key
 
-            vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<cr>")
+            vim.keymap.set("n", "<leader>tr", "<cmd>TransparentToggle<cr>")
         end,
     },
     {
@@ -76,6 +76,9 @@ return {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
+            cmdline = {
+                title = '',
+            },
             lsp = {
                 -- override markdown rendering so that **cmp** and other plugins use **treesitter**
                 override = {

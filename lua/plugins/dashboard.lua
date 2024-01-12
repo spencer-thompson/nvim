@@ -59,7 +59,7 @@ return {
                         { action = "Telescope live_grep", desc = " Find string", icon = " ", key = "s" },
                         { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
                         { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
-                        { action = "Neotree toggle", desc = " File Tree", icon = "󱏒 ", key = "e" },
+                        { action = "Neotree toggle current", desc = " File Tree", icon = "󱏒 ", key = "e" },
                         -- { action = 'lua require("persistence").load()',     desc = " Restore Session", icon = " ", key = "s" },
                         -- { action = "LazyExtras",                            desc = " Lazy Extras",     icon = " ", key = "x" },
                         { action = "Lazy", desc = " Plugins", icon = "󰒲 ", key = "l" },

@@ -46,8 +46,10 @@ vim.keymap.set("n", "<leader>fo", vim.lsp.buf.format)
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- splits
-vim.keymap.set("n", "<leader>hs", "<cmd>split<CR>", opts)
-vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", opts)
+vim.keymap.set("n", "<leader>ss", "<cmd>split<CR>", opts, { desc = "Horizontal Screen Split" })
+vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", opts, { desc = "Vertical Screen Split" })
+vim.keymap.set("n", "<leader>st", "<cmd>vsplit<CR><cmd>terminal<CR>A", opts, { desc = "Vertical Terminal Screen Split" })
+vim.keymap.set("n", "<leader>sT", "<cmd>split<CR><cmd>terminal<CR>A", opts, { desc = "Horizontal Terminal Screen Split" })
 -- move window
 vim.keymap.set({ "n", "t" }, "<C-h>", "<C-w>h")
 vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k")
