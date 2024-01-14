@@ -70,4 +70,11 @@ return {
             -- vim.cmd [[ colorscheme rose-pine ]]
         end,
     },
+    {
+        'folke/tokyonight.nvim',
+        lazy = true,
+        config = function()
+
+        end,
+    },
 }

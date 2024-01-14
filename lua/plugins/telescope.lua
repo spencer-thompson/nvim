@@ -116,7 +116,11 @@ return {
             vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Telescope Find Commands" })
 
             -- file broswer
-            vim.keymap.set('n', '<leader>fd', browser.file_browser)
+            vim.keymap.set('n', '<leader>fd', browser.file_browser, { desc = "Telescope File Browser" })
+
+            -- notifications
+            vim.keymap.set('n', '<leader>fn', '<cmd>Telescope notify<cr>', { desc = "Telescope Filter Notifications" })
+
 
             -- local notify = require('telescope').load_extension('notify')
             -- vim.keymap.set('n', '<leader>fn', notify.notify())

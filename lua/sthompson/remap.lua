@@ -3,26 +3,27 @@
 
 local opts = { noremap = true, silent = true }
 
+-- TODO: add desc for all
 -- jk to leave insert mode
-vim.keymap.set({ "i", "v" }, "jk", "<Esc>")
-vim.keymap.set("t", "jk", "<C-\\><C-n>") -- same thing but for terminal mode
+vim.keymap.set({ "i", "v" }, "jk", "<Esc>", { desc = "Exit" })
+vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit" }) -- same thing but for terminal mode
 
 -- move lines up or down in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "" })
 
 -- Cycle through windows
-vim.keymap.set('n', '<Tab>', '<C-w>w')
-vim.keymap.set('n', '<S-Tab>', '<C-w>W')
+vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = "Cycle through windows" })
+vim.keymap.set('n', '<S-Tab>', '<C-w>W', { desc = "Cycle through windows" })
 
 -- move through buffers
-vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>')
-vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>')
-vim.keymap.set('n', '<leader>c', '<cmd>bdelete<CR>')
-vim.keymap.set('n', '<leader>db', '<cmd>Dashboard<CR>')
+vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = "[N]ext Buffer" })
+vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = "Previous Buffer" })
+vim.keymap.set('n', '<leader>c', '<cmd>bdelete<CR>', { desc = "[C]lose Buffer" })
+vim.keymap.set('n', '<leader>db', '<cmd>Dashboard<CR>', { desc = "Dashboard" })
 
 -- visual block mode
-vim.keymap.set('n', 'vb', '<C-v>')
+vim.keymap.set('n', 'vb', '<C-v>', { desc = "[V]isual [B]lock Mode" })
 
 vim.keymap.set("n", "x", '"_x') -- doesn't add to register
 
@@ -61,9 +62,13 @@ vim.keymap.set("i", "<A-k>", "<up>")
 vim.keymap.set("i", "<A-j>", "<down>")
 vim.keymap.set("i", "<A-l>", "<right>")
 
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- quit
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Write" })
 vim.keymap.set("n", "Q", "!!pyfiglet<CR>")
 -- quick source
 vim.keymap.set("n", "<leader><leader>", function()

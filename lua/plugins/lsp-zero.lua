@@ -78,7 +78,7 @@ return {
 
                 }),
                 sources = {
-                    { name = 'path' },
+                    -- { name = 'path' },
                     { name = 'nvim_lsp' },
                     { name = 'nvim_lua' },
                     { name = 'luasnip', keyword_length = 2 },
@@ -131,6 +131,7 @@ return {
                 },
                 servers = {
                     ['lua_ls'] = { 'lua' },
+                    -- ['pyright'] = { 'python' },
                 },
             })
 

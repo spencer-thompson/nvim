@@ -41,4 +41,16 @@ require('lazy').setup({
     -- add opts
 })
 
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>")
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "[L]azy" })
+
+local wk = require("which-key")
+wk.register(
+    { -- add plugin map groups
+        e = { name = "explore" },
+        d = { name = "dashboard" },
+        f = { name = "find" },
+        s = { name = "split" },
+        t = { name = "toggle" },
+    },
+    { prefix = "<leader>" }
+)

@@ -17,7 +17,8 @@ vim.opt.ignorecase = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.sidescroll = 8
 vim.opt.showbreak = string.rep(" ", 3)
 vim.opt.linebreak = true
 
@@ -25,12 +26,14 @@ vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
 vim.opt.formatoptions = vim.opt.formatoptions
+    -- default 'tcqj'
     - "a" -- auto formatting is bad
     - "t" -- no auto formatting
-    + "c"
+    + "c" -- auto wrap comments
     + "q" -- allow formatting comments w/ gq
     - "o" -- O and o, don't continue comments
     + "r" -- unless pressing enter
+    - "2"
 
 -- set "~" to "`"
 vim.opt.fillchars = {

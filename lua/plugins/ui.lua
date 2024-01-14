@@ -27,7 +27,7 @@ return {
             -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
             -- require('transparent').clear_prefix('lualine')   -- handles which-key
 
-            vim.keymap.set("n", "<leader>tr", "<cmd>TransparentToggle<cr>")
+            vim.keymap.set("n", "<leader>tr", "<cmd>TransparentToggle<cr>", { desc = "Transparent" })
         end,
     },
     {
@@ -113,7 +113,7 @@ return {
                         height = "auto",
                     },
                     border = {
-                        style = "none",
+                        style = "single",
                         padding = { 2, 3 },
                     },
                     win_options = {
@@ -130,8 +130,8 @@ return {
                         col = "50%",
                     },
                     size = {
-                        width = 60,
-                        height = 10,
+                        width = "80%",
+                        height = "40%",
                     },
                     border = {
                         style = "single",

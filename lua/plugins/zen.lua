@@ -23,7 +23,7 @@ return {
                 treesitter = true,
             }
 
-            vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>")
+            vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "[Z]en Mode" })
         end,
     },
 
@@ -35,7 +35,7 @@ return {
                 context = -1,
                 treesitter = true,
             }
-            vim.keymap.set("n", "<leader>tw", "<cmd>Twilight<CR>")
+            vim.keymap.set("n", "<leader>tw", "<cmd>Twilight<CR>", { desc = "T[w]ilight" })
         end,
     },
 }

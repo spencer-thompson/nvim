@@ -6,7 +6,7 @@ return {
             require('toggleterm').setup({
 
             })
-            vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>A")
+            vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "[T]erminal" })
         end
     }
 }

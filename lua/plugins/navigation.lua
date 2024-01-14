@@ -33,8 +33,8 @@ return {
             require("neo-tree").setup({
                 close_if_last_window = true
             })
-            vim.keymap.set("n", "<leader>el", "<cmd>Neotree toggle<CR>")
-            vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle current<CR>")
+            vim.keymap.set("n", "<leader>el", "<cmd>Neotree toggle<CR>", { desc = "Explorer [L]eft" })
+            vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle current<CR>", { desc = "Explorer" })
         end,
     },
     {
