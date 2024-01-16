@@ -1,3 +1,8 @@
+--OS Specific stuff
+-- if vim.loop.os_uname().sysname == "Windows_NT" then
+--     vim.opt.shellslash = true
+-- end
+
 vim.wo.number = true
 vim.opt.rnu = true
 
@@ -17,7 +22,7 @@ vim.opt.ignorecase = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.sidescroll = 8
 vim.opt.showbreak = string.rep(" ", 3)
 vim.opt.linebreak = true

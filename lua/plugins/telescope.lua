@@ -112,7 +112,7 @@ return {
             vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = "Telescope Find in Buffer" })
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope Find Help" })
             vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Telescope Find Git Files" })
-            vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
+            -- vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
             vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Telescope Find Commands" })
 
             -- file broswer

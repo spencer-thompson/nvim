@@ -8,6 +8,13 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set({ "i", "v" }, "jk", "<Esc>", { desc = "Exit" })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit" }) -- same thing but for terminal mode
 
+vim.keymap.set("n", "<leader>c", function()
+        if vim.loop.os_uname().sysname == "Windows_NT" then
+            vim.cmd("cd ~\\AppData\\Local\\nvim")
+        end
+    end,
+    { desc = "Go to [C]onfig" })
+
 -- move lines up or down in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "" })
@@ -19,7 +26,7 @@ vim.keymap.set('n', '<S-Tab>', '<C-w>W', { desc = "Cycle through windows" })
 -- move through buffers
 vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = "[N]ext Buffer" })
 vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = "Previous Buffer" })
-vim.keymap.set('n', '<leader>c', '<cmd>bdelete<CR>', { desc = "[C]lose Buffer" })
+vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = "Close Buffer" })
 vim.keymap.set('n', '<leader>db', '<cmd>Dashboard<CR>', { desc = "Dashboard" })
 
 -- visual block mode

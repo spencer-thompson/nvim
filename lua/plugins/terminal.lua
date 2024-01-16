@@ -7,6 +7,7 @@ return {
 
             })
             vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "[T]erminal" })
+            vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "[F]loating Terminal" })
         end
     }
 }
