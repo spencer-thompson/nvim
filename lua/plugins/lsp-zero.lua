@@ -97,9 +97,9 @@ return {
             cmp.setup.cmdline(':', {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
-                    { name = 'path' }
+                    { name = 'path', keyword_length = 3, max_item_count = 30 }
                 }, {
-                    { name = 'cmdline' }
+                    { name = 'cmdline', keyword_length = 2, max_item_count = 30 }
                 })
             })
         end
@@ -148,6 +148,7 @@ return {
                 },
                 servers = {
                     ['lua_ls'] = { 'lua' },
+                    ['gopls'] = { 'go' },
                     -- ['pyright'] = { 'python' },
                 },
             })
