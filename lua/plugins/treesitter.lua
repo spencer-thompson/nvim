@@ -4,7 +4,7 @@ return {
         -- version = false,
         build = ':TSUpdate',
         event = 'VeryLazy',
-        lazy = false,
+        lazy = true,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             -- 'nvim-treesitter/playground',

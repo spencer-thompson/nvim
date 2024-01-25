@@ -18,28 +18,30 @@ return {
             -- local day = vim.api.nvim_cmd(
 
 
-            local day = vim.api.nvim_exec2(
-                '!pyfiglet --font=slant_relief -w 120 ' .. os.date('%A'),
-                { output = true }
-            ).output
+            local day = os.date('%A')
+            -- local day = vim.api.nvim_exec2(
+            --     '!pyfiglet --font=slant_relief -w 120 ' .. os.date('%A'),
+            --     { output = true }
+            -- ).output
 
-            local newlinePos = string.find(day, "\n")
-            if newlinePos then
-                day = string.sub(day, newlinePos + 1)
-            end
+            -- local newlinePos = string.find(day, "\n")
+            -- if newlinePos then
+            --     day = string.sub(day, newlinePos + 1)
+            -- end
 
             local day = string.rep("\n", 4) .. day .. string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
 
 
-            local logo = vim.api.nvim_exec2(
-                '!pyfiglet --font=slant_relief -w 120 Neovim',
-                { output = true }
-            ).output
+            local logo = "Neovim"
+            -- local logo = vim.api.nvim_exec2(
+            --     '!pyfiglet --font=slant_relief -w 120 Neovim',
+            --     { output = true }
+            -- ).output
 
-            local newlinePos = string.find(logo, "\n")
-            if newlinePos then
-                logo = string.sub(logo, newlinePos + 1)
-            end
+            -- local newlinePos = string.find(logo, "\n")
+            -- if newlinePos then
+            --     logo = string.sub(logo, newlinePos + 1)
+            -- end
 
             local logo = string.rep("\n", 4) .. logo .. string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
 

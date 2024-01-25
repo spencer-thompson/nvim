@@ -40,15 +40,15 @@ vim.opt.formatoptions = vim.opt.formatoptions
     + "r" -- unless pressing enter
     - "2"
 
--- set "~" to "`"
+-- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {
-    horiz = '━',
-    horizup = '┻',
-    horizdown = '┳',
-    vert = '┃',
-    vertleft = '┫',
-    vertright = '┣',
-    verthoriz = '╋',
+    horiz = '─',
+    horizup = '┴',
+    horizdown = '┬',
+    vert = '│',
+    vertleft = '┤',
+    vertright = '├',
+    verthoriz = '┼',
     eob = ' ',
 }
 

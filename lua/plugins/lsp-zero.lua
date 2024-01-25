@@ -82,23 +82,50 @@ return {
                 sources = {
                     -- { name = 'path' },
                     { name = 'nvim_lsp', keyword_length = 2 },
-                    -- { name = 'nvim_lua' },
+                    { name = 'nvim_lua', keyword_length = 2 },
                     { name = 'luasnip',  keyword_length = 2 },
                     { name = 'buffer',   keyword_length = 2 },
                 }
             })
 
             cmp.setup.cmdline({ '/', '?' }, {
-                mapping = cmp.mapping.preset.cmdline(),
+                mapping = cmp.mapping.preset.cmdline({
+                    ['<C-Space>'] = cmp.mapping.complete({
+                        i = cmp.mapping.select_next_item(),
+                        c = cmp.mapping.select_next_item(),
+                    }),
+                    ['<C-j>'] = cmp.mapping({
+                        i = cmp.mapping.select_next_item(),
+                        c = cmp.mapping.select_next_item(),
+                    }),
+                    ['<C-k>'] = cmp.mapping.select_prev_item({
+                        i = cmp.mapping.select_next_item(),
+                        c = cmp.mapping.select_next_item(),
+                    }),
+                }),
                 sources = {
-                    { name = 'buffer' }
+                    { name = 'buffer', keyword_length = 2 }
                 }
             })
 
             cmp.setup.cmdline(':', {
-                mapping = cmp.mapping.preset.cmdline(),
+                mapping = cmp.mapping.preset.cmdline({
+                    ['<C-Space>'] = cmp.mapping.complete({
+                        i = cmp.mapping.select_next_item(),
+                        c = cmp.mapping.select_next_item(),
+                    }),
+                    ['<C-j>'] = cmp.mapping({
+                        i = cmp.mapping.select_next_item(),
+                        c = cmp.mapping.select_next_item(),
+                    }),
+                    ['<C-k>'] = cmp.mapping.select_prev_item({
+                        i = cmp.mapping.select_next_item(),
+                        c = cmp.mapping.select_next_item(),
+                    }),
+
+                }),
                 sources = cmp.config.sources({
-                    { name = 'path', keyword_length = 3, max_item_count = 30 }
+                    { name = 'path', keyword_length = 2, max_item_count = 30 }
                 }, {
                     { name = 'cmdline', keyword_length = 2, max_item_count = 30 }
                 })

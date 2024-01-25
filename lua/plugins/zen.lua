@@ -2,6 +2,7 @@ return {
     {
         "folke/zen-mode.nvim",
         event = "VeryLazy",
+        -- cmd = "ZenMode",
         config = function()
             require("zen-mode").setup {
                 window = {
@@ -30,6 +31,7 @@ return {
     {
         "folke/twilight.nvim",
         event = "VeryLazy",
+        -- cmd = "Twilight",
         config = function()
             require("twilight").setup {
                 context = -1,

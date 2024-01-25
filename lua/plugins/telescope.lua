@@ -34,6 +34,12 @@ return {
                     selection_caret = '> ',
                     entry_prefix = '  ',
                     multi_icon = '<>',
+                    borderchars = {
+                        '─', '│', '─', '│', '┌', '┐', '┘', '└',
+                        -- prompt = { "─", "│", "─", "│", '┌', '┐', "│", "│" },
+                        -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                        -- preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+                    },
                     sorting_strategy = "ascending",
                     layout_config = {
                         width = 0.95,
