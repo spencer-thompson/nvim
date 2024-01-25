@@ -74,8 +74,7 @@ return {
                             ["<C-j>"] = actions.move_selection_next,     -- move to next result
                             ['<C-x>'] = browser.actions.remove,
                             ['<C-r>'] = browser.actions.rename,
-
-
+                            -- ['<C-m>'] = browser.actions.move,
                         },
                     },
                     file_ignore_patterns = {},
