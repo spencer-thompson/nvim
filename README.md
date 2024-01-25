@@ -4,7 +4,7 @@ This is my editor, always a work in progress!
 
 ## Plugin List
 
-This is *certainly* not all of the plugins included, but rather the plugins that I use the most (or need a refrence to)
+This is *certainly* not all of the plugins included, but rather the plugins that I use the most (or need a reference to)
 
 ### Package Manager
 

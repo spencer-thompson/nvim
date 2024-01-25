@@ -20,8 +20,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "" })
 
 -- Cycle through windows
-vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = "Cycle through windows" })
-vim.keymap.set('n', '<S-Tab>', '<C-w>W', { desc = "Cycle through windows" })
+-- vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = "Cycle through windows" })
+-- vim.keymap.set('n', '<S-Tab>', '<C-w>W', { desc = "Cycle through windows" })
 
 -- move through buffers
 vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = "[N]ext Buffer" })

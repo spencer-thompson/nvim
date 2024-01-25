@@ -2,7 +2,7 @@
 return {
     {
         "craftzdog/solarized-osaka.nvim",
-        lazy = true,
+        lazy = false,
         -- priority = 1000,
         opts = {
             transparent = true, -- enable for background
@@ -17,7 +17,7 @@ return {
     },
     {
         "projekt0n/github-nvim-theme",
-        lazy = true,
+        lazy = false,
         -- priority = 1000,
         config = function()
             require("github-theme").setup()
@@ -28,7 +28,7 @@ return {
     },
     {
         "miikanissi/modus-themes.nvim",
-        lazy = true,
+        lazy = false,
         -- priority = 1000,
         opts = {},
         config = function()
@@ -56,13 +56,13 @@ return {
                     }
                 end,
             })
-            vim.cmd [[ set background=dark ]]
-            vim.cmd [[ colorscheme kanagawa-wave ]]
+            -- vim.cmd [[ set background=dark ]]
+            -- vim.cmd [[ colorscheme kanagawa-wave ]]
         end,
     },
     {
         "rose-pine/neovim",
-        lazy = true,
+        lazy = false,
         -- priority = 1000,
         opts = {},
         config = function()
@@ -72,9 +72,12 @@ return {
     },
     {
         'folke/tokyonight.nvim',
-        lazy = true,
+        lazy = false,
+        priority = 1000,
         config = function()
-
+            require('tokyonight').setup({})
+            vim.cmd [[ set background=dark ]]
+            vim.cmd [[ colorscheme tokyonight ]]
         end,
     },
 }
