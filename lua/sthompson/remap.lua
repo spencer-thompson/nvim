@@ -1,10 +1,11 @@
--- 8b,dPPYba,  ,adPPYba, 88,dPYba,,adPYba,  ,adPPYYba, 8b,dPPYba,  ,adPPYba,
--- 88P'   "Y8 a8P_____88 88P'   "88"    "8a ""     `Y8 88P'    "8a I8[    ""
--- 88         8PP""""""" 88      88      88 ,adPPPPP88 88       d8  `"Y8ba,
--- 88         "8b,   ,aa 88      88      88 88,    ,88 88b,   ,a8" aa    ]8I
--- 88          `"Ybbd8"' 88      88      88 `"8bbdP"Y8 88`YbbdP"'  `"YbbdP"'
---                                                     88
---                                                     88
+--[[PPYba,  ,adPPYba, 88,dPYba,,adPYba,  ,adPPYYba, 8b,dPPYba,  ,adPPYba,
+88P'   "Y8 a8P_____88 88P'   "88"    "8a ""     `Y8 88P'    "8a I8[    ""
+88         8PP""""""" 88      88      88 ,adPPPPP88 88       d8  `"Y8ba,
+88         "8b,   ,aa 88      88      88 88,    ,88 88b,   ,a8" aa    ]8I
+88          `"Ybbd8"' 88      88      88 `"8bbdP"Y8 88`YbbdP"'  `"YbbdP"'
+                                                    88
+                                                    88
+                                                    ]]
 
 -- jk to leave insert mode
 vim.keymap.set({ "i", "v" }, "jk", "<Esc>", { desc = "Exit" })
