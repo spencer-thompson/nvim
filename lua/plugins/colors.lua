@@ -1,5 +1,8 @@
--- Want to try: modus, momiji, rose-pine
+-- Currently my running theme is tokyonight-night
+-- Just uncomment / comment to change startup theme
+
 return {
+
     {
         "craftzdog/solarized-osaka.nvim",
         lazy = true,
@@ -11,11 +14,11 @@ return {
         },
         config = function(_, opts)
             require("solarized-osaka").setup(opts)
-
             -- vim.cmd [[ set background=dark ]]
             -- vim.cmd [[ colorscheme solarized-osaka ]]
         end,
     },
+
     {
         "projekt0n/github-nvim-theme",
         lazy = true,
@@ -23,11 +26,11 @@ return {
         -- priority = 1000,
         config = function()
             require("github-theme").setup()
-
             -- vim.cmd [[ set background=dark ]]
             -- vim.cmd [[ colorscheme github_dark_default ]] -- yessir
         end,
     },
+
     {
         "miikanissi/modus-themes.nvim",
         lazy = true,
@@ -39,6 +42,7 @@ return {
             -- vim.cmd [[ colorscheme modus ]]
         end,
     },
+
     {
         "rebelot/kanagawa.nvim",
         lazy = true,
@@ -64,6 +68,7 @@ return {
             -- vim.cmd [[ colorscheme kanagawa-wave ]]
         end,
     },
+
     {
         "rose-pine/neovim",
         lazy = true,
@@ -75,6 +80,7 @@ return {
             -- vim.cmd [[ colorscheme rose-pine ]]
         end,
     },
+
     {
         'folke/tokyonight.nvim',
         lazy = false,
@@ -82,7 +88,7 @@ return {
         config = function()
             require('tokyonight').setup({
                 style = 'night',
-                -- on_highlights = function(hl, c)
+                -- on_highlights = function(hl, c) -- fancy telescope theme
                 --     local prompt = "#2d3149"
                 --     hl.TelescopeNormal = {
                 --         bg = c.bg_dark,

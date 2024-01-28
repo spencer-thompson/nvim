@@ -1,5 +1,7 @@
 return {
+
     { 'tpope/vim-fugitive',      event = 'VeryLazy' },
+
     {
         "lewis6991/gitsigns.nvim",
         event = "VeryLazy",
@@ -45,8 +47,9 @@ return {
         config = function(_, opts)
             require('gitsigns').setup(opts)
         end,
-
     },
-    -- { "rhysd/committia.vim",     event = "VeryLazy" },
+
     { "rhysd/git-messenger.vim", event = "VeryLazy" },
+
+    -- { "rhysd/committia.vim",     event = "VeryLazy" },
 }

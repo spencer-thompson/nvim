@@ -1,3 +1,19 @@
+-- ,adPPYba, 8b,dPPYba,   ,adPPYba, 8b,dPPYba,   ,adPPYba,  ,adPPYba, 8b,dPPYba,
+-- I8[    "" 88P'    "8a a8P_____88 88P'   `"8a a8"     "" a8P_____88 88P'   "Y8
+--  `"Y8ba,  88       d8 8PP""""""" 88       88 8b         8PP""""""" 88
+-- aa    ]8I 88b,   ,a8" "8b,   ,aa 88       88 "8a,   ,aa "8b,   ,aa 88
+-- `"YbbdP"' 88`YbbdP"'   `"Ybbd8"' 88       88  `"Ybbd8"'  `"Ybbd8"' 88
+--           88
+--           88                     88
+--                                  88
+--                                  88
+--  ,adPPYYba, 8b,dPPYba,   ,adPPYb,88 8b,dPPYba,  ,adPPYba, 8b      db      d8
+--  ""     `Y8 88P'   `"8a a8"    `Y88 88P'   "Y8 a8P_____88 `8b    d88b    d8'
+--  ,adPPPPP88 88       88 8b       88 88         8PP"""""""  `8b  d8'`8b  d8'
+--  88,    ,88 88       88 "8a,   ,d88 88         "8b,   ,aa   `8bd8'  `8bd8'
+--  `"8bbdP"Y8 88       88  `"8bbdP"Y8 88          `"Ybbd8"'     YP      YP
+
+
 -- Leaders
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
@@ -5,52 +21,5 @@ vim.g.maplocalleader = ','
 -- My Base Keymaps and options
 require('sthompson')
 
--- Lazy plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
--- Load plugins
-require('lazy').setup({
-    -- { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-    spec = {
-        { import = 'plugins' },
-    },
-    defaults = {
-        -- lazy = false,
-
-        version = false,
-    },
-    checker = { enabled = true },
-    performance = {
-        rtp = {
-            disabled_plugins = {
-                "gzip",
-            },
-        },
-    },
-    -- add opts
-})
-
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "[L]azy" })
-
-local wk = require("which-key")
-wk.register(
-    { -- add plugin map groups
-        e = { name = "explore" },
-        d = { name = "dashboard" },
-        f = { name = "find" },
-        s = { name = "split" },
-        t = { name = "toggle" },
-    },
-    { prefix = "<leader>" }
-)
+-- Lazy and all plugins
+require('plugins')

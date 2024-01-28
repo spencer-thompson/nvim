@@ -1,4 +1,5 @@
 return {
+
     {
         'echasnovski/mini.align',
         version = '*',
@@ -7,6 +8,7 @@ return {
             require('mini.align').setup()
         end,
     },
+
     {
         'echasnovski/mini.splitjoin',
         version = '*',
@@ -21,6 +23,7 @@ return {
             })
         end,
     },
+
     {
         'kylechui/nvim-surround',
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -31,11 +34,14 @@ return {
             })
         end
     },
+
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {} -- this is equalent to setup({}) function
     },
+
+    { 'tpope/vim-repeat', event = 'VeryLazy' }, -- better repeating with plugins
     -- {
     --     'echasnovski/mini.pairs',
     --     version = false,
@@ -58,26 +64,27 @@ return {
     --         conform.setup({
     --             formatters_by_ft = {
     --                 -- lua = { "stylua" },
+    --                 python = { "black" },
     --                 -- svelte = { { "prettierd", "prettier" } },
     --                 -- javascript = { { "prettierd", "prettier" } },
     --                 -- typescript = { { "prettierd", "prettier" } },
     --                 -- javascriptreact = { { "prettierd", "prettier" } },
     --                 -- typescriptreact = { { "prettierd", "prettier" } },
-    --                 json = { { "prettierd", "prettier" } },
+    --                 -- json = { { "prettierd", "prettier" } },
     --                 -- graphql = { { "prettierd", "prettier" } },
     --                 -- java = { "google-java-format" },
     --                 -- kotlin = { "ktlint" },
     --                 -- ruby = { "standardrb" },
-    --                 markdown = { { "prettierd", "prettier" } },
+    --                 -- markdown = { { "prettierd", "prettier" } },
     --                 -- erb = { "htmlbeautifier" },
     --                 -- html = { "htmlbeautifier" },
-    --                 bash = { "beautysh" },
+    --                 -- bash = { "beautysh" },
     --                 -- proto = { "buf" },
     --                 -- rust = { "rustfmt" },
     --                 -- yaml = { "yamlfix" },
     --                 -- toml = { "taplo" },
-    --                 css = { { "prettierd", "prettier" } },
-    --                 scss = { { "prettierd", "prettier" } },
+    --                 -- css = { { "prettierd", "prettier" } },
+    --                 -- scss = { { "prettierd", "prettier" } },
     --             },
     --             format_on_save = {
     --                 timeout_ms = 500,

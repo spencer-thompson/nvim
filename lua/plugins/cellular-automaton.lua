@@ -1,5 +1,6 @@
 return {
-    {
+
+    { -- fancy "make it rain" and other cool effects
         "Eandrju/cellular-automaton.nvim",
         event = "VeryLazy",
         config = function()

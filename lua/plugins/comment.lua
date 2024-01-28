@@ -15,8 +15,7 @@ return {
                 -- Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
                 mappings = {
 
-                    -- operator-pending mapping
-                    -- Includes:
+                    -- operator-pending mapping, Includes:
                     --  `gcc`               -> line-comment  the current line
                     --  `gcb`               -> block-comment the current line
                     --  `gc[count]{motion}` -> line-comment  the region contained in {motion}
@@ -28,8 +27,7 @@ return {
                     extra = true,
                 },
 
-                -- LHS of toggle mapping in NORMAL + VISUAL mode
-                toggler = {
+                toggler = { -- LHS of toggle mapping in NORMAL + VISUAL mode
                     -- line-comment keymap
                     --  Makes sense to be related to your opleader.line
                     line = "gcc",
@@ -57,14 +55,16 @@ return {
             comment_ft.set("lua", { "--%s", "--[[%s]]" })
         end,
     },
-    {
+
+    { -- make TODO + ":" a fancy colored comment.
         "folke/todo-comments.nvim",
         event = "VeryLazy",
-        dependecies = { "nvim-lua/plenary.nvim" }, -- TODO
+        dependecies = { "nvim-lua/plenary.nvim" },
         keys = {
+            -- keymaps
             { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
             { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
         },
         config = true,
-    }
+    },
 }

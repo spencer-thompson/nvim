@@ -46,7 +46,7 @@ return {
                 indent = { enable = true },
                 incremental_selection = {
                     enable = true,
-                    keymaps = {
+                    keymaps = { -- FIX: most of these mappings are used elsewhere
                         init_selection = '<c-space>',
                         node_incremental = '<c-space>',
                         scope_incremental = '<c-s>',

@@ -1,4 +1,7 @@
 return {
+
+    { 'kyazdani42/nvim-web-devicons' },
+
     {
         'xiyaowong/nvim-transparent',
         event = 'VimEnter',
@@ -30,6 +33,7 @@ return {
             vim.keymap.set("n", "<leader>tr", "<cmd>TransparentToggle<cr>", { desc = "Transparent" })
         end,
     },
+
     {
         "rcarriga/nvim-notify",
         event = "VeryLazy",
@@ -54,6 +58,7 @@ return {
             require("notify").setup(opts)
         end,
     },
+
     {
         "RRethy/vim-illuminate",
         event = "VeryLazy",
@@ -72,6 +77,7 @@ return {
             vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
         end
     },
+
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -103,60 +109,6 @@ return {
                 },
             },
 
-            -- views = {
-            --     split = {
-            --         enter = true,
-            --     },
-            --     cmdline_popup = {
-            --         position = {
-            --             row = 10,
-            --             col = "50%",
-            --         },
-            --         size = {
-            --             width = 80,
-            --             height = "auto",
-            --         },
-            --         border = {
-            --             style = "single",
-            --             padding = { 2, 3 },
-            --         },
-            --         win_options = {
-            --             winhighlight = {
-            --                 Normal = "Normal",
-            --                 FloatBorder = "FloatBorder",
-            --             }
-            --         }
-            --     },
-            --     popupmenu = {
-            --         relative = "editor",
-            --         position = {
-            --             row = 8,
-            --             col = "50%",
-            --         },
-            --         size = {
-            --             width = "80%",
-            --             height = "40%",
-            --         },
-            --         border = {
-            --             style = "single",
-            --             padding = { 0, 1 },
-            --         },
-            --         win_options = {
-            --             winhighlight = {
-            --                 Normal = "Normal",
-            --                 FloatBorder = "DiagnosticInfo",
-            --             },
-            --         },
-            --     },
-            --     lsp = {
-            --         progress = {
-            --             enabled = true,
-            --             format = "lsp_progress",
-            --             format_done = "lsp_progress_done",
-            --         }
-            --     }
-            -- },
-
             -- you can enable a preset for easier configuration
             presets = {
                 bottom_search = false,        -- use a classic bottom cmdline for search
@@ -178,6 +130,30 @@ return {
             require("noice").setup(opts)
         end,
     },
+
+    {
+        "luukvbaal/statuscol.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        config = function()
+            require("statuscol").setup {
+                setopt = true,
+            }
+        end,
+    },
+
+    {
+        'folke/which-key.nvim',
+        event = 'VeryLazy',
+        lazy = true,
+        opts = {},
+        config = function(opts)
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require('which-key').setup(opts)
+        end,
+    },
+
     {                  -- fun scope animations
         "echasnovski/mini.indentscope",
         version = '*', -- wait till new 0.7.0 release to put it back on semver
@@ -229,6 +205,12 @@ return {
             })
         end,
     },
+
+    {
+        "stevearc/dressing.nvim",
+        lazy = true,
+        opts = {},
+    },
     -- {
     --     'tomiis4/buffertabs.nvim',
     --     event = "VeryLazy",
@@ -243,11 +225,7 @@ return {
     --         vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<cr>")
     --     end
     -- },
-    {
-        "stevearc/dressing.nvim",
-        lazy = true,
-        opts = {},
-    },
+    --
     -- {
     --     'akinsho/bufferline.nvim',
     --     version = "*",
@@ -293,25 +271,4 @@ return {
     --         }
     --     end,
     -- },
-    {
-        "luukvbaal/statuscol.nvim",
-        lazy = true,
-        event = "VeryLazy",
-        config = function()
-            require("statuscol").setup {
-                setopt = true,
-            }
-        end,
-    },
-    {
-        'folke/which-key.nvim',
-        event = 'VeryLazy',
-        lazy = true,
-        opts = {},
-        config = function(opts)
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-            require('which-key').setup(opts)
-        end,
-    },
 }
