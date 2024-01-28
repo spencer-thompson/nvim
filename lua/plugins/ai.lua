@@ -2,8 +2,16 @@ return {
 
     { -- requires subscription
         'github/copilot.vim',
-        event = 'VeryLazy',
-        lazy = true,
+        -- event = 'VeryLazy',
+        -- lazy = true,
+        config = function()
+            vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
+                expr = true,
+                replace_keycodes = false,
+                desc = "Accept Copilot Suggestion",
+            })
+            vim.g.copilot_no_tab_map = true
+        end
     },
 
     { -- this only really works on linux

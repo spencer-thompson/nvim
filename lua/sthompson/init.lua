@@ -1,3 +1,3 @@
 require('sthompson.settings')
 require('sthompson.remap')
-require('sthompson.globals')
+require('sthompson.disable_builtin')

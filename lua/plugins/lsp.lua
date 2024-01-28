@@ -1,54 +1,66 @@
-return {}
--- return {
---     'neovim/nvim-lspconfig',
---     event = "VeryLazy",
---     dependencies = {
---         'williamboman/mason.nvim',
---         'williamboman/mason-lspconfig.nvim',
---
---         -- status updates for lsp
---         { 'j-hui/fidget.nvim', opts = {} },
---
---         'folke/neodev.nvim',
---         'simrat39/inlay-hints.nvim',
---     },
---     config = function()
---         require('mason').setup()
---         require('mason-lspconfig').setup()
---
---         require('neodev').setup()
---
---         local servers = {
---             -- stuff #todo
---             clangd = {},
---             gopls = {},
---             pyright = {
---                 Python = {},
---             },
---             html = { filetypes = { 'html', 'twig', 'hbs'} },
---
---             lua_ls = {
---                 Lua = {
---                     workspace = { checkThirdParty = false },
---                     telemetry = { enable = false },
---                     -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
---                     -- diagnostics = { disable = { 'missing-fields' } },
---                 },
---             },
---         }
---         local capabilities = vim.lsp.protocol.make_client_capabilities()
---         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
---         local mason_lspconfig = require 'mason-lspconfig'
---         mason_lspconfig.setup { ensure_installed = vim.tbl_keys(servers) }
---         mason_lspconfig.setup_handlers {
---             function(server_name)
---                 require('lspconfig')[server_name].setup {
---                     capabilities = capabilities,
---                     on_attach = on_attach,
---                     settings = servers[server_name],
---                     filetypes = (servers[server_name] or {}).filetypes,
---                 }
---             end,
---         }
---     end,
--- }
+-- note: diagnostics are not exclusive to lsp servers
+-- so these can be global keybindings
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
+
+        -- these will be buffer-local keybindings
+        -- because they only work if you have an active language server
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts) -- todo change
+        vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    end
+})
+
+require("neodev").setup({})
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local default_setup = function(server)
+    require('lspconfig')[server].setup({
+        capabilities = lsp_capabilities,
+    })
+end
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        "lua_ls",
+    },
+    handlers = {
+        default_setup,
+        lua_ls = function()
+            require('lspconfig').lua_ls.setup({
+                capabilities = lsp_capabilities,
+                settings = {
+                    Lua = {
+                        runtime = {
+                            version = 'LuaJIT',
+                        },
+                        diagnostics = {
+                            globals = { 'vim' },
+                            disable = { 'missing-fields' }
+                        },
+                        workspace = {
+                            libary = {
+                                vim.env.VIMRUNTIME,
+                            }
+                        },
+                    }
+                }
+            })
+        end
+    },
+})
