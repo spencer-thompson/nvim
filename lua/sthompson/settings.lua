@@ -1,3 +1,15 @@
+--                                                                            
+--                                      88                                    
+--                        ,d      ,d    ""                                    
+--                        88      88                                          
+-- ,adPPYba,  ,adPPYba, MM88MMM MM88MMM 88 8b,dPPYba,   ,adPPYb,d8 ,adPPYba,  
+-- I8[    "" a8P_____88   88      88    88 88P'   `"8a a8"    `Y88 I8[    ""  
+--  `"Y8ba,  8PP"""""""   88      88    88 88       88 8b       88  `"Y8ba,   
+-- aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I  
+-- `"YbbdP"'  `"Ybbd8"'   "Y888   "Y888 88 88       88  `"YbbdP"Y8 `"YbbdP"'  
+--                                                      aa,    ,88            
+--                                                       "Y8bbdP"             
+
 --OS Specific stuff
 -- if vim.loop.os_uname().sysname == "Windows_NT" then
 --     vim.opt.shellslash = true
@@ -27,6 +39,8 @@ vim.opt.sidescroll = 8
 vim.opt.showbreak = string.rep(" ", 3)
 vim.opt.linebreak = true
 
+vim.opt.laststatus = 3
+
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
@@ -38,7 +52,9 @@ vim.opt.formatoptions = vim.opt.formatoptions
     + "q" -- allow formatting comments w/ gq
     - "o" -- O and o, don't continue comments
     + "r" -- unless pressing enter
+    + "n" -- indent past the formatlistpat, not underneath it
     - "2"
+    + "j" -- remove comment leader when joining lines
 
 -- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {
@@ -61,7 +77,6 @@ vim.opt.undofile = true
 -- set highlight on search
 vim.hlsearch = false
 vim.incsearch = true
-
 
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
