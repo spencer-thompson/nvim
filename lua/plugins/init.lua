@@ -30,10 +30,8 @@ require('lazy').setup( -- load lazy
         require('plugins.cellular-automaton'),
         require('plugins.code'),
         require('plugins.colors'),
-        -- require('plugins.comment'),
         require('plugins.dashboard'),
         require('plugins.git'),
-        -- require('plugins.lsp-zero'),
         require('plugins.lualine'),
         require('plugins.misc'),
         require('plugins.navigation'),
@@ -43,6 +41,8 @@ require('lazy').setup( -- load lazy
         require('plugins.ui'),
         require('plugins.util'),
         require('plugins.zen'),
+        -- require('plugins.comment'),
+        -- require('plugins.lsp-zero'),
     },
 
     {
