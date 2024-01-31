@@ -41,8 +41,6 @@ require('lazy').setup( -- load lazy
         require('plugins.ui'),
         require('plugins.util'),
         require('plugins.zen'),
-        -- require('plugins.comment'),
-        -- require('plugins.lsp-zero'),
     },
 
     {

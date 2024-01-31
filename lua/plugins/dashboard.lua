@@ -3,17 +3,6 @@ return {
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
         opts = function()
-            -- local logo = [[
-            --  /\\\\\_____/\\\_______________________________/\\\________/\\\___________________________
-            --  \/\\\\\\___\/\\\______________________________\/\\\_______\/\\\__________________________
-            --  _\/\\\/\\\__\/\\\______________________________\//\\\______/\\\___/\\\_____________________
-            --   _\/\\\//\\\_\/\\\_____/\\\\\\\\______/\\\\\_____\//\\\____/\\\___\///_____/\\\\\__/\\\\\__
-            --    _\/\\\\//\\\\/\\\___/\\\/////\\\___/\\\///\\\____\//\\\__/\\\_____/\\\__/\\\///\\\\\///\\\_
-            --     _\/\\\_\//\\\/\\\__/\\\\\\\\\\\___/\\\__\//\\\____\//\\\/\\\_____\/\\\_\/\\\_\//\\\__\/\\\
-            --      _\/\\\__\//\\\\\\_\//\\///////___\//\\\__/\\\______\//\\\\\______\/\\\_\/\\\__\/\\\__\/\\\_
-            --       _\/\\\___\//\\\\\__\//\\\\\\\\\\__\///\\\\\/________\//\\\_______\/\\\_\/\\\__\/\\\__\/\\\
-            --        _\///_____\/////____\//////////_____\/////___________\///________\///__\///___\///___\///__
-            -- ]]
 
             -- local day = vim.api.nvim_cmd(
 
@@ -57,10 +46,11 @@ return {
                     header = vim.split(day, "\n"),
                     -- stylua: ignore
                     center = {
-                        { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
-                        { action = "Telescope live_grep", desc = " Find string", icon = " ", key = "s" },
                         { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
-                        { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+                        { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" }, -- 
+                        { action = "Telescope live_grep", desc = " Find string", icon = " ", key = "s" },
+                        { action = "TransparentToggle", desc = " Transparency", icon = " ", key = "t" },
+                        -- { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
                         { action = "Neotree toggle current", desc = " File Tree", icon = "󱏒 ", key = "e" },
                         -- { action = 'lua require("persistence").load()',     desc = " Restore Session", icon = " ", key = "s" },
                         -- { action = "LazyExtras",                            desc = " Lazy Extras",     icon = " ", key = "x" },
@@ -114,8 +104,4 @@ return {
             require('dashboard').setup(opts)
         end,
     },
-    -- {
-    --     'echasnovski/mini.starter',
-    --     version = '*',
-    -- }
 }
