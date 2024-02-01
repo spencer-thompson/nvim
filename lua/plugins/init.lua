@@ -35,6 +35,7 @@ require('lazy').setup( -- load lazy
         require('plugins.lualine'),
         require('plugins.misc'),
         require('plugins.navigation'),
+        require('plugins.remap'),
         require('plugins.telescope'),
         require('plugins.terminal'),
         require('plugins.treesitter'),

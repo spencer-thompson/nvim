@@ -8,7 +8,7 @@ return {
             vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
                 expr = true,
                 replace_keycodes = false,
-                desc = "Accept Copilot Suggestion",
+                desc = "Copilot Suggestion",
             })
             vim.g.copilot_no_tab_map = true
         end

@@ -1,3 +1,4 @@
+-- Currently unused
 return {
     {
         'VonHeikemen/lsp-zero.nvim',

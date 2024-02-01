@@ -14,26 +14,27 @@ return {
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
                     'bash',
-                    'c',
+                    'c', -- required
                     'dockerfile',
-                    -- 'cpp',
                     'go',
                     'html',
-                    -- 'javascript',
-                    'lua',
+                    'lua', -- required
                     'markdown',
                     'markdown_inline',
                     'python',
+                    'query',  -- required
+                    'vim',    -- required
+                    'vimdoc', --required
+                    'yaml',
+                    -- 'cpp',
+                    -- 'javascript',
                     -- 'rust',
                     -- 'tsx',
-                    'vimdoc',
-                    'vim',
-                    'yaml',
                 },
                 sync_install = false,
 
                 auto_install = true,
-                -- ignore_install = {},
+
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = { "markdown" },

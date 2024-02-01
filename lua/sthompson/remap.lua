@@ -36,7 +36,8 @@ vim.keymap.set('n', '<leader>db', '<cmd>Dashboard<CR>', { desc = "Dashboard" })
 -- visual block mode
 vim.keymap.set('n', 'vb', '<C-v>', { desc = "[V]isual [B]lock Mode" })
 
-vim.keymap.set("n", "x", '"_x', { desc = "No Register" }) -- doesn't add to register
+-- doesn't add to register
+vim.keymap.set("n", "x", '"_x', { desc = "No Register" })
 
 -- center the window
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center the window" })
@@ -44,12 +45,21 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center the window" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Center the window" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Center the window" })
 
--- increment / decrement
-vim.keymap.set("n", "+", "<C-a>", { desc = "Increment Number" })
-vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement Number" })
-
 -- select all
-vim.keymap.set("n", "<C-a>", "gg<S-v>G")
+vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select [A]ll" })
+
+-- select word under cursor
+vim.keymap.set(
+    "n",
+    "<leader>S",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Select [S]ame Word" }
+)
+
+-- paste without overwriting the clipboard
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting" })
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- splits
 vim.keymap.set("n", "<leader>ss", "<cmd>split<CR>", { desc = "Horizontal Screen Split" })
@@ -58,20 +68,20 @@ vim.keymap.set("n", "<leader>st", "<cmd>vsplit<CR><cmd>terminal<CR>A", { desc = 
 vim.keymap.set("n", "<leader>sT", "<cmd>split<CR><cmd>terminal<CR>A", { desc = "Horizontal Terminal Screen Split" })
 
 -- move window
-vim.keymap.set({ "n", "t" }, "<C-h>", "<C-w>h")
-vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k")
-vim.keymap.set({ "n", "t" }, "<C-j>", "<C-w>j")
-vim.keymap.set({ "n", "t" }, "<C-l>", "<C-w>l")
+vim.keymap.set({ "n", "t" }, "<C-h>", "<C-w>h", { desc = "Left Window" })
+vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k", { desc = "Up Window" })
+vim.keymap.set({ "n", "t" }, "<C-j>", "<C-w>j", { desc = "Down Window" })
+vim.keymap.set({ "n", "t" }, "<C-l>", "<C-w>l", { desc = "Right Window" })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true }) -- might remove
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- quit
+-- saving & quiting
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "[W]rite" })
-vim.keymap.set("n", "Q", "!!pyfiglet<CR>")
+vim.keymap.set("n", "Q", "<nop>")
 
 -- quick source
 -- vim.keymap.set("n", "<leader><leader>", "gqq", {desc= "Format"})
