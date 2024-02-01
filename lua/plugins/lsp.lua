@@ -16,8 +16,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         vim.keymap.set({ 'n', 'x' }, '<leader>w', function()
             -- bootstrap format on save lol
+            vim.cmd [[%s/\s\+$//e]]
             vim.lsp.buf.format()
-            vim.cmd('w')
+            vim.cmd [[w]]
         end, opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
     end
