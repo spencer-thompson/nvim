@@ -27,4 +27,12 @@ return {
 
     { 'folke/neodev.nvim', },
 
+    {
+        'mbbill/undotree',
+        event = 'VeryLazy',
+        config = function()
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+        end
+    },
+
 }

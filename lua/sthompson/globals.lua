@@ -11,31 +11,27 @@ function pyfiglet(message, font)
 end
 
 local pyfiglet_fonts = {
-    'univers',
-    'twisted',
-    'this',
-    'the_edge',
-    'swamp_land',
-    'sub-zero',
-    'starwars',
-    'slant_relief',
-    'pepper',
-    'hollywood',
-    'dos_rebel',
-    'doom',
-    'cybermedium',
-    'cyberlarge',
-    'cards',
-    'calvin_s',
-    'bloody',
     'ansi_shadow',
+    'bloody',
+    'calvin_s',
+    'cards',
+    'cyberlarge',
+    'cybermedium',
+    'doom',
+    'dos_rebel',
+    'hollywood',
+    'pepper',
+    'slant_relief',
+    'starwars',
+    'sub-zero',
+    'swamp_land',
+    'the_edge',
+    'this',
+    'twisted',
+    'univers',
 }
 
--- function randomFont(table)
-function randomFont()
-    if #pyfiglet_fonts == 0 then
-        return 'standard'
-    end
-    local index = math.random(#pyfiglet_fonts)
-    return pyfiglet_fonts[index]
+function RandomChoice(table)
+    local randomIndex = math.random(#table)
+    return table[randomIndex]
 end

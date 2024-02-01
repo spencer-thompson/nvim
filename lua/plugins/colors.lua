@@ -71,6 +71,7 @@ return {
 
     {
         "rose-pine/neovim",
+        name = "rose-pine.nvim",
         lazy = true,
         event = "VeryLazy",
         -- priority = 1000,
@@ -88,36 +89,42 @@ return {
         config = function()
             require('tokyonight').setup({
                 style = 'night',
-                -- on_highlights = function(hl, c) -- fancy telescope theme
-                --     local prompt = "#2d3149"
-                --     hl.TelescopeNormal = {
-                --         bg = c.bg_dark,
-                --         fg = c.fg_dark,
-                --     }
-                --     hl.TelescopeBorder = {
-                --         bg = c.bg_dark,
-                --         fg = c.bg_dark,
-                --     }
-                --     hl.TelescopePromptNormal = {
-                --         bg = prompt,
-                --     }
-                --     hl.TelescopePromptBorder = {
-                --         bg = prompt,
-                --         fg = prompt,
-                --     }
-                --     hl.TelescopePromptTitle = {
-                --         bg = prompt,
-                --         fg = prompt,
-                --     }
-                --     hl.TelescopePreviewTitle = {
-                --         bg = c.bg_dark,
-                --         fg = c.bg_dark,
-                --     }
-                --     hl.TelescopeResultsTitle = {
-                --         bg = c.bg_dark,
-                --         fg = c.bg_dark,
-                --     }
-                -- end,
+                -- transparent = true,
+                terminal_colors = true,
+                styles = {
+                    comments = { italic = false },
+                    keywords = { italic = false },
+                },
+                on_highlights = function(hl, c) -- fancy telescope theme
+                    local prompt = "#2d3149"
+                    hl.TelescopeNormal = {
+                        bg = c.bg_dark,
+                        fg = c.fg_dark,
+                    }
+                    hl.TelescopeBorder = {
+                        bg = c.bg_dark,
+                        fg = c.bg_dark,
+                    }
+                    hl.TelescopePromptNormal = {
+                        bg = prompt,
+                    }
+                    hl.TelescopePromptBorder = {
+                        bg = prompt,
+                        fg = prompt,
+                    }
+                    hl.TelescopePromptTitle = {
+                        bg = prompt,
+                        fg = prompt,
+                    }
+                    hl.TelescopePreviewTitle = {
+                        bg = c.bg_dark,
+                        fg = c.bg_dark,
+                    }
+                    hl.TelescopeResultsTitle = {
+                        bg = c.bg_dark,
+                        fg = c.bg_dark,
+                    }
+                end,
             })
             vim.cmd [[ set background=dark ]]
             vim.cmd [[ colorscheme tokyonight-night ]]

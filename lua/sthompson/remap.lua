@@ -22,6 +22,11 @@ vim.keymap.set("n", "<leader>c", function()
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line(s) up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line(s) down" })
 
+-- diagnostic stuff like errors
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+
 -- move through buffers
 vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = "[N]ext Buffer" })
 vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = "Previous Buffer" })
@@ -51,6 +56,7 @@ vim.keymap.set("n", "<leader>ss", "<cmd>split<CR>", { desc = "Horizontal Screen 
 vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", { desc = "Vertical Screen Split" })
 vim.keymap.set("n", "<leader>st", "<cmd>vsplit<CR><cmd>terminal<CR>A", { desc = "Vertical Terminal Screen Split" })
 vim.keymap.set("n", "<leader>sT", "<cmd>split<CR><cmd>terminal<CR>A", { desc = "Horizontal Terminal Screen Split" })
+
 -- move window
 vim.keymap.set({ "n", "t" }, "<C-h>", "<C-w>h")
 vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k")
@@ -66,5 +72,6 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "[Q]uit" })
 vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Force [Q]uit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "[W]rite" })
 vim.keymap.set("n", "Q", "!!pyfiglet<CR>")
+
 -- quick source
 -- vim.keymap.set("n", "<leader><leader>", "gqq", {desc= "Format"})

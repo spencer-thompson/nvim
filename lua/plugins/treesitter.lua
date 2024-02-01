@@ -4,17 +4,11 @@ return {
         -- version = false,
         build = ':TSUpdate',
         event = 'VeryLazy',
-        lazy = true,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             -- 'nvim-treesitter/playground',
             'JoosepAlviste/nvim-ts-context-commentstring',
         },
-        -- cmd = {
-        --     'TSUpdateSync',
-        --     'TSUpdate',
-        --     'TSInstall'
-        -- },
         config = function()
             -- require('nvim-treesitter.install').compilers = { "clang" }
             require('nvim-treesitter.configs').setup({
@@ -42,7 +36,7 @@ return {
                 -- ignore_install = {},
                 highlight = {
                     enable = true,
-                    additional_vim_regex_highlighting = false,
+                    additional_vim_regex_highlighting = { "markdown" },
                 },
                 indent = { enable = true },
                 incremental_selection = {

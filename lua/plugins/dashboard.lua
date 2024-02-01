@@ -3,43 +3,17 @@ return {
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
         opts = function()
+            local day = string.rep("\n", 4) ..
+                require("plugins.ascii").randomDay(os.date('%A')) ..
+                string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
 
-            -- local day = vim.api.nvim_cmd(
-
-
-            local day = os.date('%A')
-            -- local day = vim.api.nvim_exec2(
-            --     '!pyfiglet --font=slant_relief -w 120 ' .. os.date('%A'),
-            --     { output = true }
-            -- ).output
-
-            -- local newlinePos = string.find(day, "\n")
-            -- if newlinePos then
-            --     day = string.sub(day, newlinePos + 1)
-            -- end
-
-            local day = string.rep("\n", 4) .. day .. string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
-
-
-            local logo = "Neovim"
-            -- local logo = vim.api.nvim_exec2(
-            --     '!pyfiglet --font=slant_relief -w 120 Neovim',
-            --     { output = true }
-            -- ).output
-
-            -- local newlinePos = string.find(logo, "\n")
-            -- if newlinePos then
-            --     logo = string.sub(logo, newlinePos + 1)
-            -- end
-
-            local logo = string.rep("\n", 4) .. logo .. string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
-
+            local logo = string.rep("\n", 4) ..
+                require("plugins.ascii").randomLogo() ..
+                string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
 
             local opts = {
                 theme = "doom",
                 hide = {
-                    -- this is taken care of by lualine
-                    -- enabling this messes up the actual laststatus setting after loading a file
                     statusline = false,
                 },
                 config = {
@@ -98,9 +72,8 @@ return {
 
             return opts
         end,
+
         config = function(_, opts)
-            -- require('dashboard').setup(opts(randomFont(pyfiglet_fonts)))
-            -- require('dashboard').setup(opts(randomFont()))
             require('dashboard').setup(opts)
         end,
     },

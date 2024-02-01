@@ -4,7 +4,7 @@ return {
 
     {
         'xiyaowong/nvim-transparent',
-        event = 'VimEnter',
+        event = 'VeryLazy',
         config = function()
             require('transparent').setup({
                 extra_groups = {

@@ -2,7 +2,7 @@ return {
 
     { -- requires subscription
         'github/copilot.vim',
-        -- event = 'VeryLazy',
+        event = 'VeryLazy',
         -- lazy = true,
         config = function()
             vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
@@ -30,6 +30,7 @@ return {
 
     { -- essentially chatgpt / openai
         "robitx/gp.nvim",
+        event = "VeryLazy",
         config = function()
             require("gp").setup()
             -- or setup with your own config (see Install > Configuration in Readme)
