@@ -48,8 +48,9 @@ return {
             on_open = function(win)
                 vim.api.nvim_win_set_config(win, { zindex = 100 })
             end,
-            render = "wrapped-compact",
-            fps = 60,
+            render = "compact",
+            stages = "slide",
+            fps = 100, -- my monitor fps
         },
         -- init = function()
         --     vim.notify = require("notify")
@@ -82,14 +83,26 @@ return {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
-            cmdline = {
-                title = '',
-                -- view = 'cmdline', -- change to classic
-            },
+            -- cmdline = {
+            --     title = '',
+            --     -- view = 'cmdline', -- change to classic
+            -- },
             messages = {
                 enabled = false
             },
+            views = {
+                notify = {
+                    replace = true,
+                },
+            },
             lsp = {
+                progress = {
+                    enabled = true,
+                    format = "lsp_progress",
+                    format_done = "lsp_progress_done",
+                    -- throttle = 1000 / 30,
+                    view = "notify",
+                },
                 -- override markdown rendering so that **cmp** and other plugins use **treesitter**
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,

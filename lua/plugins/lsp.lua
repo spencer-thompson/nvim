@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set({ 'n', 'x' }, '<leader>w', function()
             -- bootstrap format on save lol
             vim.cmd [[%s/\s\+$//e]]
+            vim.cmd [[nohl]]
             vim.lsp.buf.format()
             vim.cmd [[w]]
         end, opts)

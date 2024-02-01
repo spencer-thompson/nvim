@@ -47,6 +47,7 @@ require('lazy').setup( -- load lazy
     {
         defaults = { version = false, },
         checker = { enabled = true }, -- auto check for updates
+        change_detection = { notify = false },
     }
 )
 
