@@ -26,6 +26,7 @@ return {
 
     {
         'kylechui/nvim-surround',
+        name = 'surround',
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
         config = function()
@@ -37,14 +38,16 @@ return {
 
     {
         'windwp/nvim-autopairs',
+        name = 'autopairs',
         event = "InsertEnter",
         opts = {} -- this is equalent to setup({}) function
     },
 
-    { 'tpope/vim-repeat', event = 'VeryLazy' }, -- better repeating with plugins
+    { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
 
     {
         "numToStr/Comment.nvim",
+        name = 'comment',
         event = "VeryLazy",
         config = function()
             require("Comment").setup({
@@ -66,8 +69,9 @@ return {
 
     { -- make TODO + ":" a fancy colored comment.
         "folke/todo-comments.nvim",
+        name = 'todo-comments',
         event = "VeryLazy",
-        dependecies = { "nvim-lua/plenary.nvim" },
+        dependecies = { "nvim-lua/plenary.nvim", name = 'plenary' },
         keys = {
             -- keymaps
             { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },

@@ -4,6 +4,7 @@ return {
 
     {
         'iamcco/markdown-preview.nvim', -- fancy markdown preview
+        name = 'markdown-preview',
         ft = 'markdown',
         build = function()
             vim.fn['mkdp#util#install']()

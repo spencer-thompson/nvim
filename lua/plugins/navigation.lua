@@ -2,12 +2,13 @@ return {
 
     {
         "nvim-neo-tree/neo-tree.nvim",
+        name = 'neo-tree',
         branch = "v3.x",
         event = "VeryLazy",
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
+            { "nvim-lua/plenary.nvim",       name = "plenary" },
+            { "nvim-tree/nvim-web-devicons", }, -- not strictly required, but recommended
+            { "MunifTanjim/nui.nvim",        name = "nui" },
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
         config = function()
@@ -21,6 +22,7 @@ return {
 
     {
         'folke/flash.nvim',
+        name = 'flash',
         event = 'VeryLazy',
         vscode = true,
         opts = {},
@@ -32,24 +34,4 @@ return {
             { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
         },
     },
-    -- { -- File tree
-    --     "nvim-tree/nvim-tree.lua",
-    --     version = "*",
-    --     lazy = false,
-    --     dependencies = {
-    --         "nvim-tree/nvim-web-devicons",
-    --     },
-    --     config = function()
-    --         vim.g.loaded_netrw = 1
-    --         vim.g.loaded_netrwplugin = 1
-    --
-    --         require("nvim-tree").setup({
-    --             view = { width = 50 },
-    --             filters = { dotfiles = true },
-    --         })
-    --
-    --         vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
-    --
-    --     end,
-    -- },
 }

@@ -1,6 +1,7 @@
 return {
     {
         "nvimdev/dashboard-nvim",
+        name = 'dashboard',
         event = "VimEnter",
         opts = function()
             local day = string.rep("\n", 4) ..
@@ -21,15 +22,16 @@ return {
                     -- stylua: ignore
                     center = {
                         { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
-                        { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" }, -- 
+                        { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
                         { action = "Telescope live_grep", desc = " Find string", icon = " ", key = "s" },
                         { action = "TransparentToggle", desc = " Transparency", icon = " ", key = "t" },
                         -- { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
                         { action = "Neotree toggle current", desc = " File Tree", icon = "󱏒 ", key = "e" },
+                        { action = "ChatGPT", desc = " ChatGPT", icon = "󱚤 ", key = "c" },
                         -- { action = 'lua require("persistence").load()',     desc = " Restore Session", icon = " ", key = "s" },
                         -- { action = "LazyExtras",                            desc = " Lazy Extras",     icon = " ", key = "x" },
                         { action = "Lazy", desc = " Plugins", icon = "󰒲 ", key = "l" },
-                        { action = "Mason", desc = " LSP & Formatting", icon = "󱌣 ", key = "m" },
+                        { action = "Mason", desc = " LSP & Format", icon = "󱌣 ", key = "m" },
                         { action = "qa", desc = " Quit", icon = " ", key = "q" },
                     },
                     footer = function()

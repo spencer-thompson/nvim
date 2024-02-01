@@ -1,6 +1,7 @@
 return {
     { -- bottom line display #todo configure
         "nvim-lualine/lualine.nvim",
+        name = "lualine",
         event = "VeryLazy",
         opts = {
             options = {

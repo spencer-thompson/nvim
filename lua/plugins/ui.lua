@@ -1,9 +1,10 @@
 return {
 
-    { 'kyazdani42/nvim-web-devicons' },
+    { 'kyazdani42/nvim-web-devicons', name = 'web-devicons' },
 
     {
         'xiyaowong/nvim-transparent',
+        name = 'transparent',
         event = 'VeryLazy',
         config = function()
             require('transparent').setup({
@@ -35,33 +36,8 @@ return {
     },
 
     {
-        "rcarriga/nvim-notify",
-        event = "VeryLazy",
-        opts = {
-            timeout = 1000,
-            max_height = function()
-                return math.floor(vim.o.lines * 0.75)
-            end,
-            max_width = function()
-                return math.floor(vim.o.columns * 0.75)
-            end,
-            on_open = function(win)
-                vim.api.nvim_win_set_config(win, { zindex = 100 })
-            end,
-            render = "compact",
-            stages = "slide",
-            fps = 100, -- my monitor fps
-        },
-        -- init = function()
-        --     vim.notify = require("notify")
-        -- end,
-        config = function(_, opts)
-            require("notify").setup(opts)
-        end,
-    },
-
-    {
         "RRethy/vim-illuminate",
+        name = 'illuminate',
         event = "VeryLazy",
         config = function()
             require('illuminate').configure({
@@ -81,71 +57,110 @@ return {
 
     {
         "folke/noice.nvim",
+        name = 'noice',
         event = "VeryLazy",
-        opts = {
-            -- cmdline = {
-            --     title = '',
-            --     -- view = 'cmdline', -- change to classic
-            -- },
-            messages = {
-                enabled = false
-            },
-            views = {
-                notify = {
-                    replace = true,
-                },
-            },
-            lsp = {
-                progress = {
-                    enabled = true,
-                    format = "lsp_progress",
-                    format_done = "lsp_progress_done",
-                    -- throttle = 1000 / 30,
-                    view = "notify",
-                },
-                -- override markdown rendering so that **cmp** and other plugins use **treesitter**
-                override = {
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true,
-                },
-                --     hover = {enabled = false },
-                --     signature = { enabled = false },
-            },
-            routes = {
-                {
-                    filter = {
-                        event = "msg_show",
-                        kind = "search_count",
-                    },
-                    opts = { skip = true },
-                },
-            },
-
-            -- you can enable a preset for easier configuration
-            presets = {
-                bottom_search = false,        -- use a classic bottom cmdline for search
-                command_palette = true,       -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true,        -- add a border to hover docs and signature help
-            },
-        },
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "muniftanjim/nui.nvim",
-            -- optional:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   if not available, we use `mini` as the fallback
-            -- "rcarriga/nvim-notify",
+            { "MunifTanjim/nui.nvim", name = "nui" },
+            {
+                "rcarriga/nvim-notify",
+                name = 'notify',
+                event = "VeryLazy",
+                config = function()
+                    require("notify").setup({
+                        timeout = 1000,
+                        max_height = function()
+                            return math.floor(vim.o.lines * 0.75)
+                        end,
+                        max_width = function()
+                            return math.floor(vim.o.columns * 0.75)
+                        end,
+                        on_open = function(win)
+                            vim.api.nvim_win_set_config(win, { zindex = 100 })
+                        end,
+                        render = "compact",
+                        stages = "slide",
+                        fps = 100, -- my monitor fps
+                    })
+                end,
+            },
         },
-        config = function(_, opts)
-            require("noice").setup(opts)
+        config = function()
+            require("noice").setup({
+                messages = {
+                    enabled = false
+                },
+                views = {
+                    notify = {
+                        replace = true,
+                    },
+                },
+                lsp = {
+                    progress = {
+                        enabled = true,
+                        format = "lsp_progress",
+                        format_done = "lsp_progress_done",
+                        -- throttle = 1000 / 30,
+                        view = "notify",
+                    },
+                    -- override markdown rendering so that **cmp** and other plugins use **treesitter**
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                    --     hover = {enabled = false },
+                    --     signature = { enabled = false },
+                },
+                routes = {
+                    {
+                        filter = {
+                            event = "msg_show",
+                            kind = "search_count",
+                        },
+                        opts = { skip = true },
+                    },
+                    {
+                        filter = {
+                            event = "msg_show",
+                            kind = "",
+                            find = "written",
+                        },
+                        opts = { skip = true },
+                    },
+                    {
+                        view = "notify",
+                        filter = { event = "msg_showmode" },
+                        opts = { skip = false, stop = false },
+                    },
+                },
+
+                presets = {                       -- you can enable a preset for easier configuration
+                    bottom_search = false,        -- use a classic bottom cmdline for search
+                    command_palette = true,       -- position the cmdline and popupmenu together
+                    long_message_to_split = true, -- long messages will be sent to a split
+                    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = true,        -- add a border to hover docs and signature help
+                },
+            })
+
+            vim.keymap.set({ "n", "i", "s" }, "<c-u>", function()
+                if not require("noice.lsp").scroll(-4) then
+                    return "<c-u>"
+                end -- scroll up
+            end, { silent = true, expr = true })
+
+            vim.keymap.set({ "n", "i", "s" }, "<c-d>", function()
+                if not require("noice.lsp").scroll(4) then
+                    return "<c-d>"
+                end -- scroll down
+            end, { silent = true, expr = true })
         end,
     },
 
     {
         "luukvbaal/statuscol.nvim",
+        name = 'statuscol',
         lazy = true,
         event = "VeryLazy",
         config = function()
@@ -159,26 +174,25 @@ return {
         "echasnovski/mini.indentscope",
         version = '*', -- wait till new 0.7.0 release to put it back on semver
         event = "VeryLazy",
-        opts = {
-            symbol = "▏",
-            -- symbol = "│",
-            options = {
-                border = "both",
-                indent_at_cursor = true,
-                try_as_border = true,
-            },
-            draw = {
-                delay = 50,
-                -- animation = require('mini.indentscope').gen_animation.exponential({
-                --     easing = 'out',
-                --     duration = 100,
-                --     unit = 'total',
-                -- })
-            }
-        },
-        config = function(_, opts)
+        config = function()
             local indent_scope = require('mini.indentscope')
-            indent_scope.setup(opts)
+            indent_scope.setup({
+                symbol = "▏",
+                -- symbol = "│",
+                options = {
+                    border = "both",
+                    indent_at_cursor = true,
+                    try_as_border = true,
+                },
+                draw = {
+                    delay = 50,
+                    -- animation = require('mini.indentscope').gen_animation.exponential({
+                    --     easing = 'out',
+                    --     duration = 100,
+                    --     unit = 'total',
+                    -- })
+                }
+            })
             indent_scope.gen_animation.exponential({
                 easing = 'out',
                 duration = 100,
@@ -209,6 +223,7 @@ return {
 
     {
         "stevearc/dressing.nvim",
+        name = 'dressing',
         lazy = true,
         opts = {},
     },

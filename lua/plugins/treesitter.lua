@@ -1,13 +1,14 @@
 return {
     {
         'nvim-treesitter/nvim-treesitter',
+        name = 'treesitter',
         -- version = false,
         build = ':TSUpdate',
         event = 'VeryLazy',
         dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
+            { 'nvim-treesitter/nvim-treesitter-textobjects', name = 'treesitter-textobjects' },
             -- 'nvim-treesitter/playground',
-            'JoosepAlviste/nvim-ts-context-commentstring',
+            { 'JoosepAlviste/nvim-ts-context-commentstring', name = 'ts-context-commentstring' },
         },
         config = function()
             -- require('nvim-treesitter.install').compilers = { "clang" }

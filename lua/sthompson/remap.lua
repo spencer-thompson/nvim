@@ -11,7 +11,7 @@
 vim.keymap.set({ "i", "v" }, "jk", "<Esc>", { desc = "Exit" })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit" }) -- same thing but for terminal mode
 
-vim.keymap.set("n", "<leader>c", function()
+vim.keymap.set("n", "<leader>gc", function()
         if vim.loop.os_uname().sysname == "Windows_NT" then
             vim.cmd("cd ~\\AppData\\Local\\nvim")
         end

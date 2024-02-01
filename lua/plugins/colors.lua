@@ -5,6 +5,7 @@ return {
 
     {
         "craftzdog/solarized-osaka.nvim",
+        name = "solarized-osaka",
         lazy = true,
         event = "VeryLazy",
         -- priority = 1000,
@@ -21,6 +22,7 @@ return {
 
     {
         "projekt0n/github-nvim-theme",
+        name = "github-theme",
         lazy = true,
         event = "VeryLazy",
         -- priority = 1000,
@@ -33,6 +35,7 @@ return {
 
     {
         "miikanissi/modus-themes.nvim",
+        name = "modus-themes",
         lazy = true,
         event = "VeryLazy",
         -- priority = 1000,
@@ -45,6 +48,7 @@ return {
 
     {
         "rebelot/kanagawa.nvim",
+        name = "kanagawa",
         lazy = true,
         event = "VeryLazy",
         -- priority = 1000,
@@ -71,7 +75,7 @@ return {
 
     {
         "rose-pine/neovim",
-        name = "rose-pine.nvim",
+        name = "rose-pine",
         lazy = true,
         event = "VeryLazy",
         -- priority = 1000,
@@ -84,6 +88,7 @@ return {
 
     {
         'folke/tokyonight.nvim',
+        name = 'tokyonight',
         lazy = false,
         priority = 1000,
         config = function()

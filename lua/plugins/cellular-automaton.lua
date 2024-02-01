@@ -2,6 +2,7 @@ return {
 
     { -- fancy "make it rain" and other cool effects
         "Eandrju/cellular-automaton.nvim",
+        name = 'cellular-automaton',
         event = "VeryLazy",
         config = function()
             require("cellular-automaton").register_animation {

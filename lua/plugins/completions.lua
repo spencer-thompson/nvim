@@ -1,5 +1,6 @@
 -- completion
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 local key_len = 2
 local max_item = 30
@@ -10,6 +11,14 @@ cmp.setup({
         { name = 'nvim_lua', keyword_length = key_len, max_item_count = max_item },
         { name = 'luasnip',  keyword_length = key_len, max_item_count = max_item },
         { name = 'buffer',   keyword_length = key_len, max_item_count = max_item },
+    },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol',
+            maxwidth = 50,
+            ellipsis_char = '...',
+            show_labelDetails = true,
+        })
     },
     snippet = {
         expand = function(args)
@@ -100,15 +109,6 @@ cmp.setup.cmdline(':', {
     )
 })
 -- return {
---     {
---
---         'echasnovski/mini.pairs',
---         version = false,
---         event = 'VeryLazy',
---         config = function()
---             require('mini.pairs').setup()
---         end,
---     },
 --     {
 --         "hrsh7th/nvim-cmp",
 --         event = "InsertEnter",

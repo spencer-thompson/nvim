@@ -2,8 +2,9 @@ return {
 
     { -- requires subscription
         'github/copilot.vim',
-        event = 'VeryLazy',
-        -- lazy = true,
+        name = 'copilot',
+        event = 'BufEnter',
+        lazy = true,
         config = function()
             vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
                 expr = true,
@@ -16,6 +17,7 @@ return {
 
     { -- this only really works on linux
         'David-Kunz/gen.nvim',
+        name = 'gen',
         event = 'VeryLazy',
         lazy = true,
         config = function()
@@ -28,14 +30,38 @@ return {
         end
     },
 
-    { -- essentially chatgpt / openai
-        "robitx/gp.nvim",
-        event = "VeryLazy",
+    {
+        'jackMort/ChatGPT.nvim',
+        name = 'chatgpt',
+        lazy = true,
+        cmd = { 'ChatGPT', 'ChatGPTRun', "ChatGPTEditWithInstruction" },
         config = function()
-            require("gp").setup()
-            -- or setup with your own config (see Install > Configuration in Readme)
-            -- require("gp").setup(config)
-            -- shortcuts might be setup here (see Usage > Shortcuts in Readme)
-        end,
+            require('chatgpt').setup({
+                popup_layout = {
+                    center = {
+                        width = "85%",
+                        height = "85%",
+                    },
+                },
+                openai_params = {
+                    model = 'gpt-4-turbo-preview',
+                    max_tokens = 500,
+                },
+                openai_edit_params = {
+                    model = 'gpt-4-turbo-preview'
+                },
+            })
+        end
     },
+
+    -- { -- essentially chatgpt / openai
+    --     "robitx/gp.nvim",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("gp").setup()
+    --         -- or setup with your own config (see Install > Configuration in Readme)
+    --         -- require("gp").setup(config)
+    --         -- shortcuts might be setup here (see Usage > Shortcuts in Readme)
+    --     end,
+    -- },
 }

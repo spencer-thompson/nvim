@@ -1,19 +1,19 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
+        name = 'telescope',
         tag = '0.1.5',
         -- or                              , branch = '0.1.x',
         event = 'VeryLazy',
         -- priority = 100,
         dependencies = {
 
-            "nvim-telescope/telescope-file-browser.nvim",
-            "nvim-telescope/telescope-hop.nvim",
-            "nvim-telescope/telescope-ui-select.nvim",
+            { "nvim-telescope/telescope-file-browser.nvim", name = "telescope-file-browser" },
+            { "nvim-telescope/telescope-hop.nvim",          name = "telescope-hop" },
+            { "nvim-telescope/telescope-ui-select.nvim",    name = "telescope-ui-select" },
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
-                -- NOTE: If you are having trouble with this installation,
-                --       refer to the README for telescope-fzf-native for more instructions.
+                name = "telescope-fzf-native",
                 build = 'make',
                 cond = function()
                     return vim.fn.executable 'make' == 1
@@ -26,6 +26,7 @@ return {
             local actions = require("telescope.actions")
             local builtin = require('telescope.builtin')
             local browser = require('telescope').extensions.file_browser
+            local notify = require('telescope').extensions.notify
 
 
             require('telescope').setup {
@@ -108,7 +109,7 @@ return {
             pcall(require('telescope').load_extension, 'fzf')
             require('telescope').load_extension('noice')        -- noice extension
             require('telescope').load_extension('file_browser') -- file browser
-            -- require('telescope').extensions.notify.notify())
+            require('telescope').load_extension('notify')       -- notifications
 
             -- Setup keymaps i guess
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope Find Files" })
@@ -124,7 +125,7 @@ return {
             vim.keymap.set('n', '<leader>fd', browser.file_browser, { desc = "Telescope File Browser" })
 
             -- notifications
-            vim.keymap.set('n', '<leader>fn', '<cmd>Telescope notify<cr>', { desc = "Telescope Filter Notifications" })
+            vim.keymap.set('n', '<leader>fn', notify.notify, { desc = "Telescope Find Notifications" })
 
 
             -- local notify = require('telescope').load_extension('notify')

@@ -1,9 +1,10 @@
 return {
 
-    { 'tpope/vim-fugitive',      event = 'VeryLazy' },
+    { 'tpope/vim-fugitive',      name = 'fugitive',      event = 'VeryLazy' },
 
     {
         "lewis6991/gitsigns.nvim",
+        name = "gitsigns",
         event = "VeryLazy",
         lazy = true,
         opts = {
@@ -49,7 +50,7 @@ return {
         end,
     },
 
-    { "rhysd/git-messenger.vim", event = "VeryLazy" },
+    { "rhysd/git-messenger.vim", name = 'git-messenger', event = "VeryLazy" },
 
     -- { "rhysd/committia.vim",     event = "VeryLazy" },
 }
