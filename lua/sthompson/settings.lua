@@ -20,6 +20,9 @@ vim.opt.rnu = true
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus' -- sync clipboards
 
+vim.o.timeout = true
+vim.o.timeoutlen = 200
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -40,11 +43,13 @@ vim.opt.linebreak = true
 
 vim.opt.laststatus = 3
 
+vim.opt.jumpoptions = 'stack'
+
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
+-- default 'tcqj'
 vim.opt.formatoptions = vim.opt.formatoptions
-    -- default 'tcqj'
     - "a" -- auto formatting is bad
     - "t" -- no auto formatting
     + "c" -- auto wrap comments

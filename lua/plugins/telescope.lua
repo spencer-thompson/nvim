@@ -71,6 +71,7 @@ return {
                     mappings = {
                         n = {
                             ['<C-h>'] = browser.actions.goto_home_dir,
+                            ['jk'] = actions.close,
                         },
                         i = {
                             ['<Esc>'] = actions.close,
@@ -112,20 +113,24 @@ return {
             require('telescope').load_extension('notify')       -- notifications
 
             -- Setup keymaps i guess
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope Find Files" })
-            vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = "Telescope Find String" })
-            vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Telescope Buffers" })
-            vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = "Telescope Find in Buffer" })
-            vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope Find Help" })
-            vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Telescope Find Git Files" })
+            vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Files" })
+            vim.keymap.set('n', '<leader>fs', builtin.live_grep, { desc = "String" })
+            vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Buffers" })
+            vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = "Buffer" })
+            vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Help" })
+            vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = "Git Files" })
+            vim.keymap.set('n', '<leader>f:', builtin.commands, { desc = "Commands" })
+            vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = "Registers" })
+            vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = "Treesitter" })
+            vim.keymap.set('n', '<leader>fc', builtin.colorscheme, { desc = "Colorschemes" })
+
             -- vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
-            vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Telescope Find Commands" })
 
             -- file broswer
-            vim.keymap.set('n', '<leader>fd', browser.file_browser, { desc = "Telescope File Browser" })
+            vim.keymap.set('n', '<leader>fd', browser.file_browser, { desc = "File Browser" })
 
             -- notifications
-            vim.keymap.set('n', '<leader>fn', notify.notify, { desc = "Telescope Find Notifications" })
+            vim.keymap.set('n', '<leader>fn', notify.notify, { desc = "Notifications" })
 
 
             -- local notify = require('telescope').load_extension('notify')

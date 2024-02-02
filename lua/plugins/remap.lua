@@ -6,8 +6,6 @@ return {
         lazy = true,
         opts = {},
         config = function(opts)
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
             local wk = require("which-key")
             wk.setup(opts)
             wk.register( -- help remembering maps
@@ -15,7 +13,7 @@ return {
                     A = { "Swap Previous Parameter" },
                     a = { "Swap Next Parameter" },
                     c = {
-                        name = "[C]hatGPT",
+                        name = "chat",
                         c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
                         e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
                         g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
@@ -40,7 +38,7 @@ return {
                         w = { "<cmd>Twilight<CR>", "T[w]ilight" },
                     },
                     v = { "Treesitter Selection" },
-                    z = { "<cmd>ZenMode<CR>", "[Z]en Mode" }
+                    Z = { "<cmd>ZenMode<CR>", "[Z]en Mode" }
                 },
                 { prefix = "<leader>" }
             )

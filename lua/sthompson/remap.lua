@@ -56,10 +56,13 @@ vim.keymap.set(
     { desc = "Select [S]ame Word" }
 )
 
+-- fix last misspelled word and jump back
+vim.keymap.set("n", "<leader>z", "mz[s1z=`z", { desc = "Fix last misspelled word" })
+
 -- paste without overwriting the clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting" })
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to +y register" })
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy to +Y register" })
 
 -- splits
 vim.keymap.set("n", "<leader>ss", "<cmd>split<CR>", { desc = "Horizontal Screen Split" })

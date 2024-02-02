@@ -47,17 +47,17 @@ cmp.setup({
 
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline({
-        ['<C-Space>'] = cmp.mapping.complete({
-            i = cmp.mapping.select_next_item(),
-            c = cmp.mapping.select_next_item(),
+        ['<C-Space>'] = cmp.mapping({
+            i = cmp.mapping.complete(),
+            c = cmp.mapping.complete(),
         }),
         ['<C-j>'] = cmp.mapping({
             i = cmp.mapping.select_next_item(),
             c = cmp.mapping.select_next_item(),
         }),
         ['<C-k>'] = cmp.mapping({
-            i = cmp.mapping.select_next_item(),
-            c = cmp.mapping.select_next_item(),
+            i = cmp.mapping.select_prev_item(),
+            c = cmp.mapping.select_prev_item(),
         }),
         ['<Tab>'] = cmp.mapping({
             i = cmp.mapping.confirm({
@@ -77,17 +77,17 @@ cmp.setup.cmdline({ '/', '?' }, {
 
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
-        ['<C-Space>'] = cmp.mapping.complete({
-            i = cmp.mapping.select_next_item(),
-            c = cmp.mapping.select_next_item(),
+        ['<C-Space>'] = cmp.mapping({
+            i = cmp.mapping.complete(),
+            c = cmp.mapping.complete(),
         }),
         ['<C-j>'] = cmp.mapping({
             i = cmp.mapping.select_next_item(),
             c = cmp.mapping.select_next_item(),
         }),
         ['<C-k>'] = cmp.mapping({
-            i = cmp.mapping.select_next_item(),
-            c = cmp.mapping.select_next_item(),
+            i = cmp.mapping.select_prev_item(),
+            c = cmp.mapping.select_prev_item(),
         }),
         ['<Tab>'] = cmp.mapping({
             i = cmp.mapping.confirm({

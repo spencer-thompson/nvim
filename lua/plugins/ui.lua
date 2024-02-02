@@ -3,6 +3,23 @@ return {
     { 'kyazdani42/nvim-web-devicons', name = 'web-devicons' },
 
     {
+        "nvim-lualine/lualine.nvim",
+        name = "lualine",
+        event = "VeryLazy",
+        -- init = function()
+        --     vim.g.lualine_laststatus = vim.o.laststatus
+        --     if vim.fn.argc(-1) > 0 then
+        --         -- set an empty statusline till lualine loads
+        --         vim.o.statusline = " "
+        --     else
+        --         -- hide the statusline on the starter page
+        --         vim.o.laststatus = 0
+        --     end
+        -- end,
+
+    },
+
+    {
         'xiyaowong/nvim-transparent',
         name = 'transparent',
         event = 'VeryLazy',
@@ -39,6 +56,7 @@ return {
         "RRethy/vim-illuminate",
         name = 'illuminate',
         event = "VeryLazy",
+        lazy = true,
         config = function()
             require('illuminate').configure({
                 delay = 200,
@@ -93,6 +111,7 @@ return {
                 views = {
                     notify = {
                         replace = true,
+                        merge = true,
                     },
                 },
                 lsp = {
