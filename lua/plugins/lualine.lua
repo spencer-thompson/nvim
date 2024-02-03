@@ -15,7 +15,7 @@ local function process_sections(sections)
     for name, section in pairs(sections) do
         local left = name:sub(9, 10) < 'x'
         for pos = 1, name ~= 'lualine_z' and #section or #section - 1 do
-            table.insert(section, pos * 2, { empty, color = { fg = colors.black, bg = colors.black } })
+            table.insert(section, pos * 2, { empty, color = { fg = colors.bg_statusline, bg = colors.bg_statusline } })
         end
         for id, comp in ipairs(section) do
             if type(comp) ~= 'table' then
@@ -37,6 +37,7 @@ require('lualine').setup({
         component_separators = { left = '', right = '' },
         -- component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
+        -- component_separators = '',
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
             statusline = { "dashboard" },
@@ -58,9 +59,45 @@ require('lualine').setup({
     tabline = process_sections {
         lualine_a = {
             {
-                'branch',
-                padding = { right = 1, left = 1 },
+                'buffers',
+                hide_filename_extension = true,
+                -- separator = { left = '', right = '' },
+                -- separator = '  ',
+                -- 
+                filetype_names = {
+                    TelescopePrompt = 'Telescope',
+                    dashboard = 'Dashboard',
+                    -- packer = 'Packer',
+                    fzf = 'FZF',
+                    alpha = 'Alpha',
+                    lazy = 'Lazy',
+                },
+                -- buffers_color = {
+                --     active = 'BufferActive',
+                --     inactive = 'BufferInactive',
+                -- },
+                -- separator = '',
+                -- use_mode_colors = true,
+                symbols = {
+                    modified = ' ● ', -- text to show when the buffer is modified
+                    alternate_file = '# ', -- text to show to identify the alternate file
+                    directory = '  ', -- text to show when the buffer is a directory
+                },
             }
+            -- {
+            --     'filename',
+            --     path = 1,
+            --     -- symbols = {
+            --     --     modified = ' ', -- Text to show when the file is modified.
+            --     --     readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
+            --     --     unnamed = ' ', -- Text to show for unnamed buffers.
+            --     --     newfile = ' ', -- Text to show for newly created file before first write
+            --     -- }
+            -- }
+            -- {
+            --     'branch',
+            --     padding = { right = 1, left = 1 },
+            -- }
             -- "mode",
             -- {
             --     function()
@@ -107,13 +144,9 @@ require('lualine').setup({
             },
         },
         lualine_y = {
-            { -- todo
-                'tabs',
-            }
         },
         lualine_z = {
-            { "encoding", padding = { left = 1, right = 1 } },
-            'fileformat',
+            { 'tabs', }
             -- {
             --     function()
             --         return 'NEOVIM'
@@ -311,16 +344,16 @@ require('lualine').setup({
                 -- colored = true,
             },
             -- { function() return '' end, draw_empty = true },
-            {
-                'filename',
-                path = 3,
-
-                symbols = {
-                    modified = ' ● ', -- text to show when the buffer is modified
-                    alternate_file = ' # ', -- text to show to identify the alternate file
-                    directory = '  ', -- text to show when the buffer is a directory
-                },
-            },
+            -- {
+            --     'filename',
+            --     path = 3,
+            --
+            --     symbols = {
+            --         modified = ' ● ', -- text to show when the buffer is modified
+            --         alternate_file = ' # ', -- text to show to identify the alternate file
+            --         directory = '  ', -- text to show when the buffer is a directory
+            --     },
+            -- },
             -- { function() return '' end, draw_empty = true },
             -- {
             --     'buffers',
@@ -370,6 +403,8 @@ require('lualine').setup({
             -- },
         },
         lualine_y = {
+            { "encoding", padding = { left = 1, right = 1 } },
+            'fileformat',
         },
         lualine_z = {
             {

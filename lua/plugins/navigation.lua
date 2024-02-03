@@ -13,10 +13,15 @@ return {
         },
         config = function()
             require("neo-tree").setup({
-                close_if_last_window = true
+                close_if_last_window = true,
+                default_component_configs = {
+                    indent = {
+                        indent_size = 4,
+                    }
+                }
             })
-            vim.keymap.set("n", "<leader>el", "<cmd>Neotree toggle<CR>", { desc = "Explorer [L]eft" })
-            vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle current<CR>", { desc = "Explorer" })
+            -- vim.keymap.set("n", "<leader>el", "<cmd>Neotree toggle<CR>", { desc = "Explorer [L]eft" })
+            -- vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle current<CR>", { desc = "Explorer" })
         end,
     },
 

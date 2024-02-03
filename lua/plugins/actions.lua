@@ -72,6 +72,13 @@ return {
         name = 'todo-comments',
         event = "VeryLazy",
         dependecies = { "nvim-lua/plenary.nvim", name = 'plenary' },
+        opts = {
+            keywords = {
+                DONE = { icon = " ", color = "info" },
+                TODO = { icon = "󰵚 ", color = "info" },
+            },
+            merge_keywords = true,
+        },
         keys = {
             -- keymaps
             { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
