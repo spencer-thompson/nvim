@@ -11,6 +11,7 @@ return {
                 replace_keycodes = false,
                 desc = "Copilot Suggestion",
             })
+            vim.g.copilot_filetypes = { markdown = true } -- HACK: for copilot in markdown
             vim.g.copilot_no_tab_map = true
         end
     },

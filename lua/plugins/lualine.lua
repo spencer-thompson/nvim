@@ -33,11 +33,8 @@ require('lualine').setup({
         icons_enabled = true,
         -- theme = 'molokai',
         theme = 'auto',
-        -- component_separators = '|',
         component_separators = { left = '', right = '' },
-        -- component_separators = { left = '', right = '' },
-        -- section_separators = { left = '', right = '' },
-        -- component_separators = '',
+        -- { left = '', right = '' }, { left = '', right = '' }, '|'
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
             statusline = { "dashboard" },
@@ -54,22 +51,18 @@ require('lualine').setup({
         }
     },
 
-    --[[ TOP BAR ]]
-
     tabline = process_sections {
         lualine_a = {
-            { 'fileformat', padding = { left = 1, right = 1 } },
-            { "encoding",   padding = { left = 1, right = 1 } },
+            -- { 'fileformat', padding = { left = 1, right = 1 } },
+            { "filetype", icon = { align = "left" } },
+            { "encoding", padding = { left = 1, right = 1 } },
             {
                 'buffers',
                 hide_filename_extension = true,
-                -- separator = { left = '', right = '' },
-                separator = '',
-                -- 
+                separator = '', -- separator = { left = '', right = '' },
                 filetype_names = {
                     TelescopePrompt = 'Telescope',
                     dashboard = 'Dashboard',
-                    -- packer = 'Packer',
                     fzf = 'FZF',
                     alpha = 'Alpha',
                     lazy = 'Lazy',
@@ -97,18 +90,6 @@ require('lualine').setup({
             --     --     unnamed = ' ', -- Text to show for unnamed buffers.
             --     --     newfile = ' ', -- Text to show for newly created file before first write
             --     -- }
-            -- }
-            -- {
-            --     'branch',
-            --     padding = { right = 1, left = 1 },
-            -- }
-            -- "mode",
-            -- {
-            --     function()
-            --         return ''
-            --     end,
-            --     colored = false,
-            --     icon_only = true,
             -- }
         },
         lualine_b = {
@@ -197,24 +178,6 @@ require('lualine').setup({
             --     },
             --
             -- },
-            -- {
-            --     'diff',
-            --     symbols = {
-            --         added = '+ ',
-            --         modified = '~ ',
-            --         removed = '- ',
-            --     },
-            --     source = function()
-            --         local gitsigns = vim.b.gitsigns_status_dict
-            --         if gitsigns then
-            --             return {
-            --                 added = gitsigns.added,
-            --                 modified = gitsigns.changed,
-            --                 removed = gitsigns.removed,
-            --             }
-            --         end
-            --     end,
-            -- },
         },
         lualine_c = {
             -- {
@@ -293,29 +256,6 @@ require('lualine').setup({
                 'branch',
                 padding = { right = 1, left = 1 },
             },
-            -- {
-            --     'branch',
-            --     padding = { right = 1, left = 1 },
-            -- },
-            -- {
-            --     'diff',
-            --     symbols = {
-            --         added = '+ ',
-            --         modified = '~ ',
-            --         removed = '- ',
-            --     },
-            --     padding = { right = 1, left = 1 },
-            --     source = function()
-            --         local gitsigns = vim.b.gitsigns_status_dict
-            --         if gitsigns then
-            --             return {
-            --                 added = gitsigns.added,
-            --                 modified = gitsigns.changed,
-            --                 removed = gitsigns.removed,
-            --             }
-            --         end
-            --     end,
-            -- }
         },
         lualine_c = {
             {
@@ -344,13 +284,6 @@ require('lualine').setup({
                 symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }, --    
                 colored = true,
                 update_in_insert = true,
-                -- diagnostics_color = {          -- Same values as the general color option can be used here.
-                --     error = 'DiagnosticError', -- Changes diagnostics' error color.
-                --     warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
-                --     info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
-                --     hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
-                -- },
-                -- colored = true,
             },
             -- { function() return '' end, draw_empty = true },
             -- {
