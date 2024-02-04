@@ -10,7 +10,7 @@ return {
         event = "VeryLazy",
         -- priority = 1000,
         opts = {
-            transparent = true, -- enable for background
+            transparent = false, -- enable for background
             terminal_colors = true,
         },
         config = function(_, opts)

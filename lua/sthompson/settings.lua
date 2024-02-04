@@ -9,10 +9,15 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
                                                      aa,    ,88
                                                       "Y8bbd]]
 
---OS Specific stuff
--- if vim.loop.os_uname().sysname == "Windows_NT" then
---     vim.opt.shellslash = true
--- end
+-- OS Specific stuff
+if vim.loop.os_uname().sysname == "Windows_NT" then
+    -- Powershell stuff sadly
+    vim.cmd [[let &shell = executable('pwsh') ? 'pwsh' : 'powershell']]
+    vim.cmd [[let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';']]
+    vim.cmd [[let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode']]
+    vim.cmd [[let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode']]
+    vim.cmd [[set shellquote= shellxquote=]]
+end
 
 vim.wo.number = true
 vim.opt.rnu = true
@@ -37,9 +42,13 @@ vim.opt.ignorecase = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
-vim.opt.sidescroll = 8
-vim.opt.showbreak = string.rep(" ", 3)
+vim.opt.showbreak = "│ " --┊│▕
+vim.opt.scrolloff = 999
+vim.opt.sidescrolloff = 999 -- set to 999 for "always centered"
+-- vim.opt.sidescroll = 0
+
 vim.opt.linebreak = true
+vim.opt.breakindent = true
 
 vim.opt.laststatus = 3
 
@@ -66,6 +75,7 @@ vim.opt.fillchars = {
     horizup = '┴',
     horizdown = '┬',
     vert = '│',
+    -- msgsep = '│',
     vertleft = '┤',
     vertright = '├',
     verthoriz = '┼',
@@ -85,8 +95,6 @@ vim.incsearch = true
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
 
--- set to 999 for "always centered"
-vim.opt.scrolloff = 999
 
 vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 1000

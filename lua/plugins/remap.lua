@@ -42,6 +42,8 @@ return {
                     s = { name = "split" },
                     t = {
                         name = "toggle",
+                        f = { "<cmd>ToggleTerm direction=float<CR>", "[F]loating" },
+                        t = { "<cmd>ToggleTerm<CR>", "[T]erminal" },
                         w = { "<cmd>Twilight<CR>", "T[w]ilight" },
                     },
                     v = { "Treesitter Selection" },

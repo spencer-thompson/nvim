@@ -1,8 +1,8 @@
-local signs = { Error = ' ', Warning = ' ', Hint = ' ', Information = ' ' }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticsSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+-- set icons and fancy number highlight
+vim.cmd [[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError]]
+vim.cmd [[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn]]
+vim.cmd [[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo]]
+vim.cmd [[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint ]]
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',

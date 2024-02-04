@@ -6,10 +6,10 @@ return {
         'iamcco/markdown-preview.nvim', -- fancy markdown preview
         name = 'markdown-preview',
         ft = 'markdown',
-        build = function()
-            vim.fn['mkdp#util#install']()
-            vim.keymap.set("n", "<leader>mp", "<cmd>MakrdownPreviewToggle<CR>")
-        end,
+        build = "cd app && npm install",
+        -- build = function()
+        --     vim.fn['mkdp#util#install']()
+        -- end,
         cmd = {
             'MarkdownPreviewToggle',
             'MarkdownPreview',

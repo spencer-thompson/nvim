@@ -15,7 +15,7 @@ local function process_sections(sections)
     for name, section in pairs(sections) do
         local left = name:sub(9, 10) < 'x'
         for pos = 1, name ~= 'lualine_z' and #section or #section - 1 do
-            table.insert(section, pos * 2, { empty, color = { fg = colors.bg_statusline, bg = colors.bg_statusline } })
+            table.insert(section, pos * 2, { empty, color = { fg = colors.bg, bg = colors.bg } })
         end
         for id, comp in ipairs(section) do
             if type(comp) ~= 'table' then
@@ -42,7 +42,7 @@ require('lualine').setup({
         disabled_filetypes = {
             statusline = { "dashboard" },
             winbar = { "dashboard" },
-            tabline = { "dashboard" },
+            tabline = { "dashboard", "neo-tree" },
         },
         ignore_focus = {},
         always_divide_middle = false,
@@ -58,11 +58,13 @@ require('lualine').setup({
 
     tabline = process_sections {
         lualine_a = {
+            { 'fileformat', padding = { left = 1, right = 1 } },
+            { "encoding",   padding = { left = 1, right = 1 } },
             {
                 'buffers',
                 hide_filename_extension = true,
                 -- separator = { left = '', right = '' },
-                -- separator = '  ',
+                separator = '',
                 -- 
                 filetype_names = {
                     TelescopePrompt = 'Telescope',
@@ -71,10 +73,12 @@ require('lualine').setup({
                     fzf = 'FZF',
                     alpha = 'Alpha',
                     lazy = 'Lazy',
+                    -- neotree = 'NeoTree',
                 },
+                use_mode_colors = true,
                 -- buffers_color = {
-                --     active = 'BufferActive',
-                --     inactive = 'BufferInactive',
+                --     active = 'lualine_a_active',
+                --     inactive = 'lualine_b_inactive',
                 -- },
                 -- separator = '',
                 -- use_mode_colors = true,
@@ -108,32 +112,32 @@ require('lualine').setup({
             -- }
         },
         lualine_b = {
-            {
-                'buffers',
-                hide_filename_extension = true,
-                -- separator = { left = '', right = '' },
-                -- separator = '  ',
-                -- 
-                filetype_names = {
-                    TelescopePrompt = 'Telescope',
-                    dashboard = 'Dashboard',
-                    -- packer = 'Packer',
-                    fzf = 'FZF',
-                    alpha = 'Alpha',
-                    lazy = 'Lazy',
-                },
-                -- buffers_color = {
-                --     active = 'BufferActive',
-                --     inactive = 'BufferInactive',
-                -- },
-                -- separator = '',
-                -- use_mode_colors = true,
-                symbols = {
-                    modified = ' ● ', -- text to show when the buffer is modified
-                    alternate_file = '# ', -- text to show to identify the alternate file
-                    directory = '  ', -- text to show when the buffer is a directory
-                },
-            },
+            -- {
+            --     'buffers',
+            --     hide_filename_extension = true,
+            --     -- separator = { left = '', right = '' },
+            --     -- separator = '  ',
+            --     -- 
+            --     filetype_names = {
+            --         TelescopePrompt = 'Telescope',
+            --         dashboard = 'Dashboard',
+            --         -- packer = 'Packer',
+            --         fzf = 'FZF',
+            --         alpha = 'Alpha',
+            --         lazy = 'Lazy',
+            --     },
+            --     -- buffers_color = {
+            --     --     active = 'BufferActive',
+            --     --     inactive = 'BufferInactive',
+            --     -- },
+            --     -- separator = '',
+            --     -- use_mode_colors = true,
+            --     symbols = {
+            --         modified = ' ● ', -- text to show when the buffer is modified
+            --         alternate_file = '# ', -- text to show to identify the alternate file
+            --         directory = '  ', -- text to show when the buffer is a directory
+            --     },
+            -- },
             -- { function() return '' end, draw_empty = true },
         },
         lualine_c = {},
@@ -146,7 +150,12 @@ require('lualine').setup({
         lualine_y = {
         },
         lualine_z = {
-            { 'tabs', }
+            {
+                'tabs',
+                mode = 1,
+                path = 0,
+                use_mode_colors = true,
+            }
             -- {
             --     function()
             --         return 'NEOVIM'
@@ -403,8 +412,6 @@ require('lualine').setup({
             -- },
         },
         lualine_y = {
-            { "encoding", padding = { left = 1, right = 1 } },
-            'fileformat',
         },
         lualine_z = {
             {
