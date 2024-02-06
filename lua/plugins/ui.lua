@@ -1,6 +1,6 @@
 return {
 
-    { 'kyazdani42/nvim-web-devicons', name = 'web-devicons' },
+    -- { 'kyazdani42/nvim-web-devicons', name = 'web-devicons' },
 
     {
         "nvim-lualine/lualine.nvim",

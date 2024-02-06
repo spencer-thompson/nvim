@@ -17,7 +17,7 @@ return {
                 untracked = { text = "▎" },
             },
             current_line_blame = true,
-            current_line_blame_formatter = '    - <author> | <[%a %I:%M %p]> | "<summary>"',
+            current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
             current_line_blame_opts = {
                 virt_text_pos = 'eol',
                 delay = 200,

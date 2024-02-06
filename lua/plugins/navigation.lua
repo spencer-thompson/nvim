@@ -24,7 +24,14 @@ return {
             -- vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle current<CR>", { desc = "Explorer" })
         end,
     },
-
+    {
+        'stevearc/oil.nvim',
+        name = "oil",
+        event = "VeryLazy",
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
     {
         'folke/flash.nvim',
         name = 'flash',

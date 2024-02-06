@@ -35,6 +35,7 @@ return {
                         f = { "<cmd>Neotree toggle float<CR>", "Float" },
                         -- g = { "<cmd>Neotree toggle float<CR>", "Float" },
                         l = { "<cmd>Neotree toggle<CR>", "Left" },
+                        o = { "<cmd>Oil<CR>", "Oil" },
                         r = { "<cmd>Neotree toggle right<CR>", "Right" },
                     },
                     f = { name = "find" },
