@@ -49,6 +49,25 @@ require('mason-lspconfig').setup({
     },
     handlers = {
         default_setup,
+        gopls = function()
+            require('lspconfig').gopls.setup({
+                capabilities = lsp_capabilities,
+                cmd = { 'gopls' },
+                filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+                -- root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
+                settings = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true,
+                            shadow = true,
+                        },
+                        completeUnimported = true,
+                        gofumpt = true,
+                        usePlaceholders = true,
+                    }
+                }
+            })
+        end,
         lua_ls = function()
             require('lspconfig').lua_ls.setup({
                 capabilities = lsp_capabilities,
@@ -69,6 +88,6 @@ require('mason-lspconfig').setup({
                     }
                 }
             })
-        end
+        end,
     },
 })
