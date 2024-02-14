@@ -1,6 +1,7 @@
 return {
 
-    { 'tpope/vim-fugitive',      name = 'fugitive',      event = 'VeryLazy' },
+    { 'tpope/vim-fugitive',     name = 'fugitive', event = 'VeryLazy' },
+    { 'sindrets/diffview.nvim', name = 'diffview', event = 'VeryLazy' },
 
     {
         "lewis6991/gitsigns.nvim",
@@ -42,7 +43,7 @@ return {
                 map("n", "<leader>ghd", gs.diffthis, "Diff This")
                 map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-                map("n", "<leader>Gst", gs.toggle_current_line_blame)
+                map("n", "<leader>Gst", gs.toggle_current_line_blame, "Toggle Line Blame")
             end,
         },
         config = function(_, opts)

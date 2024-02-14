@@ -19,6 +19,17 @@ return {
                     return vim.fn.executable 'make' == 1
                 end,
             },
+            -- {
+            --     "gbprod/yanky.nvim",
+            --     name = "yanky",
+            --     -- event = "VeryLazy",
+            --     -- dependencies = {
+            --     --     { "kkharji/sqlite.lua", name = "sqlite" }
+            --     -- },
+            --     -- opts = {
+            --     --     ring = { storage = "sqlite" },
+            --     -- },
+            -- },
         },
 
 
@@ -27,6 +38,7 @@ return {
             local builtin = require('telescope.builtin')
             local browser = require('telescope').extensions.file_browser
             local notify = require('telescope').extensions.notify
+            -- local yanky = require('telescope').extensions.yank_history
 
 
             require('telescope').setup {
@@ -111,6 +123,7 @@ return {
             require('telescope').load_extension('noice')        -- noice extension
             require('telescope').load_extension('file_browser') -- file browser
             require('telescope').load_extension('notify')       -- notifications
+            -- require('telescope').load_extension('yank_history') -- yank history
 
             -- Setup keymaps i guess
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Files" })
@@ -126,11 +139,14 @@ return {
 
             -- vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope Find in History" })
 
-            -- file broswer
+            -- file browser
             vim.keymap.set('n', '<leader>fd', browser.file_browser, { desc = "File Browser" })
 
             -- notifications
             vim.keymap.set('n', '<leader>fn', notify.notify, { desc = "Notifications" })
+
+            -- yank history
+            -- vim.keymap.set('n', '<leader>fy', yanky.yank_history, { desc = "Yank History" })
 
 
             -- local notify = require('telescope').load_extension('notify')

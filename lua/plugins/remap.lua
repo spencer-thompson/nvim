@@ -20,6 +20,7 @@ return {
                         t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
                         k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
                         d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+                        D = { "<cmd>Copilot disable<CR>", "Disable Copilot", },
                         a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
                         o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
                         s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
@@ -39,6 +40,12 @@ return {
                         r = { "<cmd>Neotree toggle right<CR>", "Right" },
                     },
                     f = { name = "find" },
+                    g = {
+                        name = "git",
+                        d = { "<cmd>DiffviewOpen<CR>", "Diff" },
+                        -- f = { "<cmd>"},
+                        g = { "<cmd>G<CR>", "Fugitive" },
+                    },
                     l = { "<cmd>Lazy<CR>", "[L]azy" },
                     s = { name = "split" },
                     t = {
