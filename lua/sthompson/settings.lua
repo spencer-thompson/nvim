@@ -11,7 +11,7 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
 
 -- OS Specific stuff
 if vim.loop.os_uname().sysname == "Windows_NT" then
-    -- Powershell stuff sadly
+    -- Power shell stuff sadly
     vim.cmd [[let &shell = executable('pwsh') ? 'pwsh' : 'powershell']]
     vim.cmd [[let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';']]
     vim.cmd [[let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode']]
@@ -32,6 +32,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.autoindent = true
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true

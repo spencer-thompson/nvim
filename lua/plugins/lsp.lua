@@ -77,7 +77,7 @@ require('mason-lspconfig').setup({
                             enable = true,
                             defaultConfig = {
                                 indent_style = "space",
-                                indent_size = 4,
+                                indent_size = "4",
                             },
                         },
                         runtime = {
