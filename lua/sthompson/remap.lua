@@ -46,7 +46,7 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Center the window" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Center the window" })
 
 -- select all
-vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select [A]ll" })
+-- vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select [A]ll" })
 
 -- select word under cursor
 vim.keymap.set(
