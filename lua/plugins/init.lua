@@ -31,6 +31,7 @@ require('lazy').setup( -- load lazy
         require('plugins.code'),
         require('plugins.colors'),
         require('plugins.dashboard'),
+        require('plugins.format'),
         require('plugins.git'),
         require('plugins.misc'),
         require('plugins.navigation'),

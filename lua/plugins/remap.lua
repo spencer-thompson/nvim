@@ -40,6 +40,7 @@ return {
                         r = { "<cmd>Neotree toggle right<CR>", "Right" },
                     },
                     f = { name = "find" },
+                    -- F = { name = "format" },
                     g = {
                         name = "git",
                         d = { "<cmd>DiffviewOpen<CR>", "Diff" },
