@@ -4,13 +4,13 @@ return {
         name = 'dashboard',
         event = "VimEnter",
         opts = function()
-            local day = string.rep("\n", 4) ..
+            local day = string.rep("\n", 1) ..
                 require("plugins.ascii").randomDay(os.date('%A')) ..
-                string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
+                string.rep("\n", 3) -- .. text .. string.rep("\n", 4)
 
-            local logo = string.rep("\n", 4) ..
+            local logo = string.rep("\n", 3) ..
                 require("plugins.ascii").randomLogo() ..
-                string.rep("\n", 4) -- .. text .. string.rep("\n", 4)
+                string.rep("\n", 1) -- .. text .. string.rep("\n", 4)
 
             local opts = {
                 theme = "doom",

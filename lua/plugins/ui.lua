@@ -84,6 +84,7 @@ return {
                 "rcarriga/nvim-notify",
                 name = 'notify',
                 event = "VeryLazy",
+                priority = 20,
                 config = function()
                     require("notify").setup({
                         timeout = 1000,
