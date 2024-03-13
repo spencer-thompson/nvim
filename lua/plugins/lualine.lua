@@ -54,7 +54,7 @@ require('lualine').setup({
     tabline = process_sections {
         lualine_a = {
             -- { 'fileformat', padding = { left = 1, right = 1 } },
-            { "filetype", icon = { align = "left" } },
+            -- { "filetype", icon = { align = "left" } },
             { "encoding", padding = { left = 1, right = 1 } },
             {
                 'buffers',
@@ -123,10 +123,10 @@ require('lualine').setup({
         },
         lualine_c = {},
         lualine_x = {
-            {
-                require("lazy.status").updates,
-                cond = require("lazy.status").has_updates,
-            },
+            -- {
+            --     require("lazy.status").updates,
+            --     cond = require("lazy.status").has_updates,
+            -- },
         },
         lualine_y = {
         },
@@ -345,6 +345,10 @@ require('lualine').setup({
             -- },
         },
         lualine_y = {
+            {
+                require("lazy.status").updates,
+                cond = require("lazy.status").has_updates,
+            },
         },
         lualine_z = {
             {

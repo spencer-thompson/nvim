@@ -46,4 +46,10 @@ return {
             { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
         },
     },
+    {
+        'christoomey/vim-tmux-navigator',
+        name = 'tmux-navigator',
+        lazy = false,
+
+    }
 }
