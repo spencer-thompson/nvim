@@ -1,6 +1,5 @@
 -- DO NOT FORMAT THIS FILE
 
-
 local M = {}
 
 function M.whichDay(day)
@@ -18,6 +17,8 @@ end
 function M.randomDay(day)
     return M.days[day][math.random(#M.days[day])]
 end
+
+-- stylua: ignore
 
 M.nvim = {
     [[
@@ -66,16 +67,17 @@ __/\\\\\_____/\\\_______________________________/\\\________/\\\________________
 M.days = {
     Monday = {
         [[
-88b           d88                                  88
-888b         d888                                  88
-88`8b       d8'88                                  88
-88 `8b     d8' 88  ,adPPYba,  8b,dPPYba,   ,adPPYb,88 ,adPPYYba, 8b       d8
-88  `8b   d8'  88 a8"     "8a 88P'   `"8a a8"    `Y88 ""     `Y8 `8b     d8'
-88   `8b d8'   88 8b       d8 88       88 8b       88 ,adPPPPP88  `8b   d8'
-88    `888'    88 "8a,   ,a8" 88       88 "8a,   ,d88 88,    ,88   `8b,d8'
-88     `8'     88  `"YbbdP"'  88       88  `"8bbdP"Y8 `"8bbdP"Y8     Y88'
-                                                                     d8'
-                                                                    d8'
+                                                                              
+88b           d88                                  88                         
+888b         d888                                  88                         
+88`8b       d8'88                                  88                         
+88 `8b     d8' 88  ,adPPYba,  8b,dPPYba,   ,adPPYb,88 ,adPPYYba, 8b       d8  
+88  `8b   d8'  88 a8"     "8a 88P'   `"8a a8"    `Y88 ""     `Y8 `8b     d8'  
+88   `8b d8'   88 8b       d8 88       88 8b       88 ,adPPPPP88  `8b   d8'   
+88    `888'    88 "8a,   ,a8" 88       88 "8a,   ,d88 88,    ,88   `8b,d8'    
+88     `8'     88  `"YbbdP"'  88       88  `"8bbdP"Y8 `"8bbdP"Y8     Y88'     
+                                                                     d8'      
+                                                                    d8'       
         ]],
         [[
                                                     88                         
@@ -88,7 +90,7 @@ M.days = {
 88      88      88  `"YbbdP"'  88       88  `"8bbdP"Y8 `"8bbdP"Y8     Y88'     
                                                                       d8'      
                                                                      d8'       
-        ]]
+        ]],
     },
     Tuesday = {
         [[
@@ -245,7 +247,7 @@ aa    ]8I "8a,   ,a88 88       88 "8a,   ,d88 88,    ,88   `8b,d8'
                                                              d8'      
                                                             d8'       
         ]],
-    }
+    },
 }
 print(M.randomDay("Monday"))
 

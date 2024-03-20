@@ -10,13 +10,15 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
                                                       "Y8bbd]]
 
 -- OS Specific stuff
-if vim.loop.os_uname().sysname == "Windows_NT" then
+if vim.loop.os_uname().sysname == 'Windows_NT' then
     -- Power shell stuff sadly
-    vim.cmd [[let &shell = executable('pwsh') ? 'pwsh' : 'powershell']]
-    vim.cmd [[let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';']]
-    vim.cmd [[let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode']]
-    vim.cmd [[let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode']]
-    vim.cmd [[set shellquote= shellxquote=]]
+    vim.cmd([[let &shell = executable('pwsh') ? 'pwsh' : 'powershell']])
+    vim.cmd(
+        [[let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';']]
+    )
+    vim.cmd([[let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode']])
+    vim.cmd([[let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode']])
+    vim.cmd([[set shellquote= shellxquote=]])
 end
 
 vim.wo.number = true
@@ -43,7 +45,7 @@ vim.opt.ignorecase = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
-vim.opt.showbreak = "│ " --┊│▕
+vim.opt.showbreak = '│ ' --┊│▕
 vim.opt.scrolloff = 999
 vim.opt.sidescrolloff = 999 -- set to 999 for "always centered"
 -- vim.opt.sidescroll = 0
@@ -60,15 +62,15 @@ vim.opt.spell = true
 
 -- default 'tcqj'
 vim.opt.formatoptions = vim.opt.formatoptions
-    - "a" -- auto formatting is bad
-    - "t" -- no auto formatting
-    + "c" -- auto wrap comments
-    + "q" -- allow formatting comments w/ gq
-    - "o" -- O and o, don't continue comments
-    + "r" -- unless pressing enter
-    + "n" -- indent past the formatlistpat, not underneath it
-    - "2"
-    + "j" -- remove comment leader when joining lines
+    - 'a' -- auto formatting is bad
+    - 't' -- no auto formatting
+    + 'c' -- auto wrap comments
+    + 'q' -- allow formatting comments w/ gq
+    + 'r' -- unless pressing enter
+    - 'o' -- O and o, don't continue comments
+    + 'n' -- indent past the formatlistpat, not underneath it
+    - '2'
+    + 'j' -- remove comment leader when joining lines
 
 -- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {
@@ -95,7 +97,6 @@ vim.incsearch = true
 
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
-
 
 vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 1000

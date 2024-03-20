@@ -1,49 +1,42 @@
 return {
     {
-        "stevearc/conform.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        'stevearc/conform.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            local conform = require("conform")
+            local conform = require('conform')
 
             conform.setup({
                 formatters_by_ft = {
-                    -- lua = { "stylua" },
-                    python = { "black" },
+                    lua = { 'stylua' },
+                    python = { 'black' },
                     -- svelte = { { "prettierd", "prettier" } },
                     -- javascript = { { "prettierd", "prettier" } },
                     -- typescript = { { "prettierd", "prettier" } },
                     -- javascriptreact = { { "prettierd", "prettier" } },
                     -- typescriptreact = { { "prettierd", "prettier" } },
-                    -- json = { { "prettierd", "prettier" } },
+                    json = { { 'prettierd', 'prettier' } },
+                    jsonc = { { 'prettierd', 'prettier' } },
                     -- graphql = { { "prettierd", "prettier" } },
                     -- java = { "google-java-format" },
                     -- kotlin = { "ktlint" },
                     -- ruby = { "standardrb" },
-                    -- markdown = { { "prettierd", "prettier" } },
+                    -- markdown = { { 'prettierd', 'prettier' } }, -- don't like
                     -- erb = { "htmlbeautifier" },
                     -- html = { "htmlbeautifier" },
-                    -- bash = { "beautysh" },
+                    bash = { 'beautysh' },
                     -- proto = { "buf" },
                     -- rust = { "rustfmt" },
                     -- yaml = { "yamlfix" },
                     -- toml = { "taplo" },
-                    -- css = { { "prettierd", "prettier" } },
-                    -- scss = { { "prettierd", "prettier" } },
+                    css = { { 'prettierd', 'prettier' } },
+                    scss = { { 'prettierd', 'prettier' } },
                 },
-                -- format_on_save = {
-                --     timeout_ms = 500,
-                --     async = false,
-                --     lsp_fallback = true,
-                -- },
-            })
-
-            vim.keymap.set({ "n", "v" }, "<leader>F", function()
-                conform.format({
-                    lsp_fallback = true,
+                format_on_save = {
                     async = false,
+                    lsp_fallback = true,
                     timeout_ms = 500,
-                })
-            end, { desc = "Format file or range (in visual mode)" })
+                },
+            })
         end,
-    }
+    },
 }

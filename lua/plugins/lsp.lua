@@ -1,8 +1,8 @@
 -- set icons and fancy number highlight
-vim.cmd [[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError]]
-vim.cmd [[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn]]
-vim.cmd [[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo]]
-vim.cmd [[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint ]]
+vim.cmd([[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError]])
+vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn]])
+vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo]])
+vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint ]])
 
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
@@ -28,10 +28,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         --     vim.cmd [[w]]
         -- end, opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-    end
+    end,
 })
 
-require("neodev").setup({})
+require('neodev').setup({})
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -44,11 +44,26 @@ end
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
-        "gopls",
-        "lua_ls",
+        'gopls',
+        'lua_ls',
     },
     handlers = {
         default_setup,
+        -- basedpyright = function()
+        --     require('lspconfig').basedpyright.setup({
+        --         capabilities = lsp_capabilities,
+        --         settings = {
+        --             basedpyright = {
+        --                 analysis = {
+        --                     autoImportCompletions = true,
+        --                     autoSearchPaths = true,
+        --                     useLibraryCodeForTypes = true,
+        --                     diagnosticMode = 'workspace',
+        --                 },
+        --             },
+        --         },
+        --     })
+        -- end,
         gopls = function()
             require('lspconfig').gopls.setup({
                 capabilities = lsp_capabilities,
@@ -64,8 +79,8 @@ require('mason-lspconfig').setup({
                         completeUnimported = true,
                         gofumpt = true,
                         usePlaceholders = true,
-                    }
-                }
+                    },
+                },
             })
         end,
         lua_ls = function()
@@ -76,8 +91,8 @@ require('mason-lspconfig').setup({
                         format = {
                             enable = true,
                             defaultConfig = {
-                                indent_style = "space",
-                                indent_size = "4",
+                                indent_style = 'space',
+                                indent_size = '4',
                             },
                         },
                         runtime = {
@@ -85,15 +100,15 @@ require('mason-lspconfig').setup({
                         },
                         diagnostics = {
                             globals = { 'vim' },
-                            disable = { 'missing-fields' }
+                            disable = { 'missing-fields' },
                         },
                         workspace = {
                             libary = {
                                 vim.env.VIMRUNTIME,
-                            }
+                            },
                         },
-                    }
-                }
+                    },
+                },
             })
         end,
     },

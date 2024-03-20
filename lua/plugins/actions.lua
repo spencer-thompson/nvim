@@ -3,7 +3,7 @@ return {
     {
         'echasnovski/mini.align',
         version = '*',
-        event = "VeryLazy",
+        event = 'VeryLazy',
         config = function()
             require('mini.align').setup()
         end,
@@ -12,14 +12,14 @@ return {
     {
         'echasnovski/mini.splitjoin',
         version = '*',
-        event = "VeryLazy",
+        event = 'VeryLazy',
         config = function()
             require('mini.splitjoin').setup({
                 mappings = {
                     toggle = 'gS', -- default
                     split = 'gs',
                     join = 'gj',
-                }
+                },
             })
         end,
     },
@@ -27,30 +27,30 @@ return {
     {
         'kylechui/nvim-surround',
         name = 'surround',
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
+        version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        event = 'VeryLazy',
         config = function()
-            require("nvim-surround").setup({
+            require('nvim-surround').setup({
                 -- Configuration here, or leave empty to use defaults
             })
-        end
+        end,
     },
 
     {
         'windwp/nvim-autopairs',
         name = 'autopairs',
-        event = "InsertEnter",
-        opts = {} -- this is equalent to setup({}) function
+        event = 'InsertEnter',
+        opts = {}, -- this is equalent to setup({}) function
     },
 
     { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
 
     {
-        "numToStr/Comment.nvim",
+        'numToStr/Comment.nvim',
         name = 'comment',
-        event = "VeryLazy",
+        event = 'VeryLazy',
         config = function()
-            require("Comment").setup({
+            require('Comment').setup({
                 padding = true,
                 sticky = true,
                 ignore = nil,
@@ -62,27 +62,39 @@ return {
                 post_hook = nil,
             })
 
-            local comment_ft = require "Comment.ft"
-            comment_ft.set("lua", { "--%s", "--[[%s]]" })
+            local comment_ft = require('Comment.ft')
+            comment_ft.set('lua', { '--%s', '--[[%s]]' })
         end,
     },
 
     { -- make TODO + ":" a fancy colored comment.
-        "folke/todo-comments.nvim",
+        'folke/todo-comments.nvim',
         name = 'todo-comments',
-        event = "VeryLazy",
-        dependecies = { "nvim-lua/plenary.nvim", name = 'plenary' },
+        event = 'VeryLazy',
+        dependecies = { 'nvim-lua/plenary.nvim', name = 'plenary' },
         opts = {
             keywords = {
-                DONE = { icon = " ", color = "info" },
-                TODO = { icon = "󰵚 ", color = "info" },
+                DONE = { icon = ' ', color = 'info' },
+                TODO = { icon = '󰵚 ', color = 'info' },
             },
             merge_keywords = true,
         },
         keys = {
             -- keymaps
-            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            {
+                ']t',
+                function()
+                    require('todo-comments').jump_next()
+                end,
+                desc = 'Next todo comment',
+            },
+            {
+                '[t',
+                function()
+                    require('todo-comments').jump_prev()
+                end,
+                desc = 'Previous todo comment',
+            },
         },
         config = true,
     },

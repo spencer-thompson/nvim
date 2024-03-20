@@ -23,8 +23,8 @@ return {
                     'markdown',
                     'markdown_inline',
                     'python',
-                    'query',  -- required
-                    'vim',    -- required
+                    'query', -- required
+                    'vim', -- required
                     'vimdoc', --required
                     'yaml',
                     -- 'cpp',
@@ -38,7 +38,7 @@ return {
 
                 highlight = {
                     enable = true,
-                    additional_vim_regex_highlighting = { "markdown" },
+                    additional_vim_regex_highlighting = { 'markdown' },
                 },
                 indent = { enable = true },
                 incremental_selection = {
@@ -92,15 +92,15 @@ return {
                     swap = {
                         enable = true,
                         swap_next = {
-                            ['<leader>a'] = '@parameter.inner',
+                            ['<leader>mp'] = '@parameter.inner',
                         },
                         swap_previous = {
-                            ['<leader>A'] = '@parameter.inner',
+                            ['<leader>mp'] = '@parameter.inner',
                         },
                     },
                 },
             })
-            vim.cmd [[ TSUpdate ]]
+            vim.cmd([[ TSUpdate ]])
         end,
         -- ---@param opts TSConfig
         -- config = function(_, opts)

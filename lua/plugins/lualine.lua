@@ -33,13 +33,15 @@ require('lualine').setup({
         icons_enabled = true,
         -- theme = 'molokai',
         theme = 'auto',
-        component_separators = { left = '', right = '' },
+        component_separators = { left = '│', right = '│' }, -- │
+        -- component_separators = { left = '', right = '' },
         -- { left = '', right = '' }, { left = '', right = '' }, '|'
-        section_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { "dashboard" },
-            winbar = { "dashboard" },
-            tabline = { "dashboard", "neo-tree" },
+            statusline = { 'dashboard' },
+            winbar = { 'dashboard', 'neo-tree' },
+            tabline = { 'dashboard', 'neo-tree', 'nerdtree' },
         },
         ignore_focus = {},
         always_divide_middle = false,
@@ -48,14 +50,14 @@ require('lualine').setup({
             statusline = 100,
             tabline = 1000,
             winbar = 1000,
-        }
+        },
     },
 
-    tabline = process_sections {
+    -- tabline = process_sections({
+    tabline = {
         lualine_a = {
             -- { 'fileformat', padding = { left = 1, right = 1 } },
             -- { "filetype", icon = { align = "left" } },
-            { "encoding", padding = { left = 1, right = 1 } },
             {
                 'buffers',
                 hide_filename_extension = true,
@@ -66,6 +68,7 @@ require('lualine').setup({
                     fzf = 'FZF',
                     alpha = 'Alpha',
                     lazy = 'Lazy',
+                    nerdtree = 'File Tree',
                     -- neotree = 'NeoTree',
                 },
                 use_mode_colors = true,
@@ -80,7 +83,7 @@ require('lualine').setup({
                     alternate_file = '# ', -- text to show to identify the alternate file
                     directory = '  ', -- text to show when the buffer is a directory
                 },
-            }
+            },
             -- {
             --     'filename',
             --     path = 1,
@@ -129,6 +132,7 @@ require('lualine').setup({
             -- },
         },
         lualine_y = {
+            { 'encoding', padding = { left = 1, right = 1 } },
         },
         lualine_z = {
             {
@@ -136,7 +140,7 @@ require('lualine').setup({
                 mode = 1,
                 path = 0,
                 use_mode_colors = true,
-            }
+            },
             -- {
             --     function()
             --         return 'NEOVIM'
@@ -144,7 +148,7 @@ require('lualine').setup({
             --     colored = false,
             --     icon_only = true,
             -- }
-        }
+        },
     },
 
     --[[ BAR FOR EACH WINDOW ]]
@@ -204,11 +208,8 @@ require('lualine').setup({
             --     icon = { align = 'right' },
             -- },
         },
-        lualine_y = {
-        },
-        lualine_z = {
-
-        }
+        lualine_y = {},
+        lualine_z = {},
     },
 
     --[[ BAR FOR INACTIVE WINDOWS ]]
@@ -217,7 +218,7 @@ require('lualine').setup({
         lualine_a = {},
         lualine_b = {},
         lualine_c = {
-            -- 'filename'
+            -- 'filename',
         },
         lualine_x = {
             -- function() return '[%L]' end,
@@ -229,7 +230,7 @@ require('lualine').setup({
             -- }
         },
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {},
     },
 
     sections = {
@@ -237,18 +238,18 @@ require('lualine').setup({
             {
                 'mode',
                 -- separator = { left = '' },
-                padding = { right = 1, left = 1 }
+                padding = { right = 1, left = 1 },
             },
             {
-                "macro-recording",
+                'macro-recording',
                 fmt = function()
                     local recording_register = vim.fn.reg_recording()
-                    if recording_register == "" then
-                        return ""
+                    if recording_register == '' then
+                        return ''
                     else
-                        return "Recording @" .. recording_register
+                        return 'Recording @' .. recording_register
                     end
-                end
+                end,
             },
         },
         lualine_b = {
@@ -334,9 +335,8 @@ require('lualine').setup({
                     if not last_search or last_search == '' then
                         return ''
                     end
-                    local searchcount = vim.fn.searchcount { maxcount = 9999 }
-                    return '"' ..
-                        last_search .. '" : ' .. '[' .. searchcount.current .. '/' .. searchcount.total .. ']'
+                    local searchcount = vim.fn.searchcount({ maxcount = 9999 })
+                    return '"' .. last_search .. '" : ' .. '[' .. searchcount.current .. '/' .. searchcount.total .. ']'
                 end,
             },
             -- {
@@ -346,8 +346,8 @@ require('lualine').setup({
         },
         lualine_y = {
             {
-                require("lazy.status").updates,
-                cond = require("lazy.status").has_updates,
+                require('lazy.status').updates,
+                cond = require('lazy.status').has_updates,
             },
         },
         lualine_z = {
@@ -368,5 +368,5 @@ require('lualine').setup({
     --     lualine_z = {}
     -- },
 
-    extensions = { "neo-tree", "lazy", "fzf", "fugitive", "mason", "trouble", "toggleterm", "man" }
+    extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'toggleterm', 'man' },
 })
