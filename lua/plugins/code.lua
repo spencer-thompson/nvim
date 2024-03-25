@@ -7,7 +7,7 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'williamboman/mason.nvim',           name = 'mason' },
+            { 'williamboman/mason.nvim', name = 'mason' },
             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
         },
     },
@@ -16,11 +16,11 @@ return {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
-            { 'onsails/lspkind-nvim',         name = 'lspkind' },
-            { 'L3MON4D3/LuaSnip',             name = 'luasnip' },
+            { 'onsails/lspkind-nvim', name = 'lspkind' },
+            { 'L3MON4D3/LuaSnip', name = 'luasnip' },
             { 'hrsh7th/cmp-buffer' },
-            { 'rafamadriz/friendly-snippets', name = 'friendly-snippets', },
-            { 'saadparwaiz1/cmp_luasnip',     name = 'cmp-luasnip' },
+            { 'rafamadriz/friendly-snippets', name = 'friendly-snippets' },
+            { 'saadparwaiz1/cmp_luasnip', name = 'cmp-luasnip' },
             { 'hrsh7th/cmp-cmdline' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'hrsh7th/cmp-path' },
@@ -29,15 +29,15 @@ return {
 
     { 'williamboman/mason.nvim', name = 'mason' },
 
-    { 'folke/neodev.nvim',       name = 'neodev' },
+    { 'folke/neodev.nvim', name = 'neodev' },
 
     {
         'mbbill/undotree',
         name = 'undotree',
         event = 'VeryLazy',
         config = function()
-            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "[U]ndotree" })
-        end
+            vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndotree' })
+        end,
     },
 
     {
@@ -46,4 +46,10 @@ return {
         event = 'VeryLazy',
     },
 
+    -- LANGUAGE SPECIFIC
+    {
+        'R-nvim/R.nvim',
+        name = 'R',
+        lazy = false,
+    },
 }
