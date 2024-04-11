@@ -9,11 +9,12 @@ return {
             vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
                 expr = true,
                 replace_keycodes = false,
-                desc = "Copilot Suggestion",
+                desc = 'Copilot Suggestion',
             })
             vim.g.copilot_filetypes = { markdown = true } -- HACK: for copilot in markdown
             vim.g.copilot_no_tab_map = true
-        end
+            vim.cmd([[Copilot disable]])
+        end,
     },
 
     { -- this only really works on linux
@@ -24,24 +25,23 @@ return {
         config = function()
             require('gen').setup({})
             require('gen').prompts['LaTeX'] = {
-                prompt =
-                "Modify the following input to format it as LaTeX, just output the final LaTeX without additional quotes around it:\n$text",
+                prompt = 'Modify the following input to format it as LaTeX, just output the final LaTeX without additional quotes around it:\n$text',
                 replace = true,
             }
-        end
+        end,
     },
 
     {
         'jackMort/ChatGPT.nvim',
         name = 'chatgpt',
         lazy = true,
-        cmd = { 'ChatGPT', 'ChatGPTRun', "ChatGPTEditWithInstruction" },
+        cmd = { 'ChatGPT', 'ChatGPTRun', 'ChatGPTEditWithInstruction' },
         config = function()
             require('chatgpt').setup({
                 popup_layout = {
                     center = {
-                        width = "85%",
-                        height = "85%",
+                        width = '85%',
+                        height = '85%',
                     },
                 },
                 openai_params = {
@@ -49,10 +49,10 @@ return {
                     max_tokens = 500,
                 },
                 openai_edit_params = {
-                    model = 'gpt-4-turbo-preview'
+                    model = 'gpt-4-turbo-preview',
                 },
             })
-        end
+        end,
     },
 
     -- { -- essentially chatgpt / openai
