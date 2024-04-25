@@ -13,7 +13,7 @@ return {
             })
             vim.g.copilot_filetypes = { markdown = true } -- HACK: for copilot in markdown
             vim.g.copilot_no_tab_map = true
-            vim.cmd([[Copilot disable]])
+            vim.cmd([[Copilot disable]]) -- disabled by default
         end,
     },
 
