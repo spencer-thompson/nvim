@@ -1,7 +1,10 @@
 return {
 
-    { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
+    -- Lua
+    { 'folke/neodev.nvim', name = 'neodev' },
+    { 'milisims/nvim-luaref', name = 'luaref', event = 'VeryLazy' }, -- lua help
 
+    -- Markdown
     {
         'iamcco/markdown-preview.nvim', -- fancy markdown preview
         name = 'markdown-preview',
@@ -22,5 +25,12 @@ return {
             'MarkdownPreview',
             'MarkdownPreviewStop',
         },
+    },
+
+    -- R
+    {
+        'R-nvim/R.nvim',
+        name = 'R',
+        lazy = false,
     },
 }

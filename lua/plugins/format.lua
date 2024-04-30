@@ -40,4 +40,10 @@ return {
             })
         end,
     },
+
+    { -- unused?
+        'sbdchd/neoformat',
+        name = 'neoformat',
+        event = 'VeryLazy',
+    },
 }

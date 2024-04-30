@@ -11,19 +11,17 @@ return {
             { 'MunifTanjim/nui.nvim', name = 'nui' },
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
-        config = function()
-            require('neo-tree').setup({
-                close_if_last_window = true,
-                sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },
-                -- default_component_configs = {
-                --     indent = {
-                --         indent_size = 4,
-                --     }
-                -- }
-            })
-            -- vim.keymap.set("n", "<leader>el", "<cmd>Neotree toggle<CR>", { desc = "Explorer [L]eft" })
-            -- vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle current<CR>", { desc = "Explorer" })
-        end,
+        -- config = function()
+        -- require('neo-tree').setup({
+        --     close_if_last_window = true,
+        --     sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },
+        --     -- default_component_configs = {
+        --     --     indent = {
+        --     --         indent_size = 4,
+        --     --     }
+        --     -- }
+        -- })
+        -- end,
     },
     {
         'stevearc/oil.nvim',
@@ -35,6 +33,7 @@ return {
     },
     {
         'folke/flash.nvim',
+        -- Quick motions/movement
         name = 'flash',
         event = 'VeryLazy',
         vscode = true,

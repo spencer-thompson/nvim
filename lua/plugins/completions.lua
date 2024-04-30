@@ -1,6 +1,7 @@
 -- completion
 local cmp = require('cmp')
 local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 
 local key_len = 2
 local max_item = 30
@@ -9,8 +10,8 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp', keyword_length = key_len, max_item_count = max_item },
         { name = 'nvim_lua', keyword_length = key_len, max_item_count = max_item },
-        { name = 'luasnip',  keyword_length = key_len, max_item_count = max_item },
-        { name = 'buffer',   keyword_length = key_len, max_item_count = max_item },
+        { name = 'luasnip', keyword_length = key_len, max_item_count = max_item },
+        { name = 'buffer', keyword_length = key_len, max_item_count = max_item },
     },
     formatting = {
         format = lspkind.cmp_format({
@@ -18,7 +19,7 @@ cmp.setup({
             maxwidth = 50,
             ellipsis_char = '...',
             show_labelDetails = true,
-        })
+        }),
     },
     snippet = {
         expand = function(args)
@@ -36,13 +37,21 @@ cmp.setup({
         ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<Tab>'] = cmp.mapping.confirm {
+        ['<Tab>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-        },
+        }),
+        -- ['<C-i>'] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         if luasnip.expand_or_jumpable() then
+        --             luasnip.expand_or_jump()
+        --         end
+        --     else
+        --         fallback()
+        --     end
+        -- end),
         -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
-
 })
 
 cmp.setup.cmdline({ '/', '?' }, {
@@ -68,11 +77,11 @@ cmp.setup.cmdline({ '/', '?' }, {
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,
             }),
-        })
+        }),
     }),
     sources = {
-        { name = 'buffer', keyword_length = key_len, max_item_count = max_item }
-    }
+        { name = 'buffer', keyword_length = key_len, max_item_count = max_item },
+    },
 })
 
 cmp.setup.cmdline(':', {
@@ -98,15 +107,13 @@ cmp.setup.cmdline(':', {
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = true,
             }),
-        })
+        }),
     }),
     sources = cmp.config.sources({
-            { name = 'path', keyword_length = key_len, max_item_count = max_item }
-        },
-        {
-            { name = 'cmdline', keyword_length = key_len, max_item_count = max_item }
-        }
-    )
+        { name = 'path', keyword_length = key_len, max_item_count = max_item },
+    }, {
+        { name = 'cmdline', keyword_length = key_len, max_item_count = max_item },
+    }),
 })
 -- return {
 --     {

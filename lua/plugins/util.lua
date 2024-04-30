@@ -1,14 +1,12 @@
 return {
 
-    { "nvim-lua/plenary.nvim", name = 'plenary', dev = false },
-
-    { 'milisims/nvim-luaref',  name = 'luaref',  event = 'VeryLazy' }, -- lua help
+    { 'nvim-lua/plenary.nvim', name = 'plenary', dev = false },
 
     {
         'folke/trouble.nvim', -- better errors I think
         name = 'trouble',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        event = "VeryLazy",
-        opts = {} --config
+        event = 'VeryLazy',
+        opts = {}, --config
     },
 }

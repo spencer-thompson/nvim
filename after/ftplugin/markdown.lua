@@ -2,9 +2,17 @@
 vim.opt_local.shiftwidth = 2
 -- vim.opt_local.textwidth = 80
 vim.opt_local.wrap = true
-vim.opt_local.ff = 'unix'
+vim.opt_local.ff = 'unix' -- remove?
 
 vim.api.nvim_buf_set_var(0, 'active_preview', false)
+
+-- require('nvim-surround').buffer_setup({
+--     delimiters = {
+--         ['$'] = {
+--             add = { '$', '$' },
+--         },
+--     },
+-- })
 
 local Job = require('plenary.job')
 
@@ -33,7 +41,7 @@ local function async_compile_doc()
             if error then
                 vim.api.nvim_err_writeln(error)
             else
-                print('STDERR: ', data) -- Handle standard error
+                print('STDERR: ', data, error) -- Handle standard error
             end
         end,
     }):start()
@@ -59,7 +67,7 @@ vim.keymap.set('n', '<leader>R', function()
         vim.api.nvim_buf_set_var(0, 'active_preview', false)
     else
         vim.api.nvim_buf_set_var(0, 'active_preview', true)
-        async_compile_doc()
+        async_compile_doc() -- FIX:
         vim.cmd([[silent !zathura "%:r".pdf &]])
     end
 end, { desc = 'Markdown PDF Preview' })

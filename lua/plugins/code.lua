@@ -29,8 +29,6 @@ return {
 
     { 'williamboman/mason.nvim', name = 'mason' },
 
-    { 'folke/neodev.nvim', name = 'neodev' },
-
     {
         'mbbill/undotree',
         name = 'undotree',
@@ -40,16 +38,5 @@ return {
         end,
     },
 
-    {
-        'sbdchd/neoformat',
-        name = 'neoformat',
-        event = 'VeryLazy',
-    },
-
-    -- LANGUAGE SPECIFIC
-    {
-        'R-nvim/R.nvim',
-        name = 'R',
-        lazy = false,
-    },
+    { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
 }
