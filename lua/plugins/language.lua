@@ -28,9 +28,9 @@ return {
     },
 
     -- R
-    {
-        'R-nvim/R.nvim',
-        name = 'R',
-        lazy = false,
-    },
+    -- {
+    --     'R-nvim/R.nvim',
+    --     name = 'R',
+    --     lazy = false,
+    -- },
 }

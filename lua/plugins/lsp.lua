@@ -111,5 +111,21 @@ require('mason-lspconfig').setup({
                 },
             })
         end,
+        -- r = function()
+        --     require('lspconfig').r_language_server.setup({
+        --
+        --         capabilities = lsp_capabilities,
+        --         settings = {
+        --             r = {
+        --                 lsp = {
+        --                     formatting_style = {
+        --                         tabSize = 2,
+        --                         insertSpaces = true,
+        --                     },
+        --                 },
+        --             },
+        --         },
+        --     })
+        -- end,
     },
 })

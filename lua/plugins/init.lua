@@ -34,6 +34,7 @@ require('lazy').setup( -- load lazy
         require('plugins.format'),
         require('plugins.git'),
         require('plugins.language'),
+        require('plugins.local'),
         require('plugins.navigation'),
         require('plugins.remap'),
         require('plugins.telescope'),
@@ -45,6 +46,11 @@ require('lazy').setup( -- load lazy
     },
 
     {
+        dev = {
+            -- directory to store local plugins
+            path = '~/plugins',
+            fallback = false,
+        },
         defaults = { version = false },
         checker = { -- auto check for updates
             enabled = true,
