@@ -46,7 +46,7 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = true
 vim.opt.showbreak = '│ ' --┊│▕
-vim.opt.scrolloff = 999
+vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 999 -- set to 999 for "always centered"
 -- vim.opt.sidescroll = 0
 
