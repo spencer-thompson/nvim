@@ -24,6 +24,11 @@ return {
             { 'hrsh7th/cmp-cmdline' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'hrsh7th/cmp-path' },
+            { 'f3fora/cmp-spell' },
+            { 'garyhurtz/cmp_kitty', name = 'cmp-kitty' },
+            { 'hrsh7th/cmp-emoji' },
+            { 'chrisgrieser/cmp-nerdfont' },
+            { 'kdheepak/cmp-latex-symbols' },
         },
     },
 

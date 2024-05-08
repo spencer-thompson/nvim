@@ -3,7 +3,7 @@ return {
     { -- requires subscription
         'github/copilot.vim',
         name = 'copilot',
-        event = 'BufEnter',
+        -- event = 'VeryLazy',
         lazy = true,
         config = function()
             vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {

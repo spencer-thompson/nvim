@@ -52,6 +52,13 @@ return {
     },
 
     {
+        'kevinhwang91/nvim-ufo',
+        name = 'ufo',
+        event = 'VeryLazy',
+        dependencies = { 'kevinhwang91/promise-async' },
+    },
+
+    {
         'RRethy/vim-illuminate',
         name = 'illuminate',
         event = 'VeryLazy',
