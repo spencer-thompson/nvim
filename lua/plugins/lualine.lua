@@ -28,6 +28,8 @@ local function process_sections(sections)
     return sections
 end
 
+vim.opt.showmode = false
+
 require('lualine').setup({
     options = {
         icons_enabled = true,

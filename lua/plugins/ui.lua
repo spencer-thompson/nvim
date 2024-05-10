@@ -42,10 +42,11 @@ return {
             require('transparent').clear_prefix('noicecmdline') -- handles noice
             require('transparent').clear_prefix('gitsigns')
             require('transparent').clear_prefix('diagnosticsign')
-            -- require('transparent').clear_prefix('lualine_c')    -- handles lualine
-            -- require('transparent').clear_prefix('lualine_x')
+            require('transparent').clear_prefix('lualine_c') -- handles lualine
+            require('transparent').clear_prefix('lualine_x')
             -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
-            -- require('transparent').clear_prefix('lualine')   -- handles which-key
+            -- require('transparent').clear_prefix('lualine') -- handles which-key
+            require('transparent').clear_prefix('foldcolumn') -- handles which-key
 
             vim.keymap.set('n', '<leader>tr', '<cmd>TransparentToggle<cr>', { desc = 'Transparent' })
         end,
