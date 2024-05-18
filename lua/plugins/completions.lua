@@ -47,15 +47,15 @@ cmp.setup({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
-        -- ['<C-i>'] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         if luasnip.expand_or_jumpable() then
-        --             luasnip.expand_or_jump()
-        --         end
-        --     else
-        --         fallback()
-        --     end
-        -- end),
+        ['<C-i>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                if luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                end
+            else
+                fallback()
+            end
+        end),
         -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
 })

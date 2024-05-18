@@ -27,6 +27,19 @@ return {
         },
     },
 
+    {
+        'iurimateus/luasnip-latex-snippets.nvim',
+        name = 'latex-snippets',
+        event = 'VeryLazy',
+        dependencies = {
+            'lervag/vimtex',
+        },
+        config = function()
+            require('luasnip-latex-snippets').setup({ allow_on_markdown = true })
+            require('luasnip').config.setup({ enable_autosnippets = true })
+        end,
+    },
+
     -- R
     -- {
     --     'R-nvim/R.nvim',

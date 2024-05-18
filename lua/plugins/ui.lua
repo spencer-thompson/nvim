@@ -197,6 +197,10 @@ return {
         end,
     },
 
+    -- {
+    --     'echasnovski/mini.indentscope',
+    --     version = false,
+    -- },
     { -- fun scope animations
         'echasnovski/mini.indentscope',
         version = '*', -- wait till new 0.7.0 release to put it back on semver
