@@ -4,7 +4,7 @@ local lspkind = require('lspkind')
 local luasnip = require('luasnip')
 
 local key_len = 1
-local max_item = 30
+local max_item = 20
 
 cmp.setup({
     sources = {
