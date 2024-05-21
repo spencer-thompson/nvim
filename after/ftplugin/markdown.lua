@@ -43,6 +43,13 @@ local async_compile_doc = Job:new({
     end,
 })
 
+
+-- local async_view_doc = Job:new({
+--     command = "zathura"
+-- command = "sh",
+-- args = { "-c", 'pkill -HUP -f "zathura $OUTPUT_FILE" || zathura "$OUTPUT_FILE" &' },
+-- })
+
 -- auto commands
 local group = vim.api.nvim_create_augroup('Markdown PDF Preview', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
