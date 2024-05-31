@@ -7,6 +7,7 @@ return {
 
             conform.setup({
                 formatters_by_ft = {
+                    awk = { 'awk' },
                     lua = { 'stylua' },
                     python = { 'black' },
                     -- svelte = { { "prettierd", "prettier" } },

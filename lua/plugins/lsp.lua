@@ -28,6 +28,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         --     vim.cmd [[w]]
         -- end, opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        vim.keymap.set(
+            'n',
+            '<leader>i',
+            '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>',
+            { desc = 'Toggle Inlay Hints' }
+        )
     end,
 })
 
@@ -64,6 +70,20 @@ require('mason-lspconfig').setup({
         --         },
         --     })
         -- end,
+        awk_ls = function()
+            require('lspconfig').awk_ls.setup({
+                capabilities = lsp_capabilities,
+                cmd = { 'awk-language-server' },
+                filetypes = { 'awk' },
+            })
+        end,
+        bashls = function()
+            require('lspconfig').bashls.setup({
+                capabilities = lsp_capabilities,
+                cmd = { 'bash-language-server', 'start' },
+                filetypes = { 'sh' },
+            })
+        end,
         gopls = function()
             require('lspconfig').gopls.setup({
                 capabilities = lsp_capabilities,
@@ -103,10 +123,12 @@ require('mason-lspconfig').setup({
                             disable = { 'missing-fields' },
                         },
                         workspace = {
+                            checkThirdParty = false,
                             libary = {
                                 vim.env.VIMRUNTIME,
                             },
                         },
+                        hint = { enable = true },
                     },
                 },
             })

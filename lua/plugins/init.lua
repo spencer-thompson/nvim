@@ -37,6 +37,7 @@ require('lazy').setup( -- load lazy
         require('plugins.local'),
         require('plugins.navigation'),
         require('plugins.remap'),
+        require('plugins.sql'),
         require('plugins.telescope'),
         require('plugins.terminal'),
         require('plugins.treesitter'),
