@@ -17,7 +17,7 @@ cmp.setup({
         { name = 'emoji', keyword_length = key_len, max_item_count = max_item },
         { name = 'nerdfont', keyword_length = key_len, max_item_count = max_item },
         { name = 'path', keyword_length = key_len, max_item_count = max_item },
-        { name = 'kitty', keyword_length = key_len, max_item_count = max_item },
+        -- { name = 'kitty', keyword_length = key_len, max_item_count = max_item },
     },
     formatting = {
         format = lspkind.cmp_format({
