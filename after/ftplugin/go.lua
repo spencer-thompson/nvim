@@ -25,3 +25,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         vim.lsp.buf.format({ async = false })
     end,
 })
+
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader>r', '<cmd>!go run %<CR>', { desc = 'Run Current File' })
