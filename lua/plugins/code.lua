@@ -7,7 +7,7 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'williamboman/mason.nvim', name = 'mason' },
+            { 'williamboman/mason.nvim',           name = 'mason' },
             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
         },
     },
@@ -16,19 +16,20 @@ return {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
-            { 'onsails/lspkind-nvim', name = 'lspkind' },
-            { 'L3MON4D3/LuaSnip', name = 'luasnip' },
+            { 'onsails/lspkind-nvim',                 name = 'lspkind' },
+            { 'L3MON4D3/LuaSnip',                     name = 'luasnip' },
             { 'hrsh7th/cmp-buffer' },
-            { 'rafamadriz/friendly-snippets', name = 'friendly-snippets' },
-            { 'saadparwaiz1/cmp_luasnip', name = 'cmp-luasnip' },
+            { 'rafamadriz/friendly-snippets',         name = 'friendly-snippets' },
+            { 'saadparwaiz1/cmp_luasnip',             name = 'cmp-luasnip' },
             { 'hrsh7th/cmp-cmdline' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'hrsh7th/cmp-path' },
             { 'f3fora/cmp-spell' },
-            { 'garyhurtz/cmp_kitty', name = 'cmp-kitty' },
+            { 'garyhurtz/cmp_kitty',                  name = 'cmp-kitty' },
             { 'hrsh7th/cmp-emoji' },
             { 'chrisgrieser/cmp-nerdfont' },
             { 'kdheepak/cmp-latex-symbols' },
+            { 'kristijanhusak/vim-dadbod-completion', name = "dadbod-completions" },
         },
     },
 
@@ -43,5 +44,5 @@ return {
         end,
     },
 
-    { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
+    { 'tpope/vim-sleuth',        event = 'VeryLazy' }, -- auto adjust shift and tabs
 }
