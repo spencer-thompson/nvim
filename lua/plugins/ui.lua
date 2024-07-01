@@ -33,12 +33,12 @@ return {
                     'floattitle',
                     'floatborder',
                     'title',
-                }, -- mason, lazy, lspinfo
+                },                                              -- mason, lazy, lspinfo
             })
-            require('transparent').clear_prefix('dashboard') -- handles dashboard
-            require('transparent').clear_prefix('whichkey') -- handles which-key
+            require('transparent').clear_prefix('dashboard')    -- handles dashboard
+            require('transparent').clear_prefix('whichkey')     -- handles which-key
             -- require('transparent').clear_prefix('pmenu')     -- handles
-            require('transparent').clear_prefix('telescope') -- handles telescope
+            require('transparent').clear_prefix('telescope')    -- handles telescope
             require('transparent').clear_prefix('noicecmdline') -- handles noice
             require('transparent').clear_prefix('gitsigns')
             require('transparent').clear_prefix('diagnosticsign')
@@ -114,7 +114,12 @@ return {
         config = function()
             require('noice').setup({
                 messages = {
-                    enabled = false,
+                    enabled = true,
+                    view = 'notify',
+                    view_error = "notify",       -- view for errors
+                    view_warn = "notify",        -- view for warnings
+                    view_history = "messages",   -- view for :messages
+                    view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
                 },
                 views = {
                     notify = {
@@ -124,10 +129,10 @@ return {
                 },
                 lsp = {
                     progress = {
-                        enabled = false,
+                        enabled = true,
                         format = 'lsp_progress',
                         format_done = 'lsp_progress_done',
-                        -- throttle = 1000 / 30,
+                        throttle = 5000 / 30,
                         view = 'notify',
                     },
                     -- override markdown rendering so that **cmp** and other plugins use **treesitter**
@@ -136,8 +141,8 @@ return {
                         ['vim.lsp.util.stylize_markdown'] = true,
                         ['cmp.entry.get_documentation'] = true,
                     },
-                    --     hover = {enabled = false },
-                    --     signature = { enabled = false },
+                    -- hover = { enabled = false },
+                    -- signature = { enabled = false },
                 },
                 routes = {
                     {
@@ -162,12 +167,12 @@ return {
                     },
                 },
 
-                presets = { -- you can enable a preset for easier configuration
-                    bottom_search = false, -- use a classic bottom cmdline for search
-                    command_palette = true, -- position the cmdline and popupmenu together
+                presets = {                       -- you can enable a preset for easier configuration
+                    bottom_search = false,        -- use a classic bottom cmdline for search
+                    command_palette = true,       -- position the cmdline and popupmenu together
                     long_message_to_split = true, -- long messages will be sent to a split
-                    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                    lsp_doc_border = true, -- add a border to hover docs and signature help
+                    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = true,        -- add a border to hover docs and signature help
                 },
             })
 
@@ -201,7 +206,7 @@ return {
     --     'echasnovski/mini.indentscope',
     --     version = false,
     -- },
-    { -- fun scope animations
+    {                  -- fun scope animations
         'echasnovski/mini.indentscope',
         version = '*', -- wait till new 0.7.0 release to put it back on semver
         event = 'VeryLazy',

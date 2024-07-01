@@ -71,6 +71,7 @@ require('lualine').setup({
                     alpha = 'Alpha',
                     lazy = 'Lazy',
                     nerdtree = 'File Tree',
+                    ['neo-tree'] = 'Neo Tree',
                     -- neotree = 'NeoTree',
                 },
                 use_mode_colors = true,

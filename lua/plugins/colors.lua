@@ -85,6 +85,12 @@ return {
             -- vim.cmd [[ colorscheme rose-pine ]]
         end,
     },
+    {
+        'EdenEast/nightfox.nvim',
+        name = "nightfox",
+        lazy = true,
+        event = "VeryLazy",
+    },
 
     {
         'folke/tokyonight.nvim',
