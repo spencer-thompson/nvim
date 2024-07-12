@@ -20,13 +20,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts) -- todo change
         -- vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        -- vim.keymap.set({ 'n', 'x' }, '<leader>w', function()
-        --     -- bootstrap format on save lol
-        --     vim.cmd [[%s/\s\+$//e]]
-        --     vim.cmd [[nohl]]
-        --     vim.lsp.buf.format()
-        --     vim.cmd [[w]]
-        -- end, opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         vim.keymap.set(
             'n',
@@ -49,10 +42,10 @@ end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {
-        'gopls',
-        'lua_ls',
-    },
+    -- ensure_installed = {
+    --     'gopls',
+    --     'lua_ls',
+    -- },
     handlers = {
         default_setup,
         -- basedpyright = function()

@@ -43,7 +43,6 @@ local async_compile_doc = Job:new({
     end,
 })
 
-
 -- local async_view_doc = Job:new({
 --     command = "zathura"
 -- command = "sh",
@@ -67,11 +66,11 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.api.nvim_buf_set_keymap(
     0,
     'n',
-    '<leader>r',
+    '<leader>R',
     '<cmd>MarkdownPreviewToggle<CR>',
     { desc = 'Markdown Browser Preview' }
 )
-vim.keymap.set('n', '<leader>R', function()
+vim.keymap.set('n', '<leader>r', function()
     if vim.api.nvim_buf_get_var(0, 'active_preview') then
         vim.api.nvim_buf_set_var(0, 'active_preview', false)
     else

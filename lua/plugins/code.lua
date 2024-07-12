@@ -6,14 +6,24 @@ return {
         cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason.nvim', name = 'mason' },
             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
         },
+        -- opts = {
+        --     diagnostics = {
+        --         underline = true,
+        --         update_in_insert = false,
+        --         severity_sort = true,
+        --     },
+        --     document_highlight = {
+        --         enabled = true,
+        --     },
+        -- },
     },
 
     {
         'hrsh7th/nvim-cmp',
+        version = false,
         event = 'InsertEnter',
         dependencies = {
             { 'onsails/lspkind-nvim', name = 'lspkind' },
@@ -22,13 +32,14 @@ return {
             { 'rafamadriz/friendly-snippets', name = 'friendly-snippets' },
             { 'saadparwaiz1/cmp_luasnip', name = 'cmp-luasnip' },
             { 'hrsh7th/cmp-cmdline' },
+            { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'hrsh7th/cmp-path' },
             { 'f3fora/cmp-spell' },
             { 'garyhurtz/cmp_kitty', name = 'cmp-kitty' },
             { 'hrsh7th/cmp-emoji' },
             { 'chrisgrieser/cmp-nerdfont' },
-            { 'kdheepak/cmp-latex-symbols' },
+            -- { 'kdheepak/cmp-latex-symbols' }, -- slow
             { 'kristijanhusak/vim-dadbod-completion', name = 'dadbod-completions' },
             {
                 'brenoprata10/nvim-highlight-colors',
@@ -41,7 +52,7 @@ return {
                         virtual_symbol = ' ',
 
                         ---Set virtual symbol suffix (defaults to '')
-                        virtual_symbol_prefix = ' ',
+                        virtual_symbol_prefix = '',
 
                         ---Set virtual symbol suffix (defaults to ' ')
                         virtual_symbol_suffix = '',
@@ -51,7 +62,7 @@ return {
                         ---inline mimics VS Code style
                         ---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
                         ---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
-                        virtual_symbol_position = 'eow',
+                        virtual_symbol_position = 'inline',
 
                         ---Highlight hex colors, e.g. '#FFFFFF'
                         enable_hex = true,

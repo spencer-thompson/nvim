@@ -4,40 +4,40 @@
 return {
 
     {
-        "craftzdog/solarized-osaka.nvim",
-        name = "solarized-osaka",
+        'craftzdog/solarized-osaka.nvim',
+        name = 'solarized-osaka',
         lazy = true,
-        event = "VeryLazy",
+        event = 'VeryLazy',
         -- priority = 1000,
         opts = {
             transparent = false, -- enable for background
             terminal_colors = true,
         },
         config = function(_, opts)
-            require("solarized-osaka").setup(opts)
+            require('solarized-osaka').setup(opts)
             -- vim.cmd [[ set background=dark ]]
             -- vim.cmd [[ colorscheme solarized-osaka ]]
         end,
     },
 
     {
-        "projekt0n/github-nvim-theme",
-        name = "github-theme",
+        'projekt0n/github-nvim-theme',
+        name = 'github-theme',
         lazy = true,
-        event = "VeryLazy",
+        event = 'VeryLazy',
         -- priority = 1000,
         config = function()
-            require("github-theme").setup()
+            require('github-theme').setup()
             -- vim.cmd [[ set background=dark ]]
             -- vim.cmd [[ colorscheme github_dark_default ]] -- yessir
         end,
     },
 
     {
-        "miikanissi/modus-themes.nvim",
-        name = "modus-themes",
+        'miikanissi/modus-themes.nvim',
+        name = 'modus-themes',
         lazy = true,
-        event = "VeryLazy",
+        event = 'VeryLazy',
         -- priority = 1000,
         opts = {},
         config = function()
@@ -47,10 +47,10 @@ return {
     },
 
     {
-        "rebelot/kanagawa.nvim",
-        name = "kanagawa",
+        'rebelot/kanagawa.nvim',
+        name = 'kanagawa',
         lazy = true,
-        event = "VeryLazy",
+        event = 'VeryLazy',
         -- priority = 1000,
         opts = {},
         config = function(_, opts)
@@ -74,10 +74,10 @@ return {
     },
 
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
+        'rose-pine/neovim',
+        name = 'rose-pine',
         lazy = true,
-        event = "VeryLazy",
+        event = 'VeryLazy',
         -- priority = 1000,
         opts = {},
         config = function()
@@ -87,9 +87,9 @@ return {
     },
     {
         'EdenEast/nightfox.nvim',
-        name = "nightfox",
+        name = 'nightfox',
         lazy = true,
-        event = "VeryLazy",
+        event = 'VeryLazy',
     },
 
     {
@@ -100,45 +100,48 @@ return {
         config = function()
             require('tokyonight').setup({
                 style = 'night',
-                -- transparent = true,
-                terminal_colors = true,
-                styles = {
-                    comments = { italic = false },
-                    keywords = { italic = false },
+                plugins = {
+                    dashboard = true,
                 },
-                on_highlights = function(hl, c) -- fancy telescope theme
-                    local prompt = "#2d3149"
-                    hl.TelescopeNormal = {
-                        bg = c.bg_dark,
-                        fg = c.fg_dark,
-                    }
-                    hl.TelescopeBorder = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
-                    hl.TelescopePromptNormal = {
-                        bg = prompt,
-                    }
-                    hl.TelescopePromptBorder = {
-                        bg = prompt,
-                        fg = prompt,
-                    }
-                    hl.TelescopePromptTitle = {
-                        bg = prompt,
-                        fg = prompt,
-                    }
-                    hl.TelescopePreviewTitle = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
-                    hl.TelescopeResultsTitle = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
-                end,
+                -- transparent = true,
+                -- terminal_colors = true,
+                -- styles = {
+                --     comments = { italic = false },
+                --     keywords = { italic = false },
+                -- },
+                -- on_highlights = function(hl, c) -- fancy telescope theme
+                --     local prompt = "#2d3149"
+                --     hl.TelescopeNormal = {
+                --         bg = c.bg_dark,
+                --         fg = c.fg_dark,
+                --     }
+                --     hl.TelescopeBorder = {
+                --         bg = c.bg_dark,
+                --         fg = c.bg_dark,
+                --     }
+                --     hl.TelescopePromptNormal = {
+                --         bg = prompt,
+                --     }
+                --     hl.TelescopePromptBorder = {
+                --         bg = prompt,
+                --         fg = prompt,
+                --     }
+                --     hl.TelescopePromptTitle = {
+                --         bg = prompt,
+                --         fg = prompt,
+                --     }
+                --     hl.TelescopePreviewTitle = {
+                --         bg = c.bg_dark,
+                --         fg = c.bg_dark,
+                --     }
+                --     hl.TelescopeResultsTitle = {
+                --         bg = c.bg_dark,
+                --         fg = c.bg_dark,
+                --     }
+                -- end,
             })
-            vim.cmd [[ set background=dark ]]
-            vim.cmd [[ colorscheme tokyonight-night ]]
+            vim.cmd([[ set background=dark ]])
+            vim.cmd([[ colorscheme tokyonight-night ]])
         end,
     },
 }
