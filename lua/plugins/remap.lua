@@ -15,7 +15,7 @@ return {
             })
             wk.add({ -- TODO: Migrate
                 { -- E
-                    { '<leader>e', group = 'explore' },
+                    { '<leader>e', group = 'explore', icon = '󰙅' }, -- TODO: figure out icons
                     { '<leader>ee', '<cmd>Neotree toggle current<CR>', desc = 'File Tree' },
                 },
                 { -- F
@@ -28,7 +28,7 @@ return {
                     { '<leader>v', desc = 'Select Treesitter Nodes' },
                 },
                 { -- Z
-                    { '<leader>z', '<cmd>ZenMode<CR>', desc = '[Z]en Mode' },
+                    { '<leader>Z', '<cmd>ZenMode<CR>', desc = '[Z]en Mode' },
                 },
             })
         end,
