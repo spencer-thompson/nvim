@@ -53,11 +53,43 @@ return {
     },
 
     {
-        'folke/trouble.nvim', -- better errors I think
+        'folke/trouble.nvim',
         name = 'trouble',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        event = 'VeryLazy',
+        cmd = 'Trouble',
         opts = {}, --config
+        keys = {
+            {
+                '<leader>td',
+                '<cmd>Trouble diagnostics toggle<cr>',
+                desc = '[D]iagnostics',
+            },
+            {
+                '<leader>tb',
+                '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+                desc = '[B]uffer Diagnostics',
+            },
+            {
+                '<leader>ts',
+                '<cmd>Trouble symbols toggle focus=false<cr>',
+                desc = '[S]ymbols',
+            },
+            {
+                '<leader>tl',
+                '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+                desc = '[L]SP info',
+            },
+            {
+                '<leader>tL',
+                '<cmd>Trouble loclist toggle<cr>',
+                desc = '[L]ocation List',
+            },
+            {
+                '<leader>tQ',
+                '<cmd>Trouble qflist toggle<cr>',
+                desc = '[Q]uickfix List',
+            },
+        },
     },
 
     {

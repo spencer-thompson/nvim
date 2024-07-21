@@ -41,6 +41,15 @@ local default_setup = function(server)
 end
 
 require('mason').setup({})
+require('mason-tool-installer').setup({
+    ensure_installed = {
+        'black',
+        'lua_ls',
+        'ruff',
+        'stylua',
+        'vale',
+    },
+})
 require('mason-lspconfig').setup({
     -- ensure_installed = {
     --     'gopls',
@@ -85,6 +94,15 @@ require('mason-lspconfig').setup({
                 -- root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
                 settings = {
                     gopls = {
+                        hints = {
+                            assignVariableTypes = true,
+                            compositeLiteralFields = true,
+                            compositeLiteralTypes = true,
+                            constantValues = true,
+                            functionTypeParameters = true,
+                            parameterNames = true,
+                            rangeVariableTypes = true,
+                        },
                         analyses = {
                             unusedparams = true,
                             shadow = true,
@@ -144,3 +162,5 @@ require('mason-lspconfig').setup({
         -- end,
     },
 })
+
+vim.diagnostic.config({ virtual_text = false })

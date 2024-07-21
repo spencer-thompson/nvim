@@ -13,7 +13,7 @@ return {
             wk.setup({
                 preset = 'modern',
             })
-            wk.add({ -- TODO: Migrate
+            wk.add({
                 { -- E
                     { '<leader>e', group = 'explore', icon = '󰙅' }, -- TODO: figure out icons
                     { '<leader>ee', '<cmd>Neotree toggle current<CR>', desc = 'File Tree' },
@@ -23,6 +23,9 @@ return {
                 },
                 { -- L
                     { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
+                },
+                { -- T
+                    { '<leader>t', group = 'trouble' },
                 },
                 { -- V
                     { '<leader>v', desc = 'Select Treesitter Nodes' },
