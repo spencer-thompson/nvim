@@ -8,15 +8,15 @@ local max_item = 30
 
 cmp.setup({
     sources = {
-        { name = 'nvim_lsp', keyword_length = key_len, max_item_count = max_item },
-        { name = 'nvim_lua', keyword_length = key_len, max_item_count = max_item },
-        { name = 'luasnip', keyword_length = key_len, max_item_count = max_item },
-        { name = 'buffer', keyword_length = key_len, max_item_count = max_item },
+        { name = 'nvim_lsp',      keyword_length = key_len, max_item_count = max_item },
+        { name = 'nvim_lua',      keyword_length = key_len, max_item_count = max_item },
+        { name = 'luasnip',       keyword_length = key_len, max_item_count = max_item },
+        { name = 'buffer',        keyword_length = key_len, max_item_count = max_item },
         { name = 'latex_symbols', keyword_length = key_len, max_item_count = max_item },
         -- { name = 'spell', keyword_length = key_len, max_item_count = max_item },
-        { name = 'emoji', keyword_length = key_len, max_item_count = max_item },
-        { name = 'nerdfont', keyword_length = key_len, max_item_count = max_item },
-        { name = 'path', keyword_length = key_len, max_item_count = max_item },
+        { name = 'emoji',         keyword_length = key_len, max_item_count = max_item },
+        { name = 'nerdfont',      keyword_length = key_len, max_item_count = max_item },
+        { name = 'path',          keyword_length = key_len, max_item_count = max_item },
         -- { name = 'kitty', keyword_length = key_len, max_item_count = max_item }, -- major lag
     },
     -- formatting = {
@@ -133,7 +133,7 @@ cmp.setup.cmdline(':', {
         }),
     }),
     sources = cmp.config.sources({
-        { name = 'path', keyword_length = key_len, max_item_count = max_item },
+        { name = 'path',  keyword_length = key_len, max_item_count = max_item },
         { name = 'kitty', keyword_length = key_len, max_item_count = max_item },
     }, {
         { name = 'cmdline', keyword_length = key_len, max_item_count = max_item },
