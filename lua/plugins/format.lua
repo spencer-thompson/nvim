@@ -10,6 +10,7 @@ return {
                     awk = { 'awk' },
                     lua = { 'stylua' },
                     python = { 'black' },
+                    go = { 'gofumpt' },
                     -- svelte = { { "prettierd", "prettier" } },
                     -- javascript = { { "prettierd", "prettier" } },
                     -- typescript = { { "prettierd", "prettier" } },
