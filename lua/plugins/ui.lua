@@ -110,7 +110,7 @@ return {
                 priority = 20,
                 config = function()
                     require('notify').setup({
-                        timeout = 1000,
+                        timeout = 2000,
                         max_height = function()
                             return math.floor(vim.o.lines * 0.75)
                         end,
@@ -140,7 +140,7 @@ return {
                 views = {
                     notify = {
                         replace = true,
-                        merge = true,
+                        merge = false,
                     },
                 },
                 lsp = {
@@ -179,7 +179,21 @@ return {
                     {
                         view = 'notify',
                         filter = { event = 'msg_showmode' },
-                        opts = { skip = false, stop = false },
+                        opts = { skip = true, stop = false },
+                    },
+                    {
+                        filter = {
+                            event = 'msg_show',
+                            min_height = 5,
+                        },
+                        view = 'split',
+                    },
+                    {
+                        filter = {
+                            event = 'msg_show',
+                            min_length = 50,
+                        },
+                        view = 'split',
                     },
                 },
 

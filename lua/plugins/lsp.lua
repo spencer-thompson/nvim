@@ -57,21 +57,22 @@ require('mason-lspconfig').setup({
     -- },
     handlers = {
         default_setup,
-        -- basedpyright = function()
-        --     require('lspconfig').basedpyright.setup({
-        --         capabilities = lsp_capabilities,
-        --         settings = {
-        --             basedpyright = {
-        --                 analysis = {
-        --                     autoImportCompletions = true,
-        --                     autoSearchPaths = true,
-        --                     useLibraryCodeForTypes = true,
-        --                     diagnosticMode = 'workspace',
-        --                 },
-        --             },
-        --         },
-        --     })
-        -- end,
+        basedpyright = function()
+            require('lspconfig').basedpyright.setup({
+                capabilities = lsp_capabilities,
+                -- filetypes = { 'py' },
+                -- settings = {
+                --     basedpyright = {
+                --         analysis = {
+                --             -- autoImportCompletions = true,
+                --             autoSearchPaths = true,
+                --             -- useLibraryCodeForTypes = true,
+                --             diagnosticMode = 'openFilesOnly',
+                --         },
+                --     },
+                -- },
+            })
+        end,
         awk_ls = function()
             require('lspconfig').awk_ls.setup({
                 capabilities = lsp_capabilities,

@@ -3,9 +3,9 @@
 local M = {}
 
 function M.whichDay(day)
-    if day == "Monday" then
+    if day == 'Monday' then
         return M.monday
-    elseif day == "Tuesday" then
+    elseif day == 'Tuesday' then
         return M.tuesday
     end
 end
@@ -249,6 +249,5 @@ aa    ]8I "8a,   ,a88 88       88 "8a,   ,d88 88,    ,88   `8b,d8'
         ]],
     },
 }
-print(M.randomDay("Monday"))
 
 return M

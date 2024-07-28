@@ -21,6 +21,9 @@ return {
                 { -- F
                     { '<leader>f', group = 'find' },
                 },
+                { -- j
+                    { 'jk', hidden = true, mode = { 'v' } },
+                },
                 { -- L
                     { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
                 },
