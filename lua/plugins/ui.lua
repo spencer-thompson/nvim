@@ -177,24 +177,31 @@ return {
                         opts = { skip = true },
                     },
                     {
-                        view = 'notify',
+                        view = 'notify', -- some
                         filter = { event = 'msg_showmode' },
                         opts = { skip = true, stop = false },
                     },
                     {
                         filter = {
                             event = 'msg_show',
-                            min_height = 5,
+                            kind = 'echo',
                         },
-                        view = 'split',
+                        view = 'cmdline_output',
                     },
-                    {
-                        filter = {
-                            event = 'msg_show',
-                            min_length = 50,
-                        },
-                        view = 'split',
-                    },
+                    -- {
+                    --     filter = {
+                    --         event = 'msg_show',
+                    --         min_height = 5,
+                    --     },
+                    --     view = 'split',
+                    -- },
+                    -- {
+                    --     filter = {
+                    --         event = 'msg_show',
+                    --         min_length = 50,
+                    --     },
+                    --     view = 'split',
+                    -- },
                 },
 
                 presets = { -- you can enable a preset for easier configuration
