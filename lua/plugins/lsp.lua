@@ -40,6 +40,8 @@ local default_setup = function(server)
     })
 end
 
+local lspconfig = require('lspconfig')
+
 require('mason').setup({})
 require('mason-tool-installer').setup({
     ensure_installed = {
@@ -57,22 +59,22 @@ require('mason-lspconfig').setup({
     -- },
     handlers = {
         default_setup,
-        basedpyright = function()
-            require('lspconfig').basedpyright.setup({
-                capabilities = lsp_capabilities,
-                -- filetypes = { 'py' },
-                -- settings = {
-                --     basedpyright = {
-                --         analysis = {
-                --             -- autoImportCompletions = true,
-                --             autoSearchPaths = true,
-                --             -- useLibraryCodeForTypes = true,
-                --             diagnosticMode = 'openFilesOnly',
-                --         },
-                --     },
-                -- },
-            })
-        end,
+        -- basedpyright = function()
+        --     require('lspconfig').basedpyright.setup({
+        --         capabilities = lsp_capabilities,
+        -- filetypes = { 'py' },
+        -- settings = {
+        --     basedpyright = {
+        --         analysis = {
+        --             -- autoImportCompletions = true,
+        --             autoSearchPaths = true,
+        --             -- useLibraryCodeForTypes = true,
+        --             diagnosticMode = 'openFilesOnly',
+        --         },
+        --     },
+        -- },
+        --     })
+        -- end,
         awk_ls = function()
             require('lspconfig').awk_ls.setup({
                 capabilities = lsp_capabilities,
@@ -141,6 +143,24 @@ require('mason-lspconfig').setup({
                             },
                         },
                         hint = { enable = true },
+                    },
+                },
+            })
+        end,
+        pyright = function()
+            lspconfig.pyright.setup({
+                capabilities = lsp_capabilities,
+                settings = {
+                    pyright = {
+                        autoImportCompletion = true,
+                    },
+                    python = {
+                        analysis = {
+                            autoSearchPaths = true,
+                            diagnosticMode = 'openFilesOnly',
+                            useLibraryCodeForTypes = true,
+                            typeCheckingMode = 'off',
+                        },
                     },
                 },
             })
