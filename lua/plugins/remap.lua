@@ -28,7 +28,7 @@ return {
                     { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
                 },
                 { -- T
-                    { '<leader>t', group = 'trouble' },
+                    { '<leader>t', group = 'toggle' },
                 },
                 { -- V
                     { '<leader>v', desc = 'Select Treesitter Nodes' },

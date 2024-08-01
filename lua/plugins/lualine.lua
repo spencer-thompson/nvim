@@ -371,5 +371,6 @@ require('lualine').setup({
     --     lualine_z = {}
     -- },
 
-    extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'toggleterm', 'man' },
+    -- extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'toggleterm', 'man' },
+    extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'man' },
 })

@@ -27,13 +27,12 @@ local on_exit = function(obj, filename)
     -- vim.api.nvim_echo({ { filename .. ' ' .. obj.stderr } }, false, {})
 end
 
-vim.keymap.set('n', '<leader>r', function()
-    local filename = vim.api.nvim_buf_get_name(0)
-    local obj = vim.system({ 'python', vim.api.nvim_buf_get_name(0) }, {
-        text = true,
-        -- stdin = ,
-    }):wait()
-    on_exit(obj, filename)
-end, { desc = 'Run Current File', buffer = 0 })
+vim.api.nvim_buf_set_keymap(
+    0,
+    'n',
+    '<leader>r',
+    '<cmd>TermExec cmd="python %" dir=%:h<CR>',
+    { desc = 'Run Current File' }
+)
 
 -- vim.api.nvim_buf_set_keymap(0, 'n', '<leader>r', '<cmd>!python %<CR>', { desc = 'Run Current File' })
