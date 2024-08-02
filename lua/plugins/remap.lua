@@ -21,6 +21,9 @@ return {
                 { -- F
                     { '<leader>f', group = 'find' },
                 },
+                { -- G
+                    { '<leader>g', group = 'git' },
+                },
                 { -- j
                     { 'jk', hidden = true, mode = { 'v' } },
                 },

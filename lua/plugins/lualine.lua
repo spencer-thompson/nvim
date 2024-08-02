@@ -56,103 +56,103 @@ require('lualine').setup({
     },
 
     -- tabline = process_sections({
-    tabline = {
-        lualine_a = {
-            -- { 'fileformat', padding = { left = 1, right = 1 } },
-            -- { "filetype", icon = { align = "left" } },
-            {
-                'buffers',
-                hide_filename_extension = true,
-                separator = '', -- separator = { left = '', right = '' },
-                filetype_names = {
-                    TelescopePrompt = 'Telescope',
-                    dashboard = 'Dashboard',
-                    fzf = 'FZF',
-                    alpha = 'Alpha',
-                    lazy = 'Lazy',
-                    nerdtree = 'File Tree',
-                    ['neo-tree'] = 'Neo Tree',
-                    -- neotree = 'NeoTree',
-                },
-                use_mode_colors = true,
-                -- buffers_color = {
-                --     active = 'lualine_a_active',
-                --     inactive = 'lualine_b_inactive',
-                -- },
-                -- separator = '',
-                -- use_mode_colors = true,
-                symbols = {
-                    modified = ' ● ', -- text to show when the buffer is modified
-                    alternate_file = '# ', -- text to show to identify the alternate file
-                    directory = '  ', -- text to show when the buffer is a directory
-                },
-            },
-            -- {
-            --     'filename',
-            --     path = 1,
-            --     -- symbols = {
-            --     --     modified = ' ', -- Text to show when the file is modified.
-            --     --     readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
-            --     --     unnamed = ' ', -- Text to show for unnamed buffers.
-            --     --     newfile = ' ', -- Text to show for newly created file before first write
-            --     -- }
-            -- }
-        },
-        lualine_b = {
-            -- {
-            --     'buffers',
-            --     hide_filename_extension = true,
-            --     -- separator = { left = '', right = '' },
-            --     -- separator = '  ',
-            --     -- 
-            --     filetype_names = {
-            --         TelescopePrompt = 'Telescope',
-            --         dashboard = 'Dashboard',
-            --         -- packer = 'Packer',
-            --         fzf = 'FZF',
-            --         alpha = 'Alpha',
-            --         lazy = 'Lazy',
-            --     },
-            --     -- buffers_color = {
-            --     --     active = 'BufferActive',
-            --     --     inactive = 'BufferInactive',
-            --     -- },
-            --     -- separator = '',
-            --     -- use_mode_colors = true,
-            --     symbols = {
-            --         modified = ' ● ', -- text to show when the buffer is modified
-            --         alternate_file = '# ', -- text to show to identify the alternate file
-            --         directory = '  ', -- text to show when the buffer is a directory
-            --     },
-            -- },
-            -- { function() return '' end, draw_empty = true },
-        },
-        lualine_c = {},
-        lualine_x = {
-            -- {
-            --     require("lazy.status").updates,
-            --     cond = require("lazy.status").has_updates,
-            -- },
-        },
-        lualine_y = {
-            { 'encoding', padding = { left = 1, right = 1 } },
-        },
-        lualine_z = {
-            {
-                'tabs',
-                mode = 1,
-                path = 0,
-                use_mode_colors = true,
-            },
-            -- {
-            --     function()
-            --         return 'NEOVIM'
-            --     end,
-            --     colored = false,
-            --     icon_only = true,
-            -- }
-        },
-    },
+    -- tabline = {
+    --     lualine_a = {
+    --         -- { 'fileformat', padding = { left = 1, right = 1 } },
+    --         -- { "filetype", icon = { align = "left" } },
+    --         {
+    --             'buffers',
+    --             hide_filename_extension = true,
+    --             separator = '', -- separator = { left = '', right = '' },
+    --             filetype_names = {
+    --                 TelescopePrompt = 'Telescope',
+    --                 dashboard = 'Dashboard',
+    --                 fzf = 'FZF',
+    --                 alpha = 'Alpha',
+    --                 lazy = 'Lazy',
+    --                 nerdtree = 'File Tree',
+    --                 ['neo-tree'] = 'Neo Tree',
+    --                 -- neotree = 'NeoTree',
+    --             },
+    --             use_mode_colors = true,
+    --             -- buffers_color = {
+    --             --     active = 'lualine_a_active',
+    --             --     inactive = 'lualine_b_inactive',
+    --             -- },
+    --             -- separator = '',
+    --             -- use_mode_colors = true,
+    --             symbols = {
+    --                 modified = ' ● ', -- text to show when the buffer is modified
+    --                 alternate_file = '# ', -- text to show to identify the alternate file
+    --                 directory = '  ', -- text to show when the buffer is a directory
+    --             },
+    --         },
+    --         -- {
+    --         --     'filename',
+    --         --     path = 1,
+    --         --     -- symbols = {
+    --         --     --     modified = ' ', -- Text to show when the file is modified.
+    --         --     --     readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
+    --         --     --     unnamed = ' ', -- Text to show for unnamed buffers.
+    --         --     --     newfile = ' ', -- Text to show for newly created file before first write
+    --         --     -- }
+    --         -- }
+    --     },
+    --     lualine_b = {
+    --         -- {
+    --         --     'buffers',
+    --         --     hide_filename_extension = true,
+    --         --     -- separator = { left = '', right = '' },
+    --         --     -- separator = '  ',
+    --         --     -- 
+    --         --     filetype_names = {
+    --         --         TelescopePrompt = 'Telescope',
+    --         --         dashboard = 'Dashboard',
+    --         --         -- packer = 'Packer',
+    --         --         fzf = 'FZF',
+    --         --         alpha = 'Alpha',
+    --         --         lazy = 'Lazy',
+    --         --     },
+    --         --     -- buffers_color = {
+    --         --     --     active = 'BufferActive',
+    --         --     --     inactive = 'BufferInactive',
+    --         --     -- },
+    --         --     -- separator = '',
+    --         --     -- use_mode_colors = true,
+    --         --     symbols = {
+    --         --         modified = ' ● ', -- text to show when the buffer is modified
+    --         --         alternate_file = '# ', -- text to show to identify the alternate file
+    --         --         directory = '  ', -- text to show when the buffer is a directory
+    --         --     },
+    --         -- },
+    --         -- { function() return '' end, draw_empty = true },
+    --     },
+    --     lualine_c = {},
+    --     lualine_x = {
+    --         -- {
+    --         --     require("lazy.status").updates,
+    --         --     cond = require("lazy.status").has_updates,
+    --         -- },
+    --     },
+    --     lualine_y = {
+    --         { 'encoding', padding = { left = 1, right = 1 } },
+    --     },
+    --     lualine_z = {
+    --         {
+    --             'tabs',
+    --             mode = 1,
+    --             path = 0,
+    --             use_mode_colors = true,
+    --         },
+    --         -- {
+    --         --     function()
+    --         --         return 'NEOVIM'
+    --         --     end,
+    --         --     colored = false,
+    --         --     icon_only = true,
+    --         -- }
+    --     },
+    -- },
 
     --[[ BAR FOR EACH WINDOW ]]
 

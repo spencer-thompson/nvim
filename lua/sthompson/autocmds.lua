@@ -7,3 +7,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     group = highlight_group,
     pattern = '*',
 })
+
+local terminal_spell = vim.api.nvim_create_augroup('TermSpellCheck', { clear = true })
+vim.api.nvim_create_autocmd('TermOpen', {
+    callback = function()
+        vim.opt_local.spell = false
+    end,
+    group = terminal_spell,
+})

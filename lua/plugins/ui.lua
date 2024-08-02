@@ -19,6 +19,44 @@ return {
     },
 
     {
+        'akinsho/bufferline.nvim',
+        name = 'bufferline',
+        version = '*',
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        event = 'VeryLazy',
+        keys = {
+            { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
+            { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
+            { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
+            { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
+            { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
+            { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
+            { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+            { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
+            { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+            { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move buffer prev' },
+            { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
+        },
+        opts = {
+            options = {
+
+                -- themable = true,
+                indicator = {
+                    style = 'underline',
+                },
+                diagnostics = 'nvim_lsp',
+                always_show_bufferline = true,
+                -- auto_toggle_bufferline = true,
+                -- separator_style = 'thin',
+                separator_style = { '', '' },
+            },
+        },
+        config = function(_, opts)
+            require('bufferline').setup(opts)
+        end,
+    },
+
+    {
         'mistricky/codesnap.nvim',
         name = 'codesnap',
         build = 'make',
@@ -181,13 +219,13 @@ return {
                         filter = { event = 'msg_showmode' },
                         opts = { skip = true, stop = false },
                     },
-                    {
-                        filter = {
-                            event = 'msg_show',
-                            kind = 'echo',
-                        },
-                        view = 'cmdline_output',
-                    },
+                    -- {
+                    --     filter = {
+                    --         event = 'msg_show',
+                    --         kind = 'echo',
+                    --     },
+                    --     view = 'cmdline_output',
+                    -- },
                     -- {
                     --     filter = {
                     --         event = 'msg_show',
