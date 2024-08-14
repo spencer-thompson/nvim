@@ -99,9 +99,36 @@ return {
         config = true,
     },
 
-    -- { NOTE: Only on linux
-    --     'michaelb/sniprun',
-    --     event = 'VeryLazy',
-    --     lazy = true,
-    -- },
+    { -- NOTE: Only on linux
+        'michaelb/sniprun',
+        event = 'VeryLazy',
+        lazy = true,
+        build = 'sh install.sh',
+        config = function()
+            require('sniprun').setup({
+                display = { 'VirtualText' },
+                snipruncolors = {
+                    SniprunVirtualTextOk = { bg = 'NONE', fg = 'Cyan', ctermbg = 'NONE', ctermfg = 'Cyan' },
+                    -- SniprunFloatingWinOk = { fg = '#66eeff', ctermfg = 'Cyan' },
+                    SniprunVirtualTextErr = { bg = 'NONE', fg = 'Red', ctermbg = 'NONE', ctermfg = 'Red' },
+                    -- SniprunFloatingWinErr = { fg = '#881515', ctermfg = 'DarkRed', bold = true },
+                },
+            })
+            vim.keymap.set('v', '<leader>r', function()
+                require('sniprun').run('v')
+                vim.defer_fn(require('sniprun.display').close_all, 10000) -- close after 10 sec
+            end, { silent = true, desc = '[R]un Visual Selection' })
+
+            -- vim.keymap.set('v', '<leader>r', '<Plug>SnipRun', { silent = true, desc = '[R]un Visual Selection' })
+
+            -- vim.keymap.set('n', '<leader>r', function()
+            --     require('sniprun').run('n')
+            --     vim.defer_fn(require('sniprun.display').close_all, 10000)
+            -- end, { silent = true, desc = '[R]un Visual Selection' })
+            -- , '<cmd>SnipRun<CR>'
+            -- vim.api.nvim_set_keymap('v', 'f', '<Plug>SnipRun', { silent = true })
+            -- vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>SnipRunOperator', { silent = true })
+            -- vim.api.nvim_set_keymap('n', '<leader>ff', '<Plug>SnipRun', { silent = true })
+        end,
+    },
 }
