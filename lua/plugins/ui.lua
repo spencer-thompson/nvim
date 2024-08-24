@@ -57,6 +57,25 @@ return {
     },
 
     {
+        'Isrothy/neominimap.nvim',
+        name = 'neominimap',
+        lazy = false,
+        config = function()
+            vim.g.neominimap = {
+                float = {
+                    window_border = 'none',
+                },
+                exclude_filetypes = {
+                    'dashboard',
+                },
+            }
+
+            vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })
+            vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })
+        end,
+    },
+
+    {
         'OXY2DEV/markview.nvim',
         lazy = false,
         config = function()
@@ -72,6 +91,8 @@ return {
                     end,
                 },
             })
+
+            vim.keymap.set('n', '<leader>mv', '<cmd>Markview<CR>', { desc = 'Render Markdown' })
         end,
     },
 

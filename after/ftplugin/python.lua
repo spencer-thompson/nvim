@@ -30,7 +30,7 @@ end
 vim.api.nvim_buf_set_keymap(
     0,
     'n',
-    '<leader>R',
+    '<leader>r',
     '<cmd>TermExec cmd="python %" dir=%:h<CR>',
     { desc = 'Run Current File' }
 )

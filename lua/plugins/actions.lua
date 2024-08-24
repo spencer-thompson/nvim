@@ -114,7 +114,7 @@ return {
                     -- SniprunFloatingWinErr = { fg = '#881515', ctermfg = 'DarkRed', bold = true },
                 },
             })
-            vim.keymap.set('v', '<leader>r', function()
+            vim.keymap.set('v', '<leader>R', function()
                 require('sniprun').run('v')
                 vim.defer_fn(require('sniprun.display').close_all, 10000) -- close after 10 sec
             end, { silent = true, desc = '[R]un Visual Selection' })

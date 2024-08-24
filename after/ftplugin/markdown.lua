@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 --     { desc = 'Markdown Browser Preview' }
 -- )
 
-vim.keymap.set('n', '<leader>R', function()
+vim.keymap.set('n', '<leader>r', function()
     if vim.api.nvim_buf_get_var(0, 'active_preview') then
         vim.api.nvim_buf_set_var(0, 'active_preview', false)
     else
