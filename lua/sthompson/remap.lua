@@ -75,6 +75,10 @@ vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w>k', { desc = 'Up Window' })
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w>j', { desc = 'Down Window' })
 vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w>l', { desc = 'Right Window' })
 
+-- resize windows
+vim.keymap.set('n', '+', [[<cmd>vertical resize +5<cr>]], { desc = 'Bigger Window' })
+vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Smaller Window' })
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true }) -- might remove
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

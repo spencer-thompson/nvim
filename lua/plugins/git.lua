@@ -1,7 +1,15 @@
 return {
 
-    { 'tpope/vim-fugitive', name = 'fugitive', event = 'VeryLazy' },
-    { 'sindrets/diffview.nvim', name = 'diffview', event = 'VeryLazy' },
+    -- { 'tpope/vim-fugitive', name = 'fugitive', event = 'VeryLazy' },
+
+    {
+        'NeogitOrg/neogit',
+        event = 'VeryLazy',
+        dependencies = {
+            { 'sindrets/diffview.nvim', name = 'diffview' },
+        },
+        config = true,
+    },
 
     {
         'isakbm/gitgraph.nvim',
@@ -53,7 +61,7 @@ return {
                 untracked = { text = '▎' },
             },
             current_line_blame = true,
-            current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
+            -- current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
             current_line_blame_opts = {
                 virt_text_pos = 'eol',
                 delay = 200,
@@ -66,8 +74,8 @@ return {
                 end
 
                 -- stylua: ignore start
-                map("n", "]h", gs.next_hunk, "Next Hunk")
-                map("n", "[h", gs.prev_hunk, "Prev Hunk")
+                map("n", "]c", gs.next_hunk, "Next Hunk")
+                map("n", "[c", gs.prev_hunk, "Prev Hunk")
                 map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
                 map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
                 map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")

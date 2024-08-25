@@ -50,7 +50,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 999 -- set to 999 for "always centered"
 -- vim.opt.sidescroll = 0
 
-vim.opt.foldcolumn = '1'
+vim.opt.foldcolumn = '0'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true

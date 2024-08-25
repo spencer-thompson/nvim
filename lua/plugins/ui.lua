@@ -59,16 +59,42 @@ return {
     {
         'Isrothy/neominimap.nvim',
         name = 'neominimap',
+        event = 'VeryLazy',
         lazy = false,
         config = function()
             vim.g.neominimap = {
+                auto_enable = true,
                 float = {
                     window_border = 'none',
+                    minimap_width = 20,
                 },
                 exclude_filetypes = {
                     'dashboard',
+                    'help',
                 },
+                exclude_buftypes = {
+                    'nofile',
+                    'nowrite',
+                    'quickfix',
+                    'terminal',
+                    'prompt',
+                },
+                -- git =
+                diagnostic = {
+                    enabled = true,
+                    severity = vim.diagnostic.severity.WARN,
+                    mode = 'icon',
+                    priority = {
+                        ERROR = 100,
+                        WARN = 90,
+                        INFO = 80,
+                        HINT = 70,
+                    },
+                },
+                search = { enabled = true, mode = 'sign' },
             }
+
+            require('neominimap').setup()
 
             vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })
             vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })
@@ -108,7 +134,7 @@ return {
         },
         opts = {
             title = 'Neovim',
-            code_font_family = 'Fira Code Nerd Font',
+            code_font_family = 'JetBrainsMono Nerd Font',
         },
     },
 
@@ -146,12 +172,12 @@ return {
         end,
     },
 
-    {
-        'kevinhwang91/nvim-ufo',
-        name = 'ufo',
-        event = 'VeryLazy',
-        dependencies = { 'kevinhwang91/promise-async' },
-    },
+    -- {
+    --     'kevinhwang91/nvim-ufo',
+    --     name = 'ufo',
+    --     event = 'VeryLazy',
+    --     dependencies = { 'kevinhwang91/promise-async' },
+    -- },
 
     {
         'RRethy/vim-illuminate',
@@ -308,13 +334,74 @@ return {
     {
         'luukvbaal/statuscol.nvim',
         name = 'statuscol',
-        lazy = true,
-        event = 'VeryLazy',
-        config = function()
-            require('statuscol').setup({
+        -- enabled = false,
+        -- lazy = true,
+        event = { 'BufNewFile', 'BufReadPre' },
+        -- event = 'VeryLazy',
+        opts = function()
+            local builtin = require('statuscol.builtin')
+            return {
+                relculright = true,
                 setopt = true,
-            })
+                segments = {
+                    {
+                        sign = {
+                            name = {
+                                'Dap',
+                                'neotest',
+                            },
+                            maxwidth = 2,
+                            colwidth = 2,
+                            auto = true,
+                        },
+                        click = 'v:lua.ScSa',
+                    },
+                    { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
+                    -- { namespace = { 'todo-signs' }, click = '' }, --, click = 'v:lua.ScSa' },
+                    -- {
+                    --     sign = {
+                    --         namespace = { 'diagnostic/signs' },
+                    --         maxwidth = 2,
+                    --         colwidth = 2,
+                    --         auto = false,
+                    --     },
+                    --     click = 'v:lua.ScSa',
+                    -- },
+                    -- { text = { " " } },
+                    { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+                    { text = { ' ' } },
+                    {
+                        sign = {
+                            namespace = { 'gitsign' },
+                            maxwidth = 1,
+                            colwidth = 1,
+                            auto = false,
+                            fillchar = ' ',
+                            fillcharhl = 'StatusColumnSeparator',
+                        },
+                        click = 'v:lua.ScSa',
+                    },
+                },
+                ft_ignore = {
+                    'help',
+                    'vim',
+                    'fugitive',
+                    'alpha',
+                    'dashboard',
+                    'neo-tree',
+                    'Trouble',
+                    'noice',
+                    'lazy',
+                    'toggleterm',
+                },
+            }
         end,
+
+        -- config = function()
+        --     require('statuscol').setup({
+        --         setopt = true,
+        --     })
+        -- end,
     },
 
     -- {

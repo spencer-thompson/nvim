@@ -1,6 +1,13 @@
 return {
 
     {
+        {
+            'echasnovski/mini.ai',
+            version = false,
+            event = 'VeryLazy',
+        },
+    },
+    {
         'echasnovski/mini.align',
         version = '*',
         event = 'VeryLazy',
