@@ -339,11 +339,12 @@ return {
     {
         'luukvbaal/statuscol.nvim',
         name = 'statuscol',
-        enabled = false,
+        enabled = true,
         -- lazy = true,
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',
         opts = function()
+            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = 'Gray' })
             local builtin = require('statuscol.builtin')
             return {
                 relculright = true,
@@ -361,20 +362,16 @@ return {
                         },
                         click = 'v:lua.ScSa',
                     },
-                    { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
-                    -- { namespace = { 'todo-signs' }, click = '' }, --, click = 'v:lua.ScSa' },
-                    -- {
-                    --     sign = {
-                    --         namespace = { 'diagnostic/signs' },
-                    --         maxwidth = 2,
-                    --         colwidth = 2,
-                    --         auto = false,
-                    --     },
-                    --     click = 'v:lua.ScSa',
-                    -- },
-                    -- { text = { " " } },
+                    -- { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
+                    {
+                        sign = {
+                            name = { '.*' },
+                            text = { '.*' },
+                        },
+                        click = 'v:lua.ScSa',
+                    },
                     { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
-                    { text = { ' ' } },
+                    -- { text = { ' ' } },
                     {
                         sign = {
                             namespace = { 'gitsign' },
@@ -386,6 +383,7 @@ return {
                         },
                         click = 'v:lua.ScSa',
                     },
+                    { text = { ' ' } },
                 },
                 ft_ignore = {
                     'help',
@@ -420,8 +418,9 @@ return {
         config = function()
             local indent_scope = require('mini.indentscope')
             indent_scope.setup({
-                symbol = '▏',
-                -- symbol = "│",
+                -- symbol = '▏',
+                symbol = '▎',
+                -- symbol = '│',
                 options = {
                     border = 'both',
                     indent_at_cursor = true,

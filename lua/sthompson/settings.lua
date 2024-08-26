@@ -105,6 +105,9 @@ vim.incsearch = true
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
 
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number'
+
 vim.opt.signcolumn = 'yes:2'
 -- vim.opt.signcolumn = 'yes:1'
 vim.opt.updatetime = 1000
