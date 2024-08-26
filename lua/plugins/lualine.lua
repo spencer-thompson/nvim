@@ -10,6 +10,22 @@ function empty:draw(default_highlight)
     return self.status
 end
 
+local lsp_servers = require('lualine.component'):extend()
+function lsp_servers:init(options)
+    options.icon = options.icon or '󰌘'
+    options.split = options.split or ', '
+    lsp_servers.super.init(self, options)
+end
+
+function lsp_servers:update_status()
+    local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+    local buf_client_names = {}
+    for _, client in pairs(buf_clients) do
+        table.insert(buf_client_names, client.name)
+    end
+    return table.concat(buf_client_names, self.options.split)
+end
+
 -- Put proper separators and gaps between components in sections
 local function process_sections(sections)
     for name, section in pairs(sections) do
@@ -351,6 +367,9 @@ require('lualine').setup({
             {
                 require('lazy.status').updates,
                 cond = require('lazy.status').has_updates,
+            },
+            {
+                lsp_servers,
             },
         },
         lualine_z = {

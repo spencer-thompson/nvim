@@ -65,9 +65,13 @@ return {
             vim.g.neominimap = {
                 auto_enable = true,
                 float = {
+                    -- margin = {
+                    --     right = 0,
+                    -- },
                     window_border = 'none',
                     minimap_width = 20,
                 },
+                -- TODO: perhaps add todo comments
                 exclude_filetypes = {
                     'dashboard',
                     'help',
@@ -92,6 +96,7 @@ return {
                     },
                 },
                 search = { enabled = true, mode = 'sign' },
+                -- mark = { enabled = true },
             }
 
             require('neominimap').setup()
@@ -334,7 +339,7 @@ return {
     {
         'luukvbaal/statuscol.nvim',
         name = 'statuscol',
-        -- enabled = false,
+        enabled = false,
         -- lazy = true,
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',

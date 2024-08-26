@@ -140,6 +140,9 @@ require('mason-lspconfig').setup({
                                 vim.env.VIMRUNTIME,
                             },
                         },
+                        telemetry = {
+                            enable = false,
+                        },
                         hint = { enable = true },
                     },
                 },

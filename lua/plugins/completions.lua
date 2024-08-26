@@ -10,6 +10,7 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp', keyword_length = key_len, max_item_count = max_item },
         { name = 'nvim_lua', keyword_length = key_len, max_item_count = max_item },
+        { name = 'lazydev', keyword_length = key_len, max_item_count = max_item },
         { name = 'luasnip', keyword_length = key_len, max_item_count = max_item },
         { name = 'buffer', keyword_length = key_len, max_item_count = max_item },
         { name = 'latex_symbols', keyword_length = key_len, max_item_count = max_item },

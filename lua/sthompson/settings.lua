@@ -44,7 +44,7 @@ vim.opt.ignorecase = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.showbreak = '│ ' --┊│▕
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 999 -- set to 999 for "always centered"
@@ -105,7 +105,8 @@ vim.incsearch = true
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
 
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes:2'
+-- vim.opt.signcolumn = 'yes:1'
 vim.opt.updatetime = 1000
 
 vim.opt.showtabline = 2
