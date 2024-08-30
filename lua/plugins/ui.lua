@@ -109,6 +109,7 @@ return {
     {
         'OXY2DEV/markview.nvim',
         lazy = false,
+        enabled = false,
         config = function()
             require('markview').setup({
                 modes = { 'n', 'i', 'no', 'c' },

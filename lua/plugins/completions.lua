@@ -150,7 +150,8 @@ cmp.setup.cmdline(':', {
 
 cmp.setup.filetype({ 'sql' }, {
     sources = {
-        { name = 'vim-dadbod-completions' },
+        -- { name = 'vim-dadbod-completions' },
+        { name = 'cmp-dbee' },
         { name = 'buffer' },
     },
 })
