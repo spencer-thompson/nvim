@@ -57,11 +57,39 @@ return {
     },
 
     {
+        'echasnovski/mini.icons',
+        lazy = true,
+        opts = {
+            file = {
+                ['.keep'] = { glyph = '󰊢', hl = 'MiniIconsGrey' },
+                ['devcontainer.json'] = { glyph = '', hl = 'MiniIconsAzure' },
+            },
+            filetype = {
+                dotenv = { glyph = '', hl = 'MiniIconsYellow' },
+            },
+        },
+        init = function()
+            package.preload['nvim-web-devicons'] = function()
+                require('mini.icons').mock_nvim_web_devicons()
+                return package.loaded['nvim-web-devicons']
+            end
+        end,
+    },
+
+    {
         'Isrothy/neominimap.nvim',
         name = 'neominimap',
         event = 'VeryLazy',
         lazy = false,
         config = function()
+            vim.api.nvim_create_autocmd('WinEnter', {
+                group = vim.api.nvim_create_augroup('minimap', { clear = true }),
+                pattern = '*',
+                callback = function()
+                    require('neominimap').tabRefresh({}, {})
+                end,
+            })
+
             vim.g.neominimap = {
                 auto_enable = true,
                 float = {
@@ -71,7 +99,9 @@ return {
                     window_border = 'none',
                     minimap_width = 20,
                 },
-                -- TODO: perhaps add todo comments
+                win_filter = function(winid)
+                    return winid == vim.api.nvim_get_current_win()
+                end,
                 exclude_filetypes = {
                     'dashboard',
                     'help',
@@ -96,7 +126,7 @@ return {
                     },
                 },
                 search = { enabled = true, mode = 'sign' },
-                -- mark = { enabled = true },
+                mark = { enabled = true },
             }
 
             require('neominimap').setup()
@@ -345,7 +375,7 @@ return {
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',
         opts = function()
-            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = 'Gray' })
+            -- vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'Comment', default = true })
             local builtin = require('statuscol.builtin')
             return {
                 relculright = true,
@@ -366,6 +396,7 @@ return {
                     -- { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
                     {
                         sign = {
+                            namespace = { '.*' },
                             name = { '.*' },
                             text = { '.*' },
                         },
