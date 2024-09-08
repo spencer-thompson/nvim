@@ -75,6 +75,30 @@ vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w>k', { desc = 'Up Window' })
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w>j', { desc = 'Down Window' })
 vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w>l', { desc = 'Right Window' })
 
+vim.keymap.set(
+    'n',
+    '<C-Left>',
+    '"<Cmd>vertical resize -" . v:count1 . "<CR>"',
+    { expr = true, replace_keycodes = false, desc = 'Decrease window width' }
+)
+vim.keymap.set(
+    'n',
+    '<C-Down>',
+    '"<Cmd>resize -"          . v:count1 . "<CR>"',
+    { expr = true, replace_keycodes = false, desc = 'Decrease window height' }
+)
+vim.keymap.set(
+    'n',
+    '<C-Up>',
+    '"<Cmd>resize +"          . v:count1 . "<CR>"',
+    { expr = true, replace_keycodes = false, desc = 'Increase window height' }
+)
+vim.keymap.set(
+    'n',
+    '<C-Right>',
+    '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
+    { expr = true, replace_keycodes = false, desc = 'Increase window width' }
+)
 -- resize windows
 vim.keymap.set('n', '+', [[<cmd>vertical resize +5<cr>]], { desc = 'Bigger Window' })
 vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Smaller Window' })

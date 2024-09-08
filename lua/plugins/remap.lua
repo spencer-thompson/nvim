@@ -15,8 +15,10 @@ return {
             })
             wk.add({
                 { -- E
-                    { '<leader>e', group = 'explore', icon = '󰙅' }, -- TODO: figure out icons
-                    { '<leader>ee', '<cmd>Neotree toggle current<CR>', desc = 'File Tree' },
+                    { '<leader>e', '<cmd>lua MiniFiles.open()<CR>', desc = 'File Tree' },
+                    -- { '<leader>e', group = 'explore', icon = '󰙅' }, -- TODO: figure out icons
+                    -- { '<leader>ee', '<cmd>Neotree toggle current<CR>', desc = 'File Tree' },
+                    -- { '<leader>em', '<cmd>lua MiniFiles.open()<CR>', desc = 'File Tree' },
                 },
                 { -- F
                     { '<leader>f', group = 'find' },
