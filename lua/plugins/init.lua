@@ -74,11 +74,13 @@ vim.api.nvim_create_user_command('IDE', function(args)
 
     -- vim.cmd([[Trouble diagnostics toggle focus=false]])
     -- vim.cmd([[belowright ToggleTerm]])
-    vim.cmd([[Neotree toggle show left]])
-    vim.cmd([[Trouble symbols toggle focus=false]])
-    vim.cmd([[Trouble diagnostics toggle focus=false]])
-    vim.cmd([[Neogit]])
-    vim.cmd([[tabfirst]])
+    -- vim.cmd([[Neotree toggle show reveal]])
+    vim.cmd([[Trouble symbols toggle focus=false win={relative=editor,position=right}]])
+    -- vim.wait(100)
+    vim.cmd([[Trouble diagnostics toggle focus=false win={relative=win}]])
+    vim.cmd([[Neotree toggle show reveal left]])
+    -- vim.cmd([[Neogit]])
+    -- vim.cmd([[tabfirst]])
     -- <cmd>ToggleTerm<CR>
     if args.fargs[1] == 'toggle' then
         vim.cmd([[Trouble diagnostics toggle focus=false]])

@@ -61,10 +61,11 @@ return {
         cmd = 'Trouble',
         opts = {
             preview = {
-                type = 'split',
-                relative = 'win',
-                position = 'right',
-                size = 0.3,
+                type = 'main',
+                -- type = 'split',
+                -- relative = 'win',
+                -- position = 'right',
+                -- size = 0.3,
             },
         }, --config
         keys = {
