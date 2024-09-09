@@ -4,6 +4,7 @@ return {
 
     {
         'vhyrro/luarocks.nvim',
+        enabled = false,
         priority = 1001, -- this plugin needs to run before anything else
         opts = {
             rocks = { 'magick' },
@@ -12,6 +13,7 @@ return {
     {
         '3rd/image.nvim',
         name = 'image',
+        enabled = false,
         dependencies = { 'luarocks.nvim' },
         event = 'VeryLazy',
         config = function()
@@ -57,7 +59,14 @@ return {
         name = 'trouble',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         cmd = 'Trouble',
-        opts = {}, --config
+        opts = {
+            preview = {
+                type = 'split',
+                relative = 'win',
+                position = 'right',
+                size = 0.3,
+            },
+        }, --config
         keys = {
             {
                 '<leader>td',
@@ -95,6 +104,7 @@ return {
     {
         'nvim-pack/nvim-spectre',
         name = 'spectre',
+        enabled = false,
         event = 'VeryLazy',
         build = false,
         cmd = 'Spectre',

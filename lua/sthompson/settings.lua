@@ -92,9 +92,9 @@ vim.opt.fillchars = {
     fold = ' ',
 }
 
-vim.o.pumblend = 30 -- Make builtin completion menus slightly transparent
+vim.o.pumblend = 20 -- Make builtin completion menus slightly transparent
 vim.o.pumheight = 10 -- Make popup menu smaller
-vim.o.winblend = 30 -- Make floating windows slightly transparent
+vim.o.winblend = 20 -- Make floating windows slightly transparent
 vim.o.listchars = 'tab:> ,extends:…,precedes:…,nbsp:␣' -- Define which helper symbols to show
 vim.o.list = true -- Show some helper symbols
 

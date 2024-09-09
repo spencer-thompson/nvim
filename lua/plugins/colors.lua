@@ -102,6 +102,14 @@ return {
                 style = 'night',
                 plugins = {
                     dashboard = true,
+                    auto = true,
+                },
+                transparent = true,
+                styles = {
+                    keywords = { bold = true },
+                    functions = { bold = true },
+                    sidebars = 'transparent', -- style for sidebars, see below
+                    floats = 'transparent', -- style for floating windows
                 },
                 -- transparent = true,
                 -- terminal_colors = true,

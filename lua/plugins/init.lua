@@ -35,6 +35,7 @@ require('lazy').setup( -- load lazy
         require('plugins.git'),
         require('plugins.language'),
         require('plugins.local'),
+        require('plugins.mini'),
         require('plugins.navigation'),
         require('plugins.remap'),
         require('plugins.sql'),
@@ -65,3 +66,29 @@ require('plugins.lualine')
 require('plugins.lsp')
 require('plugins.completions')
 require('plugins.snippets')
+
+vim.api.nvim_create_user_command('IDE', function(args)
+    -- This will be a user command to essentially turn neovim into a full
+    -- fledged ide, I want to implement neogit, mini.session, dap, and
+    -- other plugins to create a really cool system.
+
+    -- vim.cmd([[Trouble diagnostics toggle focus=false]])
+    -- vim.cmd([[belowright ToggleTerm]])
+    vim.cmd([[Neotree toggle show left]])
+    vim.cmd([[Trouble symbols toggle focus=false]])
+    vim.cmd([[Trouble diagnostics toggle focus=false]])
+    vim.cmd([[Neogit]])
+    vim.cmd([[tabfirst]])
+    -- <cmd>ToggleTerm<CR>
+    if args.fargs[1] == 'toggle' then
+        vim.cmd([[Trouble diagnostics toggle focus=false]])
+        vim.cmd([[Neotree toggle show left]])
+        vim.cmd([[Trouble symbols toggle focus=false]])
+    end
+end, {
+    nargs = '*',
+    complete = function(ArgLead, CmdLine, CursorPos)
+        -- return completion candidates as a list-like table
+        return { 'toggle', 'on', 'off' }
+    end,
+})

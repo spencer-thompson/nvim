@@ -1,7 +1,5 @@
 return {
 
-    -- { 'kyazdani42/nvim-web-devicons', name = 'web-devicons' },
-
     {
         'nvim-lualine/lualine.nvim',
         name = 'lualine',
@@ -49,30 +47,18 @@ return {
                 -- auto_toggle_bufferline = true,
                 -- separator_style = 'thin',
                 separator_style = { '', '' },
+                offsets = {
+                    {
+                        filetype = 'neo-tree',
+                        text = 'Neo-tree',
+                        highlight = 'Directory',
+                        text_align = 'left',
+                    },
+                },
             },
         },
         config = function(_, opts)
             require('bufferline').setup(opts)
-        end,
-    },
-
-    {
-        'echasnovski/mini.icons',
-        lazy = true,
-        opts = {
-            file = {
-                ['.keep'] = { glyph = '󰊢', hl = 'MiniIconsGrey' },
-                ['devcontainer.json'] = { glyph = '', hl = 'MiniIconsAzure' },
-            },
-            filetype = {
-                dotenv = { glyph = '', hl = 'MiniIconsYellow' },
-            },
-        },
-        init = function()
-            package.preload['nvim-web-devicons'] = function()
-                require('mini.icons').mock_nvim_web_devicons()
-                return package.loaded['nvim-web-devicons']
-            end
         end,
     },
 
@@ -126,7 +112,7 @@ return {
                     },
                 },
                 search = { enabled = true, mode = 'sign' },
-                mark = { enabled = true },
+                mark = { enabled = true, mode = 'sign' },
             }
 
             require('neominimap').setup()
@@ -177,6 +163,7 @@ return {
     {
         'xiyaowong/nvim-transparent',
         name = 'transparent',
+        enabled = false,
         event = 'VimEnter',
         config = function()
             require('transparent').setup({
@@ -192,8 +179,7 @@ return {
                 }, -- mason, lazy, lspinfo
             })
             require('transparent').clear_prefix('dashboard') -- handles dashboard
-            require('transparent').clear_prefix('whichkey') -- handles which-key
-            -- require('transparent').clear_prefix('pmenu')     -- handles
+            require('transparent').clear_prefix('whichkey') -- handles which-key require('transparent').clear_prefix('pmenu')     -- handles
             require('transparent').clear_prefix('telescope') -- handles telescope
             require('transparent').clear_prefix('noicecmdline') -- handles noice
             require('transparent').clear_prefix('gitsigns')
@@ -203,6 +189,10 @@ return {
             -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
             -- require('transparent').clear_prefix('lualine') -- handles which-key
             require('transparent').clear_prefix('foldcolumn') -- handles which-key
+            require('transparent').clear_prefix('Noice') -- handles noice
+            require('transparent').clear_prefix('mini') -- handles mini stuff
+            require('transparent').clear_prefix('Notify') -- handles mini stuff
+            require('transparent').clear_prefix('WhichKey') -- handles which-key
 
             vim.keymap.set('n', '<leader>tr', '<cmd>TransparentToggle<cr>', { desc = 'Transparent' })
         end,
@@ -403,7 +393,7 @@ return {
                         click = 'v:lua.ScSa',
                     },
                     { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
-                    -- { text = { ' ' } },
+                    { text = { ' ' } },
                     {
                         sign = {
                             namespace = { 'gitsign' },
@@ -415,7 +405,7 @@ return {
                         },
                         click = 'v:lua.ScSa',
                     },
-                    { text = { ' ' } },
+                    -- { text = { ' ' } },
                 },
                 ft_ignore = {
                     'help',
@@ -439,126 +429,10 @@ return {
         -- end,
     },
 
-    -- {
-    --     'echasnovski/mini.indentscope',
-    --     version = false,
-    -- },
-    { -- fun scope animations
-        'echasnovski/mini.indentscope',
-        version = '*', -- wait till new 0.7.0 release to put it back on semver
-        event = 'VeryLazy',
-        config = function()
-            local indent_scope = require('mini.indentscope')
-            indent_scope.setup({
-                -- symbol = '▏',
-                symbol = '▎',
-                -- symbol = '│',
-                options = {
-                    border = 'both',
-                    indent_at_cursor = true,
-                    try_as_border = true,
-                },
-                draw = {
-                    delay = 50,
-                    -- animation = require('mini.indentscope').gen_animation.exponential({
-                    --     easing = 'out',
-                    --     duration = 100,
-                    --     unit = 'total',
-                    -- })
-                },
-            })
-            indent_scope.gen_animation.exponential({
-                easing = 'out',
-                duration = 100,
-                unit = 'step',
-            })
-        end,
-        init = function()
-            vim.api.nvim_create_autocmd('filetype', {
-                pattern = {
-                    'help',
-                    'alpha',
-                    'dashboard',
-                    'neo-tree',
-                    'trouble',
-                    'trouble',
-                    'lazy',
-                    'mason',
-                    'notify',
-                    'toggleterm',
-                    'lazyterm',
-                },
-                callback = function()
-                    vim.b.miniindentscope_disable = true
-                end,
-            })
-        end,
-    },
-
     {
         'stevearc/dressing.nvim',
         name = 'dressing',
         lazy = true,
         opts = {},
     },
-    -- {
-    --     'tomiis4/buffertabs.nvim',
-    --     event = "VeryLazy",
-    --     dependencies = {
-    --         'nvim-tree/nvim-web-devicons', -- optional
-    --     },
-    --     -- lazy = false,
-    --     config = function()
-    --         require('buffertabs').setup({
-    --             -- config
-    --         })
-    --         vim.keymap.set("n", "<leader>bt", "<cmd>BufferTabsToggle<cr>")
-    --     end
-    -- },
-    --
-    -- {
-    --     'akinsho/bufferline.nvim',
-    --     version = "*",
-    --     dependencies = 'nvim-tree/nvim-web-devicons',
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require('bufferline').setup {
-    --             options = {
-    --                 mode = "buffers",
-    --                 close_command = "bdelete! %d",       -- can be a string | function, | false see "mouse actions"
-    --                 right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "mouse actions"
-    --                 left_mouse_command = "buffer %d",    -- can be a string | function, | false see "mouse actions"
-    --                 middle_mouse_command = nil,          -- can be a string | function, | false see "mouse actions"
-    --                 diagnostics = "nvim_lsp",
-    --                 -- indicator = {
-    --                 --     -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
-    --                 --     style = 'underline', -- 'icon' | 'underline' | 'none',
-    --                 -- },
-    --                 buffer_close_icon = '󰅖',
-    --                 modified_icon = '●',
-    --                 close_icon = '',
-    --                 left_trunc_marker = '',
-    --                 right_trunc_marker = '',
-    --                 offsets = {
-    --                     {
-    --                         filetype = "neo-tree",
-    --                         text = "Explorer",
-    --                         text_align = "left", -- "left" | "center" | "right"
-    --                         highlight = "Directory",
-    --                         separator = true,
-    --                     },
-    --                 },
-    --                 tab_size = 20,
-    --                 color_icons = true,        -- whether or not to add the filetype icon highlights
-    --                 always_show_bufferline = true,
-    --                 separator_style = "thick", -- "slant", -- | "slope" | "thick" | "thin" | { 'any', 'any' },
-    --                 hover = {
-    --                     enabled = true,
-    --                     delay = 200,
-    --                     reveal = { 'close' }
-    --                 },
-    --             },
-    --         }
-    --     end,
-    -- },
 }
