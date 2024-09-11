@@ -25,9 +25,28 @@ return {
     },
 
     {
-        'chentoast/marks.nvim',
+        'leath-dub/snipe.nvim',
+        name = 'snipe',
         event = 'VeryLazy',
+        keys = {
+            {
+                '<leader><leader>',
+                function()
+                    require('snipe').open_buffer_menu()
+                end,
+                desc = 'Open Snipe buffer menu',
+            },
+        },
         opts = {},
+    },
+
+    {
+        'chentoast/marks.nvim',
+        name = 'marks',
+        event = 'VeryLazy',
+        opts = {
+            default_mappings = true,
+        },
     },
 
     {

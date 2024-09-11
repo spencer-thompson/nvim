@@ -59,6 +59,8 @@ return {
             {
                 -- support for image pasting
                 'HakonHarnes/img-clip.nvim',
+                lazy = true,
+                name = 'img-clip',
                 event = 'VeryLazy',
                 opts = {
                     -- recommended settings
@@ -76,6 +78,7 @@ return {
             {
                 -- Make sure to setup it properly if you have lazy=true
                 'MeanderingProgrammer/render-markdown.nvim',
+                lazy = true,
                 name = 'render-markdown',
                 opts = {
                     file_types = { 'markdown', 'Avante' },

@@ -8,6 +8,15 @@ return {
         dependencies = {
             { 'sindrets/diffview.nvim', name = 'diffview' },
         },
+        keys = {
+            {
+                '<leader>gg',
+                function()
+                    vim.cmd([[Neogit]])
+                end,
+                desc = 'Neogit',
+            },
+        },
         config = true,
     },
 

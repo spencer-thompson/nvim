@@ -11,6 +11,42 @@ return {
         },
     },
     {
+        'folke/persistence.nvim',
+        name = 'persistence',
+        event = 'BufReadPre',
+        opts = {},
+        keys = {
+            {
+                '<leader>sr',
+                function()
+                    require('persistence').load()
+                end,
+                desc = 'Restore Session',
+            },
+            {
+                '<leader>sp',
+                function()
+                    require('persistence').select()
+                end,
+                desc = 'Pick Session',
+            },
+            {
+                '<leader>sl',
+                function()
+                    require('persistence').load({ last = true })
+                end,
+                desc = 'Restore Last Session',
+            },
+            {
+                '<leader>sd',
+                function()
+                    require('persistence').stop()
+                end,
+                desc = "Don't Save Current Session",
+            },
+        },
+    },
+    {
         '3rd/image.nvim',
         name = 'image',
         enabled = false,

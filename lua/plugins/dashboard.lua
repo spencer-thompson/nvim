@@ -17,16 +17,18 @@ return {
                     header = vim.split(day, '\n'),
                     -- stylua: ignore
                     center = {
-                        { action = "ene | startinsert",          desc = " New file",     icon = " ", key = "n" },
-                        { action = "Telescope find_files",       desc = " Find file",    icon = " ", key = "f" },
-                        { action = "Telescope live_grep",        desc = " Find string",  icon = " ", key = "s" },
-                        { action = "TransparentToggle",          desc = " Transparency", icon = " ", key = "r" },
-                        { action = "lua MiniFiles.open()",       desc = " Explore Files",    icon = "󱏒 ", key = "e" },
+                        { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "r" },
+                        { action = "ene | startinsert",                 desc = " New file",     icon = " ", key = "n" },
+                        { action = "Telescope find_files",              desc = " Find file",    icon = " ", key = "f" },
+                        { action = "Telescope live_grep",               desc = " Find string",  icon = " ", key = "s" },
+                        { action = "TransparentToggle",                 desc = " Transparency", icon = " ", key = "t" },
+                        { action = "lua MiniFiles.open()",              desc = " Explore Files",icon = "󱏒 ", key = "e" },
+                        { action = "Neogit",                            desc = " Git",          icon = " ", key = "g" },
                         -- { action = "ChatGPT",                    desc = " ChatGPT",      icon = "󱚤 ", key = "c" },
-                        { action = "ToggleTerm direction=float", desc = " Terminal",     icon = " ", key = "t" },
-                        { action = "Lazy",                       desc = " Lazy",         icon = "󰒲 ", key = "l" },
-                        { action = "Mason",                      desc = " Mason",        icon = "󱌣 ", key = "m" },
-                        { action = "qa",                         desc = " Quit",         icon = " ", key = "q" },
+                        -- { action = "ToggleTerm direction=float",        desc = " Terminal",     icon = " ", key = "t" },
+                        { action = "Lazy",                              desc = " Lazy",         icon = "󰒲 ", key = "l" },
+                        { action = "Mason",                             desc = " Mason",        icon = "󱌣 ", key = "m" },
+                        { action = "qa",                                desc = " Quit",         icon = " ", key = "q" },
                         -- { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
                         -- { action = "LazyExtras",                            desc = " Lazy Extras",     icon = " ", key = "x" },
                         -- { action = 'lua require("persistence").load()',     desc = " Restore Session", icon = " ", key = "s" },
@@ -37,6 +39,9 @@ return {
                         local lazy_msg = {
                             '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms',
                         }
+                        if require('lazy.status').has_updates() then
+                            table.insert(lazy_msg, require('lazy.status').updates() .. 'available')
+                        end
                         local logo_stuff = vim.split(logo, '\n')
                         for i = 1, #logo_stuff do
                             table.insert(lazy_msg, logo_stuff[i])

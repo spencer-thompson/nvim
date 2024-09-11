@@ -3,6 +3,7 @@ return {
     -- Lua
     {
         'folke/lazydev.nvim',
+        name = 'lazydev',
         ft = 'lua', -- only load on lua files
         opts = {
             library = {

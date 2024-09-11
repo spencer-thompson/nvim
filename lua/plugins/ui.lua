@@ -164,6 +164,7 @@ return {
                         HINT = 70,
                     },
                 },
+                git = { enabled = true, mode = 'sign' },
                 search = { enabled = true, mode = 'sign' },
                 mark = { enabled = true, mode = 'sign' },
             }
@@ -418,7 +419,7 @@ return {
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',
         opts = function()
-            -- vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'Comment', default = true })
+            vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'Comment' })
             local builtin = require('statuscol.builtin')
             return {
                 relculright = true,
@@ -442,14 +443,29 @@ return {
                             namespace = { '.*' },
                             name = { '.*' },
                             text = { '.*' },
+                            maxwidth = 1,
+                            colwidth = 1,
+                            auto = true,
                         },
                         click = 'v:lua.ScSa',
                     },
+                    {
+                        sign = {
+                            namespace = { '.*' },
+                            name = { '.*' },
+                            text = { '.*' },
+                            maxwidth = 1,
+                            colwidth = 1,
+                            auto = false,
+                        },
+                        click = 'v:lua.ScSa',
+                    },
+                    { text = { ' ' } },
                     { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
                     { text = { ' ' } },
                     {
                         sign = {
-                            namespace = { 'gitsign' },
+                            namespace = { 'gitsigns_' },
                             maxwidth = 1,
                             colwidth = 1,
                             auto = false,
