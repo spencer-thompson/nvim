@@ -1,6 +1,6 @@
 {
   "autopairs": { "branch": "master", "commit": "fd2badc24e675f947162a16c124d395bde80dbd6" },
-  "avante.nvim": { "branch": "main", "commit": "bcd73a8b9a3b81242ce6c5f65e3e245eb18a4572" },
+  "avante.nvim": { "branch": "main", "commit": "7532e590d28c6fffe88aa17ba6689c4ec8fec8ba" },
   "bufferline": { "branch": "main", "commit": "2e3c8cc5a57ddd32f1edd2ffd2ccb10c09421f6c" },
   "cellular-automaton": { "branch": "main", "commit": "11aea08aa084f9d523b0142c2cd9441b8ede09ed" },
   "chatgpt": { "branch": "main", "commit": "4d9d297c2409c8ebc715da7f1d7705a221564555" },

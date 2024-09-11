@@ -39,9 +39,13 @@ return {
                         local lazy_msg = {
                             '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms',
                         }
-                        if require('lazy.status').has_updates() then
-                            table.insert(lazy_msg, require('lazy.status').updates() .. 'available')
-                        end
+                        -- if require('lazy.status').has_updates() then
+                        --     -- lazy_msg = string.rep('\n', 1) .. lazy_msg .. require('lazy.status').updates() .. 'available'
+                        --     local updates = require('lazy.status').updates() .. 'available'
+                        --     table.insert(lazy_msg, string.rep('\n', 1))
+                        --     table.insert(lazy_msg, updates)
+                        --     table.insert(lazy_msg, string.rep('\n', 1))
+                        -- end
                         local logo_stuff = vim.split(logo, '\n')
                         for i = 1, #logo_stuff do
                             table.insert(lazy_msg, logo_stuff[i])

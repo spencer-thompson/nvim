@@ -111,6 +111,7 @@ vim.incsearch = true
 
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
+vim.o.virtualedit = 'block' -- Allow going past the end of line in visual block mode
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'

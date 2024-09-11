@@ -438,24 +438,24 @@ return {
                         click = 'v:lua.ScSa',
                     },
                     -- { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
+                    -- {
+                    --     sign = {
+                    --         namespace = { '.*' },
+                    --         name = { '.*' },
+                    --         text = { '.*' },
+                    --         maxwidth = 1,
+                    --         colwidth = 1,
+                    --         auto = false,
+                    --     },
+                    --     click = 'v:lua.ScSa',
+                    -- },
                     {
                         sign = {
                             namespace = { '.*' },
                             name = { '.*' },
                             text = { '.*' },
-                            maxwidth = 1,
-                            colwidth = 1,
-                            auto = true,
-                        },
-                        click = 'v:lua.ScSa',
-                    },
-                    {
-                        sign = {
-                            namespace = { '.*' },
-                            name = { '.*' },
-                            text = { '.*' },
-                            maxwidth = 1,
-                            colwidth = 1,
+                            maxwidth = 2,
+                            colwidth = 2,
                             auto = false,
                         },
                         click = 'v:lua.ScSa',
