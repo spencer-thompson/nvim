@@ -25,6 +25,12 @@ return {
     },
 
     {
+        'chentoast/marks.nvim',
+        event = 'VeryLazy',
+        opts = {},
+    },
+
+    {
         'stevearc/oil.nvim',
         name = 'oil',
         enable = false,
