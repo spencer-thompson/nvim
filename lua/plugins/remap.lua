@@ -31,7 +31,7 @@ return {
                     { 'jk', hidden = true, mode = { 'v' } },
                 },
                 { -- L
-                    { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
+                    { '<leader>L', '<cmd>Lazy<CR>', desc = '[L]azy' },
                 },
                 { -- T
                     { '<leader>t', group = 'toggle' },

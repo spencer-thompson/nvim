@@ -24,6 +24,8 @@ return {
 
     {
         'hrsh7th/nvim-cmp',
+        lazy = false,
+        priority = 100,
         version = false,
         event = 'InsertEnter',
         dependencies = {
@@ -107,8 +109,6 @@ return {
             },
         },
     },
-
-    { 'williamboman/mason.nvim', name = 'mason' },
 
     {
         'mfussenegger/nvim-lint',

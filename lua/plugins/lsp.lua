@@ -186,3 +186,35 @@ require('mason-lspconfig').setup({
 })
 
 vim.diagnostic.config({ virtual_text = false })
+
+-- return {
+--     {
+--         'neovim/nvim-lspconfig',
+--         name = 'lspconfig',
+--         cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+--         event = { 'BufReadPre', 'BufNewFile' },
+--         dependencies = {
+--             { 'williamboman/mason.nvim', name = 'mason' },
+--             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
+--             { 'WhoIsSethDaniel/mason-tool-installer.nvim', name = 'mason-installer' },
+--         },
+--         config = function()
+--             local capabilities = nil
+--             if pcall(require, 'cmp_nvim_lsp') then
+--                 capabilities = require('cmp_nvim_lsp').default_capabilities()
+--             end
+--
+--             local lspconfig = require('lspconfig')
+--         end,
+--         -- opts = {
+--         --     diagnostics = {
+--         --         underline = true,
+--         --         update_in_insert = false,
+--         --         severity_sort = true,
+--         --     },
+--         --     document_highlight = {
+--         --         enabled = true,
+--         --     },
+--         -- },
+--     },
+-- }
