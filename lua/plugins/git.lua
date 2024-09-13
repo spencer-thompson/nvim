@@ -12,7 +12,7 @@ return {
             {
                 '<leader>gg',
                 function()
-                    vim.cmd([[Neogit]])
+                    vim.cmd([[Neogit kind=floating]])
                 end,
                 desc = 'Neogit',
             },
@@ -77,7 +77,7 @@ return {
                 changedelete = { text = '▎' },
                 untracked = { text = '▎' },
             },
-            numhl = true,
+            numhl = false,
             current_line_blame = true,
             -- current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
             current_line_blame_opts = {

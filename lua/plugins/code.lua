@@ -1,28 +1,6 @@
 return {
 
     {
-        'neovim/nvim-lspconfig',
-        name = 'lspconfig',
-        cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-        event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = {
-            { 'williamboman/mason.nvim', name = 'mason' },
-            { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
-            { 'WhoIsSethDaniel/mason-tool-installer.nvim', name = 'mason-installer' },
-        },
-        -- opts = {
-        --     diagnostics = {
-        --         underline = true,
-        --         update_in_insert = false,
-        --         severity_sort = true,
-        --     },
-        --     document_highlight = {
-        --         enabled = true,
-        --     },
-        -- },
-    },
-
-    {
         'hrsh7th/nvim-cmp',
         lazy = false,
         priority = 100,
@@ -112,6 +90,7 @@ return {
 
     {
         'mfussenegger/nvim-lint',
+        enabled = false,
         name = 'lint',
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()

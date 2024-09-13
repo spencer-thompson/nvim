@@ -35,6 +35,7 @@ require('lazy').setup( -- load lazy
         require('plugins.git'),
         require('plugins.language'),
         require('plugins.local'),
+        require('plugins.lsp'),
         require('plugins.mini'),
         require('plugins.navigation'),
         require('plugins.remap'),
@@ -63,7 +64,6 @@ require('lazy').setup( -- load lazy
 )
 
 require('plugins.lualine')
-require('plugins.lsp')
 require('plugins.completions')
 require('plugins.snippets')
 

@@ -143,6 +143,7 @@ return {
     { -- fun scope animations
         'echasnovski/mini.indentscope',
         version = '*', -- wait till new 0.7.0 release to put it back on semver
+        enabled = false,
         event = 'VeryLazy',
         config = function()
             local indent_scope = require('mini.indentscope')

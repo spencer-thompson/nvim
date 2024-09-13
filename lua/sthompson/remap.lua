@@ -11,11 +11,11 @@
 vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Exit' })
 vim.keymap.set('t', 'jk', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but for terminal mode
 
-vim.keymap.set('n', '<leader>gc', function()
-    if vim.loop.os_uname().sysname == 'Windows_NT' then
-        vim.cmd('cd ~\\AppData\\Local\\nvim')
-    end
-end, { desc = 'Go to [C]onfig' })
+-- vim.keymap.set('n', '<leader>gc', function()
+--     if vim.loop.os_uname().sysname == 'Windows_NT' then
+--         vim.cmd('cd ~\\AppData\\Local\\nvim')
+--     end
+-- end, { desc = 'Go to [C]onfig' })
 
 -- move lines up or down in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line(s) up' })
@@ -31,6 +31,10 @@ vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = '[N]ext Buffer' })
 vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close Buffer' })
 vim.keymap.set('n', '<leader>db', '<cmd>Dashboard<CR>', { desc = 'Dashboard' })
+
+-- new line above / below cursor
+vim.keymap.set('n', '<leader>o', 'mzo<esc>k`z', { desc = 'New line below cursor' })
+vim.keymap.set('n', '<leader>O', 'mzO<esc>j`z', { desc = 'New line above cursor' })
 
 -- visual block mode
 vim.keymap.set('n', 'vb', '<C-v>', { desc = '[V]isual [B]lock Mode' })
@@ -99,9 +103,9 @@ vim.keymap.set(
     '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
     { expr = true, replace_keycodes = false, desc = 'Increase window width' }
 )
--- resize windows
-vim.keymap.set('n', '+', [[<cmd>vertical resize +5<cr>]], { desc = 'Bigger Window' })
-vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Smaller Window' })
+-- -- resize windows
+-- vim.keymap.set('n', '+', [[<cmd>vertical resize +5<cr>]], { desc = 'Bigger Window' })
+-- vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Smaller Window' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true }) -- might remove

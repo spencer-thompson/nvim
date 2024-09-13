@@ -1,56 +1,29 @@
 return {
 
     {
-        'folke/edgy.nvim',
-        name = 'edgy',
-        event = 'VeryLazy',
-        enabled = false,
-        opts = {
-            bottom = {
-                -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
-                {
-                    ft = 'toggleterm',
-                    size = { height = 0.4 },
-                    -- exclude floating windows
-                    filter = function(buf, win)
-                        return vim.api.nvim_win_get_config(win).relative == ''
-                    end,
+        'shellRaining/hlchunk.nhim',
+        name = 'hlchunk',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function()
+            require('hlchunk').setup({
+                chunk = {
+                    enable = true,
+                    chars = {
+                        horizontal_line = '─',
+                        vertical_line = '│',
+                        -- left_top = '┌',
+                        left_top = '╭',
+                        -- left_bottom = '└',
+                        left_bottom = '╰',
+                        right_arrow = '─',
+                    },
+                    style = '#292e42',
+                    duration = 150,
+                    delay = 50,
                 },
-                'Trouble',
-                { ft = 'qf', title = 'QuickFix' },
-                {
-                    ft = 'help',
-                    size = { height = 20 },
-                    -- only show help buffers
-                    filter = function(buf)
-                        return vim.bo[buf].buftype == 'help'
-                    end,
-                },
-                -- { ft = 'spectre_panel', size = { height = 0.4 } },
-            },
-            left = {
-                -- Neo-tree filesystem always takes half the screen height
-                {
-                    title = 'Neo-Tree',
-                    ft = 'neo-tree',
-                    filter = function(buf)
-                        return vim.b[buf].neo_tree_source == 'filesystem'
-                    end,
-                    size = { height = 0.5 },
-                },
-                {
-                    title = function()
-                        local buf_name = vim.api.nvim_buf_get_name(0) or '[No Name]'
-                        return vim.fn.fnamemodify(buf_name, ':t')
-                    end,
-                    ft = 'Outline',
-                    pinned = true,
-                    open = 'SymbolsOutlineOpen',
-                },
-                -- any other neo-tree windows
-                'neo-tree',
-            },
-        },
+                indent = { enable = false },
+            })
+        end,
     },
 
     {
@@ -138,6 +111,9 @@ return {
                     window_border = 'none',
                     minimap_width = 20,
                 },
+                buf_filter = function(bufnr)
+                    return not vim.api.nvim_get_option_value('wrap', {})
+                end,
                 win_filter = function(winid)
                     return winid == vim.api.nvim_get_current_win()
                 end,
@@ -215,6 +191,59 @@ return {
     },
 
     {
+        'folke/edgy.nvim',
+        name = 'edgy',
+        event = 'VeryLazy',
+        enabled = false,
+        opts = {
+            bottom = {
+                -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
+                {
+                    ft = 'toggleterm',
+                    size = { height = 0.4 },
+                    -- exclude floating windows
+                    filter = function(buf, win)
+                        return vim.api.nvim_win_get_config(win).relative == ''
+                    end,
+                },
+                'Trouble',
+                { ft = 'qf', title = 'QuickFix' },
+                {
+                    ft = 'help',
+                    size = { height = 20 },
+                    -- only show help buffers
+                    filter = function(buf)
+                        return vim.bo[buf].buftype == 'help'
+                    end,
+                },
+                -- { ft = 'spectre_panel', size = { height = 0.4 } },
+            },
+            left = {
+                -- Neo-tree filesystem always takes half the screen height
+                {
+                    title = 'Neo-Tree',
+                    ft = 'neo-tree',
+                    filter = function(buf)
+                        return vim.b[buf].neo_tree_source == 'filesystem'
+                    end,
+                    size = { height = 0.5 },
+                },
+                {
+                    title = function()
+                        local buf_name = vim.api.nvim_buf_get_name(0) or '[No Name]'
+                        return vim.fn.fnamemodify(buf_name, ':t')
+                    end,
+                    ft = 'Outline',
+                    pinned = true,
+                    open = 'SymbolsOutlineOpen',
+                },
+                -- any other neo-tree windows
+                'neo-tree',
+            },
+        },
+    },
+
+    {
         'xiyaowong/nvim-transparent',
         name = 'transparent',
         enabled = false,
@@ -266,7 +295,7 @@ return {
         lazy = true,
         config = function()
             require('illuminate').configure({
-                delay = 200,
+                delay = 1000,
                 large_file_cutoff = 2000,
                 large_file_overrides = {
                     providers = { 'lsp' },
@@ -419,7 +448,7 @@ return {
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',
         opts = function()
-            vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'Comment' })
+            vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'ModeMsg' })
             local builtin = require('statuscol.builtin')
             return {
                 relculright = true,
@@ -438,30 +467,19 @@ return {
                         click = 'v:lua.ScSa',
                     },
                     -- { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
-                    -- {
-                    --     sign = {
-                    --         namespace = { '.*' },
-                    --         name = { '.*' },
-                    --         text = { '.*' },
-                    --         maxwidth = 1,
-                    --         colwidth = 1,
-                    --         auto = false,
-                    --     },
-                    --     click = 'v:lua.ScSa',
-                    -- },
                     {
                         sign = {
                             namespace = { '.*' },
                             name = { '.*' },
                             text = { '.*' },
-                            maxwidth = 2,
-                            colwidth = 2,
+                            maxwidth = 1,
+                            colwidth = 1,
                             auto = false,
                         },
                         click = 'v:lua.ScSa',
                     },
                     { text = { ' ' } },
-                    { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+                    { text = { builtin.lnumfunc, builtin.foldfunc }, click = 'v:lua.ScLa' },
                     { text = { ' ' } },
                     {
                         sign = {
@@ -490,12 +508,6 @@ return {
                 },
             }
         end,
-
-        -- config = function()
-        --     require('statuscol').setup({
-        --         setopt = true,
-        --     })
-        -- end,
     },
 
     {
