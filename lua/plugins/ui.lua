@@ -1,7 +1,7 @@
 return {
 
     {
-        'shellRaining/hlchunk.nhim',
+        'shellRaining/hlchunk.nvim',
         name = 'hlchunk',
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
