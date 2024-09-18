@@ -17,5 +17,5 @@ if vim.g.neovide then
     vim.g.neovide_cursor_vfx_mode = 'wireframe'
     -- vim.g.neovide_text_gamma = 0.0
     -- vim.g.neovide_text_contrast = 0.0
-    vim.o.guifont = 'JetBrainsMono Nerd Font'
+    vim.o.guifont = 'JetBrainsMono Nerd Font Mono'
 end

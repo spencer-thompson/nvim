@@ -17,6 +17,11 @@ return {
                 desc = 'Neogit',
             },
         },
+        opts = {
+            popup = { kind = 'floating' },
+            commit_popup = { kind = 'floating' },
+            commit_editor = { kind = 'floating' },
+        },
         config = true,
     },
 

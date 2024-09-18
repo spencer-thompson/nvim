@@ -115,6 +115,7 @@ vim.o.virtualedit = 'block' -- Allow going past the end of line in visual block 
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
+-- vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'ModeMsg' })
 
 -- vim.opt.signcolumn = 'yes:2'
 -- vim.opt.signcolumn = 'yes:1'
