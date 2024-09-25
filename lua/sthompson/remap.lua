@@ -112,8 +112,8 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- saving & quiting
-vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = '[Q]uit' })
-vim.keymap.set('n', '<leader>Q', '<cmd>q!<CR>', { desc = 'Force [Q]uit' })
+vim.keymap.set({ 'n', 'x', 'v' }, '<leader>q', '<cmd>q<CR>', { desc = '[Q]uit' })
+vim.keymap.set({ 'n', 'x', 'v' }, '<leader>Q', '<cmd>q!<CR>', { desc = 'Force [Q]uit' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite' })
 vim.keymap.set('n', 'Q', '<nop>')
 
