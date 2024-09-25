@@ -14,6 +14,18 @@ return {
                 preset = 'modern',
             })
             wk.add({
+                {
+                    {
+                        '<leader>D',
+                        function()
+                            if not require('dbee').is_open() then
+                                vim.cmd([[tabnew]])
+                                vim.cmd([[Dbee]])
+                                -- require('dbee').toggle()
+                            end
+                        end,
+                    },
+                },
                 { -- E
                     { '<leader>e', '<cmd>lua MiniFiles.open()<CR>', desc = 'File [e]xplorer' },
                     { '<leader>E', '<cmd>Neotree toggle left<CR>', desc = 'File Tree' },

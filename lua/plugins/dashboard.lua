@@ -23,6 +23,7 @@ return {
                         { action = "Telescope live_grep",               desc = " Find string",     icon = " ", key = "s" },
                         { action = "TransparentToggle",                 desc = " Transparency",    icon = " ", key = "t" },
                         { action = "lua MiniFiles.open()",              desc = " Explore Files",   icon = "󱏒 ", key = "e" },
+                        { action = "Dbee",                              desc = " Database",        icon = "󱘲 ", key = "d" },
                         { action = "Neogit kind=floating",              desc = " Git",             icon = " ", key = "g" },
                         -- { action = "ChatGPT",                    desc = " ChatGPT",      icon = "󱚤 ", key = "c" },
                         -- { action = "ToggleTerm direction=float",        desc = " Terminal",     icon = " ", key = "t" },

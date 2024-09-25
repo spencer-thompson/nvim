@@ -157,6 +157,7 @@ return {
                             capabilities = capabilities,
                         })
                     end,
+                    -- rust?
                     -- r = function()
                     --     lspconfig.r_language_server.setup({
                     --
@@ -216,6 +217,7 @@ return {
             })
 
             vim.diagnostic.config({ virtual_text = false })
+            -- vim.keymap.set()
         end,
     },
 }
