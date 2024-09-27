@@ -2,7 +2,7 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         name = 'telescope',
-        tag = '0.1.5',
+        tag = '0.1.8',
         -- or                              , branch = '0.1.x',
         event = 'VeryLazy',
         -- priority = 100,
@@ -40,8 +40,11 @@ return {
             local open_with_trouble = require('trouble.sources.telescope').open
             -- local yanky = require('telescope').extensions.yank_history
 
-            require('telescope').setup({
+            local telescope = require('telescope')
+
+            telescope.setup({
                 defaults = {
+                    layout_strategy = 'flex',
                     prompt_prefix = '> ',
                     selection_caret = '> ',
                     entry_prefix = '  ',
@@ -61,8 +64,8 @@ return {
                     },
                     sorting_strategy = 'ascending',
                     layout_config = {
-                        width = 0.95,
-                        height = 0.85,
+                        width = 0.90,
+                        height = 0.80,
 
                         prompt_position = 'top',
                         horizontal = {
@@ -110,6 +113,7 @@ return {
                 pickers = {
                     find_files = {
                         prompt_title = 'All Files',
+                        find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
                     },
                     current_buffer_fuzzy_find = {
                         prompt_title = 'Current Buffer',

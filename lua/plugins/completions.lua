@@ -57,14 +57,14 @@ cmp.setup({
         -- Ctrl + space triggers completion menu
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        -- ['<C-j>'] = cmp.mapping.select_next_item(),
+        -- ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<Tab>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        }),
+        -- ['<Tab>'] = cmp.mapping.confirm({
+        --     behavior = cmp.ConfirmBehavior.Replace,
+        --     select = true,
+        -- }),
         ['<C-y>'] = cmp.mapping(
             cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Insert,
@@ -91,24 +91,24 @@ cmp.setup.cmdline({ '/', '?' }, {
             i = cmp.mapping.complete(),
             c = cmp.mapping.complete(),
         }),
-        ['<C-j>'] = cmp.mapping({
-            i = cmp.mapping.select_next_item(),
-            c = cmp.mapping.select_next_item(),
-        }),
-        ['<C-k>'] = cmp.mapping({
-            i = cmp.mapping.select_prev_item(),
-            c = cmp.mapping.select_prev_item(),
-        }),
-        ['<Tab>'] = cmp.mapping({
-            i = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-            c = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-        }),
+        -- ['<C-j>'] = cmp.mapping({
+        --     i = cmp.mapping.select_next_item(),
+        --     c = cmp.mapping.select_next_item(),
+        -- }),
+        -- ['<C-k>'] = cmp.mapping({
+        --     i = cmp.mapping.select_prev_item(),
+        --     c = cmp.mapping.select_prev_item(),
+        -- }),
+        -- ['<Tab>'] = cmp.mapping({
+        --     i = cmp.mapping.confirm({
+        --         behavior = cmp.ConfirmBehavior.Replace,
+        --         select = true,
+        --     }),
+        --     c = cmp.mapping.confirm({
+        --         behavior = cmp.ConfirmBehavior.Replace,
+        --         select = true,
+        --     }),
+        -- }),
     }),
     sources = {
         { name = 'buffer', keyword_length = key_len, max_item_count = max_item },
@@ -121,24 +121,24 @@ cmp.setup.cmdline(':', {
             i = cmp.mapping.complete(),
             c = cmp.mapping.complete(),
         }),
-        ['<C-j>'] = cmp.mapping({
-            i = cmp.mapping.select_next_item(),
-            c = cmp.mapping.select_next_item(),
-        }),
-        ['<C-k>'] = cmp.mapping({
-            i = cmp.mapping.select_prev_item(),
-            c = cmp.mapping.select_prev_item(),
-        }),
-        ['<Tab>'] = cmp.mapping({
-            i = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-            c = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            }),
-        }),
+        -- ['<C-j>'] = cmp.mapping({
+        --     i = cmp.mapping.select_next_item(),
+        --     c = cmp.mapping.select_next_item(),
+        -- }),
+        -- ['<C-k>'] = cmp.mapping({
+        --     i = cmp.mapping.select_prev_item(),
+        --     c = cmp.mapping.select_prev_item(),
+        -- }),
+        -- ['<Tab>'] = cmp.mapping({
+        --     i = cmp.mapping.confirm({
+        --         behavior = cmp.ConfirmBehavior.Replace,
+        --         select = true,
+        --     }),
+        --     c = cmp.mapping.confirm({
+        --         behavior = cmp.ConfirmBehavior.Replace,
+        --         select = true,
+        --     }),
+        -- }),
     }),
     sources = cmp.config.sources({
         { name = 'path', keyword_length = key_len, max_item_count = max_item },

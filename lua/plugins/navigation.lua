@@ -42,6 +42,7 @@ return {
 
     {
         'chentoast/marks.nvim',
+        enabled = false,
         name = 'marks',
         event = 'VeryLazy',
         opts = {

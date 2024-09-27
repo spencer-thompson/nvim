@@ -18,11 +18,12 @@ return {
                     {
                         '<leader>D',
                         function()
-                            if not require('dbee').is_open() then
-                                vim.cmd([[tabnew]])
-                                vim.cmd([[Dbee]])
-                                -- require('dbee').toggle()
-                            end
+                            require('dbee').toggle()
+                            -- if not require('dbee').is_open() then
+                            --     vim.cmd([[tabnew]])
+                            --     vim.cmd([[Dbee]])
+                            --     -- require('dbee').toggle()
+                            -- end
                         end,
                     },
                 },
@@ -47,6 +48,17 @@ return {
                 },
                 { -- T
                     { '<leader>t', group = 'toggle' },
+                    {
+                        '<leader>tn',
+                        function()
+                            vim.cmd([[BufferLineTabRename main]])
+                            vim.cmd([[tabnew]])
+                            vim.ui.input({ prompt = 'New Tab Name: ' }, function(input)
+                                vim.cmd('BufferLineTabRename ' .. input)
+                            end)
+                        end,
+                        desc = '[N]ew Tab',
+                    },
                 },
                 { -- V
                     { '<leader>v', desc = 'Select Treesitter Nodes' },

@@ -111,14 +111,13 @@ return {
                     sidebars = 'transparent', -- style for sidebars, see below
                     floats = 'transparent', -- style for floating windows
                 },
-                -- transparent = true,
                 -- terminal_colors = true,
                 -- styles = {
                 --     comments = { italic = false },
                 --     keywords = { italic = false },
                 -- },
                 -- on_highlights = function(hl, c) -- fancy telescope theme
-                --     local prompt = "#2d3149"
+                --     local prompt = '#2d3149'
                 --     hl.TelescopeNormal = {
                 --         bg = c.bg_dark,
                 --         fg = c.fg_dark,
