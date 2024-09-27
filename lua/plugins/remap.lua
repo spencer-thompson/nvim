@@ -51,7 +51,6 @@ return {
                     {
                         '<leader>tn',
                         function()
-                            vim.cmd([[BufferLineTabRename main]])
                             vim.cmd([[tabnew]])
                             vim.ui.input({ prompt = 'New Tab Name: ' }, function(input)
                                 vim.cmd('BufferLineTabRename ' .. input)

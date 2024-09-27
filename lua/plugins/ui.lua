@@ -85,6 +85,7 @@ return {
         },
         config = function(_, opts)
             require('bufferline').setup(opts)
+            vim.cmd([[BufferLineTabRename main]])
         end,
     },
 

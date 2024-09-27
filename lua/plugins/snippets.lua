@@ -18,7 +18,7 @@ ls.config.set_config({
 -- s(context, nodes, condition, ...)
 -- local snippet = ls.s
 
-vim.keymap.set({ 'i', 's' }, '<c-i>', function()
+vim.keymap.set({ 'i', 's' }, '<c-l>', function()
     if ls.expand_or_jumpable() then
         ls.expand_or_jump()
     end

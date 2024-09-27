@@ -57,8 +57,8 @@ cmp.setup({
         -- Ctrl + space triggers completion menu
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        -- ['<C-j>'] = cmp.mapping.select_next_item(),
-        -- ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         -- ['<Tab>'] = cmp.mapping.confirm({
@@ -72,7 +72,7 @@ cmp.setup({
             }),
             { 'i', 'c' }
         ),
-        ['<C-i>'] = cmp.mapping(function(fallback)
+        ['<C-l>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 if luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
@@ -91,14 +91,14 @@ cmp.setup.cmdline({ '/', '?' }, {
             i = cmp.mapping.complete(),
             c = cmp.mapping.complete(),
         }),
-        -- ['<C-j>'] = cmp.mapping({
-        --     i = cmp.mapping.select_next_item(),
-        --     c = cmp.mapping.select_next_item(),
-        -- }),
-        -- ['<C-k>'] = cmp.mapping({
-        --     i = cmp.mapping.select_prev_item(),
-        --     c = cmp.mapping.select_prev_item(),
-        -- }),
+        ['<C-j>'] = cmp.mapping({
+            i = cmp.mapping.select_next_item(),
+            c = cmp.mapping.select_next_item(),
+        }),
+        ['<C-k>'] = cmp.mapping({
+            i = cmp.mapping.select_prev_item(),
+            c = cmp.mapping.select_prev_item(),
+        }),
         -- ['<Tab>'] = cmp.mapping({
         --     i = cmp.mapping.confirm({
         --         behavior = cmp.ConfirmBehavior.Replace,
@@ -121,14 +121,14 @@ cmp.setup.cmdline(':', {
             i = cmp.mapping.complete(),
             c = cmp.mapping.complete(),
         }),
-        -- ['<C-j>'] = cmp.mapping({
-        --     i = cmp.mapping.select_next_item(),
-        --     c = cmp.mapping.select_next_item(),
-        -- }),
-        -- ['<C-k>'] = cmp.mapping({
-        --     i = cmp.mapping.select_prev_item(),
-        --     c = cmp.mapping.select_prev_item(),
-        -- }),
+        ['<C-j>'] = cmp.mapping({
+            i = cmp.mapping.select_next_item(),
+            c = cmp.mapping.select_next_item(),
+        }),
+        ['<C-k>'] = cmp.mapping({
+            i = cmp.mapping.select_prev_item(),
+            c = cmp.mapping.select_prev_item(),
+        }),
         -- ['<Tab>'] = cmp.mapping({
         --     i = cmp.mapping.confirm({
         --         behavior = cmp.ConfirmBehavior.Replace,
