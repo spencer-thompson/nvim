@@ -112,6 +112,13 @@ return {
     },
 
     {
+        'mfussenegger/nvim-dap',
+        name = 'dap',
+        -- event = "VeryLazy",
+        lazy = true,
+    },
+
+    {
         'mbbill/undotree',
         name = 'undotree',
         event = 'VeryLazy',

@@ -73,7 +73,7 @@ return {
                 reset = '<BS>',
                 reveal_cwd = '@',
                 show_help = 'g?',
-                synchronize = 'S',
+                synchronize = 's',
                 trim_left = '<',
                 trim_right = '>',
             },
