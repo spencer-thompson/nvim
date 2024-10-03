@@ -10,7 +10,7 @@ return {
                 formatters_by_ft = {
                     awk = { 'awk' },
                     lua = { 'stylua' },
-                    python = { 'black' },
+                    python = { 'ruff_format', 'ruff_organize_imports' },
                     go = { 'gofumpt' },
                     -- svelte = { { "prettierd", "prettier" } },
                     -- javascript = { { "prettierd", "prettier" } },
@@ -43,11 +43,5 @@ return {
                 },
             })
         end,
-    },
-
-    { -- unused?
-        'sbdchd/neoformat',
-        name = 'neoformat',
-        event = 'VeryLazy',
     },
 }

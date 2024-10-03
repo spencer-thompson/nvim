@@ -146,7 +146,7 @@ return {
                                         autoSearchPaths = true,
                                         diagnosticMode = 'openFilesOnly',
                                         useLibraryCodeForTypes = true,
-                                        typeCheckingMode = 'off',
+                                        typeCheckingMode = 'off', -- try basic eventually
                                     },
                                 },
                             },
