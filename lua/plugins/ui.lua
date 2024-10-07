@@ -26,6 +26,11 @@ return {
         end,
     },
 
+    { 'nvchad/volt', lazy = true },
+    { 'nvchad/minty', lazy = true },
+    -- require("minty.huefy").open()
+    -- require("minty.shades").open()
+
     {
         'nvim-lualine/lualine.nvim',
         name = 'lualine',
