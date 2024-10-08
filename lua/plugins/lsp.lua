@@ -57,6 +57,12 @@ return {
                     -- },
                     --     })
                     -- end,
+
+                    arduino_language_server = function()
+                        lspconfig.arduino_language_server.setup({
+                            capabilities = capabilities,
+                        })
+                    end,
                     awk_ls = function()
                         lspconfig.awk_ls.setup({
                             capabilities = capabilities,
