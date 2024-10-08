@@ -4,6 +4,16 @@
 return {
 
     {
+
+        'tiagovla/tokyodark.nvim',
+        opts = {
+            -- custom options here
+            transparent_background = true,
+        },
+        lazy = true,
+    },
+
+    {
         'craftzdog/solarized-osaka.nvim',
         name = 'solarized-osaka',
         lazy = true,
