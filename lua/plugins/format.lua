@@ -13,7 +13,7 @@ return {
                     python = { 'ruff_format', 'ruff_organize_imports' },
                     go = { 'gofumpt' },
                     -- svelte = { { "prettierd", "prettier" } },
-                    -- javascript = { { "prettierd", "prettier" } },
+                    javascript = { 'prettierd' },
                     -- typescript = { { "prettierd", "prettier" } },
                     -- javascriptreact = { { "prettierd", "prettier" } },
                     -- typescriptreact = { { "prettierd", "prettier" } },
