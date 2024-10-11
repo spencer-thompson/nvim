@@ -89,6 +89,7 @@ return {
     },
     {
         'rachartier/tiny-inline-diagnostic.nvim',
+        name = 'tiny-inline-diagnostic',
         event = 'LspAttach', -- Or `LspAttach`
         config = function()
             require('tiny-inline-diagnostic').setup({

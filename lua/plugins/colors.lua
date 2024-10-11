@@ -4,8 +4,8 @@
 return {
 
     {
-
         'tiagovla/tokyodark.nvim',
+        name = 'tokyodark',
         opts = {
             -- custom options here
             transparent_background = true,
