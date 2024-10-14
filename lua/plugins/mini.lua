@@ -91,7 +91,7 @@ return {
                 local rhs = function()
                     -- Make new window and set it as target
                     local new_target_window
-                    local cur_target_window = require('mini.files').get_target_window()
+                    local cur_target_window = require('mini.files').get_explorer_state().target_window
                     if cur_target_window ~= nil then
                         vim.api.nvim_win_call(cur_target_window, function()
                             vim.cmd('belowright ' .. direction .. ' split')
