@@ -28,7 +28,7 @@ return {
                     },
                 },
                 { -- E
-                    { '<leader>e', '<cmd>lua MiniFiles.open()<CR>', desc = 'File [e]xplorer' },
+                    -- { '<leader>e', '<cmd>lua MiniFiles.open()<CR>', desc = 'File [e]xplorer' },
                     { '<leader>E', '<cmd>Neotree toggle left<CR>', desc = 'File Tree' },
                     -- { '<leader>e', group = 'explore', icon = '󰙅' }, -- TODO: figure out icons
                     -- { '<leader>ee', '<cmd>Neotree toggle current<CR>', desc = 'File Tree' },

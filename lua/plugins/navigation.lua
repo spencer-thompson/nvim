@@ -27,6 +27,7 @@ return {
     {
         'leath-dub/snipe.nvim',
         name = 'snipe',
+        enabled = false,
         event = 'VeryLazy',
         keys = {
             {
@@ -74,21 +75,21 @@ return {
         },
         keys = {
             {
-                's',
+                '<leader><leader>',
                 mode = { 'n', 'x', 'o' },
                 function()
                     require('flash').jump()
                 end,
                 desc = 'Flash',
             },
-            {
-                'S',
-                mode = { 'n', 'o', 'x' },
-                function()
-                    require('flash').treesitter()
-                end,
-                desc = 'Flash Treesitter',
-            },
+            -- {
+            --     'S',
+            --     mode = { 'n', 'o', 'x' },
+            --     function()
+            --         require('flash').treesitter()
+            --     end,
+            --     desc = 'Flash Treesitter',
+            -- },
             {
                 'r',
                 mode = 'o',

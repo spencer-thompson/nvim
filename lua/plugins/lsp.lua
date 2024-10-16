@@ -77,6 +77,11 @@ return {
                             filetypes = { 'sh' },
                         })
                     end,
+                    dcmls = function()
+                        lspconfig.dcmls.setup({
+                            capabilities = capabilities,
+                        })
+                    end,
                     gopls = function()
                         lspconfig.gopls.setup({
                             capabilities = capabilities,

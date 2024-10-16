@@ -38,6 +38,7 @@ return {
         'numToStr/Comment.nvim',
         name = 'comment',
         event = 'VeryLazy',
+        enabled = false,
         config = function()
             require('Comment').setup({
                 padding = true,
