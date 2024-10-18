@@ -25,6 +25,7 @@ return {
         opts = {
             -- add any opts here
         },
+        build = 'make',
         keys = {
             {
                 '<leader>aa',
@@ -107,9 +108,13 @@ return {
     {
         'jackMort/ChatGPT.nvim',
         name = 'chatgpt',
-        enabled = false,
+        enabled = true,
         lazy = true,
         cmd = { 'ChatGPT', 'ChatGPTRun', 'ChatGPTEditWithInstruction' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'MunifTanjim/nui.nvim',
+        },
         config = function()
             require('chatgpt').setup({
                 popup_layout = {
@@ -127,6 +132,23 @@ return {
                 },
             })
         end,
+        keys = {
+            {
+                '<leader>c',
+                function()
+                    vim.cmd([[ChatGPT]])
+                end,
+                desc = '[C]hatGPT',
+                mode = { 'n', 'v' },
+            },
+            -- {
+            --     '<leader>ar',
+            --     function()
+            --         require('chatgpt').
+            --     end,
+            --     desc = 'avante: refresh',
+            -- },
+        },
     },
 
     -- { -- essentially chatgpt / openai
