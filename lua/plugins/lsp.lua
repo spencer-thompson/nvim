@@ -9,6 +9,11 @@ return {
             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
             { 'WhoIsSethDaniel/mason-tool-installer.nvim', name = 'mason-installer' },
         },
+        opts = {
+            servers = {
+                dartls = {},
+            },
+        },
         config = function()
             local capabilities = nil
             if pcall(require, 'cmp_nvim_lsp') then
@@ -77,8 +82,8 @@ return {
                             filetypes = { 'sh' },
                         })
                     end,
-                    dcmls = function()
-                        lspconfig.dcmls.setup({
+                    dartls = function()
+                        lspconfig.dartls.setup({
                             capabilities = capabilities,
                         })
                     end,

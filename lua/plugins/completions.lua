@@ -57,6 +57,7 @@ cmp.setup({
         -- Ctrl + space triggers completion menu
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-c>'] = cmp.mapping.close(),
         ['<C-j>'] = cmp.mapping.select_next_item(),
         ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -65,6 +66,7 @@ cmp.setup({
         --     behavior = cmp.ConfirmBehavior.Replace,
         --     select = true,
         -- }),
+        -- ['<C-h>'] =
         ['<C-y>'] = cmp.mapping(
             cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Insert,
