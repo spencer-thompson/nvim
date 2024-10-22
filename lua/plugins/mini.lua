@@ -4,7 +4,7 @@ return {
         'echasnovski/mini.nvim',
         name = 'mini',
         version = false,
-        event = 'VeryLazy',
+        event = 'VimEnter',
         config = function()
             require('mini.ai').setup({})
             require('mini.align').setup({})

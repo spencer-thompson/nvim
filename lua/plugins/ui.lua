@@ -52,7 +52,7 @@ return {
         name = 'bufferline',
         version = '*',
         dependencies = 'nvim-tree/nvim-web-devicons',
-        event = 'VeryLazy',
+        event = 'VimEnter',
         keys = {
             { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
             { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
@@ -319,7 +319,7 @@ return {
     {
         'folke/noice.nvim',
         name = 'noice',
-        event = 'VeryLazy',
+        event = 'VimEnter',
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
             { 'MunifTanjim/nui.nvim', name = 'nui' },

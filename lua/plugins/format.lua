@@ -19,6 +19,7 @@ return {
                     -- typescriptreact = { { "prettierd", "prettier" } },
                     json = { 'prettierd' },
                     jsonc = { 'prettierd' },
+                    typst = { 'typstfmt' },
                     -- graphql = { { "prettierd", "prettier" } },
                     -- java = { "google-java-format" },
                     -- kotlin = { "ktlint" },

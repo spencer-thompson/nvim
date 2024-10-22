@@ -3,17 +3,13 @@ return {
         'neovim/nvim-lspconfig',
         name = 'lspconfig',
         -- cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-        -- event = { 'BufReadPre', 'BufNewFile' },
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'williamboman/mason.nvim', name = 'mason' },
             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
             { 'WhoIsSethDaniel/mason-tool-installer.nvim', name = 'mason-installer' },
         },
-        opts = {
-            servers = {
-                dartls = {},
-            },
-        },
+        opts = {},
         config = function()
             local capabilities = nil
             if pcall(require, 'cmp_nvim_lsp') then
@@ -21,6 +17,10 @@ return {
             end
 
             local lspconfig = require('lspconfig')
+
+            -- if capabilities ~= nil then
+            --     capabilities.workspace.semanticTokens.refreshSupport = false
+            -- end
 
             local default_setup = function(server)
                 lspconfig[server].setup({
@@ -31,7 +31,7 @@ return {
             require('mason').setup({})
             require('mason-tool-installer').setup({
                 ensure_installed = {
-                    'black',
+                    -- 'black',
                     'lua_ls',
                     'ruff',
                     'stylua',
@@ -82,11 +82,11 @@ return {
                             filetypes = { 'sh' },
                         })
                     end,
-                    dartls = function()
-                        lspconfig.dartls.setup({
-                            capabilities = capabilities,
-                        })
-                    end,
+                    -- dartls = function()
+                    --     lspconfig.dartls.setup({
+                    --         capabilities = capabilities,
+                    --     })
+                    -- end,
                     gopls = function()
                         lspconfig.gopls.setup({
                             capabilities = capabilities,
@@ -171,6 +171,17 @@ return {
                     ruff = function()
                         lspconfig.ruff.setup({
                             capabilities = capabilities,
+                        })
+                    end,
+                    typst_lsp = function()
+                        -- if capabilities ~= nil then
+                        --     capabilities.workspace.semanticTokens.refreshSupport = false
+                        -- end
+                        lspconfig.typst_lsp.setup({
+                            capabilities = capabilities,
+                            on_init = function(client, _)
+                                client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+                            end,
                         })
                     end,
                     -- rust?

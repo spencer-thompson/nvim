@@ -22,11 +22,11 @@ return {
             { 'chrisgrieser/cmp-nerdfont' },
             -- { 'kdheepak/cmp-latex-symbols' }, -- slow
             { 'kristijanhusak/vim-dadbod-completion', name = 'dadbod-completions', enabled = false },
-            {
-                'MattiasMTS/cmp-dbee',
-                ft = 'sql', -- optional but good to have
-                opts = {}, -- needed
-            },
+            -- {
+            --     'MattiasMTS/cmp-dbee',
+            --     ft = 'sql', -- optional but good to have
+            --     opts = {}, -- needed
+            -- },
             {
                 'brenoprata10/nvim-highlight-colors',
                 name = 'highlight-colors',
