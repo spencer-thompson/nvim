@@ -58,6 +58,20 @@ return {
                 },
             })
 
+            local files_set_cwd = function(path)
+                -- Works only if cursor is on the valid file system entry
+                local cur_entry_path = MiniFiles.get_fs_entry().path
+                local cur_directory = vim.fs.dirname(cur_entry_path)
+                vim.fn.chdir(cur_directory)
+            end
+
+            vim.api.nvim_create_autocmd('User', {
+                pattern = 'MiniFilesBufferCreate',
+                callback = function(args)
+                    vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id })
+                end,
+            })
+
             local map_split = function(buf_id, lhs, direction, close_on_file)
                 local rhs = function()
                     -- Make new window and set it as target
@@ -70,7 +84,7 @@ return {
                         end)
 
                         MiniFiles.set_target_window(new_target_window)
-                        MiniFiles.go_in_plus({ close_on_file = close_on_file })
+                        MiniFiles.go_in({ close_on_file = close_on_file })
                     end
                 end
 

@@ -99,7 +99,7 @@ return {
         name = 'neominimap',
         event = 'VeryLazy',
         lazy = false,
-        config = function()
+        init = function()
             vim.api.nvim_create_autocmd('WinEnter', {
                 group = vim.api.nvim_create_augroup('minimap', { clear = true }),
                 pattern = '*',
@@ -110,12 +110,21 @@ return {
 
             vim.g.neominimap = {
                 auto_enable = true,
+                layout = 'split',
                 float = {
                     -- margin = {
                     --     right = 0,
                     -- },
                     window_border = 'none',
                     minimap_width = 20,
+                },
+                split = {
+                    direction = 'right',
+                    close_if_last_window = true,
+                },
+                click = {
+                    enabled = true, -- Enable mouse click on minimap
+                    auto_switch_focus = true, -- Automatically switch focus to minimap when clicked
                 },
                 buf_filter = function(bufnr)
                     return not vim.api.nvim_get_option_value('wrap', {})
@@ -151,7 +160,7 @@ return {
                 mark = { enabled = true, mode = 'sign' },
             }
 
-            require('neominimap').setup()
+            -- require('neominimap').setup()
 
             vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })
             vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })

@@ -20,49 +20,51 @@ return {
 
     {
         'yetone/avante.nvim',
-        -- event = 'VeryLazy',
-        lazy = true,
+        event = 'VeryLazy',
+        lazy = false,
+        version = false,
         opts = {
             -- add any opts here
+            hints = { enabled = false },
         },
         build = 'make',
-        keys = {
-            {
-                '<leader>aa',
-                function()
-                    require('avante.api').ask()
-                end,
-                desc = 'avante: ask',
-                mode = { 'n', 'v' },
-            },
-            {
-                '<leader>ar',
-                function()
-                    require('avante.api').refresh()
-                end,
-                desc = 'avante: refresh',
-            },
-            {
-                '<leader>ae',
-                function()
-                    require('avante.api').edit()
-                end,
-                desc = 'avante: edit',
-                mode = 'v',
-            },
-        },
+        -- keys = {
+        --     {
+        --         '<leader>aa',
+        --         function()
+        --             require('avante.api').ask()
+        --         end,
+        --         desc = 'avante: ask',
+        --         mode = { 'n', 'v' },
+        --     },
+        --     {
+        --         '<leader>ar',
+        --         function()
+        --             require('avante.api').refresh()
+        --         end,
+        --         desc = 'avante: refresh',
+        --     },
+        --     {
+        --         '<leader>ae',
+        --         function()
+        --             require('avante.api').edit()
+        --         end,
+        --         desc = 'avante: edit',
+        --         mode = 'v',
+        --     },
+        -- },
         dependencies = {
             'stevearc/dressing.nvim',
             'nvim-lua/plenary.nvim',
             'MunifTanjim/nui.nvim',
+            'nvim-treesitter/nvim-treesitter',
             --- The below dependencies are optional,
-            -- 'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
             {
                 -- support for image pasting
                 'HakonHarnes/img-clip.nvim',
                 lazy = true,
                 name = 'img-clip',
-                event = 'VeryLazy',
+                -- event = 'VeryLazy',
                 opts = {
                     -- recommended settings
                     default = {
@@ -80,7 +82,7 @@ return {
                 -- Make sure to setup it properly if you have lazy=true
                 'MeanderingProgrammer/render-markdown.nvim',
                 lazy = true,
-                enabled = false,
+                enabled = true,
                 name = 'render-markdown',
                 opts = {
                     file_types = { 'markdown', 'Avante' },

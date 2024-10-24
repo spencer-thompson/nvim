@@ -1,7 +1,47 @@
 return {
 
     { 'nvim-lua/plenary.nvim', name = 'plenary', dev = false },
-
+    {
+        'max397574/better-escape.nvim',
+        name = 'better-escape',
+        config = function()
+            require('better_escape').setup({
+                -- timeout = vim.o.timeoutlen,
+                timeout = 200,
+                default_mappings = true,
+                mappings = {
+                    i = {
+                        j = {
+                            -- These can all also be functions
+                            k = '<Esc>',
+                            j = false,
+                        },
+                    },
+                    c = {
+                        j = {
+                            k = '<Esc>',
+                            j = false,
+                        },
+                    },
+                    t = {
+                        j = {
+                            k = '<C-\\><C-n>',
+                        },
+                    },
+                    v = {
+                        j = {
+                            k = '<Esc>',
+                        },
+                    },
+                    s = {
+                        j = {
+                            k = '<Esc>',
+                        },
+                    },
+                },
+            })
+        end,
+    },
     {
         'vhyrro/luarocks.nvim',
         enabled = false,
