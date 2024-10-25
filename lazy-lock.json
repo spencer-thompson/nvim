@@ -97,7 +97,7 @@
   "tokyodark": { "branch": "master", "commit": "14bc1b3e596878a10647af7c82de7736300f3322" },
   "tokyonight": { "branch": "main", "commit": "2e1daa1d164ad8cc3e99b44ca68e990888a66038" },
   "transparent": { "branch": "main", "commit": "8a2749a2fa74f97fe6557f61b89ac7fd873f3c21" },
-  "treesitter": { "branch": "master", "commit": "377039daa260b71f304c881d1b21d643c501a261" },
+  "treesitter": { "branch": "master", "commit": "f6c5a58e3bbbedd2a31d04e5aa6f9997df20e3df" },
   "treesitter-textobjects": { "branch": "master", "commit": "0d79d169fcd45a8da464727ac893044728f121d4" },
   "trouble": { "branch": "main", "commit": "2f3b537f2207ce32f4459f9d56746ee013b5e01b" },
   "ts-context-commentstring": { "branch": "main", "commit": "9c74db656c3d0b1c4392fc89a016b1910539e7c0" },
