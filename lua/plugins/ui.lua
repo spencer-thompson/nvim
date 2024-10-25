@@ -119,6 +119,8 @@ return {
                     minimap_width = 20,
                 },
                 split = {
+                    minimap_width = 20,
+                    fix_width = true,
                     direction = 'right',
                     close_if_last_window = true,
                 },
@@ -147,7 +149,7 @@ return {
                 diagnostic = {
                     enabled = true,
                     severity = vim.diagnostic.severity.WARN,
-                    mode = 'icon',
+                    mode = 'sign',
                     priority = {
                         ERROR = 100,
                         WARN = 90,
@@ -156,8 +158,8 @@ return {
                     },
                 },
                 git = { enabled = true, mode = 'sign' },
-                search = { enabled = true, mode = 'sign' },
-                mark = { enabled = true, mode = 'sign' },
+                search = { enabled = true, mode = 'sign', priority = 20 },
+                mark = { enabled = true, mode = 'sign', priority = 100 },
             }
 
             -- require('neominimap').setup()
