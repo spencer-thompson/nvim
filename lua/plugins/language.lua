@@ -48,6 +48,27 @@ return {
         version = '^5', -- Recommended
         lazy = false, -- This plugin is already lazy
     },
+    {
+        'pmizio/typescript-tools.nvim',
+        name = 'typescript-tools',
+        event = 'VeryLazy',
+        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+        opts = {},
+        config = function()
+            require('typescript-tools').setup({
+                on_attach = function(client, bufnr)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
+                settings = {
+                    jsx_close_tag = {
+                        enable = true,
+                        filetypes = { 'javascriptreact', 'typescriptreact' },
+                    },
+                },
+            })
+        end,
+    },
 
     {
         'iurimateus/luasnip-latex-snippets.nvim',

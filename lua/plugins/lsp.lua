@@ -3,7 +3,7 @@ return {
         'neovim/nvim-lspconfig',
         name = 'lspconfig',
         -- cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
         dependencies = {
             { 'williamboman/mason.nvim', name = 'mason' },
             { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
@@ -82,6 +82,19 @@ return {
                             filetypes = { 'sh' },
                         })
                     end,
+                    -- eslint = function()
+                    --     lspconfig.eslint.setup({
+                    --         settings = {
+                    --             packageManager = 'yarn',
+                    --         },
+                    --         on_attach = function(client, bufnr)
+                    --             vim.api.nvim_create_autocmd('BufWritePre', {
+                    --                 buffer = bufnr,
+                    --                 command = 'EslintFixAll',
+                    --             })
+                    --         end,
+                    --     })
+                    -- end,
                     -- dartls = function()
                     --     lspconfig.dartls.setup({
                     --         capabilities = capabilities,
