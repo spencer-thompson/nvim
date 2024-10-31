@@ -6,8 +6,13 @@ return {
         version = '*',
         config = function()
             require('toggleterm').setup()
-            vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', { desc = '[T]erminal' })
-            vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float<CR>', { desc = '[F]loating Terminal' })
+            vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm dir=%:p:h<CR>', { desc = '[T]erminal' })
+            vim.keymap.set(
+                'n',
+                '<leader>tf',
+                '<cmd>ToggleTerm direction=float dir=%:p:h<CR>',
+                { desc = '[F]loating Terminal' }
+            )
         end,
     },
 }
