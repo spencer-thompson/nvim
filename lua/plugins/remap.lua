@@ -14,9 +14,9 @@ return {
                 preset = 'modern',
             })
             wk.add({
-                {
+                { -- D
                     {
-                        '<leader>D',
+                        '<leader>db',
                         function()
                             require('dbee').toggle()
                             -- if not require('dbee').is_open() then
@@ -25,6 +25,7 @@ return {
                             --     -- require('dbee').toggle()
                             -- end
                         end,
+                        desc = '[D]ata[b]ase',
                     },
                 },
                 { -- E
@@ -40,11 +41,14 @@ return {
                 { -- G
                     { '<leader>g', group = 'git' },
                 },
-                { -- j
+                { -- J
                     { 'jk', hidden = true, mode = { 'v' } },
                 },
                 { -- L
-                    { '<leader>L', '<cmd>Lazy<CR>', desc = '[L]azy' },
+                    { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
+                },
+                { -- S
+                    { '<leader>sk', '<cmd>ShowkeysToggle<CR>', desc = '[S]how [K]eys' },
                 },
                 { -- T
                     { '<leader>t', group = 'toggle' },

@@ -30,11 +30,222 @@ return {
     -- { 'nvchad/minty', lazy = true },
     -- require("minty.huefy").open()
     -- require("minty.shades").open()
+    {
+        'siduck/showkeys',
+        cmd = 'ShowkeysToggle',
+        opts = {
+            timeout = 1,
+            maxkeys = 5,
+            -- more opts
+        },
+    },
 
     {
         'nvim-lualine/lualine.nvim',
         name = 'lualine',
         event = 'VeryLazy',
+        init = function()
+            vim.g.lualine_laststatus = vim.o.laststatus
+            if vim.fn.argc(-1) > 0 then
+                -- set an empty statusline till lualine loads
+                vim.o.statusline = ' '
+            else
+                -- hide the statusline on the starter page
+                vim.o.laststatus = 0
+            end
+        end,
+        config = function()
+            local empty = require('lualine.component'):extend()
+            function empty:draw(default_highlight)
+                self.status = ''
+                self.applied_separator = ''
+                self:apply_highlights(default_highlight)
+                self:apply_section_separators()
+                return self.status
+            end
+
+            local lsp_servers = require('lualine.component'):extend()
+            function lsp_servers:init(options)
+                options.icon = options.icon or '󰌘'
+                options.split = options.split or ', '
+                lsp_servers.super.init(self, options)
+            end
+
+            function lsp_servers:update_status()
+                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+                local buf_client_names = {}
+                for _, client in pairs(buf_clients) do
+                    table.insert(buf_client_names, client.name)
+                end
+                return table.concat(buf_client_names, self.options.split)
+            end
+
+            vim.opt.showmode = false
+
+            require('lualine').setup({
+                options = {
+                    icons_enabled = true,
+                    -- theme = 'molokai',
+                    theme = 'auto',
+                    component_separators = { left = '│', right = '│' }, -- │
+                    -- component_separators = { left = '', right = '' },
+                    -- { left = '', right = '' }, { left = '', right = '' }, '|'
+                    -- section_separators = { left = '', right = '' },
+                    section_separators = { left = '', right = '' },
+                    disabled_filetypes = {
+                        statusline = { 'dashboard' },
+                        winbar = { 'dashboard', 'neo-tree' },
+                        tabline = { 'dashboard', 'neo-tree', 'nerdtree' },
+                    },
+                    ignore_focus = {},
+                    always_divide_middle = false,
+                    globalstatus = true,
+                    refresh = {
+                        statusline = 100,
+                        tabline = 1000,
+                        winbar = 1000,
+                    },
+                },
+
+                --[[ BAR FOR EACH WINDOW ]]
+
+                winbar = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = {},
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+
+                sections = {
+                    lualine_a = {
+                        {
+                            'mode',
+                            -- separator = { left = '' },
+                            padding = { right = 1, left = 1 },
+                        },
+                        {
+                            'macro-recording',
+                            fmt = function()
+                                local recording_register = vim.fn.reg_recording()
+                                if recording_register == '' then
+                                    return ''
+                                else
+                                    return 'Recording @' .. recording_register
+                                end
+                            end,
+                        },
+                    },
+                    lualine_b = {
+                        {
+                            'branch',
+                            padding = { right = 1, left = 1 },
+                        },
+                    },
+                    lualine_c = {
+                        {
+                            'diff',
+                            symbols = {
+                                added = '+ ',
+                                modified = '~ ',
+                                removed = '- ',
+                            },
+                            padding = { right = 1, left = 1 },
+                            source = function()
+                                local gitsigns = vim.b.gitsigns_status_dict
+                                if gitsigns then
+                                    return {
+                                        added = gitsigns.added,
+                                        modified = gitsigns.changed,
+                                        removed = gitsigns.removed,
+                                    }
+                                end
+                            end,
+                        },
+                        {
+                            'diagnostics',
+                            sources = { 'nvim_diagnostic', 'nvim_lsp' },
+                            sections = { 'error', 'warn', 'info', 'hint' },
+                            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }, --    
+                            colored = true,
+                            update_in_insert = true,
+                        },
+                        -- { function() return '' end, draw_empty = true },
+                        -- {
+                        --     'filename',
+                        --     path = 3,
+                        --
+                        --     symbols = {
+                        --         modified = ' ● ', -- text to show when the buffer is modified
+                        --         alternate_file = ' # ', -- text to show to identify the alternate file
+                        --         directory = '  ', -- text to show when the buffer is a directory
+                        --     },
+                        -- },
+                        -- { function() return '' end, draw_empty = true },
+                        -- {
+                        --     'buffers',
+                        --     hide_filename_extension = true,
+                        --     filetype_names = {
+                        --         telescopeprompt = 'telescope',
+                        --         dashboard = 'dashboard',
+                        --         packer = 'packer',
+                        --         fzf = 'fzf',
+                        --         alpha = 'alpha'
+                        --     },
+                        --     symbols = {
+                        --         modified = ' ●', -- text to show when the buffer is modified
+                        --         alternate_file = '#', -- text to show to identify the alternate file
+                        --         directory = '', -- text to show when the buffer is a directory
+                        --     },
+                        -- },
+                    },
+                    lualine_x = {
+                        {
+                            function()
+                                if vim.v.hlsearch == 0 then
+                                    return ''
+                                end
+                                local last_search = vim.fn.getreg('/')
+                                if not last_search or last_search == '' then
+                                    return ''
+                                end
+                                local searchcount = vim.fn.searchcount({ maxcount = 9999 })
+                                return '"'
+                                    .. last_search
+                                    .. '" : '
+                                    .. '['
+                                    .. searchcount.current
+                                    .. '/'
+                                    .. searchcount.total
+                                    .. ']'
+                            end,
+                        },
+                        { 'progress' },
+                    },
+                    lualine_y = {
+                        {
+                            require('lazy.status').updates,
+                            cond = require('lazy.status').has_updates,
+                        },
+                        {
+                            lsp_servers,
+                        },
+                    },
+                    lualine_z = {
+                        {
+                            'datetime',
+                            style = 'default',
+                            -- separator = { left = '' },
+                            padding = { left = 1, right = 1 },
+                        },
+                    },
+                },
+
+                -- extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'toggleterm', 'man' },
+                extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'man' },
+            })
+        end,
         -- init = function()
         --     vim.g.lualine_laststatus = vim.o.laststatus
         --     if vim.fn.argc(-1) > 0 then
@@ -51,7 +262,7 @@ return {
         'akinsho/bufferline.nvim',
         name = 'bufferline',
         version = '*',
-        dependencies = 'nvim-tree/nvim-web-devicons',
+        -- dependencies = 'nvim-tree/nvim-web-devicons',
         event = 'VimEnter',
         keys = {
             { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
@@ -125,8 +336,8 @@ return {
                     close_if_last_window = true,
                 },
                 click = {
-                    enabled = true, -- Enable mouse click on minimap
-                    auto_switch_focus = true, -- Automatically switch focus to minimap when clicked
+                    enabled = false, -- Enable mouse click on minimap
+                    auto_switch_focus = false, -- Automatically switch focus to minimap when clicked
                 },
                 buf_filter = function(bufnr)
                     return not vim.api.nvim_get_option_value('wrap', {})
@@ -337,8 +548,8 @@ return {
             {
                 'rcarriga/nvim-notify',
                 name = 'notify',
-                event = 'VeryLazy',
-                priority = 20,
+                -- event = 'VeryLazy',
+                -- priority = 20,
                 config = function()
                     require('notify').setup({
                         timeout = 2000,
@@ -376,10 +587,10 @@ return {
                 },
                 lsp = {
                     progress = {
-                        enabled = true,
-                        format = 'lsp_progress',
+                        enabled = false,
+                        -- format = 'lsp_progress',
                         format_done = 'lsp_progress_done',
-                        throttle = 5000 / 30,
+                        -- throttle = 5000 / 30,
                         view = 'notify',
                     },
                     -- override markdown rendering so that **cmp** and other plugins use **treesitter**
@@ -404,6 +615,14 @@ return {
                             event = 'msg_show',
                             kind = '',
                             find = 'written',
+                        },
+                        opts = { skip = true },
+                    },
+                    {
+                        filter = {
+                            event = 'msg_show',
+                            kind = '',
+                            find = 'parsers',
                         },
                         opts = { skip = true },
                     },

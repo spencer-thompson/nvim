@@ -8,8 +8,8 @@ return {
         -- priority = 100,
         dependencies = {
 
-            { 'nvim-telescope/telescope-file-browser.nvim', name = 'telescope-file-browser' },
-            { 'nvim-telescope/telescope-hop.nvim', name = 'telescope-hop' },
+            -- { 'nvim-telescope/telescope-file-browser.nvim', name = 'telescope-file-browser' },
+            -- { 'nvim-telescope/telescope-hop.nvim', name = 'telescope-hop' },
             { 'nvim-telescope/telescope-ui-select.nvim', name = 'telescope-ui-select' },
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
@@ -35,7 +35,7 @@ return {
         config = function()
             local actions = require('telescope.actions')
             local builtin = require('telescope.builtin')
-            local browser = require('telescope').extensions.file_browser
+            -- local browser = require('telescope').extensions.file_browser
             local notify = require('telescope').extensions.notify
             local open_with_trouble = require('trouble.sources.telescope').open
             -- local yanky = require('telescope').extensions.yank_history
@@ -91,7 +91,7 @@ return {
 
                     mappings = {
                         n = {
-                            ['<C-h>'] = browser.actions.goto_home_dir,
+                            -- ['<C-h>'] = browser.actions.goto_home_dir,
                             ['jk'] = actions.close,
                             ['<c-t>'] = open_with_trouble,
                         },
@@ -102,9 +102,10 @@ return {
                             ['<C-d>'] = false,
                             ['<C-k>'] = actions.move_selection_previous, -- move to prev result
                             ['<C-j>'] = actions.move_selection_next, -- move to next result
-                            ['<C-x>'] = browser.actions.remove,
-                            ['<C-r>'] = browser.actions.rename,
+                            -- ['<C-x>'] = browser.actions.remove,
+                            -- ['<C-r>'] = browser.actions.rename,
                             ['<c-t>'] = open_with_trouble,
+                            ['<C-h>'] = 'which_key',
                             -- ['<C-m>'] = browser.actions.move,
                         },
                     },
@@ -133,7 +134,7 @@ return {
             -- Enable telescope fzf native, if installed
             pcall(require('telescope').load_extension, 'fzf')
             require('telescope').load_extension('noice') -- noice extension
-            require('telescope').load_extension('file_browser') -- file browser
+            -- require('telescope').load_extension('file_browser') -- file browser
             require('telescope').load_extension('notify') -- notifications
             -- require('telescope').load_extension('yank_history') -- yank history
 
@@ -147,7 +148,7 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = 'Find [G]it Files' })
             vim.keymap.set('n', '<leader>f:', builtin.commands, { desc = 'Find Commands' })
             vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Find [R]egisters' })
-            vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = 'Find [T]reesitter' })
+            -- vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = 'Find [T]reesitter' })
             vim.keymap.set('n', '<leader>fc', builtin.git_commits, { desc = 'Find [C]ommits' })
             vim.keymap.set('n', '<leader>fC', builtin.colorscheme, { desc = 'Find [C]olorschemes' })
             vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Find [D]iagnostics' })

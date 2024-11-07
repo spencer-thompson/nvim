@@ -63,9 +63,8 @@ require('lazy').setup( -- load lazy
     }
 )
 
-require('plugins.lualine')
-require('plugins.completions')
-require('plugins.snippets')
+-- require('plugins.completions')
+-- require('plugins.snippets')
 
 vim.api.nvim_create_user_command('IDE', function(args)
     -- This will be a user command to essentially turn neovim into a full

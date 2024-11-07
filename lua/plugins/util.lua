@@ -133,7 +133,7 @@ return {
     {
         'folke/trouble.nvim',
         name = 'trouble',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        -- dependencies = { 'nvim-tree/nvim-web-devicons' },
         cmd = 'Trouble',
         opts = {
             preview = {
