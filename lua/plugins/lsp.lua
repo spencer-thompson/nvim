@@ -39,6 +39,9 @@ return {
                     cmd = { 'bash-language-server', 'start' },
                     filetypes = { 'sh' },
                 },
+                clangd = {
+                    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'arduino' },
+                },
                 -- eslint = function()
                 --     lspconfig.eslint.setup({
                 --         settings = {
