@@ -573,7 +573,7 @@ return {
             require('noice').setup({
                 messages = {
                     enabled = true,
-                    view = 'notify',
+                    view = 'mini',
                     view_error = 'notify', -- view for errors
                     view_warn = 'notify', -- view for warnings
                     view_history = 'messages', -- view for :messages
@@ -618,19 +618,24 @@ return {
                         },
                         opts = { skip = true },
                     },
-                    {
-                        filter = {
-                            event = 'msg_show',
-                            kind = '',
-                            find = 'parsers',
-                        },
-                        opts = { skip = true },
-                    },
+                    -- {
+                    --     filter = {
+                    --         event = 'msg_show',
+                    --         kind = '',
+                    --         find = 'parsers',
+                    --     },
+                    --     opts = { skip = true },
+                    -- },
                     {
                         view = 'notify', -- some
                         filter = { event = 'msg_showmode' },
                         opts = { skip = true, stop = false },
                     },
+                    {
+                        view = 'messages',
+                        filter = { find = [[\(mini\.*?\)]] },
+                    },
+
                     -- {
                     --     filter = {
                     --         event = 'msg_show',
