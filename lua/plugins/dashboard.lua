@@ -2,7 +2,9 @@ return {
     {
         'nvimdev/dashboard-nvim',
         name = 'dashboard',
-        event = 'VimEnter',
+        -- event = 'VimEnter',
+        lazy = false,
+        priority = 1000,
         opts = function()
             local day = string.rep('\n', 1) .. require('plugins.ascii').randomDay(os.date('%A')) .. string.rep('\n', 2) -- .. text .. string.rep("\n", 4)
 

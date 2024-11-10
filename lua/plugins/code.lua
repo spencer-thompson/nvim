@@ -82,6 +82,19 @@ return {
             -- adjusts spacing to ensure icons are aligned
             nerd_font_variant = 'mono',
 
+            windows = {
+                autocomplete = {
+                    -- draw = "reversed",
+                    winblend = vim.o.pumblend,
+                },
+                documentation = {
+                    auto_show = true,
+                },
+                ghost_text = {
+                    enabled = true,
+                },
+            },
+
             -- experimental auto-brackets support
             accept = { auto_brackets = { enabled = true } },
 
