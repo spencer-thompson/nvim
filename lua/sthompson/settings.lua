@@ -28,7 +28,7 @@ vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus' -- sync clipboards
 
 vim.o.timeout = true
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 300
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
