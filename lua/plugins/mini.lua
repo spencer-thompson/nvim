@@ -6,11 +6,43 @@ return {
         version = false,
         event = 'VimEnter',
         config = function()
-            require('mini.ai').setup({ n_lines = 500 })
+            require('mini.ai').setup({
+                n_lines = 300,
+                custom_textobjects = {
+                    f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
+                    -- Whole buffer.
+                    g = function()
+                        local from = { line = 1, col = 1 }
+                        local to = {
+                            line = vim.fn.line('$'),
+                            col = math.max(vim.fn.getline('$'):len(), 1),
+                        }
+                        return { from = from, to = to }
+                    end,
+                },
+                -- Disable error feedback.
+                silent = true,
+                -- Don't use the previous or next text object.
+                search_method = 'cover',
+                mappings = {
+                    -- Disable next/last variants.
+                    around_next = '',
+                    inside_next = '',
+                    around_last = '',
+                    inside_last = '',
+                },
+            })
             require('mini.align').setup({})
             require('mini.bracketed').setup({})
+            require('mini.bufremove').setup({})
+
+            vim.keymap.set('n', '<leader>bd', function()
+                require('mini.bufremove').delete(0, false)
+            end, { desc = '[D]elete current buffer' })
+
             require('mini.comment').setup({})
             require('mini.cursorword').setup({})
+            require('mini.move').setup({})
             require('mini.sessions').setup({})
             require('mini.splitjoin').setup({
                 mappings = {

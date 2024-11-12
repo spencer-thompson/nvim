@@ -9,26 +9,18 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
                                                      aa,    ,88
                                                       "Y8bbd]]
 
--- OS Specific stuff
-if vim.loop.os_uname().sysname == 'Windows_NT' then
-    -- Power shell stuff sadly
-    vim.cmd([[let &shell = executable('pwsh') ? 'pwsh' : 'powershell']])
-    vim.cmd(
-        [[let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';']]
-    )
-    vim.cmd([[let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode']])
-    vim.cmd([[let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode']])
-    vim.cmd([[set shellquote= shellxquote=]])
-end
-
 vim.wo.number = true
 vim.opt.rnu = true
 
 vim.o.mouse = 'a'
+-- Disable horizontal scrolling.
+vim.o.mousescroll = 'ver:3,hor:0'
 vim.o.clipboard = 'unnamedplus' -- sync clipboards
 
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.updatetime = 300
+vim.o.timeoutlen = 500
+vim.o.ttimeoutlen = 10
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -49,12 +41,6 @@ vim.opt.showbreak = '│ ' --┊│▕
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 36 -- set to 999 for "always centered"
 -- vim.opt.sidescroll = 0
-
-vim.opt.foldcolumn = '0'
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.foldmethod = 'indent'
 
 vim.opt.linebreak = true
 vim.opt.breakindent = true
@@ -78,6 +64,14 @@ vim.opt.formatoptions = vim.opt.formatoptions
     - '2'
     + 'j' -- remove comment leader when joining lines
 
+-- Folding.
+vim.o.foldcolumn = '1'
+vim.opt.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.wo.foldtext = ''
+vim.opt.foldmethod = 'indent'
+vim.opt.foldenable = true
+
 -- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {
     horiz = '─',
@@ -88,16 +82,28 @@ vim.opt.fillchars = {
     vertleft = '┤',
     vertright = '├',
     verthoriz = '┼',
+    msgsep = '─',
     eob = ' ',
     fold = ' ',
+    foldsep = ' ',
+    foldclose = '',
+    foldopen = '',
 }
-
+-- Completion.
+vim.opt.wildignore:append({ '.DS_Store' })
+vim.o.completeopt = 'menuone,noselect,noinsert'
 vim.o.pumblend = 20 -- Make builtin completion menus slightly transparent
 vim.o.pumheight = 30 -- Make popup menu smaller
 -- vim.o.winblend = 10 -- Make floating windows slightly transparent
 -- vim.o.listchars = 'tab:> ,extends:…,precedes:…,nbsp:␣,eol:↴' -- Define which helper symbols to show
 -- vim.o.listchars = 'tab:    ,extends:…,precedes:…,nbsp:␣' -- Define which helper symbols to show
+vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
 vim.o.list = false -- Show some helper symbols
+
+vim.opt.shortmess:append({
+    w = true,
+    s = true,
+})
 
 -- save undo history
 vim.opt.swapfile = false
@@ -119,6 +125,5 @@ vim.opt.cursorlineopt = 'number'
 
 -- vim.opt.signcolumn = 'yes:2'
 -- vim.opt.signcolumn = 'yes:1'
-vim.opt.updatetime = 1000
 
 vim.opt.showtabline = 2

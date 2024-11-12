@@ -41,6 +41,19 @@ return {
     },
 
     {
+        'Bekaboo/dropbar.nvim',
+        name = 'dropbar',
+        enabled = false,
+        event = 'VeryLazy',
+        -- optional, but required for fuzzy finder support
+        dependencies = {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make',
+        },
+        opts = {},
+    },
+
+    {
         'nvim-lualine/lualine.nvim',
         name = 'lualine',
         event = 'VeryLazy',
@@ -281,9 +294,14 @@ return {
             options = {
 
                 -- themable = true,
+                show_close_icon = false,
+                show_buffer_close_icons = false,
                 indicator = {
                     style = 'underline',
                 },
+                close_command = function(bufnr)
+                    require('mini.bufremove').delete(bufnr, false)
+                end,
                 diagnostics = 'nvim_lsp',
                 always_show_bufferline = true,
                 -- auto_toggle_bufferline = true,
@@ -540,6 +558,7 @@ return {
 
     {
         'folke/noice.nvim',
+        -- enabled = false,
         name = 'noice',
         event = 'VimEnter',
         dependencies = {
@@ -696,6 +715,7 @@ return {
                 relculright = true,
                 setopt = true,
                 segments = {
+
                     {
                         sign = {
                             name = {
@@ -709,6 +729,8 @@ return {
                         click = 'v:lua.ScSa',
                     },
                     -- { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
+                    { text = { builtin.foldfunc, auto = true } }, -- , click = 'v:lua.ScLa' },
+                    { text = { ' ' } },
                     {
                         sign = {
                             namespace = { '.*' },
@@ -721,7 +743,8 @@ return {
                         click = 'v:lua.ScSa',
                     },
                     { text = { ' ' } },
-                    { text = { builtin.lnumfunc, builtin.foldfunc }, click = 'v:lua.ScLa' },
+                    -- { text = { builtin.lnumfunc, builtin.foldfunc }, click = 'v:lua.ScLa' },
+                    { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
                     { text = { ' ' } },
                     {
                         sign = {

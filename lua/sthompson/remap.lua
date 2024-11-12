@@ -18,8 +18,12 @@
 -- end, { desc = 'Go to [C]onfig' })
 
 -- move lines up or down in visual mode
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line(s) up' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line(s) down' })
+-- vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line(s) up' })
+-- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line(s) down' })
+
+-- indent while in remaining in visual mode
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
 -- diagnostic stuff like errors
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
@@ -29,11 +33,14 @@ vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 -- move through buffers
 -- vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = '[N]ext Buffer' })
 -- vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = 'Previous Buffer' })
-vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close Buffer' })
+-- vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close Buffer' })
 
 -- new line above / below cursor
-vim.keymap.set('n', '<leader>o', 'mzo<esc>k`z', { desc = 'New line below cursor' })
-vim.keymap.set('n', '<leader>O', 'mzO<esc>j`z', { desc = 'New line above cursor' })
+vim.keymap.set('n', '<leader>o', 'mzo<esc>k`z<cmd>delmarks z<cr>', { desc = 'New line below cursor' })
+vim.keymap.set('n', '<leader>O', 'mzO<esc>j`z<cmd>delmarks z<cr>', { desc = 'New line above cursor' })
+
+-- Make U opposite of u
+vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 
 -- visual block mode
 vim.keymap.set('n', 'vb', '<C-v>', { desc = '[V]isual [B]lock Mode' })
@@ -59,7 +66,7 @@ vim.keymap.set(
 )
 
 -- fix last misspelled word and jump back
-vim.keymap.set('n', '<leader>z', 'mz[s1z=`z', { desc = 'Fix last misspelled word' })
+vim.keymap.set('n', '<leader>z', 'mz[s1z=`z<cmd>delmarks z<cr>', { desc = 'Fix last misspelled word' })
 
 -- paste without overwriting the clipboard
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without overwriting' })
