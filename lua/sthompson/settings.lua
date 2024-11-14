@@ -71,6 +71,8 @@ vim.o.foldlevelstart = 99
 vim.wo.foldtext = ''
 vim.opt.foldmethod = 'indent'
 vim.opt.foldenable = true
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldmethod = 'expr'
 
 -- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {

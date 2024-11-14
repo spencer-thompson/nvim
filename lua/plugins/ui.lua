@@ -43,8 +43,10 @@ return {
     {
         'Bekaboo/dropbar.nvim',
         name = 'dropbar',
+        -- event = { 'BufReadPost', 'BufWritePost' },
         enabled = false,
         event = 'VeryLazy',
+        -- event = 'BufReadPost',
         -- optional, but required for fuzzy finder support
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim',
@@ -325,6 +327,7 @@ return {
 
     {
         'Isrothy/neominimap.nvim',
+        -- enabled = false,
         name = 'neominimap',
         event = 'VeryLazy',
         lazy = false,
