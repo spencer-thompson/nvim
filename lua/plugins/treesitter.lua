@@ -9,25 +9,88 @@ return {
             { 'nvim-treesitter/nvim-treesitter-textobjects', name = 'treesitter-textobjects' },
             -- 'nvim-treesitter/playground',
             { 'JoosepAlviste/nvim-ts-context-commentstring', name = 'ts-context-commentstring' },
+            {
+                'nvim-treesitter/nvim-treesitter-context',
+                enabled = false,
+                opts = {
+                    -- Avoid the sticky context from growing a lot.
+                    max_lines = 2,
+                    -- Match the context lines to the source code.
+                    multiline_threshold = 1,
+                    -- Disable it when the window is too small.
+                    min_window_height = 20,
+                    trim_scope = 'inner',
+                },
+                keys = {
+                    {
+                        '[c',
+                        function()
+                            -- Jump to previous change when in diffview.
+                            if vim.wo.diff then
+                                return '[c'
+                            else
+                                vim.schedule(function()
+                                    require('treesitter-context').go_to_context()
+                                end)
+                                return '<Ignore>'
+                            end
+                        end,
+                        desc = 'Jump to upper context',
+                        expr = true,
+                    },
+                },
+                config = function()
+                    require('treesitter-context').setup({
+                        -- Avoid the sticky context from growing a lot.
+                        max_lines = 3,
+                        -- Match the context lines to the source code.
+                        multiline_threshold = 1,
+                        -- Disable it when the window is too small.
+                        min_window_height = 20,
+                        mode = 'topline',
+                    })
+
+                    vim.api.nvim_set_hl(0, 'TreesitterContext', { link = 'Normal' })
+                    vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { underline = true, sp = '#15161e' })
+                    vim.api.nvim_set_hl(0, 'TreesitterContextLineNumber', { link = 'FoldColumn' })
+                    -- vim.api.nvim_set_hl(0, 'TreesitterContextLineNumberBottom', { underline = true })
+                end,
+            },
         },
         config = function()
-            -- require('nvim-treesitter.install').compilers = { "clang" }
+            local toggle_inc_selection_group =
+                vim.api.nvim_create_augroup('mariasolos/toggle_inc_selection', { clear = true })
+            vim.api.nvim_create_autocmd('CmdwinEnter', {
+                desc = 'Disable incremental selection when entering the cmdline window',
+                group = toggle_inc_selection_group,
+                command = 'TSBufDisable incremental_selection',
+            })
+            vim.api.nvim_create_autocmd('CmdwinLeave', {
+                desc = 'Enable incremental selection when leaving the cmdline window',
+                group = toggle_inc_selection_group,
+                command = 'TSBufEnable incremental_selection',
+            })
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
                     'bash',
                     'c', -- required
+                    'cpp',
                     'dockerfile',
                     'go',
                     'html',
+                    'json',
+                    'json5',
+                    'jsonc',
                     'lua', -- required
                     'markdown',
                     'markdown_inline',
                     'python',
                     'query', -- required
+                    'regex',
+                    'toml',
                     'vim', -- required
                     'vimdoc', --required
                     'yaml',
-                    -- 'cpp',
                     -- 'javascript',
                     -- 'rust',
                     -- 'tsx',
@@ -51,10 +114,10 @@ return {
                 incremental_selection = {
                     enable = true,
                     keymaps = {
-                        init_selection = '<leader>v',
-                        node_incremental = ']v',
-                        scope_incremental = '<c-s>',
-                        node_decremental = '[v',
+                        init_selection = '<cr>',
+                        node_incremental = '<cr>',
+                        scope_incremental = false,
+                        node_decremental = '<bs>',
                     },
                 },
 

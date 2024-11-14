@@ -32,7 +32,9 @@ return {
                     inside_last = '',
                 },
             })
-            require('mini.align').setup({})
+            require('mini.align').setup({
+                silent = false,
+            })
             require('mini.bracketed').setup({})
             require('mini.bufremove').setup({})
 
@@ -51,21 +53,21 @@ return {
                     -- join = 'gj',
                 },
             })
-            require('mini.surround').setup({
-                mappings = {
-                    add = 'ys', -- Add surrounding in Normal and Visual modes
-                    delete = 'ds', -- Delete surrounding
-                    find = '', -- Find surrounding (to the right)
-                    find_left = '', -- Find surrounding (to the left)
-                    highlight = '', -- Highlight surrounding
-                    replace = 'cs', -- Replace surrounding
-                    update_n_lines = '', -- Update `n_lines` default: sn
-
-                    suffix_last = 'l', -- Suffix to search with "prev" method
-                    suffix_next = 'n', -- Suffix to search with "next" method
-                },
-                silent = true,
-            })
+            -- require('mini.surround').setup({
+            --     mappings = {
+            --         add = 'ys', -- Add surrounding in Normal and Visual modes
+            --         delete = 'ds', -- Delete surrounding
+            --         find = '', -- Find surrounding (to the right)
+            --         find_left = '', -- Find surrounding (to the left)
+            --         highlight = '', -- Highlight surrounding
+            --         replace = 'cs', -- Replace surrounding
+            --         update_n_lines = '', -- Update `n_lines` default: sn
+            --
+            --         suffix_last = 'l', -- Suffix to search with "prev" method
+            --         suffix_next = 'n', -- Suffix to search with "next" method
+            --     },
+            --     silent = true,
+            -- })
 
             vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
             -- require('mini.pairs').setup({

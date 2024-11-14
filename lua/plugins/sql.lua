@@ -21,8 +21,8 @@ return {
     {
         'kndndrj/nvim-dbee',
         name = 'dbee',
-        -- lazy = true,
-        event = 'VeryLazy',
+        lazy = true,
+        -- event = 'VeryLazy',
         dependencies = {
             'MunifTanjim/nui.nvim',
         },

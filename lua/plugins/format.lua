@@ -29,6 +29,7 @@ return {
                     -- html = { 'htmlbeautifier' },
                     html = { 'prettierd' },
                     bash = { 'beautysh' },
+                    sh = { 'shfmt' },
                     zsh = { 'beautysh' },
                     -- proto = { "buf" },
                     -- rust = { "rustfmt" },

@@ -119,6 +119,7 @@ return {
     {
         'christoomey/vim-tmux-navigator',
         name = 'tmux-navigator',
+        enabled = false,
         lazy = false,
     },
 }

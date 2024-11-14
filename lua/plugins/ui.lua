@@ -1,3 +1,11 @@
+local function is_neominimap(arg)
+    return vim.bo[arg.buf].filetype == 'neominimap'
+end
+
+local function is_not_neominimap(arg)
+    return not is_neominimap(arg)
+end
+
 return {
 
     {
@@ -17,22 +25,33 @@ return {
                         left_bottom = '╰',
                         right_arrow = '─',
                     },
-                    style = '#292e42',
-                    duration = 150,
+                    style = '#3b4261',
+                    max_file_size = 1024 * 1024,
+                    duration = 200,
                     delay = 50,
                 },
-                indent = { enable = false },
+                -- indent = { enable = false },
+                blank = {
+                    enable = true,
+                    chars = {
+                        -- ' ',
+                        '.',
+                        '⁚',
+                        -- '⁖',
+                        -- '⁘',
+                        -- '⁙',
+                    },
+                    style = '#1a1b26',
+                    -- style = { vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Whitespace')), 'fg', 'gui'), '' },
+                },
             })
         end,
     },
 
-    -- { 'nvchad/volt', lazy = true },
-    -- { 'nvchad/minty', lazy = true },
-    -- require("minty.huefy").open()
-    -- require("minty.shades").open()
     {
         'siduck/showkeys',
         cmd = 'ShowkeysToggle',
+        lazy = true,
         opts = {
             timeout = 1,
             maxkeys = 5,
@@ -44,9 +63,8 @@ return {
         'Bekaboo/dropbar.nvim',
         name = 'dropbar',
         -- event = { 'BufReadPost', 'BufWritePost' },
-        enabled = false,
+        enabled = true,
         event = 'VeryLazy',
-        -- event = 'BufReadPost',
         -- optional, but required for fuzzy finder support
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim',
@@ -123,15 +141,6 @@ return {
                 },
 
                 --[[ BAR FOR EACH WINDOW ]]
-
-                winbar = {
-                    lualine_a = {},
-                    lualine_b = {},
-                    lualine_c = {},
-                    lualine_x = {},
-                    lualine_y = {},
-                    lualine_z = {},
-                },
 
                 sections = {
                     lualine_a = {
@@ -261,16 +270,6 @@ return {
                 extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'man' },
             })
         end,
-        -- init = function()
-        --     vim.g.lualine_laststatus = vim.o.laststatus
-        --     if vim.fn.argc(-1) > 0 then
-        --         -- set an empty statusline till lualine loads
-        --         vim.o.statusline = " "
-        --     else
-        --         -- hide the statusline on the starter page
-        --         vim.o.laststatus = 0
-        --     end
-        -- end,
     },
 
     {
@@ -332,6 +331,77 @@ return {
         event = 'VeryLazy',
         lazy = false,
         init = function()
+            local todo_comments_handler = {
+                name = 'Todo Comment',
+                mode = 'sign',
+                namespace = vim.api.nvim_create_namespace('neominimap_todo_comment'),
+                init = function() end,
+                autocmds = {
+                    {
+                        event = { 'TextChanged', 'TextChangedI' },
+                        opts = {
+                            callback = function(apply, args)
+                                local bufnr = tonumber(args.buf)
+                                vim.schedule(function()
+                                    apply(bufnr)
+                                end)
+                            end,
+                        },
+                    },
+                    {
+                        event = 'WinScrolled',
+                        opts = {
+                            callback = function(apply)
+                                local winid = vim.api.nvim_get_current_win()
+                                if not winid or not vim.api.nvim_win_is_valid(winid) then
+                                    return
+                                end
+                                local bufnr = vim.api.nvim_win_get_buf(winid)
+                                vim.schedule(function()
+                                    if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+                                        apply(bufnr)
+                                    end
+                                end)
+                            end,
+                        },
+                    },
+                },
+                get_annotations = function(bufnr)
+                    local ok, _ = pcall(require, 'todo-comments')
+                    if not ok then
+                        return {}
+                    end
+                    local ns_id = vim.api.nvim_get_namespaces()['todo-comments']
+                    local extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns_id, 0, -1, {
+                        details = true,
+                    })
+                    local icons = {
+                        FIX = ' ',
+                        TODO = ' ',
+                        HACK = ' ',
+                        WARN = ' ',
+                        PERF = ' ',
+                        NOTE = ' ',
+                        TEST = '⏲ ',
+                    }
+                    local id = { FIX = 1, TODO = 2, HACK = 3, WARN = 4, PERF = 5, NOTE = 6, TEST = 7 }
+                    return vim.tbl_map(function(extmark)
+                        local detail = extmark[4]
+                        local group = detail.hl_group
+                        local kind = string.sub(group, 7)
+                        local icon = icons[kind]
+                        return {
+                            lnum = extmark[2],
+                            end_lnum = extmark[2],
+                            id = id[kind],
+                            highlight = 'TodoFg' .. kind, --- You can customize the highlight here.
+                            icon = icon,
+                            priority = detail.priority,
+                        }
+                    end, extmarks)
+                end,
+            }
+
             vim.api.nvim_create_autocmd('WinEnter', {
                 group = vim.api.nvim_create_augroup('minimap', { clear = true }),
                 pattern = '*',
@@ -342,13 +412,14 @@ return {
 
             vim.g.neominimap = {
                 auto_enable = true,
-                layout = 'split',
+                layout = 'float',
                 float = {
                     -- margin = {
                     --     right = 0,
                     -- },
                     window_border = 'none',
-                    minimap_width = 20,
+                    minimap_width = 18,
+                    z_index = 21,
                 },
                 split = {
                     minimap_width = 20,
@@ -366,6 +437,9 @@ return {
                 win_filter = function(winid)
                     return winid == vim.api.nvim_get_current_win()
                 end,
+                -- winopt = function(wo)
+                -- wo.statuscolumn = '%!v:lua.MyStatusCol()'
+                -- end,
                 exclude_filetypes = {
                     'dashboard',
                     'help',
@@ -392,6 +466,9 @@ return {
                 git = { enabled = true, mode = 'sign' },
                 search = { enabled = true, mode = 'sign', priority = 20 },
                 mark = { enabled = true, mode = 'sign', priority = 100 },
+                handlers = {
+                    todo_comments_handler,
+                },
             }
 
             -- require('neominimap').setup()
@@ -536,27 +613,26 @@ return {
     --     event = 'VeryLazy',
     --     dependencies = { 'kevinhwang91/promise-async' },
     -- },
-
     {
-        'RRethy/vim-illuminate',
-        name = 'illuminate',
-        event = 'VeryLazy',
+        'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
         enabled = false,
-        lazy = true,
-        config = function()
-            require('illuminate').configure({
-                delay = 1000,
-                large_file_cutoff = 2000,
-                large_file_overrides = {
-                    providers = { 'lsp' },
-                },
-            })
-
-            -- change the highlight style
-            vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = 'Visual' })
-            vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = 'Visual' })
-            vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { link = 'Visual' })
-        end,
+        name = 'indent-blankline',
+        event = 'VeryLazy',
+        -- For setting shiftwidth and tabstop automatically.
+        dependencies = 'tpope/vim-sleuth',
+        opts = {
+            indent = {
+                char = '│',
+            },
+            scope = {
+                show_start = false,
+                show_end = false,
+            },
+            exclude = {
+                filetypes = { 'OverseerForm' },
+            },
+        },
     },
 
     {
@@ -592,10 +668,13 @@ return {
             },
         },
         config = function()
+            if vim.o.filetype == 'lazy' then
+                vim.cmd([[messages clear]])
+            end
             require('noice').setup({
                 messages = {
                     enabled = true,
-                    view = 'mini',
+                    view = 'notify',
                     view_error = 'notify', -- view for errors
                     view_warn = 'notify', -- view for warnings
                     view_history = 'messages', -- view for :messages
@@ -628,57 +707,44 @@ return {
                     {
                         filter = {
                             event = 'msg_show',
+                            any = {
+                                { find = '%d+L, %d+B' },
+                                { find = '; after #%d+' },
+                                { find = '; before #%d+' },
+                            },
+                        },
+                        opts = { timeout = 500 },
+                        view = 'mini',
+                    },
+                    {
+                        filter = {
+                            event = 'msg_show',
                             kind = 'search_count',
                         },
                         opts = { skip = true },
                     },
                     {
                         filter = {
-                            event = 'msg_show',
-                            kind = '',
-                            find = 'written',
+                            event = 'lsp',
+                            kind = 'progress',
+                            cond = function(message)
+                                local client = vim.tbl_get(message.opts, 'progress', 'client')
+                                return client == 'lua_ls'
+                            end,
                         },
                         opts = { skip = true },
                     },
-                    -- {
-                    --     filter = {
-                    --         event = 'msg_show',
-                    --         kind = '',
-                    --         find = 'parsers',
-                    --     },
-                    --     opts = { skip = true },
-                    -- },
                     {
-                        view = 'notify', -- some
-                        filter = { event = 'msg_showmode' },
-                        opts = { skip = true, stop = false },
+                        view = 'mini',
+                        opts = { timeout = 5000 },
+                        filter = { find = '(mini.align)' },
                     },
                     {
-                        view = 'messages',
-                        filter = { find = [[\(mini\.*?\)]] },
+                        filter = {
+                            find = 'All parsers',
+                        },
+                        opts = { skip = true },
                     },
-
-                    -- {
-                    --     filter = {
-                    --         event = 'msg_show',
-                    --         kind = 'echo',
-                    --     },
-                    --     view = 'cmdline_output',
-                    -- },
-                    -- {
-                    --     filter = {
-                    --         event = 'msg_show',
-                    --         min_height = 5,
-                    --     },
-                    --     view = 'split',
-                    -- },
-                    -- {
-                    --     filter = {
-                    --         event = 'msg_show',
-                    --         min_length = 50,
-                    --     },
-                    --     view = 'split',
-                    -- },
                 },
 
                 presets = { -- you can enable a preset for easier configuration
@@ -708,7 +774,6 @@ return {
         'luukvbaal/statuscol.nvim',
         name = 'statuscol',
         enabled = true,
-        -- lazy = true,
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',
         opts = function()
@@ -718,7 +783,6 @@ return {
                 relculright = true,
                 setopt = true,
                 segments = {
-
                     {
                         sign = {
                             name = {
@@ -730,10 +794,14 @@ return {
                             auto = true,
                         },
                         click = 'v:lua.ScSa',
+                        condition = { is_not_neominimap },
                     },
                     -- { sign = { name = { 'todo*' }, namespace = { 'diagnostic/signs' }, maxwidth = 1, auto = false } },
-                    { text = { builtin.foldfunc, auto = true } }, -- , click = 'v:lua.ScLa' },
-                    { text = { ' ' } },
+                    {
+                        text = { builtin.foldfunc, auto = true },
+                        condition = { is_not_neominimap },
+                    }, -- , click = 'v:lua.ScLa' },
+                    { text = { ' ' }, condition = { is_not_neominimap } },
                     {
                         sign = {
                             namespace = { '.*' },
@@ -744,11 +812,14 @@ return {
                             auto = false,
                         },
                         click = 'v:lua.ScSa',
+                        condition = { is_not_neominimap },
                     },
-                    { text = { ' ' } },
                     -- { text = { builtin.lnumfunc, builtin.foldfunc }, click = 'v:lua.ScLa' },
-                    { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
-                    { text = { ' ' } },
+                    {
+                        text = { builtin.lnumfunc, ' ' },
+                        click = 'v:lua.ScLa',
+                        condition = { is_not_neominimap },
+                    },
                     {
                         sign = {
                             namespace = { 'gitsigns_' },
@@ -759,7 +830,24 @@ return {
                             fillcharhl = 'StatusColumnSeparator',
                         },
                         click = 'v:lua.ScSa',
+                        condition = { is_not_neominimap },
                     },
+                    {
+                        sign = {
+                            namespace = { 'neominimap_*' },
+                            maxwidth = 1,
+                            colwidth = 1, -- For more compact look
+                        },
+                        condition = { is_neominimap },
+                    },
+                    -- {
+                    --     sign = {
+                    --         namespace = { 'neominimap_git' },
+                    --         maxwidth = 1,
+                    --         colwidth = 1,
+                    --     },
+                    --     condition = { is_neominimap },
+                    -- },
                     -- { text = { ' ' } },
                 },
                 ft_ignore = {
