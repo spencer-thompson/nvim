@@ -1,6 +1,6 @@
 -- local options
 -- vim.opt_local.shiftwidth = 2
-vim.opt_local.wrap = true
+vim.opt_local.wrap = false
 vim.bo.commentstring = '// %s'
 
 vim.api.nvim_buf_set_var(0, 'active_preview', false)
