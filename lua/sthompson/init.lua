@@ -3,6 +3,7 @@ require('sthompson.remap')
 require('sthompson.disable_builtin')
 require('sthompson.autocmds')
 require('sthompson.math')
+require('sthompson.commands')
 
 if vim.g.neovide then
     -- Helper function for transparency formatting
