@@ -22,8 +22,8 @@
 -- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line(s) down' })
 
 -- indent while in remaining in visual mode
-vim.keymap.set('v', '<', '<gv')
-vim.keymap.set('v', '>', '>gv')
+-- vim.keymap.set('v', '<', '<gv')
+-- vim.keymap.set('v', '>', '>gv')
 
 -- diagnostic stuff like errors
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')

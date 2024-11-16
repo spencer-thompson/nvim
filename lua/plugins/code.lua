@@ -28,6 +28,7 @@ return {
             keymap = {
                 preset = 'default',
                 ['<C-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
+                -- ['<C-h>'] = { 'show' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
                 -- ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
@@ -99,7 +100,7 @@ return {
             accept = { auto_brackets = { enabled = true } },
 
             -- experimental signature help support
-            trigger = { signature_help = { enabled = true } },
+            -- trigger = { signature_help = { enabled = true } },
         },
     },
 
