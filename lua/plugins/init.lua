@@ -63,9 +63,6 @@ require('lazy').setup( -- load lazy
     }
 )
 
--- require('plugins.completions')
--- require('plugins.snippets')
-
 vim.api.nvim_create_user_command('IDE', function(args)
     -- This will be a user command to essentially turn neovim into a full
     -- fledged ide, I want to implement neogit, mini.session, dap, and
