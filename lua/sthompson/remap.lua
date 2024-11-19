@@ -34,6 +34,7 @@ vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 -- vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = '[N]ext Buffer' })
 -- vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = 'Previous Buffer' })
 -- vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close Buffer' })
+vim.keymap.set('n', '<leader><leader>', '<cmd>b#<cr>', { desc = 'Alternate Buffer' })
 
 -- new line above / below cursor
 vim.keymap.set('n', '<leader>o', 'mzo<esc>k`z<cmd>delmarks z<cr>', { desc = 'New line below cursor' })
