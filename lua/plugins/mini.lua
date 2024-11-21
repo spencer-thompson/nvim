@@ -23,14 +23,14 @@ return {
                 -- Disable error feedback.
                 silent = true,
                 -- Don't use the previous or next text object.
-                search_method = 'cover',
-                mappings = {
-                    -- Disable next/last variants.
-                    around_next = '',
-                    inside_next = '',
-                    around_last = '',
-                    inside_last = '',
-                },
+                search_method = 'cover_or_next',
+                -- mappings = {
+                --     -- Disable next/last variants.
+                --     around_next = '',
+                --     inside_next = '',
+                --     around_last = '',
+                --     inside_last = '',
+                -- },
             })
             require('mini.align').setup({
                 silent = false,
@@ -45,6 +45,7 @@ return {
             require('mini.comment').setup({})
             require('mini.cursorword').setup({})
             require('mini.move').setup({})
+            require('mini.operators').setup({})
             require('mini.sessions').setup({})
             require('mini.splitjoin').setup({
                 mappings = {

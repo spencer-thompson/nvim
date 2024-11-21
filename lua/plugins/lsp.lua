@@ -219,7 +219,7 @@ return {
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                     -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
                     vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, opts)
-                    vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
+                    vim.keymap.set('n', 'gR', require('telescope.builtin').lsp_references, opts)
                     vim.keymap.set('n', 'gI', require('telescope.builtin').lsp_implementations, opts)
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
                     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
