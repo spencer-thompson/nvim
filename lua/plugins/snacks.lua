@@ -49,6 +49,15 @@ vim.api.nvim_create_autocmd('User', {
     end,
 })
 
+-- vim.api.nvim_create_autocmd('QuitPre', { -- closes terminal if open on exit
+--     group = vim.api.nvim_create_augroup('close_terminal_on_exit', { clear = true }),
+--     desc = 'Close Terminal on Exit',
+--     pattern = '*',
+--     callback = function()
+--         Snacks.terminal.get()[1]:close()
+--     end,
+-- })
+
 return {
     'folke/snacks.nvim',
     name = 'snacks',
@@ -64,7 +73,8 @@ return {
         statuscolumn = { enabled = false },
         -- words = { enabled = true },
         dashboard = {
-            width = 60,
+            width = 50,
+            pane_gap = 10,
             enabled = true,
             preset = {
                 keys = {
@@ -111,6 +121,20 @@ return {
                         desc = 'Config',
                         action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
                     },
+
+                    {
+                        icon = ' ',
+                        key = 'g',
+                        desc = 'Git',
+                        action = ':Neogit kind=floating',
+                    },
+
+                    {
+                        icon = '󱘲 ',
+                        key = 'd',
+                        desc = 'Database',
+                        action = ':Dbee',
+                    },
                     { icon = ' ', key = 'r', desc = 'Restore Session', section = 'session' },
                     {
                         icon = '󰒲 ',
@@ -124,23 +148,89 @@ return {
                     { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
                 },
                 header = [[
-                                               88                   
-                                               ""                   
-                                                                    
-8b,dPPYba,   ,adPPYba,  ,adPPYba,  8b       d8 88 88,dPYba,,adPYba, 
-88P'   `"8a a8P_____88 a8"     "8a `8b     d8' 88 88P'   "88"    "8a
-88       88 8PP""""""" 8b       d8  `8b   d8'  88 88      88      88
-88       88 "8b,   ,aa "8a,   ,a8"   `8b,d8'   88 88      88      88
-88       88  `"Ybbd8"'  `"YbbdP"'      "8"     88 88      88      88
+                                              88                   
+                                              ""                   
+                                                                   
+8b,dPPYba,   ,adPPYba,  ,adPPYba, 8b       d8 88 88,dPYba,,adPYba, 
+88P'   `"8a a8P_____88 a8"     "8a`8b     d8' 88 88P'   "88"    "8a
+88       88 8PP""""""" 8b       d8 `8b   d8'  88 88      88      88
+88       88 "8b,   ,aa "8a,   ,a8"  `8b,d8'   88 88      88      88
+88       88  `"Ybbd8"'  `"YbbdP"'     "8"     88 88      88      88
                 ]],
             },
+            -- formats = {
+            -- terminal = { '%s', align = 'center' },
+            -- header = { '%s', align = 'left' },
+            -- },
             sections = {
-                { section = 'header' },
-                -- { section = 'terminal', cmd = 'toilet -f univers -F metal -F crop "neovim"' },
-                -- { section = 'terminal', cmd = 'toilet -f univers -F metal "spencer" | sed \'1,4 d; s/^/ /\'' },
+                {
+                    -- pane = 2,
+                    -- width = 20,
+                    { section = 'header', padding = 2 },
+                    -- {
+                    --     section = 'terminal',
+                    --     cmd = 'toilet -f univers -F metal -F crop "neovim"',
+                    --     indent = -10,
+                    --     width = 60,
+                    -- },
 
-                { section = 'keys', gap = 1, padding = 1 },
-                { section = 'startup' },
+                    { section = 'keys', gap = 1, padding = 2 },
+                    { section = 'startup', padding = 1 },
+                    -- {
+                    --     section = 'terminal',
+                    --     cmd = 'chafa ~/dl/wide_mountain.png --format symbols --symbols vhalf --size 100x40; sleep .1',
+                    --     width = 100,
+                    -- },
+                },
+                {
+                    pane = 2,
+                    {
+                        section = 'terminal',
+                        cmd = 'chafa ~/dl/test_img.jpeg --format symbols --symbols sextant --size 40x28 --align mid,left; sleep .1',
+                        padding = 2,
+                        height = 15,
+                    },
+                    { icon = '', title = 'MRU ', file = vim.fn.fnamemodify('.', ':~'), padding = 1 },
+                    { section = 'recent_files', cwd = true, limit = 3, indent = 2, padding = 1 },
+
+                    { icon = '', title = 'Projects ', padding = 1 },
+                    { section = 'projects', limit = 3, indent = 2, padding = 1 },
+
+                    { icon = '', title = 'MRU ', padding = 1 },
+                    { section = 'recent_files', cwd = true, limit = 3, indent = 2, padding = 1 },
+
+                    -- { section = 'session', padding = 1 },
+
+                    {
+                        section = 'terminal',
+                        -- cmd = 'fortune -s | fmt -w 60',
+                        cmd = 'fortune -s | fmt -w 50',
+                        hl = 'comment',
+                        -- padding = 1,
+                        -- width = 80,
+                        -- indent = -2,
+                        -- align = 'center',
+                    },
+                },
+                -- {
+                --     -- width = 40,
+                --     -- align = 'right',
+                --     {
+                --         section = 'terminal',
+                --         cmd = 'chafa ~/dl/ComfyUI_temp_llcpe_00001_.png --format symbols --symbols vhalf --size 40x40; sleep .1',
+                --         height = 30,
+                --     },
+                --     {
+                --         section = 'terminal',
+                --         -- cmd = 'fortune -s | fmt -w 60',
+                --         cmd = 'fortune -s | fmt -w 40 -s',
+                --         hl = 'comment',
+                --         -- padding = 1,
+                --         -- width = 80,
+                --         -- indent = -2,
+                --         -- align = 'center',
+                --     },
+                -- },
             },
         },
         styles = {
@@ -226,6 +316,13 @@ return {
         --     },
         {
             '<c-/>',
+            function()
+                Snacks.terminal()
+            end,
+            desc = 'Toggle Terminal',
+        },
+        {
+            '<leader>tt',
             function()
                 Snacks.terminal()
             end,

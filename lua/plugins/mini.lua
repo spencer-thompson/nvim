@@ -47,7 +47,7 @@ return {
             require('mini.cursorword').setup({})
             require('mini.move').setup({})
             -- require('mini.operators').setup({})
-            require('mini.sessions').setup({})
+            -- require('mini.sessions').setup({})
             require('mini.splitjoin').setup({
                 mappings = {
                     toggle = 'gS',
