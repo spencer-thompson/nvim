@@ -173,6 +173,13 @@ return {
             })
             vim.cmd([[ TSUpdate ]])
         end,
+        keys = {
+            {
+                '<leader>ui',
+                '<cmd>InspectTree<cr>',
+                desc = 'Inspect Highlights',
+            },
+        },
         -- ---@param opts TSConfig
         -- config = function(_, opts)
         --     if type(opts.ensure_installed) == "table" then

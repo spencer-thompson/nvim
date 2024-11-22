@@ -2,7 +2,8 @@ return {
 
     {
         'saghen/blink.cmp',
-        lazy = false, -- lazy loading handled internally
+        lazy = true, -- lazy loading handled internally
+        event = { 'VeryLazy', 'InsertEnter' },
         -- optional: provides snippets for the snippet source
         dependencies = {
             'rafamadriz/friendly-snippets',
@@ -241,7 +242,7 @@ return {
         name = 'undotree',
         event = 'VeryLazy',
         config = function()
-            vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndotree' })
+            vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle, { desc = '[U]ndo[t]ree' })
         end,
     },
 

@@ -212,26 +212,44 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
-                    local opts = { buffer = event.buf }
-
                     -- these will be buffer-local keybindings
                     -- because they only work if you have an active language server
-                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-                    -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-                    vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, opts)
-                    vim.keymap.set('n', 'gR', require('telescope.builtin').lsp_references, opts)
-                    vim.keymap.set('n', 'gI', require('telescope.builtin').lsp_implementations, opts)
-                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-                    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-                    -- vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-                    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts) -- todo change
-                    -- vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-                    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show Hover Docs', buffer = event.buf })
+                    -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = "", buffer = event.buf })
+                    vim.keymap.set(
+                        'n',
+                        'gd',
+                        require('telescope.builtin').lsp_definitions,
+                        { desc = '[D]efinitions', buffer = event.buf }
+                    )
+                    vim.keymap.set(
+                        'n',
+                        'gR',
+                        require('telescope.builtin').lsp_references,
+                        { desc = '[R]eferences', buffer = event.buf }
+                    )
+                    vim.keymap.set(
+                        'n',
+                        'gI',
+                        require('telescope.builtin').lsp_implementations,
+                        { desc = '[I]mplementations', buffer = event.buf }
+                    )
+                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = '[D]eclaration', buffer = event.buf })
+                    vim.keymap.set(
+                        'n',
+                        'go',
+                        vim.lsp.buf.type_definition,
+                        { desc = 'Type Definition', buffer = event.buf }
+                    )
+                    -- vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { desc = "", buffer = event.buf })
+                    vim.keymap.set('n', 'gr', vim.lsp.buf.rename, { desc = 'LSP [R]ename', buffer = event.buf }) -- todo change
+                    -- vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', { desc = "", buffer = event.buf })
+                    vim.keymap.set('n', 'gC', vim.lsp.buf.code_action, { desc = '[C]ode Action', buffer = event.buf })
                     vim.keymap.set(
                         'n',
                         '<leader>i',
                         '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>',
-                        { desc = 'Toggle Inlay Hints' }
+                        { desc = '[I]nlay Hints', buffer = event.buf }
                     )
                 end,
             })

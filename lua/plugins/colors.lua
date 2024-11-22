@@ -117,7 +117,7 @@ return {
             require('tokyonight').setup({
                 style = 'night',
                 plugins = {
-                    dashboard = true,
+                    -- dashboard = true,
                     auto = true,
                 },
                 transparent = true,

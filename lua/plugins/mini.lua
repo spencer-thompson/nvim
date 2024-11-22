@@ -4,6 +4,7 @@ return {
         'echasnovski/mini.nvim',
         name = 'mini',
         version = false,
+        -- lazy = false,
         event = 'VimEnter',
         config = function()
             require('mini.ai').setup({
@@ -45,7 +46,7 @@ return {
             require('mini.comment').setup({})
             require('mini.cursorword').setup({})
             require('mini.move').setup({})
-            require('mini.operators').setup({})
+            -- require('mini.operators').setup({})
             require('mini.sessions').setup({})
             require('mini.splitjoin').setup({
                 mappings = {

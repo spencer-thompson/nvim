@@ -2,6 +2,7 @@ return {
     {
         'nvimdev/dashboard-nvim',
         name = 'dashboard',
+        enabled = false,
         -- event = 'VimEnter',
         lazy = false,
         priority = 1000,

@@ -36,7 +36,7 @@ return {
             local actions = require('telescope.actions')
             local builtin = require('telescope.builtin')
             -- local browser = require('telescope').extensions.file_browser
-            local notify = require('telescope').extensions.notify
+            -- local notify = require('telescope').extensions.notify
             local open_with_trouble = require('trouble.sources.telescope').open
             -- local yanky = require('telescope').extensions.yank_history
 
@@ -135,7 +135,7 @@ return {
             pcall(require('telescope').load_extension, 'fzf')
             require('telescope').load_extension('noice') -- noice extension
             -- require('telescope').load_extension('file_browser') -- file browser
-            require('telescope').load_extension('notify') -- notifications
+            -- require('telescope').load_extension('notify') -- notifications
             -- require('telescope').load_extension('yank_history') -- yank history
 
             -- Setup keymaps i guess
@@ -160,7 +160,7 @@ return {
             -- vim.keymap.set('n', '<leader>fd', browser.file_browser, { desc = 'File Browser' })
 
             -- notifications
-            vim.keymap.set('n', '<leader>fn', notify.notify, { desc = 'Notifications' })
+            -- vim.keymap.set('n', '<leader>fn', notify.notify, { desc = 'Notifications' })
 
             -- yank history
             -- vim.keymap.set('n', '<leader>fy', yanky.yank_history, { desc = "Yank History" })

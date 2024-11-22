@@ -130,7 +130,7 @@ return {
                     -- section_separators = { left = '', right = '' },
                     section_separators = { left = '', right = '' },
                     disabled_filetypes = {
-                        statusline = { 'dashboard' },
+                        statusline = { 'dashboard', 'snacks_dashboard' },
                         winbar = { 'dashboard', 'neo-tree' },
                         tabline = { 'dashboard', 'neo-tree', 'nerdtree' },
                     },
@@ -280,7 +280,6 @@ return {
         'akinsho/bufferline.nvim',
         name = 'bufferline',
         version = '*',
-        -- dependencies = 'nvim-tree/nvim-web-devicons',
         event = 'VimEnter',
         keys = {
             { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
@@ -305,7 +304,7 @@ return {
                     style = 'underline',
                 },
                 close_command = function(bufnr)
-                    require('mini.bufremove').delete(bufnr, false)
+                    MiniBufremove.delete(bufnr, false)
                 end,
                 diagnostics = 'nvim_lsp',
                 always_show_bufferline = true,
