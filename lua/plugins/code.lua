@@ -8,8 +8,9 @@ return {
         dependencies = {
             'rafamadriz/friendly-snippets',
             'saghen/blink.compat',
-            { 'chrisgrieser/cmp-nerdfont', lazy = true },
-            { 'hrsh7th/cmp-emoji', lazy = true },
+            { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep' },
+            -- { 'chrisgrieser/cmp-nerdfont', lazy = true },
+            -- { 'hrsh7th/cmp-emoji', lazy = true },
         },
 
         -- use a release tag to download pre-built binaries
@@ -36,50 +37,66 @@ return {
                 -- ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
             },
 
+            completion = {
+
+                menu = {
+                    max_height = 20,
+                    winblend = 20,
+                    scrolloff = 5,
+                    -- draw = {
+                    --     columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', gap = 1 } },
+                    -- },
+                },
+                ghost_text = {
+                    enabled = true,
+                },
+            },
+
             sources = {
                 completion = {
-                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'nerdfont', 'emoji' },
+                    -- enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'nerdfont', 'emoji' },
+                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep' },
                 },
                 providers = {
                     lsp = { fallback_for = { 'lazydev' } },
                     lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
-                    nerdfont = {
-                        name = 'nerdfont',
-                        module = 'blink.compat.source',
-                        transform_items = function(ctx, items)
-                            -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                            local kind = require('blink.cmp.types').CompletionItemKind.Text
-
-                            for i = 1, #items do
-                                items[i].kind = kind
-                            end
-
-                            return items
-                        end,
+                    ripgrep = {
+                        name = 'Ripgrep',
+                        module = 'blink-ripgrep',
+                        opts = { prefix_min_len = 3, context_size = 5, max_filesize = '1M' },
+                        transform_items = nil,
                     },
-                    emoji = {
-                        name = 'emoji',
-                        module = 'blink.compat.source',
-                        transform_items = function(ctx, items)
-                            -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                            local kind = require('blink.cmp.types').CompletionItemKind.Text
-
-                            for i = 1, #items do
-                                items[i].kind = kind
-                            end
-
-                            return items
-                        end,
-                    },
+                    -- nerdfont = {
+                    --     name = 'nerdfont',
+                    --     module = 'blink.compat.source',
+                    --     transform_items = function(ctx, items)
+                    --         -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+                    --         local kind = require('blink.cmp.types').CompletionItemKind.Text
+                    --
+                    --         for i = 1, #items do
+                    --             items[i].kind = kind
+                    --         end
+                    --
+                    --         return items
+                    --     end,
+                    -- },
+                    -- emoji = {
+                    --     name = 'emoji',
+                    --     module = 'blink.compat.source',
+                    --     transform_items = function(ctx, items)
+                    --         -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+                    --         local kind = require('blink.cmp.types').CompletionItemKind.Text
+                    --
+                    --         for i = 1, #items do
+                    --             items[i].kind = kind
+                    --         end
+                    --
+                    --         return items
+                    --     end,
+                    -- },
                 },
             },
 
-            highlight = {
-                -- sets the fallback highlight groups to nvim-cmp's highlight groups
-                -- useful for when your theme doesn't support blink.cmp
-                -- will be removed in a future release, assuming themes add support
-                use_nvim_cmp_as_default = true,
-            },
             -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
             -- adjusts spacing to ensure icons are aligned
             nerd_font_variant = 'mono',
