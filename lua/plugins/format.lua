@@ -33,6 +33,7 @@ return {
                     zsh = { 'beautysh' },
                     -- proto = { "buf" },
                     -- rust = { "rustfmt" },
+                    rust = { 'rustfmt', lsp_format = 'fallback' },
                     yaml = { 'prettierd' },
                     toml = { 'taplo' },
                     css = { 'prettierd' },
