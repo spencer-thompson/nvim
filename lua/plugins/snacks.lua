@@ -328,6 +328,13 @@ return {
             end,
             desc = 'Toggle Terminal',
         },
+        {
+            '<leader>sh',
+            function()
+                Snacks.notifier.show_history()
+            end,
+            desc = '[S]how [H]istory',
+        },
         --     {
         --         '<c-_>',
         --         function()
