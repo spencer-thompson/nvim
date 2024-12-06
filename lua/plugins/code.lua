@@ -214,11 +214,19 @@ return {
     {
         'rachartier/tiny-inline-diagnostic.nvim',
         name = 'tiny-inline-diagnostic',
-        event = 'LspAttach', -- Or `LspAttach`
+        event = 'VeryLazy', -- Or `LspAttach`
+        priority = 1000,
         config = function()
             require('tiny-inline-diagnostic').setup({
                 hi = {
                     background = 'None',
+                },
+                options = {
+                    multiple_diag_under_cursor = true,
+                    break_line = {
+                        enabled = true,
+                        after = 50,
+                    },
                 },
             })
         end,
