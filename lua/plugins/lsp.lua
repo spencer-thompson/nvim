@@ -138,7 +138,11 @@ return {
                 --         client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
                 --     end,
                 -- },
-                tinymist = {},
+                tinymist = {
+                    on_init = function(client, _)
+                        client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+                    end,
+                },
                 -- rust?
                 -- r = function()
                 --     lspconfig.r_language_server.setup({
