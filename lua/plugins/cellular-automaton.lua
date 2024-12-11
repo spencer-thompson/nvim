@@ -1,13 +1,15 @@
 return {
 
     { -- fancy "make it rain" and other cool effects
-        "Eandrju/cellular-automaton.nvim",
+        'Eandrju/cellular-automaton.nvim',
         name = 'cellular-automaton',
-        event = "VeryLazy",
+        -- event = 'VeryLazy',
+        cmd = 'CellularAutomaton',
+        lazy = true,
         config = function()
-            require("cellular-automaton").register_animation {
+            require('cellular-automaton').register_animation({
                 fps = 50,
-                name = "slide",
+                name = 'slide',
                 update = function(grid)
                     for i = 1, #grid do
                         local prev = grid[i][#grid[i]]
@@ -17,15 +19,15 @@ return {
                     end
                     return true
                 end,
-            }
+            })
 
-            require("cellular-automaton").register_animation {
+            require('cellular-automaton').register_animation({
                 fps = 30,
-                name = "scramble",
+                name = 'scramble',
 
                 update = function(grid)
                     local function is_alphanumeric(c)
-                        return c >= "a" and c <= "z" or c >= "A" and c <= "Z" or c >= "0" and c <= "9"
+                        return c >= 'a' and c <= 'z' or c >= 'A' and c <= 'Z' or c >= '0' and c <= '9'
                     end
 
                     local scramble_word = function(word)
@@ -59,13 +61,13 @@ return {
                     end
                     return true
                 end,
-            }
+            })
 
             local screensaver = function(grid, swapper)
                 local get_character_cols = function(row)
                     local cols = {}
                     for i = 1, #row do
-                        if row[i].char ~= " " then
+                        if row[i].char ~= ' ' then
                             table.insert(cols, i)
                         end
                     end
@@ -85,9 +87,9 @@ return {
                 end
             end
 
-            require("cellular-automaton").register_animation {
+            require('cellular-automaton').register_animation({
                 fps = 50,
-                name = "screensaver",
+                name = 'screensaver',
                 update = function(grid)
                     screensaver(grid, function(prev, i, j)
                         grid[i][j], prev = prev, grid[i][j]
@@ -96,11 +98,11 @@ return {
 
                     return true
                 end,
-            }
+            })
 
-            require("cellular-automaton").register_animation {
+            require('cellular-automaton').register_animation({
                 fps = 50,
-                name = "screensaver-inplace-hl",
+                name = 'screensaver-inplace-hl',
                 update = function(grid)
                     screensaver(grid, function(prev, i, j)
                         grid[i][j].char, prev.char = prev.char, grid[i][j].char
@@ -109,11 +111,11 @@ return {
 
                     return true
                 end,
-            }
+            })
 
-            require("cellular-automaton").register_animation {
+            require('cellular-automaton').register_animation({
                 fps = 50,
-                name = "screensaver-inplace-char",
+                name = 'screensaver-inplace-char',
                 update = function(grid)
                     screensaver(grid, function(prev, i, j)
                         grid[i][j].hl_group, prev.hl_group = prev.hl_group, grid[i][j].hl_group
@@ -121,10 +123,10 @@ return {
                     end)
                     return true
                 end,
-            }
+            })
 
             -- keymaps
-            vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "Make it rain" })
+            vim.keymap.set('n', '<leader>mr', '<cmd>CellularAutomaton make_it_rain<CR>', { desc = 'Make it rain' })
         end,
     },
 }
