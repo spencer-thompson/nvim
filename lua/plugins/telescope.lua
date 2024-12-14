@@ -113,6 +113,7 @@ return {
                 },
                 pickers = {
                     find_files = {
+                        theme = 'ivy',
                         prompt_title = 'All Files',
                         find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
                     },
@@ -129,6 +130,9 @@ return {
                             },
                         },
                     },
+                },
+                extensions = {
+                    fzf = {},
                 },
             })
             -- Enable telescope fzf native, if installed

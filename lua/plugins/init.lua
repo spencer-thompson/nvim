@@ -93,3 +93,5 @@ end, {
         return { 'toggle', 'on', 'off' }
     end,
 })
+
+vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'ModeMsg' })

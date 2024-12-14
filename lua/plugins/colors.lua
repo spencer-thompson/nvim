@@ -132,6 +132,11 @@ return {
                 --     comments = { italic = false },
                 --     keywords = { italic = false },
                 -- },
+                on_highlights = function(hl, c)
+                    hl.TelescopeBorder = {
+                        fg = c.orange,
+                    }
+                end,
                 -- on_highlights = function(hl, c) -- fancy telescope theme
                 --     local prompt = '#2d3149'
                 --     hl.TelescopeNormal = {

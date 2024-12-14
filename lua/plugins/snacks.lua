@@ -67,10 +67,49 @@ return {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
+        dim = {
+            animate = {
+                duration = {
+                    step = 5,
+                    total = 200,
+                },
+            },
+        },
+        -- animage = { duration = 5, fps = 165 },
+        scroll = { enabled = false, animate = { duration = { step = 2, total = 100 } } },
+        indent = {
+            enabled = true,
+            indent = {
+                char = '∙',
+                only_scope = false,
+                only_current = true,
+            },
+            chunk = {
+                enabled = true,
+                char = {
+                    -- corner_top = '┌',
+                    -- corner_bottom = '└',
+                    corner_top = '╭',
+                    corner_bottom = '╰',
+                    horizontal = '─',
+                    vertical = '│',
+                    arrow = '─',
+                },
+            },
+            scope = {
+                enabled = false,
+                char = '∙',
+            },
+        },
+        -- scope = { enabled = true },
+        toggle = { enabled = false },
         bigfile = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
-        statuscolumn = { enabled = false },
+        statuscolumn = {
+            enabled = true,
+            -- right = { 'git' }
+        },
         -- words = { enabled = true },
         dashboard = {
             width = 50,
@@ -258,27 +297,41 @@ return {
         },
     },
     keys = {
-        --     {
-        --         '<leader>un',
-        --         function()
-        --             Snacks.notifier.hide()
-        --         end,
-        --         desc = 'Dismiss All Notifications',
-        --     },
-        --     {
-        --         '<leader>bd',
-        --         function()
-        --             Snacks.bufdelete()
-        --         end,
-        --         desc = 'Delete Buffer',
-        --     },
-        --     {
-        --         '<leader>gg',
-        --         function()
-        --             Snacks.lazygit()
-        --         end,
-        --         desc = 'Lazygit',
-        --     },
+        {
+            '<leader>nn',
+            function()
+                Snacks.notifier.hide()
+            end,
+            desc = 'Dismiss [N]otifications',
+        },
+        {
+            '<leader>nh',
+            function()
+                Snacks.notifier.show_history()
+            end,
+            desc = '[N]otification [H]istory',
+        },
+        -- {
+        --     '<leader>bd',
+        --     function()
+        --         Snacks.bufdelete()
+        --     end,
+        --     desc = 'Delete Buffer',
+        -- },
+        {
+            '<leader>dm',
+            function()
+                Snacks.toggle.dim():toggle()
+            end,
+            desc = 'Toggle Dim',
+        },
+        {
+            '<leader>sc',
+            function()
+                Snacks.scratch()
+            end,
+            desc = '[Sc]ratch Buffer',
+        },
         --     {
         --         '<leader>gb',
         --         function()

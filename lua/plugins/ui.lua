@@ -11,6 +11,7 @@ return {
     {
         'shellRaining/hlchunk.nvim',
         name = 'hlchunk',
+        enabled = false,
         event = { 'BufReadPre', 'BufNewFile' },
         config = function()
             require('hlchunk').setup({
@@ -776,7 +777,7 @@ return {
     {
         'luukvbaal/statuscol.nvim',
         name = 'statuscol',
-        enabled = true,
+        enabled = false,
         event = { 'BufNewFile', 'BufReadPre' },
         -- event = 'VeryLazy',
         opts = function()
