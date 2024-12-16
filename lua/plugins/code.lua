@@ -2,13 +2,14 @@ return {
 
     {
         'saghen/blink.cmp',
-        lazy = true, -- lazy loading handled internally
-        event = { 'VeryLazy', 'InsertEnter' },
+        lazy = false, -- lazy loading handled internally
+        -- event = { 'VeryLazy', 'InsertEnter' },
         -- optional: provides snippets for the snippet source
         dependencies = {
             'rafamadriz/friendly-snippets',
             'saghen/blink.compat',
-            { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep' },
+            -- { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep' },
+            { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg' },
             -- { 'chrisgrieser/cmp-nerdfont', lazy = true },
             -- { 'hrsh7th/cmp-emoji', lazy = true },
         },
@@ -33,6 +34,13 @@ return {
                 -- ['<C-h>'] = { 'show' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
+                -- cmdline = {
+                --     preset = 'default',
+                --     ['<C-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
+                --     -- ['<C-h>'] = { 'show' },
+                --     ['<C-k>'] = { 'select_prev', 'fallback' },
+                --     ['<C-j>'] = { 'select_next', 'fallback' },
+                -- },
                 -- ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 -- ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
             },
@@ -60,11 +68,36 @@ return {
                 providers = {
                     lsp = { fallback_for = { 'lazydev' } },
                     lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
+                    -- ripgrep = {
+                    --     name = 'Ripgrep',
+                    --     module = 'blink-ripgrep',
+                    --     opts = { prefix_min_len = 3, context_size = 5, max_filesize = '1M' },
+                    --     transform_items = nil,
+                    -- },
                     ripgrep = {
+                        module = 'blink-cmp-rg',
                         name = 'Ripgrep',
-                        module = 'blink-ripgrep',
-                        opts = { prefix_min_len = 3, context_size = 5, max_filesize = '1M' },
-                        transform_items = nil,
+                        -- options below are optional, these are the default values
+                        opts = {
+                            -- `min_keyword_length` only determines whether to show completion items in the menu,
+                            -- not whether to trigger a search. And we only has one chance to search.
+                            prefix_min_len = 3,
+                            get_command = function(context, prefix)
+                                return {
+                                    'rg',
+                                    '--no-config',
+                                    '--json',
+                                    '--word-regexp',
+                                    '--ignore-case',
+                                    '--',
+                                    prefix .. '[\\w_-]+',
+                                    vim.fs.root(0, '.git') or vim.fn.getcwd(),
+                                }
+                            end,
+                            get_prefix = function(context)
+                                return context.line:sub(1, context.cursor[2]):match('[%w_-]+$') or ''
+                            end,
+                        },
                     },
                     -- nerdfont = {
                     --     name = 'nerdfont',

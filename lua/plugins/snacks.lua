@@ -108,6 +108,14 @@ return {
         quickfile = { enabled = true },
         statuscolumn = {
             enabled = true,
+            left = function(win, buf)
+                local is_neominimap = vim.bo[buf].filetype == 'neominimap'
+                return is_neominimap and { 'sign' } or { 'mark', 'sign' }
+            end,
+            right = function(win, buf)
+                local is_neominimap = vim.bo[buf].filetype == 'neominimap'
+                return is_neominimap and { 'git' } or { 'fold', 'git' }
+            end,
             -- right = { 'git' }
         },
         -- words = { enabled = true },
