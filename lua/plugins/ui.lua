@@ -435,9 +435,9 @@ return {
                     enabled = false, -- Enable mouse click on minimap
                     auto_switch_focus = false, -- Automatically switch focus to minimap when clicked
                 },
-                buf_filter = function(bufnr)
-                    return not vim.api.nvim_get_option_value('wrap', {})
-                end,
+                -- buf_filter = function(bufnr)
+                --     return not vim.api.nvim_get_option_value('wrap', {})
+                -- end,
                 win_filter = function(winid)
                     return winid == vim.api.nvim_get_current_win()
                 end,

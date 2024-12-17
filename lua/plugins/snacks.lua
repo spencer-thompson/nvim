@@ -334,11 +334,18 @@ return {
             desc = 'Toggle Dim',
         },
         {
-            '<leader>sc',
+            '<leader>sb',
             function()
                 Snacks.scratch()
             end,
             desc = '[Sc]ratch Buffer',
+        },
+        {
+            '<leader>Z',
+            function()
+                Snacks.zen()
+            end,
+            desc = 'Toggle [Z]en Mode',
         },
         --     {
         --         '<leader>gb',

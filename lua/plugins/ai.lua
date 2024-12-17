@@ -21,6 +21,7 @@ return {
     {
         'yetone/avante.nvim',
         event = 'VeryLazy',
+        name = 'avante',
         lazy = true,
         version = false,
         opts = {

@@ -66,9 +66,9 @@ return {
                 { -- V
                     { '<leader>v', desc = 'Select Treesitter Nodes' },
                 },
-                { -- Z
-                    { '<leader>Z', '<cmd>ZenMode<CR>', desc = '[Z]en Mode' },
-                },
+                -- { -- Z
+                --     { '<leader>Z', '<cmd>ZenMode<CR>', desc = '[Z]en Mode' },
+                -- },
             })
         end,
         -- config = function(opts)

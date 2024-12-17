@@ -297,6 +297,7 @@ return {
 
     {
         'mbbill/undotree',
+        lazy = true,
         name = 'undotree',
         event = 'VeryLazy',
         config = function()

@@ -1,4 +1,4 @@
-vim.opt_local.wrap = true
+-- vim.opt_local.wrap = true
 
 -- local group = vim.api.nvim_create_augroup('Golang auto-commands', { clear = true })
 -- vim.api.nvim_create_autocmd('BufWritePre', {
