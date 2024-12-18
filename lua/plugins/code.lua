@@ -2,7 +2,7 @@ return {
 
     {
         'saghen/blink.cmp',
-        lazy = false, -- lazy loading handled internally
+        lazy = true, -- lazy loading handled internally
         -- event = { 'VeryLazy', 'InsertEnter' },
         -- optional: provides snippets for the snippet source
         dependencies = {

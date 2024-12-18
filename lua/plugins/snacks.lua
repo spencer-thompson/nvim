@@ -69,8 +69,9 @@ return {
         -- refer to the configuration section below
         dim = {
             animate = {
+                easing = 'outQuart',
                 duration = {
-                    step = 5,
+                    step = 10,
                     total = 200,
                 },
             },
@@ -79,6 +80,15 @@ return {
         scroll = { enabled = false, animate = { duration = { step = 2, total = 100 } } },
         indent = {
             enabled = true,
+            animate = {
+                -- enabled = vim.fn.has('nvim-0.10') == 1,
+                style = 'out',
+                easing = 'linear',
+                duration = {
+                    step = 15, -- ms per step
+                    total = 500, -- maximum duration
+                },
+            },
             indent = {
                 char = '∙',
                 only_scope = false,
@@ -86,6 +96,7 @@ return {
             },
             chunk = {
                 enabled = true,
+                hl = 'Identifier',
                 char = {
                     -- corner_top = '┌',
                     -- corner_bottom = '└',
@@ -102,7 +113,7 @@ return {
             },
         },
         -- scope = { enabled = true },
-        toggle = { enabled = false },
+        -- toggle = { enabled = false },
         bigfile = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
@@ -118,7 +129,7 @@ return {
             end,
             -- right = { 'git' }
         },
-        -- words = { enabled = true },
+        words = { enabled = true },
         dashboard = {
             width = 50,
             pane_gap = 10,
@@ -327,6 +338,20 @@ return {
         --     desc = 'Delete Buffer',
         -- },
         {
+            '<leader>gg',
+            function()
+                Snacks.lazygit()
+            end,
+            desc = 'Lazygit',
+        },
+        {
+            '<leader>gb',
+            function()
+                Snacks.git.blame_line()
+            end,
+            desc = 'Git Blame Line',
+        },
+        {
             '<leader>dm',
             function()
                 Snacks.toggle.dim():toggle()
@@ -368,13 +393,13 @@ return {
         --         end,
         --         desc = 'Lazygit Current File History',
         --     },
-        --     {
-        --         '<leader>gl',
-        --         function()
-        --             Snacks.lazygit.log()
-        --         end,
-        --         desc = 'Lazygit Log (cwd)',
-        --     },
+        {
+            '<leader>gl',
+            function()
+                Snacks.lazygit.log()
+            end,
+            desc = 'Lazygit Log (cwd)',
+        },
         --     {
         --         '<leader>cR',
         --         function()
@@ -394,7 +419,7 @@ return {
             function()
                 Snacks.terminal()
             end,
-            desc = 'Toggle Terminal',
+            desc = '[T]oggle [T]erminal',
         },
         {
             '<leader>sh',
@@ -410,22 +435,22 @@ return {
         --         end,
         --         desc = 'which_key_ignore',
         --     },
-        --     {
-        --         ']]',
-        --         function()
-        --             Snacks.words.jump(vim.v.count1)
-        --         end,
-        --         desc = 'Next Reference',
-        --         mode = { 'n', 't' },
-        --     },
-        --     {
-        --         '[[',
-        --         function()
-        --             Snacks.words.jump(-vim.v.count1)
-        --         end,
-        --         desc = 'Prev Reference',
-        --         mode = { 'n', 't' },
-        --     },
+        {
+            ']]',
+            function()
+                Snacks.words.jump(vim.v.count1)
+            end,
+            desc = 'Next Reference',
+            mode = { 'n', 't' },
+        },
+        {
+            '[[',
+            function()
+                Snacks.words.jump(-vim.v.count1)
+            end,
+            desc = 'Prev Reference',
+            mode = { 'n', 't' },
+        },
         --     {
         --         '<leader>N',
         --         desc = 'Neovim News',
