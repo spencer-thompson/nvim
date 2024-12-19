@@ -45,6 +45,11 @@ return {
 
             require('mini.comment').setup({})
             require('mini.cursorword').setup({})
+            require('mini.hipatterns').setup({
+                highlighters = {
+                    hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+                },
+            })
             require('mini.move').setup({})
             -- require('mini.operators').setup({})
             -- require('mini.sessions').setup({})

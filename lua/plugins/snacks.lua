@@ -129,7 +129,7 @@ return {
             end,
             -- right = { 'git' }
         },
-        words = { enabled = true },
+        -- words = { enabled = true },
         dashboard = {
             width = 50,
             pane_gap = 10,

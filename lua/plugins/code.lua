@@ -10,7 +10,7 @@ return {
             'saghen/blink.compat',
             -- { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep' },
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg' },
-            -- { 'chrisgrieser/cmp-nerdfont', lazy = true },
+            { 'chrisgrieser/cmp-nerdfont', lazy = true },
             -- { 'hrsh7th/cmp-emoji', lazy = true },
         },
 
@@ -63,7 +63,7 @@ return {
             sources = {
                 completion = {
                     -- enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'nerdfont', 'emoji' },
-                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep' },
+                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep', 'nerdfont' },
                 },
                 providers = {
                     lsp = { fallback_for = { 'lazydev' } },
@@ -99,20 +99,20 @@ return {
                             end,
                         },
                     },
-                    -- nerdfont = {
-                    --     name = 'nerdfont',
-                    --     module = 'blink.compat.source',
-                    --     transform_items = function(ctx, items)
-                    --         -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                    --         local kind = require('blink.cmp.types').CompletionItemKind.Text
-                    --
-                    --         for i = 1, #items do
-                    --             items[i].kind = kind
-                    --         end
-                    --
-                    --         return items
-                    --     end,
-                    -- },
+                    nerdfont = {
+                        name = 'nerdfont',
+                        module = 'blink.compat.source',
+                        transform_items = function(ctx, items)
+                            -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+                            local kind = require('blink.cmp.types').CompletionItemKind.Text
+
+                            for i = 1, #items do
+                                items[i].kind = kind
+                            end
+
+                            return items
+                        end,
+                    },
                     -- emoji = {
                     --     name = 'emoji',
                     --     module = 'blink.compat.source',
