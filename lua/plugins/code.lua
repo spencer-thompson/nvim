@@ -61,12 +61,21 @@ return {
             },
 
             sources = {
-                completion = {
-                    -- enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'nerdfont', 'emoji' },
-                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep', 'nerdfont' },
+                default = {
+                    'lsp',
+                    'path',
+                    'snippets',
+                    'buffer',
+                    'lazydev',
+                    'ripgrep',
+                    'nerdfont',
                 },
+                -- completion = {
+                --     -- enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'nerdfont', 'emoji' },
+                --     enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep', 'nerdfont' },
+                -- },
                 providers = {
-                    lsp = { fallback_for = { 'lazydev' } },
+                    lsp = { fallbacks = { 'lazydev' } },
                     lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
                     -- ripgrep = {
                     --     name = 'Ripgrep',
@@ -130,25 +139,35 @@ return {
                 },
             },
 
-            -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-            -- adjusts spacing to ensure icons are aligned
-            nerd_font_variant = 'mono',
-
-            windows = {
-                autocomplete = {
-                    -- draw = "reversed",
-                    winblend = vim.o.pumblend,
-                },
-                documentation = {
-                    auto_show = true,
-                },
-                ghost_text = {
-                    enabled = true,
-                },
+            appearance = {
+                -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+                -- Useful for when your theme doesn't support blink.cmp
+                -- Will be removed in a future release
+                use_nvim_cmp_as_default = true,
+                -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+                -- Adjusts spacing to ensure icons are aligned
+                nerd_font_variant = 'mono',
             },
 
+            -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- adjusts spacing to ensure icons are aligned
+            -- nerd_font_variant = 'mono',
+
+            -- windows = {
+            --     autocomplete = {
+            --         -- draw = "reversed",
+            --         winblend = vim.o.pumblend,
+            --     },
+            --     documentation = {
+            --         auto_show = true,
+            --     },
+            --     ghost_text = {
+            --         enabled = true,
+            --     },
+            -- },
+
             -- experimental auto-brackets support
-            accept = { auto_brackets = { enabled = true } },
+            -- accept = { auto_brackets = { enabled = true } },
 
             -- experimental signature help support
             -- trigger = { signature_help = { enabled = true } },
