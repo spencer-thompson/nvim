@@ -11,7 +11,6 @@ return {
             -- { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep' },
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg' },
             { 'chrisgrieser/cmp-nerdfont', lazy = true },
-            -- { 'hrsh7th/cmp-emoji', lazy = true },
         },
 
         -- use a release tag to download pre-built binaries
@@ -100,19 +99,25 @@ return {
                     'ripgrep',
                     'nerdfont',
                 },
-                -- completion = {
-                --     -- enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'nerdfont', 'emoji' },
-                --     enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep', 'nerdfont' },
-                -- },
+                cmdline = function()
+                    local type = vim.fn.getcmdtype()
+                    -- Search forward and backward
+                    if type == '/' or type == '?' then
+                        return { 'buffer' }
+                    end
+                    -- Commands
+                    if type == ':' then
+                        return { 'cmdline' }
+                    end
+                    return {}
+                end,
                 providers = {
                     lsp = { fallbacks = { 'lazydev' } },
-                    lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
-                    -- ripgrep = {
-                    --     name = 'Ripgrep',
-                    --     module = 'blink-ripgrep',
-                    --     opts = { prefix_min_len = 3, context_size = 5, max_filesize = '1M' },
-                    --     transform_items = nil,
-                    -- },
+                    lazydev = {
+                        name = 'LazyDev',
+                        module = 'lazydev.integrations.blink',
+                        score_offset = 100,
+                    },
                     ripgrep = {
                         module = 'blink-cmp-rg',
                         name = 'Ripgrep',
@@ -152,20 +157,6 @@ return {
                             return items
                         end,
                     },
-                    -- emoji = {
-                    --     name = 'emoji',
-                    --     module = 'blink.compat.source',
-                    --     transform_items = function(ctx, items)
-                    --         -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                    --         local kind = require('blink.cmp.types').CompletionItemKind.Text
-                    --
-                    --         for i = 1, #items do
-                    --             items[i].kind = kind
-                    --         end
-                    --
-                    --         return items
-                    --     end,
-                    -- },
                 },
             },
 

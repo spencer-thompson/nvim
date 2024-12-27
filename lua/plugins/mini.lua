@@ -11,7 +11,8 @@ return {
                 n_lines = 300,
                 custom_textobjects = {
                     f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
-                    -- Whole buffer.
+                    c = require('mini.ai').gen_spec.treesitter({ a = '@comment.outer', i = '@comment.inner' }, {}),
+                    -- Whole buffer
                     g = function()
                         local from = { line = 1, col = 1 }
                         local to = {

@@ -117,6 +117,12 @@ return {
                         prompt_title = 'All Files',
                         find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
                     },
+                    live_grep = {
+                        theme = 'ivy',
+                    },
+                    help_tags = {
+                        theme = 'ivy',
+                    },
                     current_buffer_fuzzy_find = {
                         prompt_title = 'Current Buffer',
                     },
