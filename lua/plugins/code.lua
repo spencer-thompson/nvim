@@ -2,8 +2,8 @@ return {
 
     {
         'saghen/blink.cmp',
-        lazy = true, -- lazy loading handled internally
-        -- event = { 'VeryLazy', 'InsertEnter' },
+        lazy = true,
+        event = 'InsertEnter',
         -- optional: provides snippets for the snippet source
         dependencies = {
             'rafamadriz/friendly-snippets',
@@ -20,6 +20,12 @@ return {
         -- build = 'cargo build --release',
         -- If you use nix, you can build from source using latest nightly rust with:
         -- build = 'nix run .#build-plugin',
+
+        opts_extend = {
+            'sources.completion.enabled_providers',
+            'sources.compat',
+            'sources.default',
+        },
 
         opts = {
             -- 'default' for mappings similar to built-in completion
@@ -47,10 +53,34 @@ return {
 
             completion = {
 
+                accept = {
+                    -- experimental auto-brackets support
+                    auto_brackets = {
+                        enabled = true,
+                    },
+                },
+
                 menu = {
                     max_height = 20,
-                    winblend = 20,
+                    winblend = vim.o.pumblend,
                     scrolloff = 5,
+                    draw = {
+                        treesitter = { 'lsp' },
+                        components = {
+                            kind_icon = {
+                                ellipsis = false,
+                                text = function(ctx)
+                                    local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                                    return kind_icon
+                                end,
+                                -- Optionally, you may also use the highlights from mini.icons
+                                highlight = function(ctx)
+                                    local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                                    return hl
+                                end,
+                            },
+                        },
+                    },
                     -- draw = {
                     --     columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', gap = 1 } },
                     -- },
@@ -143,34 +173,11 @@ return {
                 -- Sets the fallback highlight groups to nvim-cmp's highlight groups
                 -- Useful for when your theme doesn't support blink.cmp
                 -- Will be removed in a future release
-                use_nvim_cmp_as_default = true,
+                use_nvim_cmp_as_default = false,
                 -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
                 -- Adjusts spacing to ensure icons are aligned
                 nerd_font_variant = 'mono',
             },
-
-            -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-            -- adjusts spacing to ensure icons are aligned
-            -- nerd_font_variant = 'mono',
-
-            -- windows = {
-            --     autocomplete = {
-            --         -- draw = "reversed",
-            --         winblend = vim.o.pumblend,
-            --     },
-            --     documentation = {
-            --         auto_show = true,
-            --     },
-            --     ghost_text = {
-            --         enabled = true,
-            --     },
-            -- },
-
-            -- experimental auto-brackets support
-            -- accept = { auto_brackets = { enabled = true } },
-
-            -- experimental signature help support
-            -- trigger = { signature_help = { enabled = true } },
         },
     },
 
