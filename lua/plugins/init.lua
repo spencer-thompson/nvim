@@ -25,12 +25,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup( -- load lazy
     { -- load plugins
-        require('plugins.actions'),
         require('plugins.ai'),
         require('plugins.cellular-automaton'),
         require('plugins.code'),
         require('plugins.colors'),
-        require('plugins.dashboard'),
         require('plugins.format'),
         require('plugins.git'),
         require('plugins.language'),

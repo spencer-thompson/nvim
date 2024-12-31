@@ -9,47 +9,6 @@ end
 return {
 
     {
-        'shellRaining/hlchunk.nvim',
-        name = 'hlchunk',
-        enabled = false,
-        event = { 'BufReadPre', 'BufNewFile' },
-        config = function()
-            require('hlchunk').setup({
-                chunk = {
-                    enable = true,
-                    chars = {
-                        horizontal_line = '─',
-                        vertical_line = '│',
-                        -- left_top = '┌',
-                        left_top = '╭',
-                        -- left_bottom = '└',
-                        left_bottom = '╰',
-                        right_arrow = '─',
-                    },
-                    style = '#3b4261',
-                    max_file_size = 1024 * 1024,
-                    duration = 200,
-                    delay = 50,
-                },
-                -- indent = { enable = false },
-                blank = {
-                    enable = true,
-                    chars = {
-                        -- ' ',
-                        '.',
-                        '⁚',
-                        -- '⁖',
-                        -- '⁘',
-                        -- '⁙',
-                    },
-                    style = '#1a1b26',
-                    -- style = { vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Whitespace')), 'fg', 'gui'), '' },
-                },
-            })
-        end,
-    },
-
-    {
         'siduck/showkeys',
         cmd = 'ShowkeysToggle',
         lazy = true,
@@ -509,6 +468,7 @@ return {
         name = 'codesnap',
         build = 'make',
         event = 'VeryLazy',
+        enabled = false,
         keys = {
             { '<leader>sc', '<cmd>CodeSnap<cr>', mode = 'x', desc = 'Save selected code snapshot into clipboard' },
             { '<leader>sa', '<cmd>CodeSnapASCII<cr>', mode = 'x', desc = 'Save selected code ASCII into clipboard' },
@@ -617,27 +577,6 @@ return {
     --     event = 'VeryLazy',
     --     dependencies = { 'kevinhwang91/promise-async' },
     -- },
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        main = 'ibl',
-        enabled = false,
-        name = 'indent-blankline',
-        event = 'VeryLazy',
-        -- For setting shiftwidth and tabstop automatically.
-        dependencies = 'tpope/vim-sleuth',
-        opts = {
-            indent = {
-                char = '│',
-            },
-            scope = {
-                show_start = false,
-                show_end = false,
-            },
-            exclude = {
-                filetypes = { 'OverseerForm' },
-            },
-        },
-    },
 
     {
         'folke/noice.nvim',

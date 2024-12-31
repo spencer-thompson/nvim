@@ -172,6 +172,38 @@ return {
         },
     },
 
+    { -- make TODO + ":" a fancy colored comment.
+        'folke/todo-comments.nvim',
+        name = 'todo-comments',
+        event = 'VeryLazy',
+        dependecies = { 'nvim-lua/plenary.nvim', name = 'plenary' },
+        opts = {
+            keywords = {
+                DONE = { icon = ' ', color = 'info' },
+                TODO = { icon = '󰵚 ', color = 'info' },
+            },
+            merge_keywords = true,
+        },
+        keys = {
+            -- keymaps
+            {
+                ']t',
+                function()
+                    require('todo-comments').jump_next()
+                end,
+                desc = 'Next todo comment',
+            },
+            {
+                '[t',
+                function()
+                    require('todo-comments').jump_prev()
+                end,
+                desc = 'Previous todo comment',
+            },
+        },
+        config = true,
+    },
+
     {
         'hrsh7th/nvim-cmp',
         -- lazy = false,
@@ -322,5 +354,36 @@ return {
         end,
     },
 
+    {
+        'kylechui/nvim-surround',
+        enabled = true,
+        name = 'surround',
+        version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        event = 'VeryLazy',
+        config = function()
+            require('nvim-surround').setup({
+                -- Configuration here, or leave empty to use defaults
+                keymaps = {
+                    insert = false,
+                    insert_line = false,
+                    normal = 'ys',
+                    normal_cur = 'yss',
+                    normal_line = 'yS',
+                    normal_cur_line = 'ySS',
+                    visual = 'S',
+                    visual_line = false,
+                },
+            })
+        end,
+    },
+
+    {
+        'windwp/nvim-autopairs',
+        name = 'autopairs',
+        event = 'InsertEnter',
+        opts = {}, -- this is equalent to setup({}) function
+    },
+
     { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
+    { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
 }

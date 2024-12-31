@@ -1,3 +1,5 @@
+-- Currently unused / just in case I need nvim-cmp
+
 -- completion
 local cmp = require('cmp')
 local lspkind = require('lspkind')
