@@ -9,6 +9,29 @@ end
 return {
 
     {
+        'mrjones2014/smart-splits.nvim',
+        name = 'smart-splits',
+        event = 'VeryLazy',
+        config = function()
+            vim.keymap.set('n', '<C-left>', require('smart-splits').resize_left, { desc = 'Resize Left' })
+            vim.keymap.set('n', '<C-down>', require('smart-splits').resize_down, { desc = 'Resize Down' })
+            vim.keymap.set('n', '<C-up>', require('smart-splits').resize_up, { desc = 'Resize Up' })
+            vim.keymap.set('n', '<C-right>', require('smart-splits').resize_right, { desc = 'Resize Right' })
+            -- moving between splits
+            vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { desc = 'Go Left' })
+            vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { desc = 'Go Down' })
+            vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { desc = 'Go Up' })
+            vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { desc = 'Go Right' })
+            vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous, { desc = 'Go Previous' })
+            -- swapping buffers between windows
+            -- vim.keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
+            -- vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
+            -- vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
+            -- vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
+        end,
+    },
+
+    {
         'siduck/showkeys',
         cmd = 'ShowkeysToggle',
         lazy = true,
@@ -376,6 +399,7 @@ return {
             vim.g.neominimap = {
                 auto_enable = true,
                 layout = 'float',
+                delay = 100,
                 float = {
                     -- margin = {
                     --     right = 0,
