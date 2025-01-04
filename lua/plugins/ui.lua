@@ -430,6 +430,8 @@ return {
                 exclude_filetypes = {
                     'dashboard',
                     'help',
+                    'zsh',
+                    'kitty-scrollback',
                 },
                 exclude_buftypes = {
                     'nofile',
