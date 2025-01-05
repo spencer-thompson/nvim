@@ -62,5 +62,6 @@ require('lazy').setup( -- load lazy
 )
 
 require('plugins.commands')
+require('plugins.autocmds')
 
 vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'ModeMsg' })
