@@ -399,7 +399,7 @@ return {
             vim.g.neominimap = {
                 auto_enable = true,
                 layout = 'float',
-                delay = 100,
+                delay = 1000,
                 float = {
                     -- margin = {
                     --     right = 0,
