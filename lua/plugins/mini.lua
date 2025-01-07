@@ -10,6 +10,10 @@ return {
             require('mini.ai').setup({
                 n_lines = 300,
                 custom_textobjects = {
+                    o = require('mini.ai').gen_spec.treesitter({ -- code block
+                        a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+                        i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+                    }),
                     f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
                     c = require('mini.ai').gen_spec.treesitter({ a = '@comment.outer', i = '@comment.inner' }, {}),
                     -- Whole buffer

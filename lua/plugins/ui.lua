@@ -41,6 +41,28 @@ return {
             -- more opts
         },
     },
+    {
+        'alanfortlink/animatedbg.nvim',
+        name = 'animatedbg',
+        lazy = true,
+        keys = {
+            {
+                '<leader>a',
+                function()
+                    require('animatedbg-nvim').play({ animation = 'fireworks' })
+                end,
+                desc = 'Animated Background',
+            },
+        },
+        config = function()
+            require('animatedbg-nvim').setup({
+                fps = 165, -- default
+            })
+            -- vim.keymap.set('n', '<leader>a', function()
+            --     require('animatedbg-nvim').play({ animation = 'fireworks' })
+            -- end, { desc = 'Animated Background' })
+        end,
+    },
 
     {
         'Bekaboo/dropbar.nvim',
