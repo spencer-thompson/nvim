@@ -123,6 +123,7 @@ return {
                     ripgrep = {
                         module = 'blink-cmp-rg',
                         name = 'Ripgrep',
+                        score_offset = -1,
                         -- options below are optional, these are the default values
                         opts = {
                             -- `min_keyword_length` only determines whether to show completion items in the menu,
