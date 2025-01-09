@@ -16,6 +16,8 @@ return {
                     }),
                     f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
                     c = require('mini.ai').gen_spec.treesitter({ a = '@comment.outer', i = '@comment.inner' }, {}),
+                    ['$'] = { '%$%s*().-()%s*%$' },
+                    -- ['$'] = { { '%$' }, '^().*()$' },
                     -- Whole buffer
                     g = function()
                         local from = { line = 1, col = 1 }
@@ -63,6 +65,13 @@ return {
                     toggle = 'gS',
                     split = 'gs',
                     -- join = 'gj',
+                },
+            })
+            local gen_loader = require('mini.snippets').gen_loader
+            require('mini.snippets').setup({
+                snippets = {
+                    gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+                    gen_loader.from_lang(),
                 },
             })
             -- require('mini.surround').setup({

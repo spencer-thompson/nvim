@@ -65,20 +65,20 @@ return {
                     scrolloff = 5,
                     draw = {
                         treesitter = { 'lsp' },
-                        -- components = {
-                        --     kind_icon = {
-                        --         ellipsis = false,
-                        --         text = function(ctx)
-                        --             local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                        --             return kind_icon
-                        --         end,
-                        --         -- Optionally, you may also use the highlights from mini.icons
-                        --         highlight = function(ctx)
-                        --             local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                        --             return hl
-                        --         end,
-                        --     },
-                        -- },
+                        components = {
+                            kind_icon = {
+                                ellipsis = false,
+                                -- text = function(ctx)
+                                --     local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                                --     return kind_icon
+                                -- end,
+                                -- Optionally, you may also use the highlights from mini.icons
+                                -- highlight = function(ctx)
+                                --     local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                                --     return hl
+                                -- end,
+                            },
+                        },
                     },
                     -- draw = {
                     --     columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', gap = 1 } },
@@ -88,6 +88,8 @@ return {
                     enabled = true,
                 },
             },
+
+            snippets = { preset = 'mini_snippets' },
 
             sources = {
                 default = {
