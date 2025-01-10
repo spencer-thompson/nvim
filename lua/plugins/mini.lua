@@ -1,10 +1,9 @@
 return {
 
-    {
+    { -- This is a bunch of super helpful and basic stuff
         'echasnovski/mini.nvim',
         name = 'mini',
         version = false,
-        -- lazy = false,
         event = 'VimEnter',
         config = function()
             require('mini.ai').setup({
@@ -16,8 +15,9 @@ return {
                     }),
                     f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
                     c = require('mini.ai').gen_spec.treesitter({ a = '@comment.outer', i = '@comment.inner' }, {}),
+
+                    -- Dollar signs for markdown and typst
                     ['$'] = { '%$%s*().-()%s*%$' },
-                    -- ['$'] = { { '%$' }, '^().*()$' },
                     -- Whole buffer
                     g = function()
                         local from = { line = 1, col = 1 }
@@ -32,13 +32,6 @@ return {
                 silent = true,
                 -- Don't use the previous or next text object.
                 search_method = 'cover_or_next',
-                -- mappings = {
-                --     -- Disable next/last variants.
-                --     around_next = '',
-                --     inside_next = '',
-                --     around_last = '',
-                --     inside_last = '',
-                -- },
             })
             require('mini.align').setup({
                 silent = false,
@@ -67,23 +60,23 @@ return {
                     -- join = 'gj',
                 },
             })
-            local gen_loader = require('mini.snippets').gen_loader
-            require('mini.snippets').setup({
-                mappings = {
-                    -- Expand snippet at cursor position. Created globally in Insert mode.
-                    expand = '<C-l>',
-
-                    -- Interact with default `expand.insert` session.
-                    -- Created for the duration of active session(s)
-                    jump_next = '<C-l>',
-                    jump_prev = '<C-h>',
-                    stop = '<C-c>',
-                },
-                snippets = {
-                    gen_loader.from_file('~/.config/nvim/snippets/global.json'),
-                    gen_loader.from_lang(),
-                },
-            })
+            -- local gen_loader = require('mini.snippets').gen_loader
+            -- require('mini.snippets').setup({
+            --     mappings = {
+            --         -- Expand snippet at cursor position. Created globally in Insert mode.
+            --         expand = '<C-l>',
+            --
+            --         -- Interact with default `expand.insert` session.
+            --         -- Created for the duration of active session(s)
+            --         jump_next = '<C-l>',
+            --         jump_prev = '<C-h>',
+            --         stop = '<C-c>',
+            --     },
+            --     snippets = {
+            --         gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+            --         gen_loader.from_lang(),
+            --     },
+            -- })
             -- require('mini.surround').setup({
             --     mappings = {
             --         add = 'ys', -- Add surrounding in Normal and Visual modes

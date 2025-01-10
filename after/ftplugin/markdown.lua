@@ -1,7 +1,7 @@
 -- local options
 vim.opt_local.shiftwidth = 2
+vim.opt_local.tabstop = 2
 vim.opt_local.wrap = false
--- vim.opt_local.ff = 'unix' -- remove?
 
 vim.api.nvim_buf_set_var(0, 'active_preview', false)
 

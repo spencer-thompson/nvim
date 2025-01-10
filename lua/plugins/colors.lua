@@ -1,11 +1,13 @@
 -- Currently my running theme is tokyonight-night
 -- Just uncomment / comment to change startup theme
+-- These are just a bunch of colorschemes
 
 return {
 
     {
         'tiagovla/tokyodark.nvim',
         name = 'tokyodark',
+        enabled = false,
         opts = {
             -- custom options here
             transparent_background = true,
@@ -117,7 +119,6 @@ return {
             require('tokyonight').setup({
                 style = 'night',
                 plugins = {
-                    -- dashboard = true,
                     auto = true,
                 },
                 transparent = true,
@@ -132,41 +133,11 @@ return {
                 --     comments = { italic = false },
                 --     keywords = { italic = false },
                 -- },
-                on_highlights = function(hl, c)
+                on_highlights = function(hl, c) -- change telescope border color
                     hl.TelescopeBorder = {
                         fg = c.orange,
                     }
                 end,
-                -- on_highlights = function(hl, c) -- fancy telescope theme
-                --     local prompt = '#2d3149'
-                --     hl.TelescopeNormal = {
-                --         bg = c.bg_dark,
-                --         fg = c.fg_dark,
-                --     }
-                --     hl.TelescopeBorder = {
-                --         bg = c.bg_dark,
-                --         fg = c.bg_dark,
-                --     }
-                --     hl.TelescopePromptNormal = {
-                --         bg = prompt,
-                --     }
-                --     hl.TelescopePromptBorder = {
-                --         bg = prompt,
-                --         fg = prompt,
-                --     }
-                --     hl.TelescopePromptTitle = {
-                --         bg = prompt,
-                --         fg = prompt,
-                --     }
-                --     hl.TelescopePreviewTitle = {
-                --         bg = c.bg_dark,
-                --         fg = c.bg_dark,
-                --     }
-                --     hl.TelescopeResultsTitle = {
-                --         bg = c.bg_dark,
-                --         fg = c.bg_dark,
-                --     }
-                -- end,
             })
             vim.cmd([[ set background=dark ]])
             vim.cmd([[ colorscheme tokyonight-night ]])

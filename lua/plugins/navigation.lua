@@ -1,37 +1,24 @@
 return {
 
-    {
+    { -- vscode style file browser, I don't use anymore
         'nvim-neo-tree/neo-tree.nvim',
         name = 'neo-tree',
         branch = 'v3.x',
         event = 'VeryLazy',
+        enabled = false,
         dependencies = {
             { 'nvim-lua/plenary.nvim', name = 'plenary' },
             -- { 'nvim-tree/nvim-web-devicons' }, -- not strictly required, but recommended
             { 'MunifTanjim/nui.nvim', name = 'nui' },
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
-        -- config = function()
-        -- require('neo-tree').setup({
-        --     close_if_last_window = true,
-        --     sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },
-        --     -- default_component_configs = {
-        --     --     indent = {
-        --     --         indent_size = 4,
-        --     --     }
-        --     -- }
-        -- })
-        -- end,
     },
 
-    {
+    { -- This is for selecting treesitter nodes
         'aaronik/treewalker.nvim',
-
         enabled = false,
         name = 'treewalker',
-        -- The following options are the defaults.
-        -- Treewalker aims for sane defaults, so these are each individually optional,
-        -- and setup() does not need to be called, so the whole opts block is optional as well.
+        -- defaults
         opts = {
             -- Whether to briefly highlight the node after jumping to it
             highlight = true,
@@ -70,7 +57,7 @@ return {
         end,
     },
 
-    {
+    { -- quick switching between buffers
         'leath-dub/snipe.nvim',
         name = 'snipe',
         enabled = false,
@@ -85,26 +72,6 @@ return {
             },
         },
         opts = {},
-    },
-
-    {
-        'chentoast/marks.nvim',
-        enabled = false,
-        name = 'marks',
-        event = 'VeryLazy',
-        opts = {
-            default_mappings = true,
-        },
-    },
-
-    {
-        'stevearc/oil.nvim',
-        name = 'oil',
-        enabled = false,
-        event = 'VeryLazy',
-        opts = {},
-        -- Optional dependencies
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
 
     {
@@ -162,6 +129,7 @@ return {
             },
         },
     },
+
     {
         'christoomey/vim-tmux-navigator',
         name = 'tmux-navigator',

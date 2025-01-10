@@ -1,5 +1,5 @@
 return {
-    {
+    { -- autoforamatting | must be setup with :Mason
         'stevearc/conform.nvim',
         name = 'conform',
         event = { 'BufReadPre', 'BufNewFile' },
@@ -39,7 +39,7 @@ return {
                     css = { 'prettierd' },
                     scss = { 'prettierd' },
                 },
-                format_on_save = {
+                format_on_save = { -- must have
                     async = false,
                     lsp_fallback = true,
                     timeout_ms = 500,

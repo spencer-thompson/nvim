@@ -8,7 +8,7 @@ end
 
 return {
 
-    {
+    { -- better moving between splits, and resizing
         'mrjones2014/smart-splits.nvim',
         name = 'smart-splits',
         event = 'VeryLazy',
@@ -31,7 +31,7 @@ return {
         end,
     },
 
-    {
+    { -- fancy way to show the keys I am typing
         'siduck/showkeys',
         cmd = 'ShowkeysToggle',
         lazy = true,
@@ -41,9 +41,10 @@ return {
             -- more opts
         },
     },
-    {
+    { -- animated background
         'alanfortlink/animatedbg.nvim',
         name = 'animatedbg',
+        enabled = false,
         lazy = true,
         keys = {
             {
@@ -58,9 +59,6 @@ return {
             require('animatedbg-nvim').setup({
                 fps = 165, -- default
             })
-            -- vim.keymap.set('n', '<leader>a', function()
-            --     require('animatedbg-nvim').play({ animation = 'fireworks' })
-            -- end, { desc = 'Animated Background' })
         end,
     },
 
@@ -76,10 +74,6 @@ return {
             build = 'make',
         },
         opts = {},
-        -- config = function ()
-        --
-        --
-        -- end
     },
 
     {
@@ -148,8 +142,6 @@ return {
                         winbar = 1000,
                     },
                 },
-
-                --[[ BAR FOR EACH WINDOW ]]
 
                 sections = {
                     lualine_a = {
@@ -262,7 +254,7 @@ return {
                             cond = require('lazy.status').has_updates,
                         },
                         {
-                            lsp_servers,
+                            lsp_servers, -- current attached lsp servers
                         },
                     },
                     lualine_z = {
@@ -275,13 +267,12 @@ return {
                     },
                 },
 
-                -- extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'toggleterm', 'man' },
                 extensions = { 'neo-tree', 'lazy', 'fzf', 'fugitive', 'mason', 'trouble', 'man' },
             })
         end,
     },
 
-    {
+    { -- vscode style tab to show buffers
         'akinsho/bufferline.nvim',
         name = 'bufferline',
         version = '*',
@@ -332,7 +323,7 @@ return {
         end,
     },
 
-    {
+    { -- one of my favorite plugins, this shows the minimap on the side
         'Isrothy/neominimap.nvim',
         -- enabled = false,
         name = 'neominimap',
@@ -423,9 +414,6 @@ return {
                 layout = 'float',
                 delay = 1000,
                 float = {
-                    -- margin = {
-                    --     right = 0,
-                    -- },
                     window_border = 'none',
                     minimap_width = 18,
                     z_index = 21,
@@ -440,15 +428,9 @@ return {
                     enabled = false, -- Enable mouse click on minimap
                     auto_switch_focus = false, -- Automatically switch focus to minimap when clicked
                 },
-                -- buf_filter = function(bufnr)
-                --     return not vim.api.nvim_get_option_value('wrap', {})
-                -- end,
                 win_filter = function(winid)
                     return winid == vim.api.nvim_get_current_win()
                 end,
-                -- winopt = function(wo)
-                -- wo.statuscolumn = '%!v:lua.MyStatusCol()'
-                -- end,
                 exclude_filetypes = {
                     'dashboard',
                     'help',
@@ -482,32 +464,8 @@ return {
                 },
             }
 
-            -- require('neominimap').setup()
-
             vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })
             vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })
-        end,
-    },
-
-    {
-        'OXY2DEV/markview.nvim',
-        lazy = false,
-        enabled = false,
-        config = function()
-            require('markview').setup({
-                modes = { 'n', 'i', 'no', 'c' },
-                hybrid_modes = { 'i' },
-
-                -- This is nice to have
-                callbacks = {
-                    on_enable = function(_, win)
-                        vim.wo[win].conceallevel = 2
-                        vim.wo[win].concealcursor = 'nc'
-                    end,
-                },
-            })
-
-            vim.keymap.set('n', '<leader>mv', '<cmd>Markview<CR>', { desc = 'Render Markdown' })
         end,
     },
 
@@ -581,52 +539,7 @@ return {
         },
     },
 
-    {
-        'xiyaowong/nvim-transparent',
-        name = 'transparent',
-        enabled = false,
-        event = 'VimEnter',
-        config = function()
-            require('transparent').setup({
-                extra_groups = {
-                    'normalfloat',
-                    'neotreenormal',
-                    -- 'dashboardheader',
-                    --"dashboardfooter",
-                    'treesittercontext',
-                    'floattitle',
-                    'floatborder',
-                    'title',
-                }, -- mason, lazy, lspinfo
-            })
-            require('transparent').clear_prefix('dashboard') -- handles dashboard
-            require('transparent').clear_prefix('whichkey') -- handles which-key require('transparent').clear_prefix('pmenu')     -- handles
-            require('transparent').clear_prefix('telescope') -- handles telescope
-            require('transparent').clear_prefix('noicecmdline') -- handles noice
-            require('transparent').clear_prefix('gitsigns')
-            require('transparent').clear_prefix('diagnosticsign')
-            require('transparent').clear_prefix('lualine_c') -- handles lualine
-            require('transparent').clear_prefix('lualine_x')
-            -- require('transparent').clear_prefix('lspinfo') -- handles annoying lsp msg
-            -- require('transparent').clear_prefix('lualine') -- handles which-key
-            require('transparent').clear_prefix('foldcolumn') -- handles which-key
-            require('transparent').clear_prefix('Noice') -- handles noice
-            require('transparent').clear_prefix('mini') -- handles mini stuff
-            require('transparent').clear_prefix('Notify') -- handles mini stuff
-            require('transparent').clear_prefix('WhichKey') -- handles which-key
-
-            vim.keymap.set('n', '<leader>tr', '<cmd>TransparentToggle<cr>', { desc = 'Transparent' })
-        end,
-    },
-
-    -- {
-    --     'kevinhwang91/nvim-ufo',
-    --     name = 'ufo',
-    --     event = 'VeryLazy',
-    --     dependencies = { 'kevinhwang91/promise-async' },
-    -- },
-
-    {
+    { -- fancy ui like floating search and command
         'folke/noice.nvim',
         -- enabled = false,
         name = 'noice',
@@ -634,29 +547,6 @@ return {
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
             { 'MunifTanjim/nui.nvim', name = 'nui' },
-            -- {
-            --     'rcarriga/nvim-notify',
-            --     name = 'notify',
-            --     -- event = 'VeryLazy',
-            --     -- priority = 20,
-            --     config = function()
-            --         require('notify').setup({
-            --             timeout = 2000,
-            --             max_height = function()
-            --                 return math.floor(vim.o.lines * 0.75)
-            --             end,
-            --             max_width = function()
-            --                 return math.floor(vim.o.columns * 0.75)
-            --             end,
-            --             on_open = function(win)
-            --                 vim.api.nvim_win_set_config(win, { zindex = 100 })
-            --             end,
-            --             render = 'compact',
-            --             stages = 'slide',
-            --             fps = 100, -- my monitor fps
-            --         })
-            --     end,
-            -- },
         },
         config = function()
             if vim.o.filetype == 'lazy' then

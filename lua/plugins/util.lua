@@ -11,6 +11,9 @@ return {
                 default_mappings = true,
                 mappings = {
                     i = {
+                        k = {
+                            j = '<Esc>',
+                        },
                         j = {
                             -- These can all also be functions
                             k = '<Esc>',
@@ -22,20 +25,32 @@ return {
                             k = '<Esc>',
                             j = false,
                         },
+                        k = {
+                            j = '<Esc>',
+                        },
                     },
                     t = {
                         j = {
                             k = '<C-\\><C-n>',
+                        },
+                        k = {
+                            j = '<Esc>',
                         },
                     },
                     v = {
                         j = {
                             k = '<Esc>',
                         },
+                        k = {
+                            j = '<Esc>',
+                        },
                     },
                     s = {
                         j = {
                             k = '<Esc>',
+                        },
+                        k = {
+                            j = '<Esc>',
                         },
                     },
                 },
@@ -190,25 +205,6 @@ return {
                 '<leader>tQ',
                 '<cmd>Trouble qflist toggle<cr>',
                 desc = '[Q]uickfix List',
-            },
-        },
-    },
-
-    {
-        'nvim-pack/nvim-spectre',
-        name = 'spectre',
-        enabled = false,
-        event = 'VeryLazy',
-        build = false,
-        cmd = 'Spectre',
-        opts = { open_cmd = 'noswapfile vnew' },
-        keys = {
-            {
-                '<leader>sr',
-                function()
-                    require('spectre').open()
-                end,
-                desc = 'Replace in Files (Spectre)',
             },
         },
     },

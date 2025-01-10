@@ -18,7 +18,7 @@
   "dap": { "branch": "master", "commit": "99807078c5089ed30e0547aa4b52c5867933f426" },
   "dbee": { "branch": "master", "commit": "21d2cc0844a16262bb6ea93ab3d0a0f20bd87853" },
   "dressing": { "branch": "master", "commit": "3a45525bb182730fe462325c99395529308f431e" },
-  "dropbar": { "branch": "master", "commit": "d0c78c570db0f5941f85ba54522c0f01427cdf67" },
+  "dropbar": { "branch": "master", "commit": "51047f54a4535e775979272bfbeb685a6d229654" },
   "flash": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "gen": { "branch": "main", "commit": "c9a73d8c0d462333da6d2191806ff98f2884d706" },

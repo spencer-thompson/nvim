@@ -1,5 +1,5 @@
 return {
-    {
+    { -- treesitter provides text objects as well as syntax highlighting
         'nvim-treesitter/nvim-treesitter',
         name = 'treesitter',
         version = false,
@@ -163,10 +163,10 @@ return {
                     swap = {
                         enable = true,
                         swap_next = {
-                            ['<leader>mp'] = '@parameter.inner',
+                            ['<leader>sa'] = '@parameter.inner',
                         },
                         swap_previous = {
-                            ['<leader>mp'] = '@parameter.inner',
+                            ['<leader>sA'] = '@parameter.inner',
                         },
                     },
                 },
@@ -180,29 +180,5 @@ return {
                 desc = 'Inspect Highlights',
             },
         },
-        -- ---@param opts TSConfig
-        -- config = function(_, opts)
-        --     if type(opts.ensure_installed) == "table" then
-        --         ---@type table<string, boolean>
-        --         local added = {}
-        --         opts.ensure_installed = vim.tbl_filter(function(lang)
-        --             if added[lang] then
-        --                 return false
-        --             end
-        --             added[lang] = true
-        --             return true
-        --         end, opts.ensure_installed)
-        --     end
-        --     require('nvim-treesitter.configs').setup(opts)
-        -- end,
     },
-    --     {
-    --         'nvim-treesitter/nvim-treesitter-context',
-    --         event = 'VeryLazy',
-    --         config = function()
-    --             require('treesitter-context').setup()
-    --             -- vim.cmd([[hi TreesitterContextBottom]])
-    --             vim.keymap.set("n", "<leader>tc", "<cmd>TSContextToggle<CR>")
-    --         end,
-    --     }
 }

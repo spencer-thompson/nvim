@@ -1,10 +1,8 @@
----@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
 local progress = vim.defaulttable()
 vim.api.nvim_create_autocmd('LspProgress', {
-    ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+        local value = ev.data.params.value
         if not client or type(value) ~= 'table' then
             return
         end
@@ -25,7 +23,7 @@ vim.api.nvim_create_autocmd('LspProgress', {
             end
         end
 
-        local msg = {} ---@type string[]
+        local msg = {}
         progress[client.id] = vim.tbl_filter(function(v)
             return table.insert(msg, v.msg) or not v.done
         end, p)
@@ -64,9 +62,6 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
         dim = {
             animate = {
                 easing = 'outQuart',
@@ -76,7 +71,6 @@ return {
                 },
             },
         },
-        -- animage = { duration = 5, fps = 165 },
         scroll = { enabled = false, animate = { duration = { step = 2, total = 100 } } },
         indent = {
             enabled = true,
@@ -113,7 +107,6 @@ return {
             },
         },
         -- scope = { enabled = true },
-        -- toggle = { enabled = false },
         bigfile = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
@@ -127,7 +120,6 @@ return {
                 local is_neominimap = vim.bo[buf].filetype == 'neominimap'
                 return is_neominimap and { 'git' } or { 'fold', 'git' }
             end,
-            -- right = { 'git' }
         },
         -- words = { enabled = true },
         dashboard = {
@@ -148,7 +140,6 @@ return {
                                 height = 0.6,
                                 relative = 'editor',
                                 position = 'float',
-                                -- backdrop = 1.0,
                                 wo = {
                                     spell = false,
                                     wrap = false,
@@ -372,27 +363,6 @@ return {
             end,
             desc = 'Toggle [Z]en Mode',
         },
-        --     {
-        --         '<leader>gb',
-        --         function()
-        --             Snacks.git.blame_line()
-        --         end,
-        --         desc = 'Git Blame Line',
-        --     },
-        --     {
-        --         '<leader>gB',
-        --         function()
-        --             Snacks.gitbrowse()
-        --         end,
-        --         desc = 'Git Browse',
-        --     },
-        --     {
-        --         '<leader>gf',
-        --         function()
-        --             Snacks.lazygit.log_file()
-        --         end,
-        --         desc = 'Lazygit Current File History',
-        --     },
         {
             '<leader>gl',
             function()
@@ -400,13 +370,6 @@ return {
             end,
             desc = 'Lazygit Log (cwd)',
         },
-        --     {
-        --         '<leader>cR',
-        --         function()
-        --             Snacks.rename.rename_file()
-        --         end,
-        --         desc = 'Rename File',
-        --     },
         {
             '<c-/>',
             function()
@@ -428,13 +391,6 @@ return {
             end,
             desc = '[S]how [H]istory',
         },
-        --     {
-        --         '<c-_>',
-        --         function()
-        --             Snacks.terminal()
-        --         end,
-        --         desc = 'which_key_ignore',
-        --     },
         {
             ']]',
             function()
@@ -451,23 +407,5 @@ return {
             desc = 'Prev Reference',
             mode = { 'n', 't' },
         },
-        --     {
-        --         '<leader>N',
-        --         desc = 'Neovim News',
-        --         function()
-        --             Snacks.win({
-        --                 file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
-        --                 width = 0.6,
-        --                 height = 0.6,
-        --                 wo = {
-        --                     spell = false,
-        --                     wrap = false,
-        --                     signcolumn = 'yes',
-        --                     statuscolumn = ' ',
-        --                     conceallevel = 3,
-        --                 },
-        --             })
-        --         end,
-        --     },
     },
 }

@@ -1,5 +1,5 @@
 return {
-    {
+    { -- LSP servers
         'neovim/nvim-lspconfig',
         name = 'lspconfig',
         -- cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
@@ -12,6 +12,7 @@ return {
         },
         opts = {},
         config = function()
+            -- NOTE: This is the big table of server configurations
             local servers = {
                 -- basedpyright = function()
                 --     lspconfig.basedpyright.setup({
@@ -133,11 +134,6 @@ return {
                     },
                 },
                 ruff = {},
-                -- typst_lsp = {
-                --     on_init = function(client, _)
-                --         client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-                --     end,
-                -- },
                 tinymist = { -- fancy create docs on keypress
                     root_dir = function(_, bufnr)
                         return vim.fn.expand('%:p:h')
@@ -157,7 +153,6 @@ return {
                         exportPdf = 'onType',
                     },
                 },
-                -- rust?
                 -- r = function()
                 --     lspconfig.r_language_server.setup({
                 --
@@ -177,7 +172,6 @@ return {
             }
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
-            -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
             local lspconfig = require('lspconfig')
 

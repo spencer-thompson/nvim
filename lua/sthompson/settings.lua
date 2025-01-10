@@ -9,12 +9,11 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
                                                      aa,    ,88
                                                       "Y8bbd]]
 
-vim.wo.number = true
-vim.opt.rnu = true
+vim.wo.number = true -- line numbers
+vim.opt.rnu = true -- relative line numbers
 
-vim.o.mouse = 'a'
--- Disable horizontal scrolling.
-vim.o.mousescroll = 'ver:3,hor:0'
+vim.o.mouse = 'a' -- mouse mode
+vim.o.mousescroll = 'ver:3,hor:0' -- Disable horizontal scrolling.
 vim.o.clipboard = 'unnamedplus' -- sync clipboards
 
 vim.o.timeout = true
@@ -37,10 +36,10 @@ vim.opt.ignorecase = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
-vim.opt.showbreak = '│ ' --┊│▕
+vim.opt.showbreak = '│ ' -- only for wrap -- ┊│▕
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 36 -- set to 999 for "always centered"
--- vim.opt.sidescroll = 0
+-- vim.opt.sidescroll = 0 -- this one for horizontal
 
 vim.opt.linebreak = true
 vim.opt.breakindent = true
@@ -91,6 +90,7 @@ vim.opt.fillchars = {
     foldclose = '',
     foldopen = '',
 }
+
 -- Completion.
 vim.opt.wildignore:append({ '.DS_Store' })
 vim.o.completeopt = 'menuone,noselect,noinsert'
@@ -123,9 +123,5 @@ vim.o.virtualedit = 'block' -- Allow going past the end of line in visual block 
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
--- vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'ModeMsg' })
-
--- vim.opt.signcolumn = 'yes:2'
--- vim.opt.signcolumn = 'yes:1'
 
 vim.opt.showtabline = 2

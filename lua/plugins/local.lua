@@ -1,18 +1,11 @@
--- vim.api.nvim_create_user_command('Test', function()
---     package.loaded.collegiate = nil
---     require('collegiate').first()
--- end, {})
---
--- some new text
+-- This is where I put plugins that I am developing on my local machine.
+-- I didn't get this one working like I wanted but eventually it will be so fun.
 
 return {
-    -- {
-    --     dir = '~/plugins/collegiate.nvim',
-    -- },
     {
         dir = '~/plugins/multiplayer.nvim',
         opts = {},
-        enabled = true,
+        enabled = false,
         name = 'multiplayer',
         event = 'VeryLazy',
     },

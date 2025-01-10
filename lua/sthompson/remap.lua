@@ -11,12 +11,6 @@
 -- vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Exit' })
 -- vim.keymap.set('t', 'jk', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but for terminal mode
 
--- vim.keymap.set('n', '<leader>gc', function()
---     if vim.loop.os_uname().sysname == 'Windows_NT' then
---         vim.cmd('cd ~\\AppData\\Local\\nvim')
---     end
--- end, { desc = 'Go to [C]onfig' })
-
 -- move lines up or down in visual mode
 -- vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line(s) up' })
 -- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line(s) down' })
@@ -31,9 +25,6 @@ vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
 -- move through buffers
--- vim.keymap.set('n', '<leader>n', '<cmd>bnext<CR>', { desc = '[N]ext Buffer' })
--- vim.keymap.set('n', '<leader>N', '<cmd>bprevious<CR>', { desc = 'Previous Buffer' })
--- vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close Buffer' })
 vim.keymap.set('n', '<leader><leader>', '<cmd>b#<cr>', { desc = 'Alternate Buffer' })
 
 -- new line above / below cursor
@@ -46,17 +37,14 @@ vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 -- visual block mode
 vim.keymap.set('n', 'vb', '<C-v>', { desc = '[V]isual [B]lock Mode' })
 
--- doesn't add to register
+-- doesn't add to register | might remove
 vim.keymap.set('n', 'x', '"_x', { desc = 'No Register' })
 
--- center the window
+-- center the window when moving
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Center the window' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Center the window' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Center the window' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Center the window' })
-
--- select all
--- vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select [A]ll" })
 
 -- select word under cursor
 vim.keymap.set(
@@ -86,7 +74,7 @@ vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w>k', { desc = 'Up Window' })
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w>j', { desc = 'Down Window' })
 vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w>l', { desc = 'Right Window' })
 
-vim.keymap.set(
+vim.keymap.set( -- these are replaced by a plugin, but good just in case
     'n',
     '<C-Left>',
     '"<Cmd>vertical resize -" . v:count1 . "<CR>"',
@@ -110,9 +98,6 @@ vim.keymap.set(
     '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
     { expr = true, replace_keycodes = false, desc = 'Increase window width' }
 )
--- -- resize windows
--- vim.keymap.set('n', '+', [[<cmd>vertical resize +5<cr>]], { desc = 'Bigger Window' })
--- vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Smaller Window' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true }) -- might remove
@@ -122,7 +107,5 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>q', '<cmd>q<CR>', { desc = '[Q]uit' })
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>Q', '<cmd>q!<CR>', { desc = 'Force [Q]uit' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite' })
-vim.keymap.set('n', 'Q', '<nop>')
 
--- quick source
--- vim.keymap.set("n", "<leader><leader>", "gqq", {desc= "Format"})
+vim.keymap.set('n', 'Q', '<nop>')

@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
+-- turn off spell check in the terminal
 local terminal_spell = vim.api.nvim_create_augroup('TermSpellCheck', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', {
     callback = function()
@@ -16,6 +17,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
     group = terminal_spell,
 })
 
+-- close with q
 vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('close_with_q', { clear = true }),
     desc = 'Close with <q>',
@@ -32,6 +34,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+-- Go to the last location when opening a buffer
 vim.api.nvim_create_autocmd('BufReadPost', {
     group = vim.api.nvim_create_augroup('last_location', { clear = true }),
     desc = 'Go to the last location when opening a buffer',

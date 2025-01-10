@@ -1,5 +1,5 @@
 return {
-    {
+    { -- telescope is a pretty dope fuzzy finder
         'nvim-telescope/telescope.nvim',
         name = 'telescope',
         tag = '0.1.8',
@@ -19,17 +19,6 @@ return {
                     return vim.fn.executable('make') == 1
                 end,
             },
-            -- {
-            --     "gbprod/yanky.nvim",
-            --     name = "yanky",
-            --     -- event = "VeryLazy",
-            --     -- dependencies = {
-            --     --     { "kkharji/sqlite.lua", name = "sqlite" }
-            --     -- },
-            --     -- opts = {
-            --     --     ring = { storage = "sqlite" },
-            --     -- },
-            -- },
         },
 
         config = function()
@@ -45,10 +34,10 @@ return {
             telescope.setup({
                 defaults = {
                     layout_strategy = 'flex',
-                    prompt_prefix = '> ',
-                    selection_caret = '> ',
-                    entry_prefix = '  ',
-                    multi_icon = '<>',
+                    prompt_prefix = '-> ',
+                    selection_caret = '-> ',
+                    entry_prefix = '   ',
+                    multi_icon = '<> ',
                     borderchars = {
                         '─',
                         '│',
@@ -92,6 +81,7 @@ return {
                     mappings = {
                         n = {
                             -- ['<C-h>'] = browser.actions.goto_home_dir,
+                            ['q'] = actions.close,
                             ['jk'] = actions.close,
                             ['<c-t>'] = open_with_trouble,
                         },
@@ -145,8 +135,6 @@ return {
             pcall(require('telescope').load_extension, 'fzf')
             require('telescope').load_extension('noice') -- noice extension
             -- require('telescope').load_extension('file_browser') -- file browser
-            -- require('telescope').load_extension('notify') -- notifications
-            -- require('telescope').load_extension('yank_history') -- yank history
 
             -- Setup keymaps i guess
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })

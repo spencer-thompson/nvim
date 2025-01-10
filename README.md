@@ -1,49 +1,53 @@
 # Neovim Config
 
-This is my editor, always a work in progress!
+This is where the magic happens 😎
 
-## Plugin List
+## plugins
 
-This is _certainly_ not all of the plugins included, but rather the plugins that I use the most (or need a reference to)
+This is _certainly_ not all of the plugins included, but rather the plugins that provide the most value.
 
-### Package Manager
+## installation
 
-- [Lazy](https://github.com/folke/lazy.nvim)
+You _can_ clone the repo, but god only knows if it will work on your machine 😉
 
-### UI
+### settings
 
-- ~~[Nvim Tree](https://github.com/nvim-tree/nvim-tree.lua/tree/master)~~
-- [Neo Tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- [Lua Line](https://github.com/nvim-lualine/lualine.nvim)
-- [Buffer Line](https://github.com/akinsho/bufferline.nvim) - Still not working
-- [Which Key](https://github.com/folke/which-key.nvim)
+There are many many settings, mine are in [settings.lua](./lua/sthompson/settings.lua).
+Additionally, I like to have my base settings and remaps separate from all my plugins.
+In case I accidentally break the plugins, I still have those.
 
-### Code
+### lazy
 
-- [Pairs](https://github.com/echasnovski/mini.pairs)
-- [Git Signs](https://github.com/lewis6991/gitsigns.nvim)
+This is what installs and manages all the plugins.
 
-### Color Schemes
+- [lazy.nvim](https://github.com/folke/lazy.nvim) see [init.lua](./lua/plugins/init.lua)
 
-- [Osaka](https://github.com/craftzdog/solarized-osaka.nvim)
-- [Github Theme](https://github.com/projekt0n/github-nvim-theme)
+### mini
 
-### Movement
+Mini is a set of plugins that provides a ton of easy to add and configure functionality.
 
-- [Flash](https://github.com/folke/flash.nvim)
-- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- [mini.nvim](https://github.com/echasnovski/mini.nvim) see [mini.lua](./lua/plugins/mini.lua)
 
-## Dependencies
+### snacks
 
-- [Nerd Font](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- [Rip Grep](https://github.com/BurntSushi/ripgrep)
-- [Pyfiglet](https://pypi.org/project/pyfiglet/)
+This is the fancy dashboard, and other _icing_ on the cake per say.
 
-## Other Resources
+- [snacks.nvim](https://github.com/folke/snacks.nvim) see [snacks.lua](./lua/plugins/snacks.lua)
 
-- [Icons](https://www.nerdfonts.com/cheat-sheet)
-- [Vim Cheatsheet](https://vim.rtorr.com/)
-- [Kickstart](https://github.com/nvim-lua/kickstart.nvim/tree/master)
-- [ASCII](https://github.com/MaximilianLloyd/ascii.nvim/blob/master/lua/ascii/text/neovim.lua)
-- [Colorschemes](https://vimcolorschemes.com/dark/)
-- [Autocmd Docs](https://vimdoc.sourceforge.net/htmldoc/autocmd.html)
+### blink
+
+This is the fancy super fast and easy to setup completion engine.
+
+- [blink.cmp](https://github.com/Saghen/blink.cmp) see [code.lua](./lua/plugins/code.lua)
+
+### lsp
+
+LSP gives me information about my code, as well as extended capabilities.
+
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) see [lsp.lua](./lua/plugins/lsp.lua)
+
+### autoformatting
+
+Auto formatting is an absolute must have.
+
+- [conform.nvim](https://github.com/stevearc/conform.nvim) see [format.lua](./lua/plugins/format.lua)

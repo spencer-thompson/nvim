@@ -1,70 +1,5 @@
 return {
 
-    -- { 'tpope/vim-fugitive', name = 'fugitive', event = 'VeryLazy' },
-
-    {
-        'NeogitOrg/neogit',
-        enabled = false,
-        event = 'VeryLazy',
-        dependencies = {
-            { 'sindrets/diffview.nvim', name = 'diffview' },
-        },
-        keys = {
-            {
-                '<leader>gg',
-                function()
-                    vim.cmd([[Neogit kind=floating]])
-                end,
-                desc = 'Neogit',
-            },
-        },
-        opts = {
-            commit_editor = {
-                kind = 'floating',
-                show_staged_diff = true,
-                -- Accepted values:
-                -- "split" to show the staged diff below the commit editor
-                -- "vsplit" to show it to the right
-                -- "split_above" Like :top split
-                -- "vsplit_left" like :vsplit, but open to the left
-                -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
-                staged_diff_split_kind = 'split',
-                spell_check = true,
-            },
-            commit_select_view = {
-                kind = 'floating',
-            },
-            commit_view = {
-                kind = 'floating',
-                verify_commit = vim.fn.executable('gpg') == 1, -- Can be set to true or false, otherwise we try to find the binary
-            },
-            log_view = {
-                kind = 'floating',
-            },
-            rebase_editor = {
-                kind = 'auto',
-            },
-            reflog_view = {
-                kind = 'floating',
-            },
-            merge_editor = {
-                kind = 'auto',
-            },
-            tag_editor = {
-                kind = 'auto',
-            },
-            preview_buffer = {
-                kind = 'floating',
-            },
-            popup = {
-                kind = 'floating',
-            },
-
-            commit_popup = { kind = 'floating' },
-        },
-        config = true,
-    },
-
     {
         'isakbm/gitgraph.nvim',
         enabled = false,
@@ -101,7 +36,7 @@ return {
         },
     },
 
-    {
+    { -- vscode like highlights on git changes
         'lewis6991/gitsigns.nvim',
         name = 'gitsigns',
         event = 'VeryLazy',
@@ -157,8 +92,4 @@ return {
             require('gitsigns').setup(opts)
         end,
     },
-
-    -- { 'rhysd/git-messenger.vim', name = 'git-messenger', event = 'VeryLazy' },
-
-    -- { "rhysd/committia.vim",     event = "VeryLazy" },
 }

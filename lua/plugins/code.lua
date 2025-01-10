@@ -1,24 +1,17 @@
 return {
-
-    {
+    { -- completion engine
         'saghen/blink.cmp',
         lazy = true,
         event = 'InsertEnter',
-        -- optional: provides snippets for the snippet source
         dependencies = {
             'rafamadriz/friendly-snippets',
             'saghen/blink.compat',
-            -- { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep' },
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg' },
             { 'chrisgrieser/cmp-nerdfont', lazy = true },
         },
 
         -- use a release tag to download pre-built binaries
         version = 'v0.*',
-        -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-        -- build = 'cargo build --release',
-        -- If you use nix, you can build from source using latest nightly rust with:
-        -- build = 'nix run .#build-plugin',
 
         opts_extend = {
             'sources.completion.enabled_providers',
@@ -27,27 +20,26 @@ return {
         },
 
         opts = {
-            -- 'default' for mappings similar to built-in completion
-            -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-            -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-            -- see the "default configuration" section below for full documentation on how to define
-            -- your own keymap.
-            -- keymap = { preset = 'default' },
             keymap = {
                 preset = 'default',
-                ['<C-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                -- ['<C-h>'] = { 'show' },
+                ['<C-y>'] = { 'select_and_accept' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
-                -- cmdline = {
-                --     preset = 'default',
-                --     ['<C-h>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                --     -- ['<C-h>'] = { 'show' },
-                --     ['<C-k>'] = { 'select_prev', 'fallback' },
-                --     ['<C-j>'] = { 'select_next', 'fallback' },
-                -- },
-                -- ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-                -- ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+                ['<C-e>'] = { 'hide_documentation', 'hide' },
+                ['<C-l>'] = { 'snippet_forward', 'fallback' },
+                ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+                ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+                ['<C-h>'] = {
+                    function(cmp)
+                        if cmp.snippet_active() then
+                            return cmp.snippet_backward()
+                        elseif not cmp.is_visible() then
+                            return cmp.show()
+                        else
+                            return cmp.show_documentation()
+                        end
+                    end,
+                },
             },
 
             completion = {
@@ -80,16 +72,12 @@ return {
                             },
                         },
                     },
-                    -- draw = {
-                    --     columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', gap = 1 } },
-                    -- },
                 },
                 ghost_text = {
                     enabled = true,
                 },
             },
-
-            snippets = { preset = 'mini_snippets' },
+            -- snippets = { preset = 'mini_snippets' },
 
             sources = {
                 default = {
@@ -123,8 +111,7 @@ return {
                     ripgrep = {
                         module = 'blink-cmp-rg',
                         name = 'Ripgrep',
-                        score_offset = -1,
-                        -- options below are optional, these are the default values
+                        score_offset = -10,
                         opts = {
                             -- `min_keyword_length` only determines whether to show completion items in the menu,
                             -- not whether to trigger a search. And we only has one chance to search.
@@ -164,12 +151,7 @@ return {
             },
 
             appearance = {
-                -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-                -- Useful for when your theme doesn't support blink.cmp
-                -- Will be removed in a future release
                 use_nvim_cmp_as_default = false,
-                -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-                -- Adjusts spacing to ensure icons are aligned
                 nerd_font_variant = 'mono',
             },
         },
@@ -188,7 +170,6 @@ return {
             merge_keywords = true,
         },
         keys = {
-            -- keymaps
             {
                 ']t',
                 function()
@@ -207,96 +188,7 @@ return {
         config = true,
     },
 
-    {
-        'hrsh7th/nvim-cmp',
-        -- lazy = false,
-        -- priority = 100,
-        version = false,
-        enabled = false,
-        event = 'InsertEnter',
-        dependencies = {
-            { 'onsails/lspkind-nvim', name = 'lspkind' },
-            { 'L3MON4D3/LuaSnip', name = 'luasnip' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'rafamadriz/friendly-snippets', name = 'friendly-snippets' },
-            { 'saadparwaiz1/cmp_luasnip', name = 'cmp-luasnip' },
-            { 'hrsh7th/cmp-cmdline' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'hrsh7th/cmp-path' },
-            { 'f3fora/cmp-spell' },
-            { 'garyhurtz/cmp_kitty', name = 'cmp-kitty' },
-            { 'hrsh7th/cmp-emoji' },
-            { 'chrisgrieser/cmp-nerdfont' },
-            -- { 'kdheepak/cmp-latex-symbols' }, -- slow
-            { 'kristijanhusak/vim-dadbod-completion', name = 'dadbod-completions', enabled = false },
-            -- {
-            --     'MattiasMTS/cmp-dbee',
-            --     ft = 'sql', -- optional but good to have
-            --     opts = {}, -- needed
-            -- },
-            {
-                'brenoprata10/nvim-highlight-colors',
-                name = 'highlight-colors',
-                config = function()
-                    require('nvim-highlight-colors').setup({
-
-                        render = 'virtual',
-                        ---Set virtual symbol (requires render to be set to 'virtual')
-                        virtual_symbol = ' ',
-
-                        ---Set virtual symbol suffix (defaults to '')
-                        virtual_symbol_prefix = '',
-
-                        ---Set virtual symbol suffix (defaults to ' ')
-                        virtual_symbol_suffix = '',
-
-                        ---Set virtual symbol position()
-                        ---@usage 'inline'|'eol'|'eow'
-                        ---inline mimics VS Code style
-                        ---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
-                        ---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
-                        virtual_symbol_position = 'inline',
-
-                        ---Highlight hex colors, e.g. '#FFFFFF'
-                        enable_hex = true,
-
-                        ---Highlight short hex colors e.g. '#fff'
-                        enable_short_hex = true,
-
-                        ---Highlight rgb colors, e.g. 'rgb(0 0 0)'
-                        enable_rgb = true,
-
-                        ---Highlight hsl colors, e.g. 'hsl(150deg 30% 40%)'
-                        enable_hsl = true,
-
-                        ---Highlight CSS variables, e.g. 'var(--testing-color)'
-                        enable_var_usage = true,
-
-                        ---Highlight named colors, e.g. 'green'
-                        enable_named_colors = true,
-
-                        ---Highlight tailwind colors, e.g. 'bg-blue-500'
-                        enable_tailwind = false,
-
-                        ---Set custom colors
-                        ---Label must be properly escaped with '%' to adhere to `string.gmatch`
-                        --- :help string.gmatch
-                        -- custom_colors = {
-                        --     { label = '%-%-theme%-primary%-color', color = '#0f1219' },
-                        --     { label = '%-%-theme%-secondary%-color', color = '#5a5d64' },
-                        -- },
-
-                        -- Exclude filetypes or buftypes from highlighting e.g. 'exclude_buftypes = {'text'}'
-                        exclude_filetypes = {},
-                        exclude_buftypes = {},
-                    })
-                end,
-            },
-        },
-    },
-
-    {
+    { -- This thing is so awesome
         'rachartier/tiny-inline-diagnostic.nvim',
         name = 'tiny-inline-diagnostic',
         event = 'VeryLazy', -- Or `LspAttach`
@@ -317,7 +209,7 @@ return {
         end,
     },
 
-    {
+    { -- linting, but I didn't like it telling me what to do lol
         'mfussenegger/nvim-lint',
         enabled = false,
         name = 'lint',
@@ -340,14 +232,14 @@ return {
         end,
     },
 
-    {
+    { -- debugging
         'mfussenegger/nvim-dap',
         name = 'dap',
         -- event = "VeryLazy",
         lazy = true,
     },
 
-    {
+    { -- fancy undo tree, shows undo history as a tree data structure
         'mbbill/undotree',
         lazy = true,
         name = 'undotree',
@@ -365,7 +257,6 @@ return {
         event = 'VeryLazy',
         config = function()
             require('nvim-surround').setup({
-                -- Configuration here, or leave empty to use defaults
                 keymaps = {
                     insert = false,
                     insert_line = false,

@@ -1,7 +1,6 @@
 return {
 
-    -- Lua
-    {
+    { -- Lua
         'folke/lazydev.nvim',
         name = 'lazydev',
         ft = 'lua', -- only load on lua files
@@ -13,6 +12,7 @@ return {
             },
         },
     },
+
     { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
 
     { 'milisims/nvim-luaref', name = 'luaref', event = 'VeryLazy' }, -- lua help
@@ -43,7 +43,7 @@ return {
     --     },
     -- },
 
-    {
+    { -- 🦀
         'mrcjkb/rustaceanvim',
         version = '^5', -- Recommended
         ft = { 'rust' },
