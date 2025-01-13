@@ -459,9 +459,9 @@ return {
                 git = { enabled = true, mode = 'sign' },
                 search = { enabled = true, mode = 'sign', priority = 20 },
                 mark = { enabled = true, mode = 'sign', priority = 100 },
-                handlers = {
-                    todo_comments_handler,
-                },
+                -- handlers = {
+                --     todo_comments_handler,
+                -- },
             }
 
             vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })

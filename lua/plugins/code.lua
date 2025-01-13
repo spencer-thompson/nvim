@@ -26,9 +26,19 @@ return {
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
                 ['<C-e>'] = { 'hide_documentation', 'hide' },
-                ['<C-l>'] = { 'snippet_forward', 'fallback' },
                 ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+                ['<C-l>'] = {
+                    function(cmp)
+                        if cmp.snippet_active() then
+                            return cmp.snippet_forward()
+                        elseif not cmp.is_visible() then
+                            return cmp.show({ providers = { 'snippets' } })
+                        else
+                            return cmp.select_and_accept()
+                        end
+                    end,
+                },
                 ['<C-h>'] = {
                     function(cmp)
                         if cmp.snippet_active() then
