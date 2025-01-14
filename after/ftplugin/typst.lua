@@ -4,14 +4,6 @@ vim.opt_local.shiftwidth = 2
 
 vim.api.nvim_buf_set_var(0, 'active_preview', false)
 
-require('nvim-surround').buffer_setup({
-    surrounds = {
-        ['$'] = {
-            add = { '%$', '%$' },
-        },
-    },
-})
-
 local Job = require('plenary.job')
 
 local show_pdf = Job:new({

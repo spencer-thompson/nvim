@@ -285,7 +285,20 @@ return {
         'windwp/nvim-autopairs',
         name = 'autopairs',
         event = 'InsertEnter',
-        opts = {}, -- this is equalent to setup({}) function
+        -- opts = { }, -- this is equalent to setup({}) function
+        config = function()
+            require('nvim-autopairs').setup({})
+
+            local Rule = require('nvim-autopairs.rule')
+            local npairs = require('nvim-autopairs')
+            -- local cond = require('nvim-autopairs.conds')
+
+            npairs.add_rules({
+                Rule('$', '$', { 'tex', 'latex', 'typst' }),
+                -- Rule("'", "'", '-typst'), -- :with_pair(cond.not_filetypes({ 'typst' })),
+            })
+            -- require('nvim-autopairs').get_rules("'")[1].not_filetypes = { 'typst' }
+        end,
     },
 
     { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
