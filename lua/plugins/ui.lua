@@ -8,6 +8,13 @@ end
 
 return {
 
+    {
+        'nvzone/typr',
+        cmd = 'TyprStats',
+        dependencies = 'nvzone/volt',
+        opts = {},
+    },
+
     { -- better moving between splits, and resizing
         'mrjones2014/smart-splits.nvim',
         name = 'smart-splits',
