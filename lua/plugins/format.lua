@@ -12,7 +12,7 @@ return {
                     lua = { 'stylua' },
                     python = { 'ruff_format', 'ruff_organize_imports' },
                     go = { 'gofumpt' },
-                    -- svelte = { { "prettierd", "prettier" } },
+                    svelte = { 'prettierd' },
                     javascript = { 'prettierd' },
                     -- typescript = { { "prettierd", "prettier" } },
                     -- javascriptreact = { { "prettierd", "prettier" } },
@@ -26,7 +26,6 @@ return {
                     -- ruby = { "standardrb" },
                     -- markdown = { { 'prettierd', 'prettier' } }, -- don't like
                     -- erb = { "htmlbeautifier" },
-                    -- html = { 'htmlbeautifier' },
                     html = { 'prettierd' },
                     bash = { 'beautysh' },
                     sh = { 'shfmt' },

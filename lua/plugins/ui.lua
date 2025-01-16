@@ -10,6 +10,7 @@ return {
 
     {
         'nvzone/typr',
+        enabled = false,
         cmd = 'TyprStats',
         dependencies = 'nvzone/volt',
         opts = {},
