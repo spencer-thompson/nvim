@@ -94,18 +94,40 @@ return {
             -- })
 
             vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
-            -- require('mini.pairs').setup({
-            --     modes = { insert = true, command = true, terminal = false },
-            --     -- skip autopair when next character is one of these
-            --     skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-            --     -- skip autopair when the cursor is inside these treesitter nodes
-            --     skip_ts = { 'string' },
-            --     -- skip autopair when next character is closing pair
-            --     -- and there are more closing pairs than opening pairs
-            --     skip_unbalanced = true,
-            --     -- better deal with markdown code blocks
-            --     markdown = true,
-            -- })
+            require('mini.pairs').setup({
+                modes = { insert = true, command = true, terminal = false },
+                -- skip autopair when next character is one of these
+                skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+                -- skip autopair when the cursor is inside these treesitter nodes
+                skip_ts = { 'string' },
+                -- skip autopair when next character is closing pair
+                -- and there are more closing pairs than opening pairs
+                skip_unbalanced = true,
+                -- better deal with markdown code blocks
+                markdown = true,
+            })
+
+            -- MiniPairs.map_buf()
+            local ft_group = vim.api.nvim_create_augroup('filetype_pairs', { clear = true })
+            vim.api.nvim_create_autocmd('BufReadPost', {
+                group = ft_group,
+                desc = 'Add typst $ Pairs',
+                pattern = '*.typ',
+                callback = function(args)
+                    MiniPairs.map_buf(
+                        args.buf,
+                        'i',
+                        '$',
+                        { action = 'closeopen', pair = '$$', neigh_pattern = '[^\\].' }
+                    )
+                    MiniPairs.map_buf(
+                        args.buf,
+                        'i',
+                        "'",
+                        { action = 'closeopen', pair = "''", neigh_pattern = "[^%a\\'].", register = { cr = false } }
+                    )
+                end,
+            })
 
             require('mini.files').setup({
                 mappings = {

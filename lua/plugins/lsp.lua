@@ -134,6 +134,7 @@ return {
                     },
                 },
                 ruff = {},
+                svelte = {},
                 tinymist = { -- fancy create docs on keypress
                     root_dir = function(_, bufnr)
                         return vim.fn.expand('%:p:h')

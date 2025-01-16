@@ -285,6 +285,7 @@ return {
         'windwp/nvim-autopairs',
         name = 'autopairs',
         event = 'InsertEnter',
+        enabled = false,
         -- opts = { }, -- this is equalent to setup({}) function
         config = function()
             require('nvim-autopairs').setup({})
