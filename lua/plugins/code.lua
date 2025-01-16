@@ -293,10 +293,10 @@ return {
             local npairs = require('nvim-autopairs')
             -- local cond = require('nvim-autopairs.conds')
 
-            npairs.add_rules({
-                Rule('$', '$', { 'tex', 'latex', 'typst' }),
-                -- Rule("'", "'", '-typst'), -- :with_pair(cond.not_filetypes({ 'typst' })),
-            })
+            -- npairs.add_rules({
+            --     Rule('$', '$', { 'tex', 'latex', 'typst' }),
+            --     -- Rule("'", "'", '-typst'), -- :with_pair(cond.not_filetypes({ 'typst' })),
+            -- })
             -- require('nvim-autopairs').get_rules("'")[1].not_filetypes = { 'typst' }
         end,
     },

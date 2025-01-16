@@ -150,7 +150,7 @@ return {
                     settings = {
                         formatterMode = 'typstyle',
                         outputPath = '$root/$dir/$name',
-                        exportPdf = 'onType',
+                        exportPdf = 'onSave',
                     },
                 },
                 -- r = function()
