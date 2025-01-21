@@ -8,11 +8,13 @@ return {
         'tiagovla/tokyodark.nvim',
         name = 'tokyodark',
         enabled = false,
-        opts = {
-            -- custom options here
-            transparent_background = true,
-        },
-        lazy = true,
+        -- priority = 1000,
+        config = function()
+            require('tokyodark').setup({
+                transparent_background = true,
+            })
+            vim.cmd([[colorscheme tokyodark]])
+        end,
     },
 
     {
@@ -113,6 +115,7 @@ return {
     {
         'folke/tokyonight.nvim',
         name = 'tokyonight',
+        enabled = true,
         lazy = false,
         priority = 1000,
         config = function()

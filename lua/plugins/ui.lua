@@ -578,7 +578,28 @@ return {
                         replace = true,
                         merge = false,
                     },
+                    hover = {
+                        border = {
+                            style = 'single', -- double, none, rounded, shadow, single, solid
+                        },
+                    },
+                    popupmenu = {
+                        border = {
+                            style = 'single',
+                        },
+                    },
+                    popup = {
+                        border = {
+                            style = 'single',
+                        },
+                    },
+                    cmdline_popup = {
+                        border = {
+                            style = 'single',
+                        },
+                    },
                 },
+
                 lsp = {
                     progress = {
                         enabled = false,

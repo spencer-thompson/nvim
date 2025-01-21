@@ -1,3 +1,4 @@
+---@module "snacks"
 local progress = vim.defaulttable()
 vim.api.nvim_create_autocmd('LspProgress', {
     callback = function(ev)
@@ -283,8 +284,15 @@ return {
             },
         },
         styles = {
+            notification_history = {
+                border = 'single',
+            },
+            scratch = {
+                border = 'single',
+            },
             notification = {
                 wo = { wrap = true }, -- Wrap notifications
+                border = 'single',
             },
             terminal = {
                 wo = {

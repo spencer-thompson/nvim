@@ -9,6 +9,9 @@ return {
             local wk = require('which-key')
             wk.setup({
                 preset = 'modern',
+                win = {
+                    border = 'single',
+                },
             })
             wk.add({
                 { --B
