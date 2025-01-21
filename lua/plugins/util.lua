@@ -1,9 +1,10 @@
 return {
 
-    { 'nvim-lua/plenary.nvim', name = 'plenary', dev = false },
+    { 'nvim-lua/plenary.nvim', name = 'plenary', dev = false, event = 'VeryLazy' },
     {
         'max397574/better-escape.nvim',
         name = 'better-escape',
+        event = 'VeryLazy',
         config = function()
             require('better_escape').setup({
                 -- timeout = vim.o.timeoutlen,

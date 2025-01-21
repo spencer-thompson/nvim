@@ -74,7 +74,7 @@ return {
         'Bekaboo/dropbar.nvim',
         name = 'dropbar',
         -- event = { 'BufReadPost', 'BufWritePost' },
-        enabled = true,
+        enabled = false,
         event = 'VeryLazy',
         -- optional, but required for fuzzy finder support
         dependencies = {
@@ -125,6 +125,8 @@ return {
             end
 
             vim.opt.showmode = false
+
+            -- local minimap_extension = require('neominimap.statusline').lualine_default
 
             require('lualine').setup({
                 options = {
@@ -419,8 +421,9 @@ return {
 
             vim.g.neominimap = {
                 auto_enable = true,
+                notification_level = vim.log.levels.OFF,
                 layout = 'float',
-                delay = 1000,
+                delay = 500,
                 float = {
                     window_border = 'none',
                     minimap_width = 18,
@@ -437,13 +440,14 @@ return {
                     auto_switch_focus = false, -- Automatically switch focus to minimap when clicked
                 },
                 win_filter = function(winid)
-                    return winid == vim.api.nvim_get_current_win()
+                    return winid == vim.api.nvim_get_current_win() and vim.fn.winwidth(winid) > 80
                 end,
                 exclude_filetypes = {
                     'dashboard',
                     'help',
                     'zsh',
                     'kitty-scrollback',
+                    'bigfile',
                 },
                 exclude_buftypes = {
                     'nofile',

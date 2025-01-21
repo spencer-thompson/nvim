@@ -4,7 +4,7 @@ return {
         'echasnovski/mini.nvim',
         name = 'mini',
         version = false,
-        event = 'VimEnter',
+        -- event = 'VimEnter',
         config = function()
             require('mini.ai').setup({
                 n_lines = 300,
@@ -13,8 +13,15 @@ return {
                         a = { '@block.outer', '@conditional.outer', '@loop.outer' },
                         i = { '@block.inner', '@conditional.inner', '@loop.inner' },
                     }),
-                    f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }, {}),
-                    c = require('mini.ai').gen_spec.treesitter({ a = '@comment.outer', i = '@comment.inner' }, {}),
+                    f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+                    c = require('mini.ai').gen_spec.treesitter({
+                        a = { '@string.outer', '@comment.outer', '@line_comment.outer', '@block_comment.outer' },
+                        i = { '@string.inner', '@comment.inner', '@line_comment.inner', '@block_comment.inner' },
+                    }),
+                    -- P = require('mini.ai').gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+                    A = require('mini.ai').gen_spec.treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
+                    N = require('mini.ai').gen_spec.treesitter({ a = '@number.outer', i = '@number.inner' }),
+                    C = require('mini.ai').gen_spec.treesitter({ a = '@call.outer', i = '@call.inner' }),
 
                     -- Dollar signs for markdown and typst
                     ['$'] = { '%$%s*().-()%s*%$' },
@@ -50,13 +57,25 @@ return {
                     hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
                 },
             })
-            require('mini.move').setup({})
-            -- require('mini.operators').setup({})
+            require('mini.move').setup({
+                mappings = {
+                    left = 'H',
+                    right = 'L',
+                    down = 'J',
+                    up = 'K',
+                },
+            })
+            require('mini.operators').setup({
+                sort = {
+                    prefix = 'gS',
+                    func = nil,
+                },
+            })
             -- require('mini.sessions').setup({})
             require('mini.splitjoin').setup({
                 mappings = {
-                    toggle = 'gS',
-                    split = 'gs',
+                    toggle = 'gs',
+                    -- split = 'gs',
                     -- join = 'gj',
                 },
             })
@@ -77,22 +96,22 @@ return {
             --         gen_loader.from_lang(),
             --     },
             -- })
-            -- require('mini.surround').setup({
-            --     mappings = {
-            --         add = 'ys', -- Add surrounding in Normal and Visual modes
-            --         delete = 'ds', -- Delete surrounding
-            --         find = '', -- Find surrounding (to the right)
-            --         find_left = '', -- Find surrounding (to the left)
-            --         highlight = '', -- Highlight surrounding
-            --         replace = 'cs', -- Replace surrounding
-            --         update_n_lines = '', -- Update `n_lines` default: sn
-            --
-            --         suffix_last = 'l', -- Suffix to search with "prev" method
-            --         suffix_next = 'n', -- Suffix to search with "next" method
-            --     },
-            --     silent = true,
-            -- })
+            require('mini.surround').setup({
+                mappings = {
+                    add = 'sa', -- Add surrounding in Normal and Visual modes
+                    delete = 'sd', -- Delete surrounding
+                    find = 'sf', -- Find surrounding (to the right)
+                    find_left = 'sF', -- Find surrounding (to the left)
+                    highlight = 'sh', -- Highlight surrounding
+                    replace = 'sr', -- Replace surrounding
+                    update_n_lines = 'sn', -- Update `n_lines`
 
+                    suffix_last = 'l', -- Suffix to search with "prev" method
+                    suffix_next = 'n', -- Suffix to search with "next" method
+                },
+                silent = true,
+                n_lines = 50,
+            })
             vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
             require('mini.pairs').setup({
                 modes = { insert = true, command = true, terminal = false },

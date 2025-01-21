@@ -133,7 +133,7 @@ return {
             })
             -- Enable telescope fzf native, if installed
             pcall(require('telescope').load_extension, 'fzf')
-            require('telescope').load_extension('noice') -- noice extension
+            -- require('telescope').load_extension('noice') -- noice extension
             -- require('telescope').load_extension('file_browser') -- file browser
 
             -- Setup keymaps i guess

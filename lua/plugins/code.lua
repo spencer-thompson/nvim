@@ -6,8 +6,9 @@ return {
         dependencies = {
             'rafamadriz/friendly-snippets',
             'saghen/blink.compat',
-            { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg' },
+            { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg', lazy = true },
             { 'chrisgrieser/cmp-nerdfont', lazy = true },
+            { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
         },
 
         -- use a release tag to download pre-built binaries
@@ -49,6 +50,7 @@ return {
                             return cmp.show_documentation()
                         end
                     end,
+                    'hide_documentation', -- based
                 },
             },
 
@@ -90,15 +92,30 @@ return {
             -- snippets = { preset = 'mini_snippets' },
 
             sources = {
-                default = {
-                    'lsp',
-                    'path',
-                    'snippets',
-                    'buffer',
-                    'lazydev',
-                    'ripgrep',
-                    'nerdfont',
-                },
+                default = function()
+                    local sources = {
+                        'lsp',
+                        'buffer',
+                        'path',
+                        'ripgrep',
+                        'emoji',
+                        'nerdfont',
+                    }
+
+                    local ok, node = pcall(vim.treesitter.get_node)
+
+                    -- disable snippets and lazydev when in comments and strings
+                    if
+                        ok
+                        and node
+                        and not vim.tbl_contains({ 'string', 'comment', 'line_comment', 'block_comment' }, node:type())
+                    then
+                        table.insert(sources, 'snippets')
+                        table.insert(sources, 'lazydev')
+                    end
+
+                    return sources
+                end,
                 cmdline = function()
                     local type = vim.fn.getcmdtype()
                     -- Search forward and backward
@@ -112,7 +129,7 @@ return {
                     return {}
                 end,
                 providers = {
-                    lsp = { fallbacks = { 'lazydev' } },
+                    -- lsp = { fallbacks = { 'lazydev' } },
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
@@ -157,12 +174,19 @@ return {
                             return items
                         end,
                     },
+                    emoji = {
+                        module = 'blink-emoji',
+                        name = 'Emoji',
+                        score_offset = 0,
+                        opts = { insert = true },
+                    },
                 },
             },
 
             appearance = {
                 use_nvim_cmp_as_default = false,
                 nerd_font_variant = 'mono',
+                -- kind_icons = require('icons').symbol_kinds,
             },
         },
     },
@@ -261,7 +285,7 @@ return {
 
     {
         'kylechui/nvim-surround',
-        enabled = true,
+        enabled = false,
         name = 'surround',
         version = '*', -- Use for stability; omit to use `main` branch for the latest features
         event = 'VeryLazy',

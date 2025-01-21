@@ -19,6 +19,18 @@ return {
         end,
     },
     {
+        'kopecmaciej/vi-mongo.nvim',
+        name = 'vi-mongo',
+        enabled = false,
+        config = function()
+            require('vi-mongo').setup()
+        end,
+        cmd = { 'ViMongo' },
+        keys = {
+            { '<leader>vm', '<cmd>ViMongo<cr>', desc = 'Mongo Client' },
+        },
+    },
+    {
         'kndndrj/nvim-dbee',
         name = 'dbee',
         lazy = true,
