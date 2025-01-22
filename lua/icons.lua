@@ -16,31 +16,41 @@ M.arrows = {
     down = '',
 }
 
+M.shapes = {
+    circle = {
+        filled = '●',
+    },
+}
+
+M.symbols = {
+    dict = '󱗖',
+}
+
 --- LSP symbol kinds.
 M.symbol_kinds = {
     Array = '󰅪',
     Class = '',
     Color = '󰏘',
     Constant = '󰏿',
-    Constructor = '',
+    Constructor = '', -- 󰒓
     Enum = '',
     EnumMember = '',
-    Event = '',
+    Event = '󱐋', -- 󱐋
     Field = '󰜢',
     File = '󰈙',
     Folder = '󰉋',
-    Function = '󰆧',
+    Function = '󰆧', -- 󰊕
     Interface = '',
-    Keyword = '󰌋',
+    Keyword = '󰻾', -- 󰌋 󰻾 󱥒
     Method = '󰆧',
     Module = '',
     Operator = '󰆕',
     Property = '󰜢',
     Reference = '󰈇',
-    Snippet = '',
+    Snippet = '󱄽', -- "󱄽"
     Struct = '',
-    Text = '',
-    TypeParameter = '',
+    Text = '󰉿', -- 󰉿
+    TypeParameter = '󰬛', -- 󰬛
     Unit = '',
     Value = '',
     Variable = '󰀫',
@@ -58,11 +68,15 @@ M.misc = {
 
 M.lines = {
     left = {
+        vertical_thin = '▏',
         vertical = '▎',
     },
     center = {
         vertical = '│',
         vertical_dashed = '┊',
+    },
+    right = {
+        vertical_thin = '▕',
     },
 }
 

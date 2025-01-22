@@ -7,6 +7,11 @@ return {
             local conform = require('conform')
 
             conform.setup({
+                notify_on_error = true,
+                notify_no_formatters = true,
+                default_format_opts = {
+                    lsp_format = 'fallback',
+                },
                 formatters_by_ft = {
                     awk = { 'awk' },
                     lua = { 'stylua' },
@@ -39,7 +44,7 @@ return {
                     scss = { 'prettierd' },
                 },
                 format_on_save = { -- must have
-                    async = false,
+                    -- async = false,
                     lsp_fallback = true,
                     timeout_ms = 500,
                 },

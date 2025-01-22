@@ -9,6 +9,10 @@ return {
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg', lazy = true },
             { 'chrisgrieser/cmp-nerdfont', lazy = true },
             { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
+            {
+                'Kaiser-Yang/blink-cmp-dictionary',
+                dependencies = { 'nvim-lua/plenary.nvim' },
+            },
         },
 
         -- use a release tag to download pre-built binaries
@@ -94,6 +98,7 @@ return {
             sources = {
                 default = function()
                     local sources = {
+                        'dictionary',
                         'lsp',
                         'buffer',
                         'path',
@@ -133,12 +138,14 @@ return {
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
-                        score_offset = 100,
+                        max_items = 12,
+                        score_offset = 20,
                     },
                     ripgrep = {
                         module = 'blink-cmp-rg',
                         name = 'Ripgrep',
-                        score_offset = -10,
+                        max_items = 12,
+                        score_offset = -20,
                         opts = {
                             -- `min_keyword_length` only determines whether to show completion items in the menu,
                             -- not whether to trigger a search. And we only has one chance to search.
@@ -160,12 +167,66 @@ return {
                             end,
                         },
                     },
+                    dictionary = {
+                        max_items = 12,
+                        module = 'blink-cmp-dictionary',
+                        name = 'Dict',
+
+                        transform_items = function(ctx, items)
+                            local kind = require('blink.cmp.types').CompletionItemKind.Unit
+
+                            for i = 1, #items do
+                                items[i].kind = kind
+                            end
+
+                            return items
+                        end,
+
+                        min_keyword_length = 3,
+
+                        -- fzf --bind 'enter:execute(echo {2})+abort'
+                        opts = {
+                            -- Specify the dictionary files' path
+                            -- example: { vim.fn.expand('~/.config/nvim/dictionary/words.dict') }
+                            dictionary_files = { vim.fn.expand('~/docs/valid_words.txt') },
+                            -- All .txt files in these directories will be treated as dictionary files
+                            -- example: { vim.fn.expand('~/.config/nvim/dictionary') }
+                            dictionary_directories = nil,
+                            separate_output = function(output)
+                                local items = {}
+                                -- You may need to change the pattern to match your dictionary files
+                                -- for line in output:gmatch('[^ ]+') do
+                                -- for line in output:gmatch('^[^%s]+') do
+                                for line in output:gmatch('[^\r\n]+') do
+                                    -- local word = string.match(line, '^[^%s]+')
+                                    local word = line
+                                    table.insert(items, {
+                                        label = word,
+                                        insert_text = word,
+                                        -- If you want to disable the documentation feature, just set it to nil
+                                        documentation = {
+                                            get_command = 'wn',
+                                            get_command_args = {
+                                                word,
+                                                '-over',
+                                            },
+                                            ---@diagnostic disable-next-line: redefined-local
+                                            resolve_documentation = function(output)
+                                                return output
+                                            end,
+                                        },
+                                    })
+                                end
+                                return items
+                            end,
+                        },
+                    },
                     nerdfont = {
                         name = 'nerdfont',
                         module = 'blink.compat.source',
                         transform_items = function(ctx, items)
                             -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                            local kind = require('blink.cmp.types').CompletionItemKind.Text
+                            local kind = require('blink.cmp.types').CompletionItemKind.Color
 
                             for i = 1, #items do
                                 items[i].kind = kind
@@ -186,6 +247,34 @@ return {
             appearance = {
                 use_nvim_cmp_as_default = false,
                 nerd_font_variant = 'mono',
+                kind_icons = require('icons').symbol_kinds,
+                -- kind_icons = {
+                --     Class = '󱡠',
+                --     Color = '󰏘',
+                --     Constant = '󰏿',
+                --     Constructor = '󰒓',
+                --     Enum = '󰦨',
+                --     EnumMember = '󰦨',
+                --     Event = '󱐋',
+                --     Field = '󰜢',
+                --     File = '󰈔',
+                --     Folder = '󰉋',
+                --     Function = '󰊕',
+                --     Interface = '󱡠',
+                --     Keyword = '󰻾',
+                --     Method = '󰊕',
+                --     Module = '󰅩',
+                --     Operator = '󰪚',
+                --     Property = '󰖷',
+                --     Reference = '󰬲',
+                --     Snippet = '󱄽',
+                --     Struct = '󱡠',
+                --     Text = '󰉿',
+                --     TypeParameter = '󰬛',
+                --     Unit = '󰪚',
+                --     Value = '󰦨',
+                --     Variable = '󰆦',
+                -- },
                 -- kind_icons = require('icons').symbol_kinds,
             },
         },

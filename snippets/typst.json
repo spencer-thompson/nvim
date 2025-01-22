@@ -4,5 +4,8 @@
     "body": ["\\$", "  $0", "\\$"],
     "description": "A nice centered math block in typst"
   },
-  "Integral": { "prefix": "int", "body": ["integral $0 dif x"] }
+  "Integral": { "prefix": "int", "body": ["integral $0 dif x"] },
+  "Such That": { "prefix": "st", "body": ["such that"] },
+  "Continuous": { "prefix": "cont", "body": ["continuous"] },
+  "Differentiable": { "prefix": "diff", "body": ["Differentiable"] }
 }

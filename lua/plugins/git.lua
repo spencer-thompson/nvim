@@ -41,36 +41,46 @@ return {
         name = 'gitsigns',
         event = 'VeryLazy',
         lazy = true,
-        opts = {
-            -- signs = {
-            --     add = { text = '▎' },
-            --     change = { text = '▎' },
-            --     delete = { text = '' },
-            --     topdelete = { text = '' },
-            --     changedelete = { text = '▎' },
-            --     untracked = { text = '▎' },
-            -- },
-            signs = { --🮇'▎'
-                add = { text = '▎' },
-                change = { text = '▎' },
-                delete = { text = '▎' },
-                topdelete = { text = '▎' },
-                changedelete = { text = '▎' },
-                untracked = { text = '▎' },
-            },
-            numhl = false,
-            current_line_blame = true,
-            -- current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
-            current_line_blame_opts = {
-                virt_text_pos = 'eol',
-                delay = 200,
-            },
-            on_attach = function(buffer)
-                local gs = package.loaded.gitsigns
+        config = function(_, opts)
+            local bar = require('icons').lines.left.vertical_thin
+            require('gitsigns').setup({
+                -- signs = {
+                --     add = { text = '▎' },
+                --     change = { text = '▎' },
+                --     delete = { text = '' },
+                --     topdelete = { text = '' },
+                --     changedelete = { text = '▎' },
+                --     untracked = { text = '▎' },
+                -- },
+                signs = { --🮇'▎'
+                    add = { text = bar },
+                    change = { text = bar },
+                    delete = { text = bar },
+                    topdelete = { text = bar },
+                    changedelete = { text = bar },
+                    untracked = { text = bar },
+                },
+                signs_staged = {
+                    add = { text = bar },
+                    change = { text = bar },
+                    delete = { text = bar },
+                    topdelete = { text = bar },
+                    changedelete = { text = bar },
+                    untracked = { text = bar },
+                },
+                numhl = false,
+                current_line_blame = true,
+                -- current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
+                current_line_blame_opts = {
+                    virt_text_pos = 'eol',
+                    delay = 200,
+                },
+                on_attach = function(buffer)
+                    local gs = package.loaded.gitsigns
 
-                local function map(mode, l, r, desc)
-                    vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-                end
+                    local function map(mode, l, r, desc)
+                        vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+                    end
 
                 -- stylua: ignore start
                 map("n", "]g", gs.next_hunk, "Next Hunk")
@@ -86,10 +96,8 @@ return {
                 map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
                 map("n", "<leader>tg", gs.toggle_current_line_blame, "Line Blame")
-            end,
-        },
-        config = function(_, opts)
-            require('gitsigns').setup(opts)
+                end,
+            })
         end,
     },
 }

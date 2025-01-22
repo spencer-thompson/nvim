@@ -31,13 +31,16 @@ return {
 
             local telescope = require('telescope')
 
+            local arrow = require('icons').arrows.right
+            local dot = require('icons').shapes.circle.filled
+
             telescope.setup({
                 defaults = {
                     layout_strategy = 'flex',
-                    prompt_prefix = '-> ',
-                    selection_caret = '-> ',
-                    entry_prefix = '   ',
-                    multi_icon = '<> ',
+                    prompt_prefix = arrow .. ' ',
+                    selection_caret = arrow .. ' ',
+                    entry_prefix = '  ',
+                    multi_icon = dot .. ' ',
                     borderchars = {
                         '─',
                         '│',

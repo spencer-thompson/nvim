@@ -2,6 +2,12 @@ return {
 
     { 'nvim-lua/plenary.nvim', name = 'plenary', dev = false, event = 'VeryLazy' },
     {
+        'folke/ts-comments.nvim',
+        name = 'ts-comments',
+        event = 'VeryLazy',
+        opts = {},
+    },
+    {
         'max397574/better-escape.nvim',
         name = 'better-escape',
         event = 'VeryLazy',

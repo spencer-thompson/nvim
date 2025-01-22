@@ -440,7 +440,8 @@ return {
                     auto_switch_focus = false, -- Automatically switch focus to minimap when clicked
                 },
                 win_filter = function(winid)
-                    return winid == vim.api.nvim_get_current_win() and vim.fn.winwidth(winid) > 80
+                    local current_winid = vim.api.nvim_get_current_win()
+                    return winid == current_winid and vim.fn.winwidth(winid) > 80
                 end,
                 exclude_filetypes = {
                     'dashboard',
