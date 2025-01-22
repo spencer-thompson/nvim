@@ -27,6 +27,9 @@ vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 -- move through buffers
 vim.keymap.set('n', '<leader><leader>', '<cmd>b#<cr>', { desc = 'Alternate Buffer' })
 
+-- tab for folding
+vim.keymap.set('n', '<tab>', 'za', { desc = 'Toggle Fold' })
+
 -- new line above / below cursor
 vim.keymap.set('n', '<leader>o', 'mzo<esc>k`z<cmd>delmarks z<cr>', { desc = 'New line below cursor' })
 vim.keymap.set('n', '<leader>O', 'mzO<esc>j`z<cmd>delmarks z<cr>', { desc = 'New line above cursor' })

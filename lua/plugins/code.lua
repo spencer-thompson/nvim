@@ -166,7 +166,7 @@ return {
                         },
                     },
                     dictionary = {
-                        max_items = 12,
+                        max_items = 500,
                         module = 'blink-cmp-dictionary',
                         name = 'Dict',
                         score_offset = -20,
