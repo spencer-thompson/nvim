@@ -54,8 +54,8 @@ vim.keymap.set(
     { desc = 'Select [S]ame Word' }
 )
 
--- fix last misspelled word and jump back
-vim.keymap.set('n', '<leader>z', 'mz[s1z=`z<cmd>delmarks z<cr>', { desc = 'Fix last misspelled word' })
+-- fix last misspelled word and jump back, this is epic
+vim.keymap.set('i', '<C-s>', '<esc>[s1z=gi', { desc = 'Fix last misspelled word' })
 
 -- paste without overwriting the clipboard
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without overwriting' })

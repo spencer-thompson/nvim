@@ -42,7 +42,7 @@ return {
         event = 'VeryLazy',
         lazy = true,
         config = function(_, opts)
-            local bar = require('icons').lines.left.vertical_thin
+            local bar = require('icons').lines.left.vertical
             require('gitsigns').setup({
                 -- signs = {
                 --     add = { text = '▎' },

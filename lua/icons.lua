@@ -20,39 +20,44 @@ M.shapes = {
     circle = {
         filled = '●',
     },
+    cube = {
+        outline = '󰆧',
+        solid = '󰆦',
+    },
 }
 
 M.symbols = {
     dict = '󱗖',
+    book = '󰂾',
 }
 
 --- LSP symbol kinds.
 M.symbol_kinds = {
-    Array = '󰅪',
-    Class = '',
+    Array = '󰅪', -- 󰦨
+    Class = '󱡠', -- 󰙅  󱡠
     Color = '󰏘',
     Constant = '󰏿',
-    Constructor = '', -- 󰒓
-    Enum = '',
-    EnumMember = '',
-    Event = '󱐋', -- 󱐋
+    Constructor = '󰒓', -- 󰒓 
+    Enum = '󰦨', -- 󰦨 
+    EnumMember = '', -- 󰦨
+    Event = '󱐋', -- 
     Field = '󰜢',
     File = '󰈙',
     Folder = '󰉋',
-    Function = '󰆧', -- 󰊕
-    Interface = '',
+    Function = '󰊕', -- 󰆧
+    Interface = '󰙅', -- 󱌢 
     Keyword = '󰻾', -- 󰌋 󰻾 󱥒
-    Method = '󰆧',
+    Method = '󰆦', -- 󰆦 󰆧
     Module = '',
     Operator = '󰆕',
     Property = '󰜢',
-    Reference = '󰈇',
-    Snippet = '󱄽', -- "󱄽"
-    Struct = '',
-    Text = '󰉿', -- 󰉿
-    TypeParameter = '󰬛', -- 󰬛
-    Unit = '',
-    Value = '',
+    Reference = '󰬲', -- 󰈇
+    Snippet = '󰬚', --  󱄽 󰞘 󰬀 󰬚
+    Struct = '󱉯', -- 󰕮  󱉯
+    Text = '󰉿', -- 󰉿 
+    TypeParameter = '󰙩', --  󰬛 󰙩
+    Unit = '󰪚', -- 󰪚 
+    Value = '', -- 󰦨
     Variable = '󰀫',
 }
 

@@ -126,7 +126,7 @@ return {
         },
         -- words = { enabled = true },
         dashboard = {
-            width = 50,
+            width = 60,
             pane_gap = 10,
             enabled = true,
             preset = {
@@ -181,13 +181,32 @@ return {
                         action = ':Neogit kind=floating',
                     },
 
+                    -- {
+                    --     icon = '󱘲 ',
+                    --     key = 'd',
+                    --     desc = 'Database',
+                    --     action = ':Dbee',
+                    -- },
+
                     {
-                        icon = '󱘲 ',
-                        key = 'd',
-                        desc = 'Database',
-                        action = ':Dbee',
+                        icon = ' ',
+                        key = 't',
+                        desc = 'Terminal',
+                        action = function()
+                            vim.cmd([[
+                            terminal
+                            startinsert
+                            ]])
+                        end,
                     },
-                    { icon = ' ', key = 'r', desc = 'Restore Session', section = 'session' },
+
+                    {
+                        icon = ' ',
+                        key = 'r',
+                        desc = 'Restore Session',
+                        section = 'session',
+                    },
+
                     {
                         icon = '󰒲 ',
                         key = 'l',
@@ -218,7 +237,7 @@ return {
                 {
                     -- pane = 2,
                     -- width = 20,
-                    { section = 'header', padding = 2 },
+                    { section = 'header', padding = 0 },
                     -- {
                     --     section = 'terminal',
                     --     cmd = 'toilet -f univers -F metal -F crop "neovim"',
@@ -236,11 +255,27 @@ return {
                 },
                 {
                     pane = 2,
+                    -- {
+                    --     section = 'terminal',
+                    --     cmd = 'chafa ~/dl/dark_nvim_img.jpg --format symbols --symbols sextant --size 40x28 --align mid,left; sleep .1',
+                    --     padding = 2,
+                    --     height = 15,
+                    -- },
+                    {
+                        -- icon = '',
+                        -- title = 'Welcome Back',
+                        padding = 3,
+                    },
                     {
                         section = 'terminal',
-                        cmd = 'chafa ~/dl/test_img.jpeg --format symbols --symbols sextant --size 40x28 --align mid,left; sleep .1',
-                        padding = 2,
-                        height = 15,
+                        -- cmd = 'fortune -s | fmt -w 60',
+                        cmd = 'fortune -s | fmt -w 60',
+                        hl = 'comment',
+                        -- padding = 10,
+                        -- width = 80,
+                        height = 7,
+                        -- indent = -7,
+                        -- align = 'center',
                     },
                     { icon = '', title = 'MRU ', file = vim.fn.fnamemodify('.', ':~'), padding = 1 },
                     { section = 'recent_files', cwd = true, limit = 3, indent = 2, padding = 1 },
@@ -252,16 +287,16 @@ return {
                     { section = 'recent_files', cwd = true, limit = 3, indent = 2, padding = 1 },
 
                     -- { section = 'session', padding = 1 },
-
                     {
+                        icon = '',
+                        title = 'Git Status',
                         section = 'terminal',
-                        -- cmd = 'fortune -s | fmt -w 60',
-                        cmd = 'fortune -s | fmt -w 50',
-                        hl = 'comment',
-                        -- padding = 1,
-                        -- width = 80,
-                        -- indent = -2,
-                        -- align = 'center',
+                        enabled = function()
+                            return Snacks.git.get_root() ~= nil
+                        end,
+                        cmd = 'git log -n 1 --format="\\"%s\\"%n- %an [%ar]%n"; git --no-pager diff --stat -B -M -C',
+                        ttl = 5 * 60,
+                        indent = 4,
                     },
                 },
                 -- {

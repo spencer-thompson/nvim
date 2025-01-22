@@ -27,10 +27,10 @@ return {
         opts = {
             keymap = {
                 preset = 'default',
+                ['<C-e>'] = { 'cancel', 'hide' },
                 ['<C-y>'] = { 'select_and_accept' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
-                ['<C-e>'] = { 'hide_documentation', 'hide' },
                 ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-l>'] = {
@@ -102,22 +102,12 @@ return {
                         'lsp',
                         'buffer',
                         'path',
-                        'ripgrep',
+                        -- 'ripgrep',
                         'emoji',
                         'nerdfont',
+                        'snippets',
+                        'lazydev',
                     }
-
-                    local ok, node = pcall(vim.treesitter.get_node)
-
-                    -- disable snippets and lazydev when in comments and strings
-                    if
-                        ok
-                        and node
-                        and not vim.tbl_contains({ 'string', 'comment', 'line_comment', 'block_comment' }, node:type())
-                    then
-                        table.insert(sources, 'snippets')
-                        table.insert(sources, 'lazydev')
-                    end
 
                     return sources
                 end,
@@ -134,7 +124,6 @@ return {
                     return {}
                 end,
                 providers = {
-                    -- lsp = { fallbacks = { 'lazydev' } },
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
@@ -145,7 +134,16 @@ return {
                         module = 'blink-cmp-rg',
                         name = 'Ripgrep',
                         max_items = 12,
-                        score_offset = -20,
+                        score_offset = -30,
+                        transform_items = function(ctx, items)
+                            local kind = require('blink.cmp.types').CompletionItemKind.Value
+
+                            for i = 1, #items do
+                                items[i].kind = kind
+                            end
+
+                            return items
+                        end,
                         opts = {
                             -- `min_keyword_length` only determines whether to show completion items in the menu,
                             -- not whether to trigger a search. And we only has one chance to search.
@@ -171,9 +169,10 @@ return {
                         max_items = 12,
                         module = 'blink-cmp-dictionary',
                         name = 'Dict',
+                        score_offset = -20,
 
                         transform_items = function(ctx, items)
-                            local kind = require('blink.cmp.types').CompletionItemKind.Unit
+                            local kind = require('blink.cmp.types').CompletionItemKind.EnumMember
 
                             for i = 1, #items do
                                 items[i].kind = kind
@@ -184,21 +183,16 @@ return {
 
                         min_keyword_length = 3,
 
-                        -- fzf --bind 'enter:execute(echo {2})+abort'
                         opts = {
                             -- Specify the dictionary files' path
                             -- example: { vim.fn.expand('~/.config/nvim/dictionary/words.dict') }
-                            dictionary_files = { vim.fn.expand('~/docs/valid_words.txt') },
+                            dictionary_files = { vim.fn.expand('~/.config/nvim/dict/valid_words.txt') },
                             -- All .txt files in these directories will be treated as dictionary files
                             -- example: { vim.fn.expand('~/.config/nvim/dictionary') }
                             dictionary_directories = nil,
                             separate_output = function(output)
                                 local items = {}
-                                -- You may need to change the pattern to match your dictionary files
-                                -- for line in output:gmatch('[^ ]+') do
-                                -- for line in output:gmatch('^[^%s]+') do
                                 for line in output:gmatch('[^\r\n]+') do
-                                    -- local word = string.match(line, '^[^%s]+')
                                     local word = line
                                     table.insert(items, {
                                         label = word,
@@ -225,7 +219,7 @@ return {
                         name = 'nerdfont',
                         module = 'blink.compat.source',
                         transform_items = function(ctx, items)
-                            -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+                            -- check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
                             local kind = require('blink.cmp.types').CompletionItemKind.Color
 
                             for i = 1, #items do
@@ -239,6 +233,17 @@ return {
                         module = 'blink-emoji',
                         name = 'Emoji',
                         score_offset = 0,
+
+                        transform_items = function(ctx, items)
+                            local kind = require('blink.cmp.types').CompletionItemKind.Color
+
+                            for i = 1, #items do
+                                items[i].kind = kind
+                            end
+
+                            return items
+                        end,
+
                         opts = { insert = true },
                     },
                 },

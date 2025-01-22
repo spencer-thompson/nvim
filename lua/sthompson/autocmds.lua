@@ -46,3 +46,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
         end
     end,
 })
+
+-- vim.api.nvim_create_autocmd('BufLeave', {
+--     group = vim.api.nvim_create_augroup('close_terms', { clear = true }),
+--     desc = 'Close Terminals on Exit',
+--     pattern = 'term://*',
+--     command = 'quit',
+-- })
