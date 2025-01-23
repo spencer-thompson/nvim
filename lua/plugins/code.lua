@@ -323,14 +323,17 @@ return {
         priority = 1000,
         config = function()
             require('tiny-inline-diagnostic').setup({
+                preset = 'powerline',
                 hi = {
                     background = 'None',
                 },
                 options = {
+                    show_source = true,
+                    use_icons_from_diagnostic = true,
                     multiple_diag_under_cursor = true,
                     break_line = {
                         enabled = true,
-                        after = 50,
+                        after = 30,
                     },
                 },
             })
