@@ -70,6 +70,7 @@ return {
                 menu = {
                     max_height = 20,
                     winblend = vim.o.pumblend,
+                    auto_show = true,
                     scrolloff = 5,
                     draw = {
                         treesitter = { 'lsp' },
@@ -89,8 +90,14 @@ return {
                         },
                     },
                 },
+                documentation = {
+                    window = {
+                        border = 'single',
+                        winblend = vim.o.pumblend,
+                    },
+                },
                 ghost_text = {
-                    enabled = true,
+                    enabled = false,
                 },
             },
             -- snippets = { preset = 'mini_snippets' },
