@@ -89,6 +89,7 @@ return {
                             ['<c-t>'] = open_with_trouble,
                         },
                         i = {
+                            ['C-y'] = actions.select_default,
                             ['<Esc>'] = actions.close,
                             ['<C-a>'] = actions.toggle_all,
                             ['<C-u>'] = false,

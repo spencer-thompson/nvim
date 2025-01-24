@@ -19,12 +19,17 @@ M.arrows = {
 M.shapes = {
     circle = {
         filled = '●',
+        outline = '󰄰',
+        dot = '󰻃',
+        plus = '󰐙',
     },
     cube = {
         outline = '󰆧',
         solid = '󰆦',
     },
 }
+
+M.dot = '●'
 
 M.symbols = {
     dict = '󱗖',
@@ -59,6 +64,12 @@ M.symbol_kinds = {
     Unit = '󰪚', -- 󰪚 
     Value = '', -- 󰦨
     Variable = '󰀫',
+}
+
+M.git = {
+    add = '',
+    mod = '',
+    rem = '',
 }
 
 --- Shared icons that don't really fit into a category.

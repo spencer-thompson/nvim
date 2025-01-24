@@ -182,9 +182,9 @@ return {
                         {
                             'diff',
                             symbols = {
-                                added = '+ ',
-                                modified = '~ ',
-                                removed = '- ',
+                                added = require('icons').shapes.circle.filled .. ' ',
+                                modified = require('icons').shapes.circle.dot .. ' ', --'~ ',
+                                removed = require('icons').shapes.circle.outline .. ' ',
                             },
                             padding = { right = 1, left = 1 },
                             source = function()
@@ -270,7 +270,7 @@ return {
                     lualine_z = {
                         {
                             'datetime',
-                            style = 'default',
+                            style = '%I:%M %p',
                             -- separator = { left = '' },
                             padding = { left = 1, right = 1 },
                         },
