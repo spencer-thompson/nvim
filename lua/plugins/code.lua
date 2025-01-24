@@ -70,6 +70,7 @@ return {
                 menu = {
                     max_height = 20,
                     winblend = vim.o.pumblend,
+                    auto_show = true,
                     scrolloff = 5,
                     draw = {
                         treesitter = { 'lsp' },
@@ -89,8 +90,14 @@ return {
                         },
                     },
                 },
+                documentation = {
+                    window = {
+                        border = 'single',
+                        winblend = vim.o.pumblend,
+                    },
+                },
                 ghost_text = {
-                    enabled = true,
+                    enabled = false,
                 },
             },
             -- snippets = { preset = 'mini_snippets' },
@@ -323,14 +330,17 @@ return {
         priority = 1000,
         config = function()
             require('tiny-inline-diagnostic').setup({
+                preset = 'powerline',
                 hi = {
                     background = 'None',
                 },
                 options = {
+                    show_source = true,
+                    use_icons_from_diagnostic = true,
                     multiple_diag_under_cursor = true,
                     break_line = {
                         enabled = true,
-                        after = 50,
+                        after = 30,
                     },
                 },
             })
