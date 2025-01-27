@@ -116,6 +116,27 @@ return {
                         'lazydev',
                     }
 
+                    local ok, node = pcall(vim.treesitter.get_node)
+                    if vim.bo.filetype == 'typst' then
+                        return sources
+                    elseif
+                        ok
+                        and node
+                        and vim.tbl_contains(
+                            { 'comment', 'line_comment', 'block_comment', 'string', 'string_content' },
+                            node:type()
+                        )
+                    then
+                        return {
+                            'path',
+                            'emoji',
+                            'nerdfont',
+                            'dictionary',
+                        }
+                    else
+                        return sources
+                    end
+
                     return sources
                 end,
                 cmdline = function()
