@@ -207,6 +207,25 @@ return {
                     )
                 end,
             })
+            vim.api.nvim_create_autocmd('BufReadPost', {
+                group = ft_group,
+                desc = 'Triple quotes in python',
+                pattern = '*.py',
+                callback = function(args)
+                    MiniPairs.map_buf(
+                        args.buf,
+                        'i',
+                        '"""',
+                        { action = 'closeopen', pair = '"""', neigh_pattern = '[^\\].' }
+                    )
+                    MiniPairs.map_buf(
+                        args.buf,
+                        'i',
+                        "'''",
+                        { action = 'closeopen', pair = "'''", neigh_pattern = '[^\\].' }
+                    )
+                end,
+            })
 
             require('mini.files').setup({
                 mappings = {
