@@ -203,7 +203,7 @@ return {
                         args.buf,
                         'i',
                         "'",
-                        { action = 'closeopen', pair = "''", neigh_pattern = "[^%a\\'].", register = { cr = false } }
+                        { action = 'closeopen', pair = "''", neigh_pattern = "[^%d%a\\'].", register = { cr = false } }
                     )
                 end,
             })

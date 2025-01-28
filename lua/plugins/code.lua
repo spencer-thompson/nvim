@@ -25,6 +25,12 @@ return {
         },
 
         opts = {
+            enabled = function()
+                return not vim.tbl_contains({ 'minifiles' }, vim.bo.filetype)
+                    and vim.bo.buftype ~= 'prompt'
+                    and vim.b.completion ~= false
+            end,
+
             keymap = {
                 preset = 'default',
                 ['<C-e>'] = { 'cancel', 'hide' },
@@ -58,6 +64,15 @@ return {
                 },
             },
 
+            -- signature = {
+            --     enabled = false,
+            --     window = {
+            --         show_documentation = true,
+            --         winblend = vim.o.pumblend,
+            --         border = 'single',
+            --     },
+            -- },
+
             completion = {
 
                 accept = {
@@ -67,8 +82,19 @@ return {
                     },
                 },
 
+                list = {
+                    selection = {
+                        preselect = function(ctx)
+                            return ctx.mode ~= 'cmdline'
+                        end,
+                        auto_insert = function(ctx)
+                            return ctx.mode ~= 'cmdline'
+                        end,
+                    },
+                },
+
                 menu = {
-                    max_height = 20,
+                    max_height = 25,
                     winblend = vim.o.pumblend,
                     auto_show = true,
                     scrolloff = 5,
