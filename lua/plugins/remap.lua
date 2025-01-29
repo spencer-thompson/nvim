@@ -46,9 +46,9 @@ return {
                 { -- J
                     { 'jk', hidden = true, mode = { 'v' } },
                 },
-                { -- L
-                    { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
-                },
+                -- { -- L
+                --     { '<leader>l', '<cmd>Lazy<CR>', desc = '[L]azy' },
+                -- },
                 { -- M
                     { '<leader>m', group = 'map' },
                 },
