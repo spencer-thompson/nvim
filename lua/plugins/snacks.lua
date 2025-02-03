@@ -125,13 +125,28 @@ return {
             end,
         },
         -- words = { enabled = true },
+        picker = {
+            enabled = true,
+            prompt = require('icons').arrows.right .. ' ',
+            layout = {
+                cycle = true,
+                --- Use the default layout or vertical if the window is too narrow
+                border = 'single',
+                preset = function()
+                    return vim.o.columns >= 120 and 'default' or 'vertical'
+                end,
+            },
+            matcher = {
+                frecency = true,
+            },
+        },
         dashboard = {
             width = 60,
             pane_gap = 10,
             enabled = true,
             preset = {
                 keys = {
-                    { icon = ' ', key = 'f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
+                    { icon = ' ', key = 'f', desc = 'Find', action = ':lua Snacks.picker.smart()' },
                     {
                         icon = '󰎕 ',
                         key = 'n',
@@ -139,10 +154,11 @@ return {
                         action = function()
                             Snacks.win({
                                 file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
-                                width = 0.6,
+                                width = 0.4,
                                 height = 0.6,
                                 relative = 'editor',
                                 position = 'float',
+                                border = 'single',
                                 wo = {
                                     spell = false,
                                     wrap = false,
@@ -157,7 +173,7 @@ return {
                         icon = '󰱽 ',
                         key = 's',
                         desc = 'Find String',
-                        action = ":lua Snacks.dashboard.pick('live_grep')",
+                        action = ':lua Snacks.picker.grep()',
                     },
 
                     { icon = '󱏒 ', key = 'e', desc = 'Explore files', action = ':lua MiniFiles.open()' },
@@ -165,7 +181,7 @@ return {
                         icon = ' ',
                         key = 'r',
                         desc = 'Recent Files',
-                        action = ":lua Snacks.dashboard.pick('oldfiles')",
+                        action = ':lua Snacks.picker.recent()',
                     },
                     {
                         icon = ' ',
@@ -175,11 +191,18 @@ return {
                     },
 
                     {
-                        icon = ' ',
-                        key = 'g',
-                        desc = 'Git',
-                        action = ':Neogit kind=floating',
+                        icon = '󰄶 ',
+                        key = 'b',
+                        desc = 'Scratch Buffer',
+                        action = ':lua Snacks.scratch()',
                     },
+
+                    -- {
+                    --     icon = ' ',
+                    --     key = 'g',
+                    --     desc = 'Git',
+                    --     action = ':Neogit kind=floating',
+                    -- },
 
                     -- {
                     --     icon = '󱘲 ',
@@ -352,6 +375,77 @@ return {
         },
     },
     keys = {
+        {
+            '<leader>ff',
+            function()
+                Snacks.picker.smart()
+            end,
+            desc = '[F]ind [F]iles',
+        },
+        {
+            '<leader>fs',
+            function()
+                Snacks.picker.grep()
+            end,
+            desc = '[F]ind [S]tring',
+        },
+        {
+            '<leader>fk',
+            function()
+                Snacks.picker.keymaps()
+            end,
+            desc = '[F]ind [K]eymaps',
+        },
+        {
+            '<leader>fh',
+            function()
+                Snacks.picker.help()
+            end,
+            desc = '[F]ind [H]elp',
+        },
+        {
+            '<leader>fH',
+            function()
+                Snacks.picker.highlights()
+            end,
+            desc = '[F]ind [H]ighlights',
+        },
+        {
+            '<leader>fi',
+            function()
+                Snacks.picker.icons()
+            end,
+            desc = '[F]ind [I]cons',
+        },
+        {
+            '<leader>fc',
+            function()
+                Snacks.picker.cliphist()
+            end,
+            desc = '[F]ind [C]lipboard',
+        },
+        {
+            '<leader>fj',
+            function()
+                Snacks.picker.jumps()
+            end,
+            desc = '[F]ind [J]umps',
+        },
+        {
+            '<leader>fn',
+            function()
+                Snacks.picker.notifications()
+            end,
+            desc = '[F]ind [N]otifications',
+        },
+        {
+            '<leader>fr',
+            function()
+                Snacks.picker.registers()
+            end,
+            desc = '[F]ind [R]egisters',
+        },
+
         {
             '<leader>nn',
             function()

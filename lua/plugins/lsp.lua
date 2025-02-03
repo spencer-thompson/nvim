@@ -233,19 +233,19 @@ return {
                     vim.keymap.set(
                         'n',
                         'gd',
-                        require('telescope.builtin').lsp_definitions,
+                        Snacks.picker.lsp_definitions,
                         { desc = '[D]efinitions', buffer = event.buf }
                     )
                     vim.keymap.set(
                         'n',
                         'gR',
-                        require('telescope.builtin').lsp_references,
+                        Snacks.picker.lsp_references,
                         { desc = '[R]eferences', buffer = event.buf }
                     )
                     vim.keymap.set(
                         'n',
                         'gI',
-                        require('telescope.builtin').lsp_implementations,
+                        Snacks.picker.lsp_implementations,
                         { desc = '[I]mplementations', buffer = event.buf }
                     )
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = '[D]eclaration', buffer = event.buf })

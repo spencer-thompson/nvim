@@ -3,6 +3,7 @@ return {
         'nvim-telescope/telescope.nvim',
         name = 'telescope',
         tag = '0.1.8',
+        enabled = false,
         -- or                              , branch = '0.1.x',
         event = 'VeryLazy',
         -- priority = 100,

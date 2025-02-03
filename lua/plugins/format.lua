@@ -32,9 +32,9 @@ return {
                     -- markdown = { { 'prettierd', 'prettier' } }, -- don't like
                     -- erb = { "htmlbeautifier" },
                     html = { 'prettierd' },
-                    bash = { 'beautysh' },
+                    bash = { 'shfmt' },
                     sh = { 'shfmt' },
-                    zsh = { 'beautysh' },
+                    zsh = { 'shfmt' },
                     -- proto = { "buf" },
                     -- rust = { "rustfmt" },
                     rust = { 'rustfmt', lsp_format = 'fallback' },
