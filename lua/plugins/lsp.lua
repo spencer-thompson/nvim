@@ -228,7 +228,21 @@ return {
                 callback = function(event)
                     -- these will be buffer-local keybindings
                     -- because they only work if you have an active language server
-                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show Hover Docs', buffer = event.buf })
+                    vim.keymap.set('n', 'K', function()
+                        -- local ok, node = pcall(vim.treesitter.get_node)
+                        -- if
+                        --     ok
+                        --     and node
+                        --     and vim.tbl_contains({ 'text', 'comment', 'block_comment', 'paragraph' }, node:type())
+                        -- then
+                        --     -- do stuff
+                        --     Snacks.win({
+                        --         text = vim.system({ 'wn', vim.fn.expand('<cword>'), '-over' }, { text = true }):wait(),
+                        --     })
+                        -- else
+                        vim.lsp.buf.hover()
+                        -- end
+                    end, { desc = 'Show Hover Docs', buffer = event.buf })
                     -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = "", buffer = event.buf })
                     vim.keymap.set(
                         'n',
