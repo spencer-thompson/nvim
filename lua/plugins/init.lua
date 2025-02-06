@@ -53,6 +53,7 @@ require('lazy').setup( -- load lazy
             fallback = false,
         },
         defaults = { version = false },
+        concurrency = math.floor(vim.uv.available_parallelism() / 2),
         checker = { -- auto check for updates
             enabled = true,
             notify = false,
