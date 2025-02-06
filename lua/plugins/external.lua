@@ -6,6 +6,7 @@ return {
         event = 'VeryLazy',
         config = function()
             require('cord').setup({})
+            -- vim.print(require('cord.server').status)
         end,
     },
 }
