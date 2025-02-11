@@ -24,6 +24,7 @@ return {
                     -- typescriptreact = { { "prettierd", "prettier" } },
                     json = { 'prettierd' },
                     jsonc = { 'prettierd' },
+                    matlab = { lsp_format = 'prefer' },
                     typst = { lsp_format = 'prefer' },
                     -- graphql = { { "prettierd", "prettier" } },
                     -- java = { "google-java-format" },

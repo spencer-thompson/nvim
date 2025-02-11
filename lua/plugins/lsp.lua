@@ -116,6 +116,16 @@ return {
                         },
                     },
                 },
+                matlab_ls = {
+                    settings = {
+                        MATLAB = {
+                            indexWorkspace = false,
+                            installPath = '',
+                            matlabConnectionTiming = 'onStart',
+                            telemetry = false,
+                        },
+                    },
+                },
                 pyright = {
                     settings = {
                         pyright = {

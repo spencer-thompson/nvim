@@ -9,6 +9,7 @@ return {
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg', lazy = true },
             { 'chrisgrieser/cmp-nerdfont', lazy = true },
             { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
+            { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep', lazy = true },
             {
                 'Kaiser-Yang/blink-cmp-dictionary',
                 dependencies = { 'nvim-lua/plenary.nvim' },
@@ -135,11 +136,11 @@ return {
                         'lsp',
                         'buffer',
                         'path',
-                        -- 'ripgrep',
                         'emoji',
                         'nerdfont',
                         'snippets',
                         'lazydev',
+                        'ripgrep',
                     }
 
                     local ok, node = pcall(vim.treesitter.get_node)
@@ -156,6 +157,7 @@ return {
                         return {
                             'path',
                             'emoji',
+                            'ripgrep',
                             'nerdfont',
                             'dictionary',
                         }
@@ -184,41 +186,41 @@ return {
                         max_items = 12,
                         score_offset = 20,
                     },
-                    ripgrep = {
-                        module = 'blink-cmp-rg',
-                        name = 'Ripgrep',
-                        max_items = 12,
-                        score_offset = -30,
-                        transform_items = function(ctx, items)
-                            local kind = require('blink.cmp.types').CompletionItemKind.Value
-
-                            for i = 1, #items do
-                                items[i].kind = kind
-                            end
-
-                            return items
-                        end,
-                        opts = {
-                            -- `min_keyword_length` only determines whether to show completion items in the menu,
-                            -- not whether to trigger a search. And we only has one chance to search.
-                            prefix_min_len = 3,
-                            get_command = function(context, prefix)
-                                return {
-                                    'rg',
-                                    '--no-config',
-                                    '--json',
-                                    '--word-regexp',
-                                    '--ignore-case',
-                                    '--',
-                                    prefix .. '[\\w_-]+',
-                                    vim.fs.root(0, '.git') or vim.fn.getcwd(),
-                                }
-                            end,
-                            get_prefix = function(context)
-                                return context.line:sub(1, context.cursor[2]):match('[%w_-]+$') or ''
-                            end,
-                        },
-                    },
+                    -- ripgrep = {
+                    --     module = 'blink-cmp-rg',
+                    --     name = 'Ripgrep',
+                    --     max_items = 12,
+                    --     score_offset = -30,
+                    --     transform_items = function(ctx, items)
+                    --         local kind = require('blink.cmp.types').CompletionItemKind.Value
+                    --
+                    --         for i = 1, #items do
+                    --             items[i].kind = kind
+                    --         end
+                    --
+                    --         return items
+                    --     end,
+                    --     opts = {
+                    --         -- `min_keyword_length` only determines whether to show completion items in the menu,
+                    --         -- not whether to trigger a search. And we only has one chance to search.
+                    --         prefix_min_len = 3,
+                    --         get_command = function(context, prefix)
+                    --             return {
+                    --                 'rg',
+                    --                 '--no-config',
+                    --                 '--json',
+                    --                 '--word-regexp',
+                    --                 '--ignore-case',
+                    --                 '--',
+                    --                 prefix .. '[\\w_-]+',
+                    --                 vim.fs.root(0, '.git') or vim.fn.getcwd(),
+                    --             }
+                    --         end,
+                    --         get_prefix = function(context)
+                    --             return context.line:sub(1, context.cursor[2]):match('[%w_-]+$') or ''
+                    --         end,
+                    --     },
+                    -- },
                     dictionary = {
                         max_items = 500,
                         module = 'blink-cmp-dictionary',
@@ -268,6 +270,82 @@ return {
                                 return items
                             end,
                         },
+                    },
+                    ripgrep = {
+                        module = 'blink-ripgrep',
+                        name = 'Ripgrep',
+                        opts = {
+                            -- the minimum length of the current word to start searching
+                            -- (if the word is shorter than this, the search will not start)
+                            prefix_min_len = 3,
+
+                            -- The number of lines to show around each match in the preview
+                            -- (documentation) window. Before and after
+                            context_size = 5,
+
+                            -- The maximum file size of a file that ripgrep should include in
+                            -- its search. Useful when your project contains large files that
+                            -- might cause performance issues.
+                            max_filesize = '1M',
+
+                            -- Specifies how to find the root of the project where the ripgrep
+                            -- search will start from. Accepts the same options as the marker
+                            -- given to `:h vim.fs.root()` which offers many possibilities for
+                            -- configuration. If none can be found, defaults to Neovim's cwd.
+                            project_root_marker = '.git',
+
+                            -- Enable fallback to neovim cwd if project_root_marker is not
+                            -- found. Default: `true`, which means to use the cwd.
+                            project_root_fallback = true,
+
+                            -- The casing to use for the search in a format that ripgrep
+                            -- accepts. Defaults to "--ignore-case". See `rg --help` for all the
+                            -- available options ripgrep supports, but you can try
+                            -- "--case-sensitive" or "--smart-case".
+                            search_casing = '--ignore-case',
+
+                            -- (advanced) Any additional options you want to give to ripgrep.
+                            -- See `rg -h` for a list of all available options. Might be
+                            -- helpful in adjusting performance in specific situations.
+                            -- If you have an idea for a default, please open an issue!
+                            --
+                            -- Not everything will work (obviously).
+                            additional_rg_options = {},
+
+                            -- When a result is found for a file whose filetype does not have a
+                            -- treesitter parser installed, fall back to regex based highlighting
+                            -- that is bundled in Neovim.
+                            fallback_to_regex_highlighting = true,
+
+                            -- Absolute root paths where the rg command will not be executed.
+                            -- Usually you want to exclude paths using gitignore files or
+                            -- ripgrep specific ignore files, but this can be used to only
+                            -- ignore the paths in blink-ripgrep.nvim, maintaining the ability
+                            -- to use ripgrep for those paths on the command line. If you need
+                            -- to find out where the searches are executed, enable `debug` and
+                            -- look at `:messages`.
+                            ignore_paths = { 'dict/' },
+
+                            -- Any additional paths to search in, in addition to the project
+                            -- root. This can be useful if you want to include dictionary files
+                            -- (/usr/share/dict/words), framework documentation, or any other
+                            -- reference material that is not available within the project
+                            -- root.
+                            additional_paths = {},
+                            debug = false,
+                        },
+                        -- (optional) customize how the results are displayed. Many options
+                        -- are available - make sure your lua LSP is set up so you get
+                        -- autocompletion help
+                        transform_items = function(ctx, items)
+                            local kind = require('blink.cmp.types').CompletionItemKind.File
+
+                            for i = 1, #items do
+                                items[i].kind = kind
+                            end
+
+                            return items
+                        end,
                     },
                     nerdfont = {
                         name = 'nerdfont',
@@ -377,17 +455,25 @@ return {
         priority = 1000,
         config = function()
             require('tiny-inline-diagnostic').setup({
-                preset = 'powerline',
+                preset = 'classic',
                 hi = {
                     background = 'None',
                 },
+                transparent_bg = true,
                 options = {
-                    show_source = true,
-                    use_icons_from_diagnostic = true,
+                    format = function(diagnostic)
+                        return diagnostic.message .. ' [' .. diagnostic.source .. ']'
+                    end,
+                    show_source = false,
+                    use_icons_from_diagnostic = false,
                     multiple_diag_under_cursor = true,
-                    break_line = {
-                        enabled = true,
-                        after = 30,
+                    -- break_line = {
+                    --     enabled = true,
+                    --     after = 50,
+                    -- },
+                    overflow = {
+                        mode = 'wrap',
+                        padding = 12,
                     },
                 },
             })

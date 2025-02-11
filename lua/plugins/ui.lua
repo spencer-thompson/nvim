@@ -431,7 +431,7 @@ return {
                 float = {
                     window_border = 'none',
                     minimap_width = 18,
-                    z_index = 21,
+                    z_index = 1,
                 },
                 split = {
                     minimap_width = 20,

@@ -5,7 +5,9 @@ return {
         build = ':Cord update',
         event = 'VeryLazy',
         config = function()
-            require('cord').setup({})
+            require('cord').setup({
+                -- log_level = 'trace',
+            })
             -- vim.print(require('cord.server').status)
         end,
     },

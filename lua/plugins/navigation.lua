@@ -18,6 +18,7 @@ return {
         'aaronik/treewalker.nvim',
         enabled = true,
         name = 'treewalker',
+        event = 'VeryLazy',
         -- defaults
         opts = {
             -- Whether to briefly highlight the node after jumping to it

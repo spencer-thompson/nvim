@@ -133,7 +133,7 @@ return {
                 --- Use the default layout or vertical if the window is too narrow
                 border = 'single',
                 preset = function()
-                    return vim.o.columns >= 120 and 'default' or 'vertical'
+                    return vim.o.columns >= 120 and 'ivy' or 'ivy_split'
                 end,
             },
             matcher = {
