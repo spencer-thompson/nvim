@@ -274,6 +274,7 @@ return {
                     ripgrep = {
                         module = 'blink-ripgrep',
                         name = 'Ripgrep',
+                        score_offset = -20,
                         opts = {
                             -- the minimum length of the current word to start searching
                             -- (if the word is shorter than this, the search will not start)
