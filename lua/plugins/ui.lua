@@ -785,10 +785,10 @@ return {
         end,
     },
 
-    {
-        'stevearc/dressing.nvim',
-        name = 'dressing',
-        lazy = true,
-        opts = {},
-    },
+    -- {
+    --     'stevearc/dressing.nvim',
+    --     name = 'dressing',
+    --     lazy = true,
+    --     opts = {},
+    -- },
 }
