@@ -114,8 +114,8 @@ vim.opt.undodir = vim.fn.stdpath('data') .. '/.undo'
 vim.opt.undofile = true
 
 -- set highlight on search
-vim.hlsearch = false
-vim.incsearch = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.opt.termguicolors = true
