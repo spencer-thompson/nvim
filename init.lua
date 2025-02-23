@@ -13,10 +13,9 @@
 88,    ,88 88       88 "8a,   ,d88 88         "8b,   ,aa   `8bd8'  `8bd8'
 `"8bbdP"Y8 88       88  `"8bbdP"Y8 88          `"Ybbd8"'     YP      ]]
 
-
 -- Leaders
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
+vim.g.maplocalleader = ' '
 
 -- My Base Keymaps and options
 require('sthompson')
