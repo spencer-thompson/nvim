@@ -64,6 +64,52 @@ return {
                     'hide_documentation', -- based
                 },
             },
+            cmdline = {
+                keymap = {
+                    preset = 'default',
+                    ['<C-e>'] = { 'cancel', 'hide' },
+                    ['<C-y>'] = { 'select_and_accept' },
+                    ['<C-k>'] = { 'select_prev', 'fallback' },
+                    ['<C-j>'] = { 'select_next', 'fallback' },
+                    ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+                    ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+                    ['<C-l>'] = {
+                        function(cmp)
+                            if cmp.snippet_active() then
+                                return cmp.snippet_forward()
+                            elseif not cmp.is_visible() then
+                                return cmp.show({ providers = { 'snippets' } })
+                            else
+                                return cmp.select_and_accept()
+                            end
+                        end,
+                    },
+                    ['<C-h>'] = {
+                        function(cmp)
+                            if cmp.snippet_active() then
+                                return cmp.snippet_backward()
+                            elseif not cmp.is_visible() then
+                                return cmp.show()
+                            else
+                                return cmp.show_documentation()
+                            end
+                        end,
+                        'hide_documentation', -- based
+                    },
+                },
+                sources = function()
+                    local type = vim.fn.getcmdtype()
+                    -- Search forward and backward
+                    if type == '/' or type == '?' then
+                        return { 'buffer' }
+                    end
+                    -- Commands
+                    if type == ':' then
+                        return { 'cmdline' }
+                    end
+                    return {}
+                end,
+            },
 
             -- signature = {
             --     enabled = false,
@@ -303,20 +349,6 @@ return {
                         opts = { insert = true },
                     },
                 },
-            },
-            cmdline = {
-                sources = function()
-                    local type = vim.fn.getcmdtype()
-                    -- Search forward and backward
-                    if type == '/' or type == '?' then
-                        return { 'buffer' }
-                    end
-                    -- Commands
-                    if type == ':' then
-                        return { 'cmdline' }
-                    end
-                    return {}
-                end,
             },
 
             appearance = {

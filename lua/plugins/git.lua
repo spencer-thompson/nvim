@@ -36,6 +36,12 @@ return {
         },
     },
 
+    { -- somehow deleted?
+        'sindrets/diffview.nvim',
+        name = 'diffview',
+        event = 'VeryLazy',
+    },
+
     { -- vscode like highlights on git changes
         'lewis6991/gitsigns.nvim',
         name = 'gitsigns',
