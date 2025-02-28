@@ -37,7 +37,7 @@ return {
     {
         'jackMort/ChatGPT.nvim',
         name = 'chatgpt',
-        enabled = true,
+        enabled = false,
         lazy = true,
         cmd = { 'ChatGPT', 'ChatGPTRun', 'ChatGPTEditWithInstruction' },
         dependencies = {

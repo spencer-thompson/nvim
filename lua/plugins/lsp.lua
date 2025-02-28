@@ -273,11 +273,22 @@ return {
                         Snacks.picker.lsp_implementations,
                         { desc = '[I]mplementations', buffer = event.buf }
                     )
-                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = '[D]eclaration', buffer = event.buf })
+                    vim.keymap.set(
+                        'n',
+                        '<leader>ca',
+                        vim.lsp.buf.code_action,
+                        { desc = '[C]ode [A]ction', buffer = event.buf }
+                    )
+                    vim.keymap.set(
+                        'n',
+                        'gD',
+                        Snacks.picker.lsp_declarations,
+                        { desc = '[D]eclaration', buffer = event.buf }
+                    )
                     vim.keymap.set(
                         'n',
                         'go',
-                        vim.lsp.buf.type_definition,
+                        Snacks.picker.lsp_type_definitions,
                         { desc = 'Type Definition', buffer = event.buf }
                     )
                     -- vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { desc = "", buffer = event.buf })
