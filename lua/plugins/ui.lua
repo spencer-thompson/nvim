@@ -445,7 +445,7 @@ return {
                 },
                 win_filter = function(winid)
                     local current_winid = vim.api.nvim_get_current_win()
-                    return winid == current_winid and vim.fn.winwidth(winid) > 80
+                    return winid == current_winid and vim.fn.winwidth(winid) > 100
                 end,
                 exclude_filetypes = {
                     'dashboard',
