@@ -432,7 +432,11 @@ return {
                 transparent_bg = true,
                 options = {
                     format = function(diagnostic)
-                        return diagnostic.message .. ' [' .. diagnostic.source .. ']'
+                        if diagnostic.source then
+                            return diagnostic.message .. ' [' .. diagnostic.source .. ']'
+                        else
+                            return diagnostic.message
+                        end
                     end,
                     show_source = false,
                     use_icons_from_diagnostic = false,
