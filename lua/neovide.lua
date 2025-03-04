@@ -1,6 +1,6 @@
 if vim.g.neovide then
     -- Font
-    vim.opt.guifont = 'JetBrainsMono Nerd Font Mono'
+    vim.opt.guifont = 'Berkeley Mono'
 
     -- Helper function for transparency formatting
     local alpha = function()

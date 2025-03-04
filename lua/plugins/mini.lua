@@ -258,13 +258,6 @@ return {
                 vim.fn.chdir(cur_directory)
             end
 
-            vim.api.nvim_create_autocmd('User', {
-                pattern = 'MiniFilesBufferCreate',
-                callback = function(args)
-                    vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id })
-                end,
-            })
-
             local map_split = function(buf_id, lhs, direction, close_on_file)
                 local rhs = function()
                     -- Make new window and set it as target
@@ -298,6 +291,11 @@ return {
                     -- Tweak keys to your liking
                     map_split(buf_id, 'J', 'horizontal', true)
                     map_split(buf_id, 'L', 'vertical', true)
+
+                    vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id })
+
+                    -- vim.opt_local.scrolloff = 0
+                    -- vim.api.nvim_set_option_value('scrolloff', 0, { buf = args.data.buf_id })
                 end,
             })
 
@@ -308,6 +306,8 @@ return {
 
                     -- Customize window-local settings
                     vim.wo[win_id].winblend = 30
+                    vim.wo[win_id].scrolloff = 0
+                    vim.wo[win_id].sidescrolloff = 0
                     -- local config = vim.api.nvim_win_get_config(win_id)
                     -- config.border, config.title_pos = 'double', 'right'
                     -- vim.api.nvim_win_set_config(win_id, config)
