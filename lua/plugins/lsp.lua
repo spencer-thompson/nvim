@@ -30,6 +30,29 @@ return {
                 -- },
                 --     })
                 -- end,
+                basedpyright = {
+                    settings = {
+                        basedpyright = {
+                            autoImportCompletion = true,
+                            disableOrganizeImports = true, -- Using Ruff
+                            analysis = {
+                                autoSearchPaths = true,
+                                diagnosticMode = 'openFilesOnly',
+                                useLibraryCodeForTypes = true,
+                                typeCheckingMode = 'off', -- try basic eventually
+                            },
+                        },
+                        python = {
+                            analysis = {
+                                ignore = { '*' }, -- Using Ruff
+                                autoSearchPaths = true,
+                                diagnosticMode = 'openFilesOnly',
+                                useLibraryCodeForTypes = true,
+                                typeCheckingMode = 'off', -- try basic eventually
+                            },
+                        },
+                    },
+                },
 
                 arduino_language_server = {},
                 awk_ls = {
@@ -126,23 +149,23 @@ return {
                         },
                     },
                 },
-                pyright = {
-                    settings = {
-                        pyright = {
-                            autoImportCompletion = true,
-                            disableOrganizeImports = true, -- Using Ruff
-                        },
-                        python = {
-                            analysis = {
-                                ignore = { '*' }, -- Using Ruff
-                                autoSearchPaths = true,
-                                diagnosticMode = 'openFilesOnly',
-                                useLibraryCodeForTypes = true,
-                                typeCheckingMode = 'off', -- try basic eventually
-                            },
-                        },
-                    },
-                },
+                -- pyright = {
+                --     settings = {
+                --         pyright = {
+                --             autoImportCompletion = true,
+                --             disableOrganizeImports = true, -- Using Ruff
+                --         },
+                --         python = {
+                --             analysis = {
+                --                 ignore = { '*' }, -- Using Ruff
+                --                 autoSearchPaths = true,
+                --                 diagnosticMode = 'openFilesOnly',
+                --                 useLibraryCodeForTypes = true,
+                --                 typeCheckingMode = 'off', -- try basic eventually
+                --             },
+                --         },
+                --     },
+                -- },
                 ruff = {},
                 svelte = {},
                 tailwindcss = {},

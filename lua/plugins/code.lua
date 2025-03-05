@@ -120,6 +120,8 @@ return {
             --     },
             -- },
 
+            fuzzy = { implementation = 'prefer_rust_with_warning' },
+
             completion = {
 
                 accept = {
@@ -143,7 +145,7 @@ return {
                 menu = {
                     max_height = 25,
                     winblend = vim.o.pumblend,
-                    auto_show = true,
+                    auto_show = false,
                     scrolloff = 5,
                     draw = {
                         treesitter = { 'lsp' },
@@ -170,7 +172,8 @@ return {
                     },
                 },
                 ghost_text = {
-                    enabled = false,
+                    enabled = true,
+                    show_with_menu = false,
                 },
             },
             -- snippets = { preset = 'mini_snippets' },
