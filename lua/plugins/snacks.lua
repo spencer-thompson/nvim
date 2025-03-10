@@ -268,7 +268,7 @@ return {
                     --     width = 60,
                     -- },
 
-                    { section = 'keys', gap = 1, padding = 2 },
+                    { section = 'keys', gap = 1, padding = 3 },
                     { section = 'startup', padding = 1 },
                     -- {
                     --     section = 'terminal',
@@ -287,7 +287,7 @@ return {
                     {
                         -- icon = '',
                         -- title = 'Welcome Back',
-                        padding = 3,
+                        padding = 2,
                     },
                     {
                         section = 'terminal',
@@ -297,30 +297,31 @@ return {
                         -- padding = 10,
                         -- width = 80,
                         height = 7,
+                        padding = 1,
                         -- indent = -7,
                         -- align = 'center',
                     },
                     { icon = '', title = 'MRU ', file = vim.fn.fnamemodify('.', ':~'), padding = 1 },
-                    { section = 'recent_files', cwd = true, limit = 3, indent = 2, padding = 1 },
+                    { section = 'recent_files', cwd = true, limit = 5, indent = 2, padding = 1 },
 
                     { icon = '', title = 'Projects ', padding = 1 },
-                    { section = 'projects', limit = 3, indent = 2, padding = 1 },
+                    { section = 'projects', limit = 5, indent = 2, padding = 1 },
 
-                    { icon = '', title = 'MRU ', padding = 1 },
-                    { section = 'recent_files', cwd = true, limit = 3, indent = 2, padding = 1 },
+                    { icon = '', title = 'MRU ', file = '~/', padding = 1 },
+                    { section = 'recent_files', limit = 5, indent = 2, padding = 1 },
 
                     -- { section = 'session', padding = 1 },
-                    {
-                        icon = '',
-                        title = 'Git Status',
-                        section = 'terminal',
-                        enabled = function()
-                            return Snacks.git.get_root() ~= nil
-                        end,
-                        cmd = 'git log -n 1 --format="\\"%s\\"%n- %an [%ar]%n"; git --no-pager diff --stat -B -M -C',
-                        ttl = 5 * 60,
-                        indent = 4,
-                    },
+                    -- {
+                    --     icon = '',
+                    --     title = 'Git Status',
+                    --     section = 'terminal',
+                    --     enabled = function()
+                    --         return Snacks.git.get_root() ~= nil
+                    --     end,
+                    --     cmd = 'git log -n 1 --format="\\"%s\\"%n- %an [%ar]%n"; git --no-pager diff --stat -B -M -C',
+                    --     ttl = 5 * 60,
+                    --     indent = 4,
+                    -- },
                 },
                 -- {
                 --     -- width = 40,

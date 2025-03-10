@@ -16,7 +16,7 @@ return {
             },
         },
 
-        -- use a release tag to download pre-built binaries
+        -- download pre-built binaries
         version = 'v0.*',
 
         opts_extend = {
@@ -43,28 +43,40 @@ return {
                 ['<C-l>'] = {
                     function(cmp)
                         if cmp.snippet_active() then
-                            return cmp.snippet_forward()
-                        elseif not cmp.is_visible() then
-                            return cmp.show({ providers = { 'snippets' } })
-                        else
-                            return cmp.select_and_accept()
+                            cmp.snippet_forward()
+                            return true
                         end
                     end,
+                    function(cmp)
+                        if not cmp.is_visible() then
+                            cmp.show({ providers = { 'snippets' } })
+                            return true
+                        end
+                    end,
+                    'show_documentation',
+                    'select_and_accept',
                 },
                 ['<C-h>'] = {
                     function(cmp)
                         if cmp.snippet_active() then
-                            return cmp.snippet_backward()
-                        elseif not cmp.is_visible() then
-                            return cmp.show()
-                        else
-                            return cmp.show_documentation()
+                            cmp.snippet_backward()
+                            return true
                         end
                     end,
-                    'hide_documentation', -- based
+                    function(cmp)
+                        if not cmp.is_visible() then
+                            cmp.show()
+                            return true
+                        end
+                    end,
+                    'hide_documentation',
+                    'hide',
                 },
             },
             cmdline = {
+                completion = {
+                    ghost_text = { enabled = false },
+                },
                 keymap = {
                     preset = 'default',
                     ['<C-e>'] = { 'cancel', 'hide' },
@@ -76,25 +88,34 @@ return {
                     ['<C-l>'] = {
                         function(cmp)
                             if cmp.snippet_active() then
-                                return cmp.snippet_forward()
-                            elseif not cmp.is_visible() then
-                                return cmp.show({ providers = { 'snippets' } })
-                            else
-                                return cmp.select_and_accept()
+                                cmp.snippet_forward()
+                                return true
                             end
                         end,
+                        function(cmp)
+                            if not cmp.is_visible() then
+                                cmp.show({ providers = { 'snippets' } })
+                                return true
+                            end
+                        end,
+                        'show_documentation',
+                        'select_and_accept',
                     },
                     ['<C-h>'] = {
                         function(cmp)
                             if cmp.snippet_active() then
-                                return cmp.snippet_backward()
-                            elseif not cmp.is_visible() then
-                                return cmp.show()
-                            else
-                                return cmp.show_documentation()
+                                cmp.snippet_backward()
+                                return true
                             end
                         end,
-                        'hide_documentation', -- based
+                        function(cmp)
+                            if not cmp.is_visible() then
+                                cmp.show()
+                                return true
+                            end
+                        end,
+                        'hide_documentation',
+                        'hide',
                     },
                 },
                 sources = function()
@@ -172,7 +193,7 @@ return {
                     },
                 },
                 ghost_text = {
-                    enabled = true,
+                    enabled = false,
                     show_with_menu = false,
                 },
             },
@@ -274,6 +295,7 @@ return {
                         },
                     },
                     ripgrep = {
+                        max_items = 500,
                         module = 'blink-ripgrep',
                         name = 'Ripgrep',
                         score_offset = -20,
