@@ -166,7 +166,7 @@ return {
                 menu = {
                     max_height = 25,
                     winblend = vim.o.pumblend,
-                    auto_show = false,
+                    auto_show = true,
                     scrolloff = 5,
                     draw = {
                         treesitter = { 'lsp' },
