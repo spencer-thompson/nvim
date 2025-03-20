@@ -5,9 +5,10 @@ return {
         event = 'InsertEnter',
         dependencies = {
             'rafamadriz/friendly-snippets',
-            'saghen/blink.compat',
+            -- 'saghen/blink.compat', -- for compatibility with nvim-cmp
+            -- currently I am not using this
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg', lazy = true },
-            { 'chrisgrieser/cmp-nerdfont', lazy = true },
+            { 'MahanRahmati/blink-nerdfont.nvim', name = 'blink-nerdfont', lazy = true },
             { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
             { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep', lazy = true },
             {
@@ -21,8 +22,8 @@ return {
 
         opts_extend = {
             'sources.completion.enabled_providers',
-            'sources.compat',
             'sources.default',
+            -- 'sources.compat',
         },
 
         opts = {
@@ -347,8 +348,11 @@ return {
                         end,
                     },
                     nerdfont = {
-                        name = 'nerdfont',
-                        module = 'blink.compat.source',
+                        name = 'Nerd Fonts',
+                        module = 'blink-nerdfont',
+                        -- name = 'nerdfont',
+                        -- module = 'blink.compat.source',
+
                         transform_items = function(ctx, items)
                             -- check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
                             local kind = require('blink.cmp.types').CompletionItemKind.Color
@@ -382,7 +386,7 @@ return {
 
             appearance = {
                 use_nvim_cmp_as_default = false,
-                nerd_font_variant = 'mono',
+                nerd_font_variant = 'normal',
                 kind_icons = require('icons').symbol_kinds,
                 -- kind_icons = {
                 --     Class = '󱡠',
