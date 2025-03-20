@@ -36,8 +36,8 @@ return {
                 preset = 'default',
                 ['<C-e>'] = { 'cancel', 'hide' },
                 ['<C-y>'] = { 'select_and_accept' },
-                ['<C-k>'] = { 'select_prev', 'fallback' },
-                ['<C-j>'] = { 'select_next', 'fallback' },
+                ['<C-k>'] = { 'select_prev' },
+                ['<C-j>'] = { 'select_next' },
                 ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-l>'] = {
@@ -47,14 +47,16 @@ return {
                             return true
                         end
                     end,
-                    function(cmp)
-                        if not cmp.is_visible() then
-                            cmp.show({ providers = { 'snippets' } })
-                            return true
-                        end
-                    end,
-                    'show_documentation',
-                    'select_and_accept',
+                    -- function(cmp)
+                    --     if not cmp.is_visible() then
+                    --         cmp.show({ providers = { 'snippets' } })
+                    --         return true
+                    --     end
+                    -- end,
+                    -- 'select_and_accept',
+                    'cancel',
+                    'show_and_insert',
+                    -- 'fallback',
                 },
                 ['<C-h>'] = {
                     function(cmp)
@@ -69,8 +71,8 @@ return {
                             return true
                         end
                     end,
+                    'show_documentation',
                     'hide_documentation',
-                    'hide',
                 },
             },
             cmdline = {
@@ -81,8 +83,8 @@ return {
                     preset = 'default',
                     ['<C-e>'] = { 'cancel', 'hide' },
                     ['<C-y>'] = { 'select_and_accept' },
-                    ['<C-k>'] = { 'select_prev', 'fallback' },
-                    ['<C-j>'] = { 'select_next', 'fallback' },
+                    ['<C-k>'] = { 'select_prev' },
+                    ['<C-j>'] = { 'select_next' },
                     ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                     ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
                     ['<C-l>'] = {
@@ -92,14 +94,15 @@ return {
                                 return true
                             end
                         end,
-                        function(cmp)
-                            if not cmp.is_visible() then
-                                cmp.show({ providers = { 'snippets' } })
-                                return true
-                            end
-                        end,
-                        'show_documentation',
-                        'select_and_accept',
+                        -- function(cmp)
+                        --     if not cmp.is_visible() then
+                        --         cmp.show({ providers = { 'snippets' } })
+                        --         return true
+                        --     end
+                        -- end,
+                        -- 'select_and_accept',
+                        'cancel',
+                        'show_and_insert',
                     },
                     ['<C-h>'] = {
                         function(cmp)
@@ -114,8 +117,8 @@ return {
                                 return true
                             end
                         end,
+                        'show_documentation',
                         'hide_documentation',
-                        'hide',
                     },
                 },
                 sources = function()
@@ -164,10 +167,10 @@ return {
                 -- },
 
                 menu = {
-                    max_height = 25,
+                    max_height = 15,
                     winblend = vim.o.pumblend,
                     auto_show = true,
-                    scrolloff = 5,
+                    scrolloff = 8,
                     draw = {
                         treesitter = { 'lsp' },
                         components = {
@@ -206,6 +209,7 @@ return {
                         'lsp',
                         'buffer',
                         'path',
+                        'omni',
                         'emoji',
                         'nerdfont',
                         'snippets',

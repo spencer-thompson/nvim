@@ -33,24 +33,34 @@ return {
                 basedpyright = {
                     settings = {
                         basedpyright = {
-                            autoImportCompletion = true,
+                            -- autoImportCompletion = true,
                             disableOrganizeImports = true, -- Using Ruff
                             analysis = {
+                                ignore = { '*' },
                                 autoSearchPaths = true,
                                 diagnosticMode = 'openFilesOnly',
                                 useLibraryCodeForTypes = true,
                                 typeCheckingMode = 'off', -- try basic eventually
                             },
                         },
-                        python = {
-                            analysis = {
-                                ignore = { '*' }, -- Using Ruff
-                                autoSearchPaths = true,
-                                diagnosticMode = 'openFilesOnly',
-                                useLibraryCodeForTypes = true,
-                                typeCheckingMode = 'off', -- try basic eventually
-                            },
-                        },
+                        -- python = {
+                        --     venvPath = Snacks.git.get_root(),
+                        --     -- venvPath = function()
+                        --     --     local project_root = Snacks.git.get_root()
+                        --     --     if project_root ~= nil then
+                        --     --         return project_root
+                        --     --     end
+                        --     -- end,
+                        -- },
+                        -- python = {
+                        --     analysis = {
+                        --         ignore = { '*' }, -- Using Ruff
+                        --         autoSearchPaths = true,
+                        --         diagnosticMode = 'openFilesOnly',
+                        --         useLibraryCodeForTypes = true,
+                        --         typeCheckingMode = 'off', -- try basic eventually
+                        --     },
+                        -- },
                     },
                 },
 
@@ -236,7 +246,8 @@ return {
                         capabilities = vim.tbl_deep_extend(
                             'force',
                             capabilities,
-                            require('blink.cmp').get_lsp_capabilities(server.capabilities)
+                            -- require('blink.cmp').get_lsp_capabilities(server.capabilities)
+                            require('blink.cmp').get_lsp_capabilities({}, false)
                         )
                         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
                         lspconfig[server_name].setup(server)
