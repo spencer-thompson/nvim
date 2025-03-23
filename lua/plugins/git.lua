@@ -46,6 +46,7 @@ return {
         'lewis6991/gitsigns.nvim',
         name = 'gitsigns',
         event = 'VeryLazy',
+        -- enabled = false,
         lazy = true,
         config = function(_, opts)
             local bar = require('icons').lines.left.vertical

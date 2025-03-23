@@ -256,10 +256,14 @@ return {
                         score_offset = -20,
 
                         transform_items = function(ctx, items)
-                            local kind = require('blink.cmp.types').CompletionItemKind.EnumMember
+                            -- local kind = require('blink.cmp.types').CompletionItemKind.EnumMember
+
+                            local icon = require('icons').misc.book
 
                             for i = 1, #items do
-                                items[i].kind = kind
+                                -- items[i].kind = kind
+                                items[i].kind_icon = icon
+                                items[i].kind_name = 'Dictionary'
                             end
 
                             return items
@@ -340,8 +344,12 @@ return {
                         transform_items = function(ctx, items)
                             local kind = require('blink.cmp.types').CompletionItemKind.File
 
+                            local icon = require('icons').misc.search
+
                             for i = 1, #items do
-                                items[i].kind = kind
+                                -- items[i].kind = kind
+                                items[i].kind_icon = icon
+                                items[i].kind_name = 'Ripgrep'
                             end
 
                             return items
@@ -357,8 +365,12 @@ return {
                             -- check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
                             local kind = require('blink.cmp.types').CompletionItemKind.Color
 
+                            local icon = require('icons').misc.glasses
+
                             for i = 1, #items do
-                                items[i].kind = kind
+                                -- items[i].kind = kind
+                                items[i].kind_icon = icon
+                                items[i].kind_name = 'Nerd Fonts'
                             end
 
                             return items
@@ -372,8 +384,12 @@ return {
                         transform_items = function(ctx, items)
                             local kind = require('blink.cmp.types').CompletionItemKind.Color
 
+                            local icon = require('icons').misc.emoji
+
                             for i = 1, #items do
-                                items[i].kind = kind
+                                -- items[i].kind = kind
+                                items[i].kind_icon = icon
+                                items[i].kind_name = 'Emoji'
                             end
 
                             return items

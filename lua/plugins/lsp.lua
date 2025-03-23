@@ -238,22 +238,32 @@ return {
             -- require('mason-tool-installer').setup({
             --     ensure_installed = ensure_installed,
             -- })
-            require('mason-lspconfig').setup({
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
+            --
 
-                        capabilities = vim.tbl_deep_extend(
-                            'force',
-                            capabilities,
-                            -- require('blink.cmp').get_lsp_capabilities(server.capabilities)
-                            require('blink.cmp').get_lsp_capabilities({}, false)
-                        )
-                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                        lspconfig[server_name].setup(server)
-                    end,
-                },
-            })
+            for server, config in pairs(servers) do
+                if config == true then
+                    config = {}
+                end
+
+                config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+                lspconfig[server].setup(config)
+            end
+            -- require('mason-lspconfig').setup({
+            --     handlers = {
+            --         function(server_name)
+            --             local server = servers[server_name] or {}
+            --
+            --             capabilities = vim.tbl_deep_extend(
+            --                 'force',
+            --                 capabilities,
+            --                 -- require('blink.cmp').get_lsp_capabilities(server.capabilities)
+            --                 require('blink.cmp').get_lsp_capabilities({}, false)
+            --             )
+            --             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            --             lspconfig[server_name].setup(server)
+            --         end,
+            --     },
+            -- })
 
             vim.cmd(
                 [[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError]]
@@ -309,9 +319,9 @@ return {
                     )
                     vim.keymap.set(
                         'n',
-                        '<leader>ca',
+                        '<leader>a',
                         vim.lsp.buf.code_action,
-                        { desc = '[C]ode [A]ction', buffer = event.buf }
+                        { desc = 'Code [A]ction', buffer = event.buf }
                     )
                     vim.keymap.set(
                         'n',

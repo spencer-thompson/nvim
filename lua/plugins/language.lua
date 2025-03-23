@@ -67,6 +67,13 @@ return {
         end,
     },
 
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        name = 'render-markdown',
+        event = 'VeryLazy',
+        ft = { 'codecompanion' },
+    },
+
     -- {
     --     'iurimateus/luasnip-latex-snippets.nvim',
     --     name = 'latex-snippets',

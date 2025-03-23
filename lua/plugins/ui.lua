@@ -473,7 +473,7 @@ return {
                         HINT = 70,
                     },
                 },
-                git = { enabled = true, mode = 'sign' },
+                -- git = { enabled = true, mode = 'sign' },
                 search = { enabled = true, mode = 'sign', priority = 20 },
                 mark = { enabled = true, mode = 'sign', priority = 100 },
                 -- handlers = {

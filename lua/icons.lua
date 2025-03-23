@@ -75,6 +75,9 @@ M.git = {
 --- Shared icons that don't really fit into a category.
 M.misc = {
     bug = '',
+    glasses = '󰓠',
+    book = '󱗖',
+    emoji = '󰚜',
     ellipsis = '…',
     git = '',
     search = '',

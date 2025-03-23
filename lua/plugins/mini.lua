@@ -61,6 +61,14 @@ return {
 
             require('mini.comment').setup({})
             require('mini.cursorword').setup({})
+
+            local bar = require('icons').lines.left.vertical
+            require('mini.diff').setup({
+                view = {
+                    style = 'sign',
+                    signs = { add = bar, change = bar, delete = bar },
+                },
+            })
             require('mini.hipatterns').setup({
                 highlighters = {
                     hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
