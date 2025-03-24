@@ -47,7 +47,7 @@ M.symbol_kinds = {
     EnumMember = '', -- 󰦨
     Event = '󱐋', -- 
     Field = '󰜢',
-    File = '󰈙',
+    File = '󰈢', -- 󰈙"󰈢"
     Folder = '󰉋',
     Function = '󰊕', -- 󰆧
     Interface = '󰙅', -- 󱌢 
@@ -100,3 +100,32 @@ M.lines = {
 }
 
 return M
+
+-- kind_icons = {
+--     Class = '󱡠',
+--     Color = '󰏘',
+--     Constant = '󰏿',
+--     Constructor = '󰒓',
+--     Enum = '󰦨',
+--     EnumMember = '󰦨',
+--     Event = '󱐋',
+--     Field = '󰜢',
+--     File = '󰈔',
+--     Folder = '󰉋',
+--     Function = '󰊕',
+--     Interface = '󱡠',
+--     Keyword = '󰻾',
+--     Method = '󰊕',
+--     Module = '󰅩',
+--     Operator = '󰪚',
+--     Property = '󰖷',
+--     Reference = '󰬲',
+--     Snippet = '󱄽',
+--     Struct = '󱡠',
+--     Text = '󰉿',
+--     TypeParameter = '󰬛',
+--     Unit = '󰪚',
+--     Value = '󰦨',
+--     Variable = '󰆦',
+-- },
+-- kind_icons = require('icons').symbol_kinds,

@@ -5,8 +5,9 @@ return {
         event = 'InsertEnter',
         dependencies = {
             'rafamadriz/friendly-snippets',
-            -- 'saghen/blink.compat', -- for compatibility with nvim-cmp
             -- currently I am not using this
+            -- 'saghen/blink.compat', -- for compatibility with nvim-cmp
+            { 'fang2hou/blink-copilot', lazy = true },
             { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg', lazy = true },
             { 'MahanRahmati/blink-nerdfont.nvim', name = 'blink-nerdfont', lazy = true },
             { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
@@ -18,7 +19,7 @@ return {
         },
 
         -- download pre-built binaries
-        version = 'v0.*',
+        version = '*',
 
         opts_extend = {
             'sources.completion.enabled_providers',
@@ -78,7 +79,7 @@ return {
             },
             cmdline = {
                 completion = {
-                    ghost_text = { enabled = false },
+                    ghost_text = { enabled = true },
                 },
                 keymap = {
                     preset = 'default',
@@ -112,12 +113,13 @@ return {
                                 return true
                             end
                         end,
-                        function(cmp)
-                            if not cmp.is_visible() then
-                                cmp.show()
-                                return true
-                            end
-                        end,
+                        -- function(cmp)
+                        --     if not cmp.is_visible() then
+                        --         cmp.show()
+                        --         return true
+                        --     end
+                        -- end,
+                        'show',
                         'show_documentation',
                         'hide_documentation',
                     },
@@ -198,7 +200,7 @@ return {
                 },
                 ghost_text = {
                     enabled = false,
-                    show_with_menu = false,
+                    show_with_menu = true,
                 },
             },
             -- snippets = { preset = 'mini_snippets' },
@@ -216,38 +218,49 @@ return {
                         'snippets',
                         'lazydev',
                         'ripgrep',
+                        'copilot',
                     }
 
-                    local ok, node = pcall(vim.treesitter.get_node)
-                    if vim.bo.filetype == 'typst' then
-                        return sources
-                    elseif
-                        ok
-                        and node
-                        and vim.tbl_contains(
-                            { 'comment', 'line_comment', 'block_comment', 'string', 'string_content' },
-                            node:type()
-                        )
-                    then
-                        return {
-                            'path',
-                            'emoji',
-                            'ripgrep',
-                            'nerdfont',
-                            'dictionary',
-                        }
-                    else
-                        return sources
-                    end
+                    -- local ok, node = pcall(vim.treesitter.get_node)
+                    -- if vim.bo.filetype == 'typst' then
+                    --     return sources
+                    -- elseif
+                    --     ok
+                    --     and node
+                    --     and vim.tbl_contains(
+                    --         { 'comment', 'line_comment', 'block_comment', 'string', 'string_content' },
+                    --         node:type()
+                    --     )
+                    -- then
+                    --     return {
+                    --         'path',
+                    --         'emoji',
+                    --         'ripgrep',
+                    --         'nerdfont',
+                    --         'dictionary',
+                    --     }
+                    -- else
+                    --     return sources
+                    -- end
 
                     return sources
                 end,
                 providers = {
+                    lsp = {
+                        score_offset = 20,
+                    },
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
                         max_items = 12,
                         score_offset = 20,
+                    },
+                    copilot = {
+                        name = 'Copilot',
+                        module = 'blink-copilot',
+                        score_offset = 30,
+                        async = true,
+                        min_keyword_length = 3,
                     },
                     dictionary = {
                         max_items = 500,
@@ -404,34 +417,6 @@ return {
                 use_nvim_cmp_as_default = false,
                 nerd_font_variant = 'normal',
                 kind_icons = require('icons').symbol_kinds,
-                -- kind_icons = {
-                --     Class = '󱡠',
-                --     Color = '󰏘',
-                --     Constant = '󰏿',
-                --     Constructor = '󰒓',
-                --     Enum = '󰦨',
-                --     EnumMember = '󰦨',
-                --     Event = '󱐋',
-                --     Field = '󰜢',
-                --     File = '󰈔',
-                --     Folder = '󰉋',
-                --     Function = '󰊕',
-                --     Interface = '󱡠',
-                --     Keyword = '󰻾',
-                --     Method = '󰊕',
-                --     Module = '󰅩',
-                --     Operator = '󰪚',
-                --     Property = '󰖷',
-                --     Reference = '󰬲',
-                --     Snippet = '󱄽',
-                --     Struct = '󱡠',
-                --     Text = '󰉿',
-                --     TypeParameter = '󰬛',
-                --     Unit = '󰪚',
-                --     Value = '󰦨',
-                --     Variable = '󰆦',
-                -- },
-                -- kind_icons = require('icons').symbol_kinds,
             },
         },
     },

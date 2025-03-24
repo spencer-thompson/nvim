@@ -212,6 +212,15 @@ return {
                     -- },
 
                     {
+                        icon = '󱚤 ',
+                        key = 'a',
+                        desc = 'AI Chat',
+                        action = function()
+                            require('codecompanion').toggle()
+                        end,
+                    },
+
+                    {
                         icon = ' ',
                         key = 't',
                         desc = 'Terminal',

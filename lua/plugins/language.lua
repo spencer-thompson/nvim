@@ -70,6 +70,7 @@ return {
     {
         'MeanderingProgrammer/render-markdown.nvim',
         name = 'render-markdown',
+        enabled = false,
         event = 'VeryLazy',
         ft = { 'codecompanion' },
     },
