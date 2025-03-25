@@ -43,7 +43,7 @@ return {
                 },
                 strategies = {
                     chat = {
-                        adapter = 'anthropic',
+                        adapter = 'openai',
                         -- tools = {
                         --     ['mcp'] = {
                         --         -- calling it in a function would prevent mcphub from being loaded before it's needed
@@ -58,10 +58,10 @@ return {
                         -- },
                     },
                     inline = {
-                        adapter = 'anthropic',
+                        adapter = 'copilot',
                     },
                     cmd = {
-                        adapter = 'anthropic',
+                        adapter = 'openai',
                     },
                 },
             })

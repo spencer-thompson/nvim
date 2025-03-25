@@ -258,7 +258,7 @@ return {
                     copilot = {
                         name = 'Copilot',
                         module = 'blink-copilot',
-                        score_offset = 30,
+                        score_offset = 10,
                         async = true,
                         min_keyword_length = 3,
                     },
@@ -267,6 +267,7 @@ return {
                         module = 'blink-cmp-dictionary',
                         name = 'Dict',
                         score_offset = -20,
+                        async = true,
 
                         transform_items = function(ctx, items)
                             -- local kind = require('blink.cmp.types').CompletionItemKind.EnumMember
@@ -321,6 +322,7 @@ return {
                         module = 'blink-ripgrep',
                         name = 'Ripgrep',
                         score_offset = -20,
+                        async = true,
                         opts = {
                             -- the minimum length of the current word to start searching
                             prefix_min_len = 3,
@@ -371,6 +373,8 @@ return {
                     nerdfont = {
                         name = 'Nerd Fonts',
                         module = 'blink-nerdfont',
+                        score_offset = 0,
+                        async = true,
                         -- name = 'nerdfont',
                         -- module = 'blink.compat.source',
 
@@ -393,6 +397,7 @@ return {
                         module = 'blink-emoji',
                         name = 'Emoji',
                         score_offset = 0,
+                        async = true,
 
                         transform_items = function(ctx, items)
                             local kind = require('blink.cmp.types').CompletionItemKind.Color
