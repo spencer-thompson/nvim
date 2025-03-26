@@ -8,6 +8,10 @@
     "prefix": "ali",
     "body": ["#align($1)[", "\t$0", "]"]
   },
+  "Sum": {
+    "prefix": "sum",
+    "body": ["sum_(${1:i}=1)^(${2:n}) $0"]
+  },
   "Integral": { "prefix": "int", "body": ["integral $0 dif x"] },
   "Such That": { "prefix": "st", "body": ["such that"] },
   "Continuous": { "prefix": "cont", "body": ["continuous"] },

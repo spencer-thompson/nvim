@@ -16,6 +16,15 @@ return {
         opts = {},
     },
 
+    {
+        'xzbdmw/colorful-menu.nvim',
+        name = 'colorful-menu',
+        event = 'InsertEnter',
+        config = function()
+            require('colorful-menu').setup()
+        end,
+    },
+
     { -- better moving between splits, and resizing
         'mrjones2014/smart-splits.nvim',
         name = 'smart-splits',

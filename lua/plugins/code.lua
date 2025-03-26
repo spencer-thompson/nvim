@@ -68,7 +68,7 @@ return {
                         end
                     end,
                     function(cmp)
-                        if not cmp.is_visible() then
+                        if not cmp.is_menu_visible() then
                             cmp.show()
                             return true
                         end
@@ -116,6 +116,7 @@ return {
                         -- function(cmp)
                         --     if not cmp.is_visible() then
                         --         cmp.show()
+                        --
                         --         return true
                         --     end
                         -- end,
@@ -176,20 +177,51 @@ return {
                     scrolloff = 8,
                     draw = {
                         treesitter = { 'lsp' },
+                        columns = { { 'kind_icon' }, { 'label', gap = 1 } },
                         components = {
-                            kind_icon = {
-                                ellipsis = false,
-                                -- text = function(ctx)
-                                --     local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                                --     return kind_icon
-                                -- end,
-                                -- Optionally, you may also use the highlights from mini.icons
-                                -- highlight = function(ctx)
-                                --     local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                                --     return hl
-                                -- end,
+                            label = {
+                                width = { fill = true, max = 50 },
+                                text = function(ctx)
+                                    return require('colorful-menu').blink_components_text(ctx)
+                                end,
+                                highlight = function(ctx)
+                                    return require('colorful-menu').blink_components_highlight(ctx)
+                                end,
                             },
+                            -- kind_icon = {
+                            --
+                            --     text = function(ctx)
+                            --         local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                            --         return kind_icon
+                            --     end,
+                            --     -- (optional) use highlights from mini.icons
+                            --     highlight = function(ctx)
+                            --         local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                            --         return hl
+                            --     end,
+                            -- },
+                            -- kind = {
+                            --     -- (optional) use highlights from mini.icons
+                            --     highlight = function(ctx)
+                            --         local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                            --         return hl
+                            --     end,
+                            -- },
                         },
+                        -- components = {
+                        --     kind_icon = {
+                        --         ellipsis = false,
+                        --         -- text = function(ctx)
+                        --         --     local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                        --         --     return kind_icon
+                        --         -- end,
+                        --         -- Optionally, you may also use the highlights from mini.icons
+                        --         -- highlight = function(ctx)
+                        --         --     local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                        --         --     return hl
+                        --         -- end,
+                        --     },
+                        -- },
                     },
                 },
                 documentation = {
@@ -199,7 +231,7 @@ return {
                     },
                 },
                 ghost_text = {
-                    enabled = false,
+                    enabled = true,
                     show_with_menu = true,
                 },
             },

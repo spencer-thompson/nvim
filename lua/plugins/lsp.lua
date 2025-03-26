@@ -43,15 +43,15 @@ return {
                                 typeCheckingMode = 'off', -- try basic eventually
                             },
                         },
-                        -- python = {
-                        --     venvPath = Snacks.git.get_root(),
-                        --     -- venvPath = function()
-                        --     --     local project_root = Snacks.git.get_root()
-                        --     --     if project_root ~= nil then
-                        --     --         return project_root
-                        --     --     end
-                        --     -- end,
-                        -- },
+                        python = {
+                            venvPath = Snacks.git.get_root(), -- This works?
+                            -- venvPath = function()
+                            --     local project_root = Snacks.git.get_root()
+                            --     if project_root ~= nil then
+                            --         return project_root
+                            --     end
+                            -- end,
+                        },
                         -- python = {
                         --     analysis = {
                         --         ignore = { '*' }, -- Using Ruff

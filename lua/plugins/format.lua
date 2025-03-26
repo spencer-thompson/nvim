@@ -45,9 +45,10 @@ return {
                     scss = { 'prettierd' },
                 },
                 format_on_save = { -- must have
-                    -- async = false,
+                    async = false,
+                    -- quiet = false,
                     lsp_fallback = true,
-                    timeout_ms = 500,
+                    timeout_ms = 2000,
                 },
             })
         end,
