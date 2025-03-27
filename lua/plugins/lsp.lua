@@ -348,7 +348,10 @@ return {
                 end,
             })
 
-            vim.diagnostic.config({ virtual_text = false })
+            vim.diagnostic.config({
+                virtual_lines = true,
+                virtual_text = false,
+            })
         end,
     },
 }
