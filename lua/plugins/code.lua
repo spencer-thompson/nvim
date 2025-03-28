@@ -493,6 +493,7 @@ return {
         'rachartier/tiny-inline-diagnostic.nvim',
         name = 'tiny-inline-diagnostic',
         event = 'VeryLazy', -- Or `LspAttach`
+        enabled = false,
         priority = 1000,
         config = function()
             require('tiny-inline-diagnostic').setup({
@@ -608,6 +609,6 @@ return {
         end,
     },
 
-    { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
-    { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
+    -- { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
+    -- { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
 }

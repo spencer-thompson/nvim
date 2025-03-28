@@ -21,7 +21,7 @@ return {
         name = 'colorful-menu',
         event = 'InsertEnter',
         config = function()
-            require('colorful-menu').setup()
+            require('colorful-menu').setup({})
         end,
     },
 

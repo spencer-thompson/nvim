@@ -183,12 +183,12 @@ return {
                         desc = 'Recent Files',
                         action = ':lua Snacks.picker.recent()',
                     },
-                    {
-                        icon = ' ',
-                        key = 'c',
-                        desc = 'Config',
-                        action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-                    },
+                    -- {
+                    --     icon = ' ',
+                    --     key = 'c',
+                    --     desc = 'Config',
+                    --     action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+                    -- },
 
                     {
                         icon = '󰄶 ',
@@ -213,7 +213,7 @@ return {
 
                     {
                         icon = '󱚤 ',
-                        key = 'a',
+                        key = 'c',
                         desc = 'AI Chat',
                         action = function()
                             require('codecompanion').toggle()

@@ -150,7 +150,7 @@ return {
         'ficcdaf/ashen.nvim',
         name = 'ashen',
         -- tag = '*',
-        enabled = false,
+        enabled = true,
         lazy = false,
         priority = 1000,
         config = function()
@@ -161,7 +161,7 @@ return {
                     italic_comments = true,
                 },
             })
-            vim.cmd.colorscheme('ashen')
+            -- vim.cmd.colorscheme('ashen')
         end,
     },
 

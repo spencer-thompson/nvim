@@ -265,19 +265,6 @@ return {
             --     },
             -- })
 
-            vim.cmd(
-                [[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError]]
-            )
-            vim.cmd(
-                [[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn]]
-            )
-            vim.cmd(
-                [[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo]]
-            )
-            vim.cmd(
-                [[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint ]]
-            )
-
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
@@ -348,10 +335,10 @@ return {
                 end,
             })
 
-            vim.diagnostic.config({
-                virtual_lines = true,
-                virtual_text = false,
-            })
+            -- vim.diagnostic.config({
+            --     virtual_lines = true,
+            --     virtual_text = false,
+            -- })
         end,
     },
 }
