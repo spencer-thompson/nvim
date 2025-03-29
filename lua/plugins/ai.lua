@@ -23,8 +23,8 @@ return {
             require('codecompanion').setup({
                 display = {
                     chat = {
-                        show_settings = true,
-                        start_in_insert_mode = true,
+                        -- show_settings = true,
+                        -- start_in_insert_mode = true,
 
                         window = {
                             opts = {
@@ -43,7 +43,7 @@ return {
                 },
                 strategies = {
                     chat = {
-                        adapter = 'openai',
+                        adapter = 'anthropic',
                         tools = {
                             ['mcp'] = {
                                 -- calling it in a function would prevent mcphub from being loaded before it's needed
@@ -58,10 +58,7 @@ return {
                         },
                     },
                     inline = {
-                        adapter = 'copilot',
-                    },
-                    cmd = {
-                        adapter = 'openai',
+                        adapter = 'gemini',
                     },
                 },
             })

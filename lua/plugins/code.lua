@@ -16,6 +16,15 @@ return {
                 'Kaiser-Yang/blink-cmp-dictionary',
                 dependencies = { 'nvim-lua/plenary.nvim' },
             },
+
+            {
+                'xzbdmw/colorful-menu.nvim',
+                name = 'colorful-menu',
+                event = 'InsertEnter',
+                config = function()
+                    require('colorful-menu').setup({})
+                end,
+            },
         },
 
         -- download pre-built binaries
@@ -610,5 +619,5 @@ return {
     },
 
     -- { 'tpope/vim-sleuth', event = 'VeryLazy' }, -- auto adjust shift and tabs
-    -- { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
+    { 'tpope/vim-repeat', name = 'repeat', event = 'VeryLazy' }, -- better repeating with plugins
 }

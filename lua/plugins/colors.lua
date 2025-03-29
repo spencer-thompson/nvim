@@ -184,7 +184,7 @@ return {
                     sidebars = 'transparent', -- style for sidebars, see below
                     floats = 'transparent', -- style for floating windows
                 },
-                -- terminal_colors = true,
+                terminal_colors = true,
                 -- styles = {
                 --     comments = { italic = false },
                 --     keywords = { italic = false },
@@ -192,6 +192,9 @@ return {
                 on_highlights = function(hl, c) -- change telescope border color
                     hl.TelescopeBorder = {
                         fg = c.orange,
+                    }
+                    hl.BufferLineFill = {
+                        bg = c.bg_dark,
                     }
                 end,
             })

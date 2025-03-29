@@ -7,7 +7,7 @@ return {
         dependencies = {
             { 'saghen/blink.cmp' },
             { 'williamboman/mason.nvim', name = 'mason' },
-            { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
+            { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig', config = function() end },
             { 'WhoIsSethDaniel/mason-tool-installer.nvim', name = 'mason-installer' },
         },
         opts = {},

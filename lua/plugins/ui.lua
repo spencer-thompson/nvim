@@ -16,15 +16,6 @@ return {
         opts = {},
     },
 
-    {
-        'xzbdmw/colorful-menu.nvim',
-        name = 'colorful-menu',
-        event = 'InsertEnter',
-        config = function()
-            require('colorful-menu').setup({})
-        end,
-    },
-
     { -- better moving between splits, and resizing
         'mrjones2014/smart-splits.nvim',
         name = 'smart-splits',
@@ -61,26 +52,6 @@ return {
             maxkeys = 5,
             -- more opts
         },
-    },
-    { -- animated background
-        'alanfortlink/animatedbg.nvim',
-        name = 'animatedbg',
-        enabled = false,
-        lazy = true,
-        keys = {
-            {
-                '<leader>a',
-                function()
-                    require('animatedbg-nvim').play({ animation = 'fireworks' })
-                end,
-                desc = 'Animated Background',
-            },
-        },
-        config = function()
-            require('animatedbg-nvim').setup({
-                fps = 165, -- default
-            })
-        end,
     },
 
     {
@@ -189,11 +160,14 @@ return {
 
             -- local minimap_extension = require('neominimap.statusline').lualine_default
 
+            local custom_theme = require('lualine.themes.auto')
+            custom_theme.normal.c.bg = 'None'
+
             require('lualine').setup({
                 options = {
                     icons_enabled = true,
                     -- theme = 'molokai',
-                    theme = 'auto',
+                    theme = custom_theme,
                     component_separators = { left = '│', right = '│' }, -- │
                     -- component_separators = { left = '', right = '' },
                     -- { left = '', right = '' }, { left = '', right = '' }, '|'
@@ -390,10 +364,30 @@ return {
                     },
                 },
             },
+            highlights = {
+                -- background = {
+                --     -- fg = 'none',
+                --     bg = {
+                --         attribute = 'bg',
+                --         highlight = 'Pmenu',
+                --     },
+                -- },
+                fill = {
+                    -- fg = {
+                    --     attribute = 'bg',
+                    --     highlight = 'Normal',
+                    -- },
+                    bg = {
+                        attribute = 'bg',
+                        highlight = 'Pmenu',
+                    },
+                },
+            },
         },
         config = function(_, opts)
             require('bufferline').setup(opts)
             vim.cmd([[BufferLineTabRename main]])
+            -- vim.cmd([[hi Pmenu guibg=none]])
         end,
     },
 
