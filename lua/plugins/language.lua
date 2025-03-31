@@ -49,6 +49,7 @@ return {
         'pmizio/typescript-tools.nvim',
         name = 'typescript-tools',
         event = 'VeryLazy',
+        enabled = false,
         dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
         opts = {},
         config = function()

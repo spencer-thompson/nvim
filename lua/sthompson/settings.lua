@@ -9,8 +9,8 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
                                                      aa,    ,88
                                                       "Y8bbd]]
 
-vim.wo.number = true -- line numbers
-vim.opt.rnu = true -- relative line numbers
+vim.wo.number = false -- line numbers
+vim.opt.rnu = false -- relative line numbers
 
 vim.o.mouse = 'a' -- mouse mode
 vim.o.mousescroll = 'ver:3,hor:0' -- Disable horizontal scrolling.
@@ -64,21 +64,21 @@ vim.opt.formatoptions = vim.opt.formatoptions
     + 'j' -- remove comment leader when joining lines
 
 -- Folding.
-vim.o.foldcolumn = '1'
+vim.o.foldcolumn = '0'
 vim.opt.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.wo.foldtext = ''
-vim.opt.foldmethod = 'indent'
-vim.opt.foldenable = true
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldmethod = 'expr'
+vim.opt.foldenable = true
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {
     horiz = '─',
     horizup = '┴',
     horizdown = '┬',
-    vert = '│',
+    -- vert = '│',
+    vert = ' ',
     -- msgsep = '│',
     vertleft = '┤',
     vertright = '├',
@@ -129,3 +129,11 @@ vim.opt.showtabline = 2
 vim.o.keywordprg = 'wn'
 
 -- vim.o.winborder = 'rounded'
+local left = require('icons').lines.left.vertical
+local center = require('icons').lines.center.vertical
+local right = require('icons').lines.right.vertical
+vim.o.statuscolumn = '%s' .. left .. '%l'
+
+-- %l	line number column for currently drawn line
+-- %s	sign column for currently drawn line
+-- %C	fold column for currently drawn line

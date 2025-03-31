@@ -1,7 +1,22 @@
 return {
+
+    {
+        'williamboman/mason.nvim',
+        name = 'mason',
+        event = 'VeryLazy',
+        cmd = 'Mason',
+        dependencies = {
+            { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig', config = function() end },
+        },
+        config = function()
+            require('mason').setup()
+        end,
+    },
+
     { -- LSP servers
         'neovim/nvim-lspconfig',
         name = 'lspconfig',
+        enabled = false,
         -- cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
         event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
         dependencies = {
@@ -30,40 +45,40 @@ return {
                 -- },
                 --     })
                 -- end,
-                basedpyright = {
-                    settings = {
-                        basedpyright = {
-                            -- autoImportCompletion = true,
-                            disableOrganizeImports = true, -- Using Ruff
-                            analysis = {
-                                ignore = { '*' },
-                                autoSearchPaths = true,
-                                diagnosticMode = 'openFilesOnly',
-                                useLibraryCodeForTypes = true,
-                                typeCheckingMode = 'off', -- try basic eventually
-                            },
-                        },
-                        python = {
-                            venvPath = Snacks.git.get_root(), -- This works?
-                            -- venvPath = function()
-                            --     local project_root = Snacks.git.get_root()
-                            --     if project_root ~= nil then
-                            --         return project_root
-                            --     end
-                            -- end,
-                        },
-                        -- python = {
-                        --     analysis = {
-                        --         ignore = { '*' }, -- Using Ruff
-                        --         autoSearchPaths = true,
-                        --         diagnosticMode = 'openFilesOnly',
-                        --         useLibraryCodeForTypes = true,
-                        --         typeCheckingMode = 'off', -- try basic eventually
-                        --     },
-                        -- },
-                    },
-                },
-
+                -- basedpyright = {
+                --     settings = {
+                --         basedpyright = {
+                --             -- autoImportCompletion = true,
+                --             disableOrganizeImports = true, -- Using Ruff
+                --             analysis = {
+                --                 ignore = { '*' },
+                --                 autoSearchPaths = true,
+                --                 diagnosticMode = 'openFilesOnly',
+                --                 useLibraryCodeForTypes = true,
+                --                 typeCheckingMode = 'off', -- try basic eventually
+                --             },
+                --         },
+                --         python = {
+                --             venvPath = Snacks.git.get_root(), -- This works?
+                --             -- venvPath = function()
+                --             --     local project_root = Snacks.git.get_root()
+                --             --     if project_root ~= nil then
+                --             --         return project_root
+                --             --     end
+                --             -- end,
+                --         },
+                --         -- python = {
+                --         --     analysis = {
+                --         --         ignore = { '*' }, -- Using Ruff
+                --         --         autoSearchPaths = true,
+                --         --         diagnosticMode = 'openFilesOnly',
+                --         --         useLibraryCodeForTypes = true,
+                --         --         typeCheckingMode = 'off', -- try basic eventually
+                --         --     },
+                --         -- },
+                --     },
+                -- },
+                --
                 arduino_language_server = {},
                 awk_ls = {
                     cmd = { 'awk-language-server' },

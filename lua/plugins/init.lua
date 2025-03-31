@@ -66,5 +66,7 @@ require('lazy').setup( -- load lazy
 
 require('plugins.autocmds')
 
+Snacks.toggle.line_number():map('<leader>nu')
+
 -- change current line number highlight
 vim.api.nvim_set_hl(0, 'CursorLineNr', { link = 'ModeMsg' })

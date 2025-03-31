@@ -109,12 +109,12 @@ return {
                 char = '∙',
             },
         },
-        -- scope = { enabled = true },
+        -- scope = { enabled = false },
         bigfile = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
         statuscolumn = {
-            enabled = true,
+            enabled = false,
             left = function(win, buf)
                 local is_neominimap = vim.bo[buf].filetype == 'neominimap'
                 return is_neominimap and { 'sign' } or { 'mark', 'sign' }

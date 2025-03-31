@@ -96,6 +96,7 @@ M.lines = {
     },
     right = {
         vertical_thin = '▕',
+        vertical = '🮇',
     },
 }
 

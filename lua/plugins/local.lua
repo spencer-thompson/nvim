@@ -9,4 +9,14 @@ return {
         name = 'multiplayer',
         event = 'VeryLazy',
     },
+
+    {
+        -- dir = '~/plugins/keylogger.nvim',
+        'spencer-thompson/keylogger.nvim',
+        opts = {},
+        enabled = false,
+        name = 'keylogger',
+        event = 'VeryLazy',
+        dependencies = { 'kkharji/sqlite.lua' },
+    },
 }

@@ -76,6 +76,7 @@ return {
                     untracked = { text = bar },
                 },
                 numhl = false,
+                signcolumn = false,
                 current_line_blame = true,
                 -- current_line_blame_formatter = '    - <author> | <author_time:[%a %I:%M %p]> | "<summary>"',
                 current_line_blame_opts = {

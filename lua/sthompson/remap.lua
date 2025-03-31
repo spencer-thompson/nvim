@@ -59,7 +59,7 @@ vim.keymap.set(
 
 -- fix last misspelled word and jump back, this is epic
 vim.keymap.set('i', '<C-z>', '<esc>[s1z=gi', { desc = 'Fix last misspelled word' })
-vim.keymap.set('n', '<leader>z', '[s1z=gijk', { desc = 'Fix last misspelled word' })
+vim.keymap.set('n', '<leader>z', "[s1z=''", { desc = 'Fix last misspelled word' })
 
 -- paste without overwriting the clipboard
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without overwriting' })
