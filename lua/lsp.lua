@@ -3,40 +3,36 @@ local icons = require('icons').diagnostics
 -- Diagnostic configuration.
 vim.diagnostic.config({
 
-    -- vim.diagnostic.config({
-    --     virtual_lines = true,
-    --     virtual_text = false,
-    -- })
-    virtual_text = false,
-    -- virtual_text = {
-    --     prefix = '',
-    --     spacing = 2,
-    --     format = function(diagnostic)
-    --         -- Use shorter, nicer names for some sources:
-    --         local special_sources = {
-    --             ['Lua Diagnostics.'] = 'lua',
-    --             ['Lua Syntax Check.'] = 'lua',
-    --         }
-    --
-    --         local message = diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]]
-    --         if diagnostic.source then
-    --             message = string.format('%s %s', message, special_sources[diagnostic.source] or diagnostic.source)
-    --         end
-    --         if diagnostic.code then
-    --             message = string.format('%s[%s]', message, diagnostic.code)
-    --         end
-    --
-    --         return message .. ' '
-    --     end,
-    -- },
-    virtual_lines = {
-        current_line = false,
+    virtual_text = {
+        severity = {
+            max = vim.diagnostic.severity.WARN,
+        },
 
-        -- prefix = function(diag)
-        --     local level = vim.diagnostic.severity[diag.severity]
-        --     local prefix = string.format(' %s ', icons[level])
-        --     return prefix, 'Diagnostic' .. level:gsub('^%l', string.upper)
-        -- end,
+        prefix = '',
+        spacing = 2,
+        format = function(diagnostic)
+            -- Use shorter, nicer names for some sources:
+            local special_sources = {
+                ['Lua Diagnostics.'] = 'lua',
+                ['Lua Syntax Check.'] = 'lua',
+            }
+
+            local message = icons[vim.diagnostic.severity[diagnostic.severity]]
+            if diagnostic.source then
+                message = string.format('%s %s', message, special_sources[diagnostic.source] or diagnostic.source)
+            end
+            if diagnostic.code then
+                message = string.format('%s[%s]', message, diagnostic.code)
+            end
+
+            return message .. ' '
+        end,
+    },
+    virtual_lines = {
+        -- current_line = true,
+        severity = {
+            min = vim.diagnostic.severity.ERROR,
+        },
     },
     float = {
         border = 'rounded',
@@ -63,6 +59,8 @@ vim.diagnostic.config({
 for filename in (vim.fs.dir('~/.config/nvim/after/lsp')) do
     vim.lsp.enable(filename:match('(.+)%.lua') or filename)
 end
+
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', { desc = 'Open Diagnostic Float' })
 
 -- vim.api.nvim_create_autocmd('LspAttach', {
 --     desc = 'LSP actions',

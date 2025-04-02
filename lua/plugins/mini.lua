@@ -202,6 +202,10 @@ return {
                     prefix = 'gS',
                     func = nil,
                 },
+                replace = {
+                    prefix = 'gR',
+                    reindent_lineswise = true,
+                },
             })
             -- require('mini.sessions').setup({})
             require('mini.splitjoin').setup({

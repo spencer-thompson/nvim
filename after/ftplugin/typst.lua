@@ -81,12 +81,12 @@ vim.keymap.set('n', '<leader>r', function()
 
     if not ok or not res then
         show_pdf:start()
-        vim.api.nvim_buf_set_var(0, 'active_preview', show_pdf)
-    end
-    if res then
-        res:shutdown()
-        vim.api.nvim_buf_set_var(0, 'active_preview', false)
-        -- else
+        --     vim.api.nvim_buf_set_var(0, 'active_preview', show_pdf)
+        -- end
+        -- if res then
+        --     res:shutdown()
+        --     vim.api.nvim_buf_set_var(0, 'active_preview', false)
+        --     -- else
         --     res:start()
     end
     -- else
