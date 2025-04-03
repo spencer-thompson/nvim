@@ -4,7 +4,7 @@ return {
         name = 'which-key',
         event = 'VeryLazy',
         -- lazy = true,
-        dependencies = { 'echasnovski/mini.icons', version = false },
+        -- dependencies = { 'echasnovski/mini.icons', version = false },
         config = function(opts)
             local wk = require('which-key')
             wk.setup({

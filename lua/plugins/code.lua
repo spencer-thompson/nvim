@@ -14,7 +14,7 @@ return {
             { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep', lazy = true },
             {
                 'Kaiser-Yang/blink-cmp-dictionary',
-                dependencies = { 'nvim-lua/plenary.nvim' },
+                dependencies = { 'nvim-lua/plenary.nvim', name = 'plenary' },
             },
 
             {

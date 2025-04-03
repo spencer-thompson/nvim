@@ -616,7 +616,8 @@ return {
     { -- fancy ui like floating search and command
         'folke/noice.nvim',
         -- enabled = false,
-        name = 'noice',
+        -- lazy = true,
+        -- name = 'noice',
         event = 'VimEnter',
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries

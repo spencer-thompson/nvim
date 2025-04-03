@@ -150,7 +150,7 @@ return {
         'ficcdaf/ashen.nvim',
         name = 'ashen',
         -- tag = '*',
-        enabled = true,
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()

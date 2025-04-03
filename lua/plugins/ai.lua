@@ -44,18 +44,18 @@ return {
                 strategies = {
                     chat = {
                         adapter = 'anthropic',
-                        tools = {
-                            ['mcp'] = {
-                                -- calling it in a function would prevent mcphub from being loaded before it's needed
-                                callback = function()
-                                    return require('mcphub.extensions.codecompanion')
-                                end,
-                                description = 'Call tools and resources from the MCP Servers',
-                                opts = {
-                                    requires_approval = true,
-                                },
-                            },
-                        },
+                        -- tools = {
+                        --     ['mcp'] = {
+                        --         -- calling it in a function would prevent mcphub from being loaded before it's needed
+                        --         callback = function()
+                        --             return require('mcphub.extensions.codecompanion')
+                        --         end,
+                        --         description = 'Call tools and resources from the MCP Servers',
+                        --         opts = {
+                        --             requires_approval = true,
+                        --         },
+                        --     },
+                        -- },
                     },
                     inline = {
                         adapter = 'gemini',
@@ -78,11 +78,12 @@ return {
             vim.cmd([[cab cc CodeCompanion]])
         end,
         dependencies = {
-            'nvim-lua/plenary.nvim',
+            { 'nvim-lua/plenary.nvim', name = 'plenary' },
             'nvim-treesitter/nvim-treesitter',
             -- 'ravitemer/mcphub.nvim',
             {
                 'OXY2DEV/markview.nvim',
+                name = 'markview',
                 event = 'VeryLazy',
                 -- lazy = false,
                 opts = {
@@ -99,7 +100,7 @@ return {
     {
         'ravitemer/mcphub.nvim',
         name = 'mcphub',
-        enabled = true,
+        enabled = false,
         event = 'VeryLazy',
         dependencies = {
             'nvim-lua/plenary.nvim', -- Required for Job and HTTP requests

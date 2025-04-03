@@ -61,6 +61,7 @@ return {
     { -- This is better w, b, and e
         'chrisgrieser/nvim-spider',
         lazy = true,
+        enabled = false,
         event = 'VeryLazy',
         keys = {
             { 'w', "<cmd>lua require('spider').motion('w')<CR>", mode = { 'n', 'o', 'x' } },

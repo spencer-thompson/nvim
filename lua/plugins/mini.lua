@@ -5,6 +5,7 @@ return {
         name = 'mini',
         version = false,
         -- event = 'VimEnter',
+        event = 'VeryLazy',
         config = function()
             require('mini.ai').setup({
                 n_lines = 300,
