@@ -42,6 +42,7 @@ return {
     {
         'max397574/better-escape.nvim',
         name = 'better-escape',
+        enabled = false,
         event = 'VeryLazy',
         config = function()
             require('better_escape').setup({
