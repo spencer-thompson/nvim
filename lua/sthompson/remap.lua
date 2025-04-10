@@ -9,7 +9,7 @@
 
 -- jk to leave insert mode
 -- vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Exit' })
--- vim.keymap.set('t', 'jk', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but for terminal mode
+vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but for terminal mode
 
 -- move lines up or down in visual mode
 -- vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line(s) up' })

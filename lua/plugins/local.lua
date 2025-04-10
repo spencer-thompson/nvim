@@ -5,7 +5,7 @@ return {
     {
         dir = '~/plugins/multiplayer.nvim',
         opts = {},
-        enabled = false,
+        enabled = true,
         name = 'multiplayer',
         event = 'VeryLazy',
     },
