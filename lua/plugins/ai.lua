@@ -58,7 +58,7 @@ return {
                         -- },
                     },
                     inline = {
-                        adapter = 'gemini',
+                        adapter = 'copilot',
                     },
                 },
             })

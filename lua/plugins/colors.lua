@@ -32,6 +32,20 @@ return {
     },
 
     {
+        'datsfilipe/vesper.nvim',
+        name = 'vesper',
+        enabled = false,
+        opts = {
+            transparent = true,
+            italics = {
+                keywords = false,
+                functions = false,
+                variables = false,
+            },
+        },
+    },
+
+    {
         'craftzdog/solarized-osaka.nvim',
         name = 'solarized-osaka',
         lazy = true,

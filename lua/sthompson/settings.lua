@@ -18,7 +18,7 @@ vim.o.clipboard = 'unnamedplus' -- sync clipboards
 
 vim.o.timeout = true
 vim.o.updatetime = 300
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 10
 
 vim.opt.tabstop = 4

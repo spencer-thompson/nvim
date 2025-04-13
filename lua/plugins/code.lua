@@ -1,14 +1,14 @@
 return {
     { -- completion engine
         'saghen/blink.cmp',
-        lazy = true,
+        -- lazy = true,
+        build = 'cargo +nightly build --release',
         event = 'InsertEnter',
         dependencies = {
             'rafamadriz/friendly-snippets',
             -- currently I am not using this
             -- 'saghen/blink.compat', -- for compatibility with nvim-cmp
             { 'fang2hou/blink-copilot', lazy = true },
-            { 'niuiic/blink-cmp-rg.nvim', name = 'blink-cmp-rg', lazy = true },
             { 'MahanRahmati/blink-nerdfont.nvim', name = 'blink-nerdfont', lazy = true },
             { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
             { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep', lazy = true },
@@ -28,7 +28,7 @@ return {
         },
 
         -- download pre-built binaries
-        version = '*',
+        -- version = '*',
 
         opts_extend = {
             'sources.completion.enabled_providers',
@@ -161,6 +161,10 @@ return {
 
             completion = {
 
+                trigger = {
+                    show_on_keyword = true,
+                },
+
                 accept = {
                     -- experimental auto-brackets support
                     auto_brackets = {
@@ -288,18 +292,21 @@ return {
                 end,
                 providers = {
                     lsp = {
-                        score_offset = 20,
+                        score_offset = 5,
+                    },
+                    snippets = {
+                        score_offset = 5,
                     },
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
                         max_items = 12,
-                        score_offset = 20,
+                        score_offset = 5,
                     },
                     copilot = {
                         name = 'Copilot',
                         module = 'blink-copilot',
-                        score_offset = 5,
+                        score_offset = 0,
                         async = true,
                         min_keyword_length = 3,
                     },
@@ -307,7 +314,7 @@ return {
                         max_items = 500,
                         module = 'blink-cmp-dictionary',
                         name = 'Dict',
-                        score_offset = -20,
+                        score_offset = -2,
                         async = true,
 
                         transform_items = function(ctx, items)
@@ -362,7 +369,7 @@ return {
                         max_items = 500,
                         module = 'blink-ripgrep',
                         name = 'Ripgrep',
-                        score_offset = -20,
+                        score_offset = -3,
                         async = true,
                         opts = {
                             -- the minimum length of the current word to start searching

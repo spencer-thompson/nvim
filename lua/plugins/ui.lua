@@ -16,6 +16,25 @@ return {
         opts = {},
     },
 
+    {
+        'stevearc/quicker.nvim',
+        name = 'quicker',
+        event = 'FileType qf',
+        opts = {
+            borders = {
+                vert = require('icons').lines.center.vertical,
+            },
+        },
+    },
+
+    { -- vscode like show whitespace
+        'mcauley-penney/visual-whitespace.nvim',
+        name = 'visual-whitespace',
+        enabled = false,
+        config = true,
+        -- keys = { 'v', 'V', '<C-v>' }, -- optionally, lazy load on visual mode keys
+    },
+
     { -- better moving between splits, and resizing
         'mrjones2014/smart-splits.nvim',
         name = 'smart-splits',
@@ -515,7 +534,13 @@ return {
                     'terminal',
                     'prompt',
                 },
-                -- git =
+                git = {
+                    enabled = false,
+                },
+                mini_diff = {
+                    enabled = true,
+                    mode = 'sign',
+                },
                 diagnostic = {
                     enabled = true,
                     severity = vim.diagnostic.severity.WARN,
@@ -541,23 +566,6 @@ return {
             vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })
             vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })
         end,
-    },
-
-    {
-        'mistricky/codesnap.nvim',
-        name = 'codesnap',
-        build = 'make',
-        event = 'VeryLazy',
-        enabled = false,
-        keys = {
-            { '<leader>sc', '<cmd>CodeSnap<cr>', mode = 'x', desc = 'Save selected code snapshot into clipboard' },
-            { '<leader>sa', '<cmd>CodeSnapASCII<cr>', mode = 'x', desc = 'Save selected code ASCII into clipboard' },
-            -- { "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
-        },
-        opts = {
-            title = 'Neovim',
-            code_font_family = 'JetBrainsMono Nerd Font',
-        },
     },
 
     {
@@ -842,11 +850,4 @@ return {
             }
         end,
     },
-
-    -- {
-    --     'stevearc/dressing.nvim',
-    --     name = 'dressing',
-    --     lazy = true,
-    --     opts = {},
-    -- },
 }

@@ -26,7 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup( -- load lazy
     { -- load plugins
         require('plugins.ai'),
-        require('plugins.cellular-automaton'),
+        -- require('plugins.cellular-automaton'),
         require('plugins.code'),
         require('plugins.colors'),
         require('plugins.external'),
@@ -64,7 +64,7 @@ require('lazy').setup( -- load lazy
     }
 )
 
-require('plugins.autocmds')
+-- require('plugins.autocmds')
 
 Snacks.toggle.line_number():map('<leader>nu')
 

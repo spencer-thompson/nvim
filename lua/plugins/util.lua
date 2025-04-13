@@ -124,6 +124,7 @@ return {
     {
         'folke/persistence.nvim',
         name = 'persistence',
+        enabled = false,
         event = 'BufReadPre',
         opts = {},
         keys = {
@@ -204,6 +205,7 @@ return {
     {
         'folke/trouble.nvim',
         name = 'trouble',
+        enabled = false,
         -- dependencies = { 'nvim-tree/nvim-web-devicons' },
         cmd = 'Trouble',
         opts = {
