@@ -8,7 +8,7 @@ return {
         dependencies = {
             { 'nvim-treesitter/nvim-treesitter-textobjects', name = 'treesitter-textobjects' },
             -- 'nvim-treesitter/playground',
-            { 'JoosepAlviste/nvim-ts-context-commentstring', name = 'ts-context-commentstring' },
+            -- { 'JoosepAlviste/nvim-ts-context-commentstring', name = 'ts-context-commentstring' },
             {
                 'nvim-treesitter/nvim-treesitter-context',
                 enabled = false,
