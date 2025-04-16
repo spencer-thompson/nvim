@@ -181,7 +181,7 @@ return {
             local bar = require('icons').lines.left.vertical
             require('mini.diff').setup({
                 view = {
-                    style = 'number',
+                    style = 'sign',
                     signs = { add = bar, change = bar, delete = bar },
                 },
             })

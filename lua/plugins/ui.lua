@@ -236,18 +236,28 @@ return {
                         {
                             'diff',
                             symbols = {
-                                added = require('icons').shapes.circle.filled .. ' ',
-                                modified = require('icons').shapes.circle.dot .. ' ', --'~ ',
-                                removed = require('icons').shapes.circle.outline .. ' ',
+                                added = require('icons').shapes.circle.plus .. ' ',
+                                modified = require('icons').shapes.circle.dot .. ' ',
+                                removed = require('icons').shapes.circle.minus .. ' ',
+                                -- modified = require('icons').shapes.circle.dot .. ' ', --'~ ',
+                                -- removed = require('icons').shapes.circle.outline .. ' ',
                             },
                             padding = { right = 1, left = 1 },
                             source = function()
                                 local gitsigns = vim.b.gitsigns_status_dict
+                                local minidiff = vim.b.minidiff_summary
                                 if gitsigns then
                                     return {
                                         added = gitsigns.added,
                                         modified = gitsigns.changed,
                                         removed = gitsigns.removed,
+                                    }
+                                end
+                                if minidiff then
+                                    return {
+                                        added = minidiff.add,
+                                        modified = minidiff.change,
+                                        removed = minidiff.delete,
                                     }
                                 end
                             end,

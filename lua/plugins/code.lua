@@ -58,6 +58,12 @@ return {
                             return true
                         end
                     end,
+                    function(cmp)
+                        -- if not cmp.is_visible() then
+                        cmp.show({ providers = { 'copilot' } })
+                        return true
+                        -- end
+                    end,
                     -- function(cmp)
                     --     if not cmp.is_visible() then
                     --         cmp.show({ providers = { 'snippets' } })
@@ -306,9 +312,9 @@ return {
                     copilot = {
                         name = 'Copilot',
                         module = 'blink-copilot',
-                        score_offset = 0,
+                        score_offset = -3, -- lol copilot bad
                         async = true,
-                        min_keyword_length = 3,
+                        -- min_keyword_length = 3,
                     },
                     dictionary = {
                         max_items = 500,

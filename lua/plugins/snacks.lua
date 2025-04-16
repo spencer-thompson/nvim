@@ -114,7 +114,7 @@ return {
         notifier = { enabled = true },
         quickfile = { enabled = true },
         statuscolumn = {
-            enabled = false,
+            enabled = true,
             left = function(win, buf)
                 local is_neominimap = vim.bo[buf].filetype == 'neominimap'
                 return is_neominimap and { 'sign' } or { 'mark', 'sign' }

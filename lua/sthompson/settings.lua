@@ -9,14 +9,14 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
                                                      aa,    ,88
                                                       "Y8bbd]]
 
-vim.wo.number = false -- line numbers
-vim.opt.rnu = false -- relative line numbers
+vim.wo.number = true -- line numbers
+vim.opt.rnu = true -- relative line numbers
 
 vim.o.mouse = 'a' -- mouse mode
 vim.o.mousescroll = 'ver:3,hor:0' -- Disable horizontal scrolling.
 vim.o.clipboard = 'unnamedplus' -- sync clipboards
 
-vim.o.timeout = true
+vim.o.timeout = false
 vim.o.updatetime = 300
 vim.o.timeoutlen = 500
 vim.o.ttimeoutlen = 10
@@ -79,8 +79,8 @@ vim.opt.fillchars = {
     horiz = '─',
     horizup = '┴',
     horizdown = '┬',
-    -- vert = '│',
-    vert = ' ',
+    vert = '│',
+    -- vert = ' ',
     -- msgsep = '│',
     vertleft = '┤',
     vertright = '├',
