@@ -3,6 +3,7 @@ return {
     { -- fancy "make it rain" and other cool effects
         'Eandrju/cellular-automaton.nvim',
         name = 'cellular-automaton',
+        enabled = false,
         -- event = 'VeryLazy',
         cmd = 'CellularAutomaton',
         lazy = true,
