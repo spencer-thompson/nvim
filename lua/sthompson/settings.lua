@@ -48,7 +48,7 @@ vim.opt.breakindent = true
 vim.opt.laststatus = 3
 
 vim.opt.jumpoptions = 'stack'
-vim.opt.autochdir = true
+-- vim.opt.autochdir = true -- auto cd to new directory
 
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true

@@ -19,12 +19,21 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but
 -- vim.keymap.set('v', '<', '<gv')
 -- vim.keymap.set('v', '>', '>gv')
 
+if vim.env.TERM == 'xterm-kitty' then
+    vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+    vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+end
+
 -- diagnostic stuff like errors
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
 -- move through buffers
 vim.keymap.set('n', '<leader><leader>', '<cmd>b#<cr>', { desc = 'Alternate Buffer' })
+
+-- fix so that c-i and tab are seperate
+-- This MUST come before the below
+vim.keymap.set('n', '<c-i>', '<c-i>', { desc = 'Toggle Fold' })
 
 -- tab for folding
 vim.keymap.set('n', '<tab>', 'za', { desc = 'Toggle Fold' })
