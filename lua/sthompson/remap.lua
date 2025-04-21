@@ -16,8 +16,8 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but
 -- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line(s) down' })
 
 -- indent while in remaining in visual mode
--- vim.keymap.set('v', '<', '<gv')
--- vim.keymap.set('v', '>', '>gv')
+vim.keymap.set('v', '<', '<gv', { desc = 'Dedent' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
 
 if vim.env.TERM == 'xterm-kitty' then
     vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
@@ -25,8 +25,12 @@ if vim.env.TERM == 'xterm-kitty' then
 end
 
 -- diagnostic stuff like errors
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+-- vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+-- vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+
+-- new line above / below cursor
+vim.keymap.set('n', '[o', 'moO<esc>k`o<cmd>delmarks o<cr>', { desc = 'New line above cursor' })
+vim.keymap.set('n', ']o', 'moo<esc>j`o<cmd>delmarks o<cr>', { desc = 'New line below cursor' })
 
 -- move through buffers
 vim.keymap.set('n', '<leader><leader>', '<cmd>b#<cr>', { desc = 'Alternate Buffer' })
@@ -37,10 +41,6 @@ vim.keymap.set('n', '<c-i>', '<c-i>', { desc = 'Toggle Fold' })
 
 -- tab for folding
 vim.keymap.set('n', '<tab>', 'za', { desc = 'Toggle Fold' })
-
--- new line above / below cursor
-vim.keymap.set('n', '<leader>o', 'mzo<esc>k`z<cmd>delmarks z<cr>', { desc = 'New line below cursor' })
-vim.keymap.set('n', '<leader>O', 'mzO<esc>j`z<cmd>delmarks z<cr>', { desc = 'New line above cursor' })
 
 -- Make U opposite of u
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
@@ -67,7 +67,7 @@ vim.keymap.set(
 
 -- fix last misspelled word and jump back, this is epic
 vim.keymap.set('i', '<C-z>', '<esc>[s1z=gi', { desc = 'Fix last misspelled word' })
-vim.keymap.set('n', '<leader>z', "[s1z=''", { desc = 'Fix last misspelled word' })
+vim.keymap.set('n', '<leader>z', 'mz[s1z=`z<cmd>delmarks z<cr>', { desc = 'Fix last misspelled word' })
 
 -- paste without overwriting the clipboard
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without overwriting' })
@@ -120,4 +120,4 @@ vim.keymap.set({ 'n', 'x', 'v' }, '<leader>q', '<cmd>q<CR>', { desc = '[Q]uit' }
 vim.keymap.set({ 'n', 'x', 'v' }, '<leader>Q', '<cmd>q!<CR>', { desc = 'Force [Q]uit' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite' })
 
-vim.keymap.set('n', 'Q', '<nop>')
+vim.keymap.set('n', 'Q', '@@', { desc = 'Run Last Macro' })

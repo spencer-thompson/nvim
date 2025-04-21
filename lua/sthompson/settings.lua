@@ -130,7 +130,7 @@ vim.opt.showtabline = 2
 
 vim.o.keywordprg = 'wn'
 
--- vim.o.winborder = 'rounded'
+-- vim.o.winborder = 'single'
 local left = require('icons').lines.left.vertical
 local center = require('icons').lines.center.vertical
 local right = require('icons').lines.right.vertical

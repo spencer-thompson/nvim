@@ -132,6 +132,7 @@ return {
             -- vim.cmd [[ colorscheme rose-pine ]]
         end,
     },
+
     {
         'EdenEast/nightfox.nvim',
         name = 'nightfox',
@@ -188,9 +189,9 @@ return {
         config = function()
             require('tokyonight').setup({
                 style = 'night',
-                plugins = {
-                    auto = true,
-                },
+                -- plugins = {
+                --     auto = true,
+                -- },
                 transparent = true,
                 styles = {
                     keywords = { bold = true },
@@ -203,12 +204,18 @@ return {
                 --     comments = { italic = false },
                 --     keywords = { italic = false },
                 -- },
+                on_colors = function(c)
+                    c.bg_statusline = c.none
+                end,
                 on_highlights = function(hl, c) -- change telescope border color
-                    hl.TelescopeBorder = {
-                        fg = c.orange,
-                    }
-                    hl.BufferLineFill = {
-                        bg = c.bg_dark,
+                    -- hl.TelescopeBorder = {
+                    --     fg = c.orange,
+                    -- }
+                    -- hl.BufferLineFill = {
+                    --     bg = c.none,
+                    -- }
+                    hl.TabLineFill = {
+                        bg = c.none,
                     }
                 end,
             })

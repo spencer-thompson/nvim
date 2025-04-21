@@ -53,7 +53,22 @@ return {
             require('mini.align').setup({
                 silent = false,
             })
-            require('mini.bracketed').setup({})
+            require('mini.bracketed').setup({
+                buffer = { suffix = 'b', options = {} },
+                comment = { suffix = 'c', options = {} },
+                conflict = { suffix = 'x', options = {} },
+                diagnostic = { suffix = 'd', options = {} },
+                file = { suffix = 'f', options = {} },
+                indent = { suffix = 'i', options = {} },
+                jump = { suffix = 'j', options = {} },
+                location = { suffix = 'l', options = {} },
+                oldfile = { suffix = '', options = {} },
+                quickfix = { suffix = 'q', options = {} },
+                treesitter = { suffix = '', options = {} },
+                undo = { suffix = 'u', options = {} },
+                window = { suffix = '', options = {} },
+                yank = { suffix = 'y', options = {} },
+            })
             require('mini.bufremove').setup({})
 
             vim.keymap.set('n', '<leader>bd', function()
@@ -235,13 +250,13 @@ return {
             -- })
             require('mini.surround').setup({
                 mappings = {
-                    add = 'sa', -- Add surrounding in Normal and Visual modes
+                    add = 'ys', -- Add surrounding in Normal and Visual modes
                     delete = 'ds', -- Delete surrounding
-                    find = 'sf', -- Find surrounding (to the right)
-                    find_left = 'sF', -- Find surrounding (to the left)
-                    highlight = 'sh', -- Highlight surrounding
-                    replace = 'sr', -- Replace surrounding
-                    update_n_lines = 'sn', -- Update `n_lines`
+                    find = '', -- [sf] Find surrounding (to the right)
+                    find_left = '', -- [sF] Find surrounding (to the left)
+                    highlight = '', -- [sh] Highlight surrounding
+                    replace = 'cs', -- Replace surrounding
+                    update_n_lines = '', -- [sn] Update `n_lines`
 
                     suffix_last = 'l', -- Suffix to search with "prev" method
                     suffix_next = 'n', -- Suffix to search with "next" method
@@ -249,7 +264,14 @@ return {
                 silent = true,
                 n_lines = 50,
             })
-            vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+            -- Remap adding surrounding to Visual mode selection
+            vim.keymap.del('x', 'ys')
+            vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+
+            -- Make special mapping for "add surrounding for line"
+            vim.keymap.set('n', 'yss', 'ys_', { remap = true })
+
+            -- vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
             -- require('mini.pairs').setup({
             --     modes = { insert = true, command = true, terminal = false },
             --     -- skip autopair when next character is one of these

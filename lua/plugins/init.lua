@@ -25,12 +25,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup( -- load lazy
     { -- load plugins
-        require('plugins.ai'),
         -- require('plugins.cellular-automaton'),
+        -- require('plugins.telescope'),
+        require('plugins.ai'),
         require('plugins.code'),
         require('plugins.colors'),
         require('plugins.external'),
         require('plugins.format'),
+        require('plugins.fzf'),
         require('plugins.git'),
         require('plugins.language'),
         require('plugins.local'),
@@ -40,7 +42,6 @@ require('lazy').setup( -- load lazy
         require('plugins.remap'),
         require('plugins.snacks'),
         require('plugins.sql'),
-        -- require('plugins.telescope'),
         require('plugins.terminal'),
         require('plugins.treesitter'),
         require('plugins.ui'),
@@ -48,6 +49,7 @@ require('lazy').setup( -- load lazy
     },
 
     {
+        ui = { border = 'single' },
         dev = {
             -- directory to store local plugins
             path = '~/plugins',

@@ -179,14 +179,19 @@ return {
 
             -- local minimap_extension = require('neominimap.statusline').lualine_default
 
-            local custom_theme = require('lualine.themes.auto')
-            custom_theme.normal.c.bg = 'None'
+            local auto = require('lualine.themes.auto')
+            local lualine_modes = { 'insert', 'normal', 'visual', 'command', 'replace', 'inactive', 'terminal' }
+            for _, field in ipairs(lualine_modes) do
+                if auto[field] and auto[field].c then
+                    auto[field].c.bg = 'NONE'
+                end
+            end
 
             require('lualine').setup({
                 options = {
                     icons_enabled = true,
                     -- theme = 'molokai',
-                    theme = custom_theme,
+                    theme = auto,
                     component_separators = { left = '│', right = '│' }, -- │
                     -- component_separators = { left = '', right = '' },
                     -- { left = '', right = '' }, { left = '', right = '' }, '|'
@@ -406,10 +411,10 @@ return {
                     --     attribute = 'bg',
                     --     highlight = 'Normal',
                     -- },
-                    bg = {
-                        attribute = 'bg',
-                        highlight = 'Pmenu',
-                    },
+                    -- bg = {
+                    --     attribute = 'bg',
+                    --     highlight = 'Pmenu',
+                    -- },
                 },
             },
         },

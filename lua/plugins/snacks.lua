@@ -126,7 +126,7 @@ return {
         },
         -- words = { enabled = true },
         picker = {
-            enabled = true,
+            enabled = false,
             prompt = require('icons').arrows.right .. ' ',
             layout = {
                 cycle = true,
@@ -146,7 +146,7 @@ return {
             enabled = true,
             preset = {
                 keys = {
-                    { icon = ' ', key = 'f', desc = 'Find', action = ':lua Snacks.picker.smart()' },
+                    { icon = ' ', key = 'f', desc = 'Find', action = ':FzfLua files' },
                     {
                         icon = '󰎕 ',
                         key = 'n',
@@ -173,15 +173,15 @@ return {
                         icon = '󰱽 ',
                         key = 's',
                         desc = 'Find String',
-                        action = ':lua Snacks.picker.grep()',
+                        action = ':FzfLua live_grep',
                     },
-
+                    { icon = '󰋚 ', key = 'o', desc = 'Oldfiles', action = ':FzfLua oldfiles' },
                     { icon = '󱏒 ', key = 'e', desc = 'Explore files', action = ':lua MiniFiles.open()' },
                     {
                         icon = ' ',
                         key = 'r',
                         desc = 'Recent Files',
-                        action = ':lua Snacks.picker.recent()',
+                        action = ':FzfLua oldfiles',
                     },
                     -- {
                     --     icon = ' ',
@@ -385,41 +385,41 @@ return {
         },
     },
     keys = {
-        {
-            '<leader>ff',
-            function()
-                Snacks.picker.smart()
-            end,
-            desc = '[F]ind [F]iles',
-        },
-        {
-            '<leader>fs',
-            function()
-                Snacks.picker.grep()
-            end,
-            desc = '[F]ind [S]tring',
-        },
-        {
-            '<leader>fk',
-            function()
-                Snacks.picker.keymaps()
-            end,
-            desc = '[F]ind [K]eymaps',
-        },
-        {
-            '<leader>fh',
-            function()
-                Snacks.picker.help()
-            end,
-            desc = '[F]ind [H]elp',
-        },
-        {
-            '<leader>fH',
-            function()
-                Snacks.picker.highlights()
-            end,
-            desc = '[F]ind [H]ighlights',
-        },
+        -- {
+        --     '<leader>ff',
+        --     function()
+        --         Snacks.picker.smart()
+        --     end,
+        --     desc = '[F]ind [F]iles',
+        -- },
+        -- {
+        --     '<leader>fs',
+        --     function()
+        --         Snacks.picker.grep()
+        --     end,
+        --     desc = '[F]ind [S]tring',
+        -- },
+        -- {
+        --     '<leader>fk',
+        --     function()
+        --         Snacks.picker.keymaps()
+        --     end,
+        --     desc = '[F]ind [K]eymaps',
+        -- },
+        -- {
+        --     '<leader>fh',
+        --     function()
+        --         Snacks.picker.help()
+        --     end,
+        --     desc = '[F]ind [H]elp',
+        -- },
+        -- {
+        --     '<leader>fH',
+        --     function()
+        --         Snacks.picker.highlights()
+        --     end,
+        --     desc = '[F]ind [H]ighlights',
+        -- },
         {
             '<leader>fi',
             function()
@@ -540,21 +540,21 @@ return {
             end,
             desc = '[S]how [H]istory',
         },
-        {
-            ']]',
-            function()
-                Snacks.words.jump(vim.v.count1)
-            end,
-            desc = 'Next Reference',
-            mode = { 'n', 't' },
-        },
-        {
-            '[[',
-            function()
-                Snacks.words.jump(-vim.v.count1)
-            end,
-            desc = 'Prev Reference',
-            mode = { 'n', 't' },
-        },
+        -- {
+        --     ']]',
+        --     function()
+        --         Snacks.words.jump(vim.v.count1)
+        --     end,
+        --     desc = 'Next Reference',
+        --     mode = { 'n', 't' },
+        -- },
+        -- {
+        --     '[[',
+        --     function()
+        --         Snacks.words.jump(-vim.v.count1)
+        --     end,
+        --     desc = 'Prev Reference',
+        --     mode = { 'n', 't' },
+        -- },
     },
 }

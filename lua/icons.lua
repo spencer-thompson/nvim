@@ -23,6 +23,7 @@ M.shapes = {
         dot = '󰻃',
         plus = '󰐙',
         minus = '󰍷',
+        small = '󰧟',
     },
     cube = {
         outline = '󰆧',

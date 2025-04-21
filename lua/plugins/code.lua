@@ -8,14 +8,14 @@ return {
             'rafamadriz/friendly-snippets',
             -- currently I am not using this
             -- 'saghen/blink.compat', -- for compatibility with nvim-cmp
-            { 'fang2hou/blink-copilot', lazy = true },
-            { 'MahanRahmati/blink-nerdfont.nvim', name = 'blink-nerdfont', lazy = true },
-            { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
+            -- { 'fang2hou/blink-copilot', lazy = true },
+            -- { 'MahanRahmati/blink-nerdfont.nvim', name = 'blink-nerdfont', lazy = true },
+            -- { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
             { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep', lazy = true },
-            {
-                'Kaiser-Yang/blink-cmp-dictionary',
-                dependencies = { 'nvim-lua/plenary.nvim', name = 'plenary' },
-            },
+            -- {
+            --     'Kaiser-Yang/blink-cmp-dictionary',
+            --     dependencies = { 'nvim-lua/plenary.nvim', name = 'plenary' },
+            -- },
 
             {
                 'xzbdmw/colorful-menu.nvim',
@@ -259,17 +259,17 @@ return {
             sources = {
                 default = function()
                     local sources = {
-                        'dictionary',
+                        -- 'dictionary',
                         'lsp',
                         'buffer',
                         'path',
                         'omni',
-                        'emoji',
-                        'nerdfont',
+                        -- 'emoji',
+                        -- 'nerdfont',
                         'snippets',
                         'lazydev',
                         'ripgrep',
-                        'copilot',
+                        -- 'copilot',
                     }
 
                     -- local ok, node = pcall(vim.treesitter.get_node)
@@ -474,7 +474,7 @@ return {
 
             appearance = {
                 use_nvim_cmp_as_default = false,
-                nerd_font_variant = 'normal',
+                nerd_font_variant = 'mono',
                 kind_icons = require('icons').symbol_kinds,
             },
         },
