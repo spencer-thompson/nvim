@@ -19,7 +19,7 @@ return {
                 },
                 { -- D
                     {
-                        '<leader>db',
+                        '<leader>dB',
                         function()
                             require('dbee').toggle()
                             -- if not require('dbee').is_open() then
@@ -28,7 +28,7 @@ return {
                             --     -- require('dbee').toggle()
                             -- end
                         end,
-                        desc = '[D]ata[b]ase',
+                        desc = '[D]ata[B]ase',
                     },
                 },
                 { -- E
