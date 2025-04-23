@@ -575,6 +575,7 @@ return {
         'mfussenegger/nvim-dap',
         name = 'dap',
         event = 'VeryLazy',
+        enabled = false,
         lazy = true,
         dependencies = {
             'rcarriga/nvim-dap-ui',

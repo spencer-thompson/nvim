@@ -14,30 +14,32 @@ return {
     },
 
     -- Markdown
-    -- {
-    --     'iamcco/markdown-preview.nvim', -- fancy markdown preview
-    --     name = 'markdown-preview',
-    --     ft = 'markdown',
-    --     -- build = 'cd app && npm install',
-    --     build = function()
-    --         vim.fn['mkdp#util#install']()
-    --     end,
-    --     -- build = function()
-    --     --     if vim.loop.os_uname().sysname == 'Windows_NT' then
-    --     --         return 'cd app && npm install'
-    --     --     else
-    --     --         vim.fn['mkdp#util#install']()
-    --     --     end
-    --     -- end,
-    --     -- build = function()
-    --     --     vim.fn['mkdp#util#install']()
-    --     -- end,
-    --     cmd = {
-    --         'MarkdownPreviewToggle',
-    --         'MarkdownPreview',
-    --         'MarkdownPreviewStop',
-    --     },
-    -- },
+    {
+        'iamcco/markdown-preview.nvim', -- fancy markdown preview
+        name = 'markdown-preview',
+        ft = 'markdown',
+        enabled = false,
+        -- build = 'cd app && npm install',
+        build = 'cd app && yarn install',
+        init = function()
+            vim.g.mkdp_filetypes = { 'markdown' }
+        end,
+        -- build = function()
+        --     if vim.loop.os_uname().sysname == 'Windows_NT' then
+        --         return 'cd app && npm install'
+        --     else
+        --         vim.fn['mkdp#util#install']()
+        --     end
+        -- end,
+        -- build = function()
+        --     vim.fn['mkdp#util#install']()
+        -- end,
+        cmd = {
+            'MarkdownPreviewToggle',
+            'MarkdownPreview',
+            'MarkdownPreviewStop',
+        },
+    },
 
     { -- 🦀
         'mrcjkb/rustaceanvim',
