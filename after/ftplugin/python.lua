@@ -5,6 +5,6 @@ vim.api.nvim_buf_set_keymap(
     0,
     'n',
     '<leader>r',
-    '<cmd>TermExec cmd="uv run %:t" dir=%:p:h<CR>',
+    '<cmd>TermExec cmd="uv run %:t" dir="%:p:h"<CR>',
     { desc = '[R]un Current File' }
 )

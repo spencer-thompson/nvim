@@ -4,7 +4,7 @@ return {
         name = 'toggleterm',
         -- event = 'VeryLazy',
         -- lazy = true,
-        cmd = 'ToggleTerm',
+        cmd = { 'ToggleTerm', 'TermExec' },
         enabled = true,
         version = '*',
         config = function()
