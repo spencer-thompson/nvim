@@ -1,17 +1,27 @@
+local markers = {
+    '.venv',
+    '.git',
+    'pyproject.toml',
+}
+
 return {
     cmd = { 'basedpyright-langserver', '--stdio' },
-    root_markers = {
-        '.venv',
-        '.env',
-        'pyproject.toml',
-        'setup.py',
-        'setup.cfg',
-        'requirements.txt',
-        'Pipfile',
-        'pyrightconfig.json',
-        '.git',
-    },
+    root_markers = markers,
+    -- root_markers = {
+    --     '.venv',
+    --     -- '.env',
+    --     'pyproject.toml',
+    --     'setup.py',
+    --     'setup.cfg',
+    --     -- 'requirements.txt',
+    --     'Pipfile',
+    --     -- 'pyrightconfig.json',
+    --     '.git',
+    -- },
     filetypes = { 'python' },
+    handlers = {
+        ['textDocument/publishDiagnostics'] = function() end,
+    },
 
     settings = {
         basedpyright = {
@@ -25,8 +35,8 @@ return {
                 typeCheckingMode = 'off', -- try basic eventually
             },
         },
-        python = {
-            venvPath = Snacks.git.get_root(), -- This works?
-        },
+        -- python = {
+        --     venvPath = vim.fs.root(0, '.venv'), -- This works?
+        -- },
     },
 }
