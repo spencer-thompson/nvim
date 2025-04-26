@@ -13,9 +13,27 @@ return {
                 '<cmd>FzfLua lgrep_curbuf<cr>',
                 desc = '[F]ind in [B]uffer',
             },
+            {
+                '<leader><leader>',
+                function()
+                    FzfLua.oldfiles()
+                end,
+            },
+            {
+                '<leader>ff',
+                function()
+                    local dir = vim.fs.root(0, { '.git' })
+                    if dir then
+                        FzfLua.files({ cwd = dir })
+                    else
+                        FzfLua.files()
+                    end
+                    -- require('fzf-lua').files({})
+                end,
+            },
             -- { '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', desc = 'Document diagnostics' },
             -- { '<leader>fD', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', desc = 'Workspace diagnostics' },
-            { '<leader>ff', '<cmd>FzfLua files<cr>', desc = '[F]ind [F]iles' },
+            -- { '<leader>ff', '<cmd>FzfLua files<cr>', desc = '[F]ind [F]iles' },
             { '<leader>fs', '<cmd>FzfLua live_grep<cr>', desc = '[F]ind [S]tring' },
             { '<leader>fk', '<cmd>FzfLua keymaps<cr>', desc = '[F]ind [K]eymaps' },
             { '<leader>fh', '<cmd>FzfLua helptags<cr>', desc = '[F]ind [H]elp' },

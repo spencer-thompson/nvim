@@ -16,8 +16,8 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but
 -- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line(s) down' })
 
 -- indent while in remaining in visual mode
-vim.keymap.set('v', '<', '<gv', { desc = 'Dedent' })
-vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
+-- vim.keymap.set('v', '<', '<gv', { desc = 'Dedent' })
+-- vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
 
 if vim.env.TERM == 'xterm-kitty' then
     vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])

@@ -1,7 +1,7 @@
 local markers = {
-    '.venv',
-    '.git',
-    'pyproject.toml',
+    -- 'pyproject.toml',
+    '.venv/',
+    -- '.git',
 }
 
 return {
