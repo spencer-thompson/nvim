@@ -427,7 +427,7 @@ return {
 
     { -- one of my favorite plugins, this shows the minimap on the side
         'Isrothy/neominimap.nvim',
-        -- enabled = false,
+        enabled = false,
         name = 'neominimap',
         event = 'VeryLazy',
         lazy = false,
@@ -507,7 +507,7 @@ return {
                 group = vim.api.nvim_create_augroup('minimap', { clear = true }),
                 pattern = '*',
                 callback = function()
-                    require('neominimap').tabRefresh({}, {})
+                    require('neominimap.api').tabRefresh({}, {})
                 end,
             })
 
