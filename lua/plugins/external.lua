@@ -5,4 +5,9 @@ return {
         build = ':Cord update',
         event = 'VeryLazy',
     },
+    {
+        'obsidian-nvim/obsidian.nvim',
+        name = 'obsidian',
+        event = 'VeryLazy',
+    },
 }
