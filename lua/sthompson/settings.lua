@@ -103,6 +103,7 @@ vim.o.pumheight = 30 -- Make popup menu smaller
 -- vim.o.listchars = 'tab:    ,extends:…,precedes:…,nbsp:␣' -- Define which helper symbols to show
 vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
 vim.o.list = false -- Show some helper symbols
+vim.opt.conceallevel = 1
 
 vim.opt.shortmess:append({
     w = true,
