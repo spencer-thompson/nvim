@@ -1,5 +1,5 @@
 return {
-    { -- autoforamatting | must be setup with :Mason
+    { -- autoforamatting | formatters can be installed with :Mason
         'stevearc/conform.nvim',
         name = 'conform',
         event = { 'BufReadPre', 'BufNewFile' },
@@ -25,6 +25,8 @@ return {
                     json = { 'prettierd' },
                     jsonc = { 'prettierd' },
                     matlab = { lsp_format = 'prefer' },
+                    terraform = { 'tofu_fmt' },
+                    ['terraform-vars'] = { 'tofu_fmt' },
                     typst = { lsp_format = 'prefer' },
                     -- graphql = { { "prettierd", "prettier" } },
                     -- java = { "google-java-format" },

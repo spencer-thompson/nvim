@@ -46,6 +46,23 @@ return {
     },
 
     {
+        'metalelf0/black-metal-theme-neovim',
+        name = 'black-metal-theme',
+        lazy = false,
+        enabled = false,
+        priority = 1000,
+        config = function()
+            require('black-metal').setup({
+                -- one of: bathory | burzum | dark-funeral | darkthrone | emperor | gorgoroth | immortal | impaled-nazarene | khold | marduk | mayhem | nile | taake | thyrfing | venom | windir
+                theme = 'impaled-nazarene',
+                transparent = true,
+                -- optional configuration here
+            })
+            require('black-metal').load()
+        end,
+    },
+
+    {
         'craftzdog/solarized-osaka.nvim',
         name = 'solarized-osaka',
         lazy = true,
