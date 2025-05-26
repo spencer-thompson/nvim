@@ -427,7 +427,7 @@ return {
 
     { -- one of my favorite plugins, this shows the minimap on the side
         'Isrothy/neominimap.nvim',
-        enabled = false,
+        enabled = true,
         name = 'neominimap',
         event = 'VeryLazy',
         lazy = false,
