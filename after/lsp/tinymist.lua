@@ -1,8 +1,8 @@
 return {
 
-    root_markers = function(_, bufnr)
-        return vim.fn.expand('%:p:h')
-    end,
+    -- root_markers = function(_, bufnr)
+    --     return vim.fn.expand('%:p:h')
+    -- end,
     filetypes = { 'typst' },
     cmd = { 'tinymist' },
     on_init = function(client, _)

@@ -47,28 +47,28 @@ return {
         ft = { 'rust' },
         -- lazy = false, -- This plugin is already lazy
     },
-    {
-        'pmizio/typescript-tools.nvim',
-        name = 'typescript-tools',
-        event = 'VeryLazy',
-        enabled = false,
-        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-        opts = {},
-        config = function()
-            require('typescript-tools').setup({
-                on_attach = function(client, bufnr)
-                    client.server_capabilities.documentFormattingProvider = false
-                    client.server_capabilities.documentRangeFormattingProvider = false
-                end,
-                settings = {
-                    jsx_close_tag = {
-                        enable = true,
-                        filetypes = { 'javascriptreact', 'typescriptreact' },
-                    },
-                },
-            })
-        end,
-    },
+    -- {
+    --     'pmizio/typescript-tools.nvim',
+    --     name = 'typescript-tools',
+    --     event = 'VeryLazy',
+    --     enabled = true,
+    --     dependencies = { 'nvim-lua/plenary.nvim' },
+    --     opts = {},
+    --     config = function()
+    --         require('typescript-tools').setup({
+    --             on_attach = function(client, bufnr)
+    --                 client.server_capabilities.documentFormattingProvider = false
+    --                 client.server_capabilities.documentRangeFormattingProvider = false
+    --             end,
+    --             settings = {
+    --                 jsx_close_tag = {
+    --                     enable = true,
+    --                     filetypes = { 'javascriptreact', 'typescriptreact' },
+    --                 },
+    --             },
+    --         })
+    --     end,
+    -- },
 
     {
         'MeanderingProgrammer/render-markdown.nvim',

@@ -503,13 +503,13 @@ return {
                 end,
             }
 
-            vim.api.nvim_create_autocmd('WinEnter', {
-                group = vim.api.nvim_create_augroup('minimap', { clear = true }),
-                pattern = '*',
-                callback = function()
-                    require('neominimap.api').tabRefresh({}, {})
-                end,
-            })
+            -- vim.api.nvim_create_autocmd('WinEnter', {
+            --     group = vim.api.nvim_create_augroup('minimap', { clear = true }),
+            --     pattern = '*',
+            --     callback = function()
+            --         require('neominimap.api').tabRefresh({}, {})
+            --     end,
+            -- })
 
             vim.g.neominimap = {
                 auto_enable = true,
