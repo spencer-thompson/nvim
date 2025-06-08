@@ -9,9 +9,10 @@ return {
         },
     },
     cmd = { 'harper-ls', '--stdio' },
-    root_markers = function(fname)
-        return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-    end,
+    root_markers = { '.git' },
+    -- root_markers = function(fname)
+    --     return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+    -- end,
     filetypes = {
         'c',
         'cpp',

@@ -43,9 +43,10 @@ return {
 
     { -- 🦀
         'mrcjkb/rustaceanvim',
-        version = '^5', -- Recommended
+        -- enabled = false,
+        version = '^6', -- Recommended
         ft = { 'rust' },
-        -- lazy = false, -- This plugin is already lazy
+        lazy = false, -- This plugin is already lazy
     },
     -- {
     --     'pmizio/typescript-tools.nvim',

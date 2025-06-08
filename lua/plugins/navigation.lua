@@ -14,6 +14,15 @@ return {
         },
     },
 
+    {
+        'nacro90/numb.nvim',
+        name = 'numb',
+        event = 'VeryLazy',
+        config = function()
+            require('numb').setup()
+        end,
+    },
+
     { -- This is for selecting treesitter nodes
         'aaronik/treewalker.nvim',
         enabled = true,

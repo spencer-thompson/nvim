@@ -1,14 +1,31 @@
 return {
-    { -- treesitter provides text objects as well as syntax highlighting
+    -- { -- treesitter provides text objects as well as syntax highlighting
+    --     'nvim-treesitter/nvim-treesitter',
+    --     name = 'treesitter',
+    --     lazy = false,
+    --     version = false,
+    --     branch = 'main',
+    --     build = ':TSUpdate',
+    --     -- event = 'VeryLazy',
+    --     config = function()
+    --         require('nvim-treesitter').setup({
+    --
+    --             install_dir = vim.fn.stdpath('data') .. '/site',
+    --         })
+    --     end,
+    -- },
+
+    {
         'nvim-treesitter/nvim-treesitter',
         name = 'treesitter',
+        lazy = false,
         version = false,
         build = ':TSUpdate',
         event = 'VeryLazy',
+        -- enabled = false,
         dependencies = {
             { 'nvim-treesitter/nvim-treesitter-textobjects', name = 'treesitter-textobjects' },
             -- 'nvim-treesitter/playground',
-            -- { 'JoosepAlviste/nvim-ts-context-commentstring', name = 'ts-context-commentstring' },
             {
                 'nvim-treesitter/nvim-treesitter-context',
                 enabled = false,
@@ -75,21 +92,31 @@ return {
                     'bash',
                     'c', -- required
                     'cpp',
+                    'css',
                     'dockerfile',
                     'go',
                     'html',
+                    'javascript',
                     'json',
                     'json5',
                     'jsonc',
+                    'latex',
                     'lua', -- required
                     'markdown',
                     'markdown_inline',
+                    'norg',
                     'python',
                     'query', -- required
                     'regex',
+                    'rust',
+                    'scss',
+                    'svelte',
                     'toml',
+                    'tsx',
+                    'typst',
                     'vim', -- required
                     'vimdoc', --required
+                    'vue',
                     'yaml',
                     -- 'javascript',
                     -- 'rust',
@@ -102,13 +129,14 @@ return {
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = { 'markdown' },
-                    disable = function(lang, buf)
-                        local max_filesize = 100 * 1024 -- 100 KB
-                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                        if ok and stats and stats.size > max_filesize then
-                            return true
-                        end
-                    end,
+                    -- disable = { 'c', 'rust' },
+                    -- disable = function(lang, buf)
+                    --     local max_filesize = 100 * 1024 -- 100 KB
+                    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                    --     if ok and stats and stats.size > max_filesize then
+                    --         return true
+                    --     end
+                    -- end,
                 },
                 indent = { enable = true },
                 incremental_selection = {
