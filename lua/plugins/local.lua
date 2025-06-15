@@ -19,4 +19,11 @@ return {
         event = 'VeryLazy',
         dependencies = { 'kkharji/sqlite.lua' },
     },
+
+    {
+        dir = '~/rk4/keytrack.nvim',
+        opts = {
+            url = 'api.rk4.localhost/v1/keytrack',
+        },
+    },
 }
