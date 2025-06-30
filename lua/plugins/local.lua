@@ -4,10 +4,12 @@
 return {
     {
         dir = '~/plugins/multiplayer.nvim',
-        opts = {},
         enabled = true,
         name = 'multiplayer',
         event = 'VeryLazy',
+        opts = {
+            username = 'spencer',
+        },
     },
 
     {
@@ -22,6 +24,7 @@ return {
 
     {
         dir = '~/rk4/keytrack.nvim',
+        enabled = false,
         opts = {
             url = 'api.rk4.localhost/v1/keytrack',
         },
