@@ -548,6 +548,34 @@ return {
         end,
     },
 
+    {
+        'rachartier/tiny-code-action.nvim',
+        dependencies = {
+            { 'nvim-lua/plenary.nvim', name = 'plenary' },
+
+            -- optional picker via fzf-lua
+            { 'ibhagwan/fzf-lua' },
+            -- .. or via snacks
+        },
+        event = 'LspAttach',
+        opts = {
+            backend = 'difftastic',
+            picker = 'select',
+            backend_opts = {
+                difftastic = {
+                    header_lines_to_remove = 1,
+
+                    -- The arguments to pass to difftastic
+                    args = {
+                        '--color=always',
+                        '--display=inline',
+                        '--syntax-highlight=on',
+                    },
+                },
+            },
+        },
+    },
+
     { -- linting, but I didn't like it telling me what to do lol
         'mfussenegger/nvim-lint',
         enabled = false,

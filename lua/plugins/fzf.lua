@@ -157,7 +157,7 @@ return {
                             height = 20,
                             relative = 'cursor',
                             preview = {
-                                hidden = true,
+                                hidden = false,
                                 vertical = 'down:50%',
                             },
                         },

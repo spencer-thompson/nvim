@@ -103,7 +103,8 @@ vim.o.pumheight = 30 -- Make popup menu smaller
 -- vim.o.listchars = 'tab:    ,extends:…,precedes:…,nbsp:␣' -- Define which helper symbols to show
 vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
 vim.o.list = false -- Show some helper symbols
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 0
+-- vim.opt.concealcursor = 'nc'
 
 vim.opt.shortmess:append({
     w = true,
@@ -117,7 +118,7 @@ vim.opt.undodir = vim.fn.stdpath('data') .. '/.undo'
 vim.opt.undofile = true
 
 -- set highlight on search
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.o.completeopt = 'menu,menuone,noinsert,preview'

@@ -121,3 +121,12 @@ vim.keymap.set({ 'n', 'x', 'v' }, '<leader>Q', '<cmd>q!<CR>', { desc = 'Force [Q
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite' })
 
 vim.keymap.set('n', 'Q', '@@', { desc = 'Run Last Macro' })
+
+vim.keymap.set('n', '<CR>', function()
+    if vim.v.hlsearch == 1 then
+        vim.cmd.nohl()
+        return ''
+    else
+        return vim.keycode('<CR>')
+    end
+end, { expr = true })
