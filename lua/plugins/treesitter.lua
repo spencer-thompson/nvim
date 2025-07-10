@@ -7,12 +7,12 @@ return {
     --     branch = 'main',
     --     build = ':TSUpdate',
     --     -- event = 'VeryLazy',
-    --     config = function()
-    --         require('nvim-treesitter').setup({
-    --
-    --             install_dir = vim.fn.stdpath('data') .. '/site',
-    --         })
-    --     end,
+    --     -- config = function()
+    --     --     require('nvim-treesitter').setup({
+    --     --
+    --     --         install_dir = vim.fn.stdpath('data') .. '/site',
+    --     --     })
+    --     -- end,
     -- },
 
     {
