@@ -28,7 +28,7 @@ return {
         event = 'VeryLazy',
         name = 'keytrack',
         opts = {
-            url = 'api.rk4.dev/keytrack/key',
+            url = 'https://api.rk4.dev/keytrack/key',
         },
     },
 }
