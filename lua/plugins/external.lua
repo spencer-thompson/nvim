@@ -8,7 +8,10 @@ return {
     {
         'obsidian-nvim/obsidian.nvim',
         name = 'obsidian',
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
+        version = '*',
+        lazy = true,
+        ft = 'markdown',
         config = function()
             require('obsidian').setup({
                 -- config = {
