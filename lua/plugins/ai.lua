@@ -20,6 +20,7 @@ return {
         'olimorris/codecompanion.nvim',
         name = 'codecompanion',
         event = 'VeryLazy',
+        enabled = false,
         config = function()
             require('codecompanion').setup({
                 display = {
