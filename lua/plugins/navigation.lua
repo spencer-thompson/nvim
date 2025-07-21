@@ -25,7 +25,7 @@ return {
 
     { -- This is for selecting treesitter nodes
         'aaronik/treewalker.nvim',
-        enabled = true,
+        enabled = false,
         name = 'treewalker',
         event = 'VeryLazy',
         -- defaults
