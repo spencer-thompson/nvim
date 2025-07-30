@@ -638,7 +638,7 @@ return {
 
     { -- fancy ui like floating search and command
         'folke/noice.nvim',
-        -- enabled = false,
+        enabled = false,
         -- lazy = true,
         -- name = 'noice',
         event = 'VimEnter',

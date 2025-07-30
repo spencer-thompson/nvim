@@ -7,10 +7,20 @@ return {
         enabled = true,
         name = 'multiplayer',
         event = 'VeryLazy',
+        build = 'cd comms; cargo build --release',
         opts = {
             username = 'spencer',
         },
     },
+
+    -- {
+    --     'spencer-thompson/multiplayer.nvim',
+    --     -- name = 'multiplayer',
+    --     build = 'cd comms; cargo build --release',
+    --     opts = {
+    --         username = 'spencer',
+    --     },
+    -- },
 
     {
         -- dir = '~/plugins/keylogger.nvim',
