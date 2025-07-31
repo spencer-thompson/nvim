@@ -3,15 +3,16 @@ return {
         'saghen/blink.cmp',
         -- lazy = true,
         build = 'cargo +nightly build --release',
-        event = 'InsertEnter',
+        event = 'VimEnter',
         dependencies = {
-            'rafamadriz/friendly-snippets',
+            -- 'rafamadriz/friendly-snippets',
             -- currently I am not using this
             -- 'saghen/blink.compat', -- for compatibility with nvim-cmp
             -- { 'fang2hou/blink-copilot', lazy = true },
             -- { 'MahanRahmati/blink-nerdfont.nvim', name = 'blink-nerdfont', lazy = true },
             -- { 'moyiz/blink-emoji.nvim', name = 'blink-emoji', lazy = true },
             { 'mikavilpas/blink-ripgrep.nvim', name = 'blink-ripgrep', lazy = true },
+
             -- {
             --     'Kaiser-Yang/blink-cmp-dictionary',
             --     dependencies = { 'nvim-lua/plenary.nvim', name = 'plenary' },
@@ -97,7 +98,7 @@ return {
                     ghost_text = { enabled = true },
                 },
                 keymap = {
-                    preset = 'default',
+                    preset = 'inherit',
                     ['<C-e>'] = { 'cancel', 'hide' },
                     ['<C-y>'] = { 'select_and_accept' },
                     ['<C-k>'] = { 'select_prev' },
@@ -194,6 +195,7 @@ return {
                     winblend = vim.o.pumblend,
                     auto_show = true,
                     scrolloff = 8,
+                    border = 'none',
                     draw = {
                         treesitter = { 'lsp' },
                         columns = { { 'kind_icon' }, { 'label', gap = 1 } },
@@ -371,6 +373,15 @@ return {
                             end,
                         },
                     },
+
+                    -- additional_paths = "backend.ripgrep.additional_paths",
+                    -- additional_rg_options = "backend.ripgrep.additional_rg_options",
+                    -- context_size = "backend.context_size",
+                    -- ignore_paths = "backend.ripgrep.ignore_paths",
+                    -- max_filesize = "backend.ripgrep.max_filesize",
+                    -- project_root_fallback = "backend.ripgrep.project_root_fallback",
+                    -- search_casing = "backend.ripgrep.search_casing"
+
                     ripgrep = {
                         max_items = 500,
                         module = 'blink-ripgrep',
@@ -381,33 +392,44 @@ return {
                             -- the minimum length of the current word to start searching
                             prefix_min_len = 3,
 
-                            -- The number of lines to show around each match in the preview (documentation) window. Before and after
-                            context_size = 5,
-
-                            -- The maximum file size of a file that ripgrep should include in its search.
-                            max_filesize = '1M',
-
                             -- Specifies how to find the root of the project where the ripgrep search will start from.
                             project_root_marker = '.git',
 
-                            -- Enable fallback to neovim cwd if project_root_marker is not found. Default: `true`, which means to use the cwd.
-                            project_root_fallback = true,
-
-                            -- The casing to use for the search in a format that ripgrep accepts. Defaults to "--ignore-case".
-                            search_casing = '--ignore-case',
-
-                            -- (advanced) Any additional options you want to give to ripgrep.
-                            additional_rg_options = {},
-
                             -- When a result is found for a file whose filetype does not have a treesitter parser installed, fall back to regex based highlighting that is bundled in Neovim.
                             fallback_to_regex_highlighting = true,
-
-                            -- Absolute root paths where the rg command will not be executed.
-                            ignore_paths = { 'dict/' },
-
-                            -- Any additional paths to search in, in addition to the project root.
-                            additional_paths = {},
                             debug = false,
+
+                            backend = {
+                                use = 'ripgrep',
+                                -- Whether to set up custom highlight-groups for the icons used
+                                -- in the completion items. Defaults to `true`, which means this
+                                -- is enabled.
+                                customize_icon_highlight = true,
+
+                                ripgrep = {
+
+                                    -- The number of lines to show around each match in the preview (documentation) window. Before and after
+                                    context_size = 5,
+
+                                    -- The maximum file size of a file that ripgrep should include in its search.
+                                    max_filesize = '1M',
+
+                                    -- Enable fallback to neovim cwd if project_root_marker is not found. Default: `true`, which means to use the cwd.
+                                    project_root_fallback = true,
+
+                                    -- The casing to use for the search in a format that ripgrep accepts. Defaults to "--ignore-case".
+                                    search_casing = '--ignore-case',
+
+                                    -- (advanced) Any additional options you want to give to ripgrep.
+                                    additional_rg_options = {},
+
+                                    -- Absolute root paths where the rg command will not be executed.
+                                    ignore_paths = { 'dict/' },
+
+                                    -- Any additional paths to search in, in addition to the project root.
+                                    additional_paths = {},
+                                },
+                            },
                         },
                         -- (optional) customize how the results are displayed.
                         transform_items = function(ctx, items)

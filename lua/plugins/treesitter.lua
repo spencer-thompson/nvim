@@ -3,10 +3,12 @@ return {
         'nvim-treesitter/nvim-treesitter',
         name = 'treesitter',
         lazy = false,
-        -- version = false,
         branch = 'main',
         build = ':TSUpdate',
         -- event = 'VeryLazy',
+        -- dependecies = {
+        --     { 'nvim-treesitter/nvim-treesitter-textobjects', name = 'treesitter-textobjects' },
+        -- },
         config = function()
             local group = vim.api.nvim_create_augroup('custom-treesitter', { clear = true })
 
@@ -25,19 +27,30 @@ return {
                 group = group,
                 callback = function(args)
                     local bufnr = args.buf
+                    local ft = vim.bo[bufnr].filetype
+                    require('nvim-treesitter').install(ft)
+
                     local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
                     if not ok or not parser then
                         return
                     end
+
                     pcall(vim.treesitter.start)
 
-                    local ft = vim.bo[bufnr].filetype
+                    -- local ft = vim.bo[bufnr].filetype
                     -- if syntax_on[ft] then
                     --     vim.bo[bufnr].syntax = 'on'
                     -- end
                 end,
             })
         end,
+        keys = {
+            {
+                '<leader>ui',
+                '<cmd>InspectTree<cr>',
+                desc = 'Inspect Highlights',
+            },
+        },
     },
 
     -- {

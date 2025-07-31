@@ -1,0 +1,7 @@
+{
+  "Function": {
+    "prefix": "fn",
+    "body": ["function($1)", "\t$0", "end"],
+    "description": "A function in Lua"
+  }
+}

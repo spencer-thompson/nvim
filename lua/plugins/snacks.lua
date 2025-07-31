@@ -109,6 +109,7 @@ return {
                 char = '∙',
             },
         },
+        input = { enabled = true, win = { border = 'single' } },
         -- scope = { enabled = false },
         bigfile = { enabled = true },
         notifier = { enabled = true },
@@ -211,14 +212,14 @@ return {
                     --     action = ':Dbee',
                     -- },
 
-                    {
-                        icon = '󱚤 ',
-                        key = 'c',
-                        desc = 'AI Chat',
-                        action = function()
-                            require('codecompanion').toggle()
-                        end,
-                    },
+                    -- {
+                    --     icon = '󱚤 ',
+                    --     key = 'c',
+                    --     desc = 'AI Chat',
+                    --     action = function()
+                    --         require('codecompanion').toggle()
+                    --     end,
+                    -- },
 
                     {
                         icon = ' ',
@@ -296,20 +297,20 @@ return {
                     {
                         -- icon = '',
                         -- title = 'Welcome Back',
-                        padding = 2,
+                        padding = 9,
                     },
-                    {
-                        section = 'terminal',
-                        -- cmd = 'fortune -s | fmt -w 60',
-                        cmd = 'fortune -s | fmt -w 60',
-                        hl = 'comment',
-                        -- padding = 10,
-                        -- width = 80,
-                        height = 7,
-                        padding = 1,
-                        -- indent = -7,
-                        -- align = 'center',
-                    },
+                    -- {
+                    --     section = 'terminal',
+                    --     -- cmd = 'fortune -s | fmt -w 60',
+                    --     cmd = 'fortune -s | fmt -w 60',
+                    --     hl = 'comment',
+                    --     -- padding = 10,
+                    --     -- width = 80,
+                    --     height = 7,
+                    --     padding = 1,
+                    --     -- indent = -7,
+                    --     -- align = 'center',
+                    -- },
                     { icon = '', title = 'MRU ', file = vim.fn.fnamemodify('.', ':~'), padding = 1 },
                     { section = 'recent_files', cwd = true, limit = 5, indent = 2, padding = 1 },
 

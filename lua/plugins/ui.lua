@@ -9,6 +9,27 @@ end
 return {
 
     {
+        'Sam-programs/cmdline-hl.nvim',
+        name = 'cmdline-hl',
+        event = 'VimEnter',
+        config = function()
+            require('cmdline-hl').setup({
+                type_signs = {
+                    [':'] = { ' : ', 'Title' },
+                    ['/'] = { '  ', 'Title' },
+                    ['?'] = { '  ', 'Title' },
+                    ['='] = { '  ', 'Title' },
+                },
+                ghost_text = false,
+                custom_types = {
+                    ['='] = { icon = ' 󰢱 ', pat = '=(.*)', lang = 'lua', show_cmd = false },
+                    ['help'] = { icon = ' ? ', show_cmd = false },
+                },
+            })
+        end,
+    },
+
+    {
         'nvzone/typr',
         enabled = false,
         cmd = 'TyprStats',

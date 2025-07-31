@@ -14,7 +14,8 @@ return {
                         a = { '@block.outer', '@conditional.outer', '@loop.outer' },
                         i = { '@block.inner', '@conditional.inner', '@loop.inner' },
                     }),
-                    f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+                    -- f = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+                    F = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
                     c = require('mini.ai').gen_spec.treesitter({
                         a = { '@string.outer', '@comment.outer', '@line_comment.outer', '@block_comment.outer' },
                         i = { '@string.inner', '@comment.inner', '@line_comment.inner', '@block_comment.inner' },

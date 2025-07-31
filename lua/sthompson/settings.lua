@@ -107,8 +107,11 @@ vim.opt.conceallevel = 0
 -- vim.opt.concealcursor = 'nc'
 
 vim.opt.shortmess:append({
+    m = true,
+    r = true,
     w = true,
     s = true,
+    W = true, -- no written message
 })
 
 -- save undo history
@@ -132,7 +135,7 @@ vim.opt.showtabline = 2
 
 vim.o.keywordprg = 'wn'
 
--- vim.o.winborder = 'single'
+vim.o.winborder = 'single'
 local left = require('icons').lines.left.vertical
 local center = require('icons').lines.center.vertical
 local right = require('icons').lines.right.vertical
