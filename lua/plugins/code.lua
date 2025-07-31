@@ -318,61 +318,61 @@ return {
                         async = true,
                         -- min_keyword_length = 3,
                     },
-                    dictionary = {
-                        max_items = 500,
-                        module = 'blink-cmp-dictionary',
-                        name = 'Dict',
-                        score_offset = -2,
-                        async = true,
-
-                        transform_items = function(ctx, items)
-                            -- local kind = require('blink.cmp.types').CompletionItemKind.EnumMember
-
-                            local icon = require('icons').misc.book
-
-                            for i = 1, #items do
-                                -- items[i].kind = kind
-                                items[i].kind_icon = icon
-                                items[i].kind_name = 'Dictionary'
-                            end
-
-                            return items
-                        end,
-
-                        min_keyword_length = 3,
-
-                        opts = {
-                            -- Specify the dictionary files' path
-                            -- example: { vim.fn.expand('~/.config/nvim/dictionary/words.dict') }
-                            dictionary_files = { vim.fn.expand('~/.config/nvim/dict/valid_words.txt') },
-                            -- All .txt files in these directories will be treated as dictionary files
-                            -- example: { vim.fn.expand('~/.config/nvim/dictionary') }
-                            dictionary_directories = nil,
-                            separate_output = function(output)
-                                local items = {}
-                                for line in output:gmatch('[^\r\n]+') do
-                                    local word = line
-                                    table.insert(items, {
-                                        label = word,
-                                        insert_text = word,
-                                        -- If you want to disable the documentation feature, just set it to nil
-                                        documentation = {
-                                            get_command = 'wn',
-                                            get_command_args = {
-                                                word,
-                                                '-over',
-                                            },
-                                            ---@diagnostic disable-next-line: redefined-local
-                                            resolve_documentation = function(output)
-                                                return output
-                                            end,
-                                        },
-                                    })
-                                end
-                                return items
-                            end,
-                        },
-                    },
+                    -- dictionary = {
+                    --     max_items = 500,
+                    --     module = 'blink-cmp-dictionary',
+                    --     name = 'Dict',
+                    --     score_offset = -2,
+                    --     async = true,
+                    --
+                    --     transform_items = function(ctx, items)
+                    --         -- local kind = require('blink.cmp.types').CompletionItemKind.EnumMember
+                    --
+                    --         local icon = require('icons').misc.book
+                    --
+                    --         for i = 1, #items do
+                    --             -- items[i].kind = kind
+                    --             items[i].kind_icon = icon
+                    --             items[i].kind_name = 'Dictionary'
+                    --         end
+                    --
+                    --         return items
+                    --     end,
+                    --
+                    --     min_keyword_length = 3,
+                    --
+                    --     opts = {
+                    --         -- Specify the dictionary files' path
+                    --         -- example: { vim.fn.expand('~/.config/nvim/dictionary/words.dict') }
+                    --         dictionary_files = { vim.fn.expand('~/.config/nvim/dict/valid_words.txt') },
+                    --         -- All .txt files in these directories will be treated as dictionary files
+                    --         -- example: { vim.fn.expand('~/.config/nvim/dictionary') }
+                    --         dictionary_directories = nil,
+                    --         separate_output = function(output)
+                    --             local items = {}
+                    --             for line in output:gmatch('[^\r\n]+') do
+                    --                 local word = line
+                    --                 table.insert(items, {
+                    --                     label = word,
+                    --                     insert_text = word,
+                    --                     -- If you want to disable the documentation feature, just set it to nil
+                    --                     documentation = {
+                    --                         get_command = 'wn',
+                    --                         get_command_args = {
+                    --                             word,
+                    --                             '-over',
+                    --                         },
+                    --                         ---@diagnostic disable-next-line: redefined-local
+                    --                         resolve_documentation = function(output)
+                    --                             return output
+                    --                         end,
+                    --                     },
+                    --                 })
+                    --             end
+                    --             return items
+                    --         end,
+                    --     },
+                    -- },
 
                     -- additional_paths = "backend.ripgrep.additional_paths",
                     -- additional_rg_options = "backend.ripgrep.additional_rg_options",
@@ -446,51 +446,51 @@ return {
                             return items
                         end,
                     },
-                    nerdfont = {
-                        name = 'Nerd Fonts',
-                        module = 'blink-nerdfont',
-                        score_offset = 0,
-                        async = true,
-                        -- name = 'nerdfont',
-                        -- module = 'blink.compat.source',
-
-                        transform_items = function(ctx, items)
-                            -- check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                            local kind = require('blink.cmp.types').CompletionItemKind.Color
-
-                            local icon = require('icons').misc.glasses
-
-                            for i = 1, #items do
-                                -- items[i].kind = kind
-                                items[i].kind_icon = icon
-                                items[i].kind_name = 'Nerd Fonts'
-                            end
-
-                            return items
-                        end,
-                    },
-                    emoji = {
-                        module = 'blink-emoji',
-                        name = 'Emoji',
-                        score_offset = 0,
-                        async = true,
-
-                        transform_items = function(ctx, items)
-                            local kind = require('blink.cmp.types').CompletionItemKind.Color
-
-                            local icon = require('icons').misc.emoji
-
-                            for i = 1, #items do
-                                -- items[i].kind = kind
-                                items[i].kind_icon = icon
-                                items[i].kind_name = 'Emoji'
-                            end
-
-                            return items
-                        end,
-
-                        opts = { insert = true },
-                    },
+                    -- nerdfont = {
+                    --     name = 'Nerd Fonts',
+                    --     module = 'blink-nerdfont',
+                    --     score_offset = 0,
+                    --     async = true,
+                    --     -- name = 'nerdfont',
+                    --     -- module = 'blink.compat.source',
+                    --
+                    --     transform_items = function(ctx, items)
+                    --         -- check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+                    --         local kind = require('blink.cmp.types').CompletionItemKind.Color
+                    --
+                    --         local icon = require('icons').misc.glasses
+                    --
+                    --         for i = 1, #items do
+                    --             -- items[i].kind = kind
+                    --             items[i].kind_icon = icon
+                    --             items[i].kind_name = 'Nerd Fonts'
+                    --         end
+                    --
+                    --         return items
+                    --     end,
+                    -- },
+                    -- emoji = {
+                    --     module = 'blink-emoji',
+                    --     name = 'Emoji',
+                    --     score_offset = 0,
+                    --     async = true,
+                    --
+                    --     transform_items = function(ctx, items)
+                    --         local kind = require('blink.cmp.types').CompletionItemKind.Color
+                    --
+                    --         local icon = require('icons').misc.emoji
+                    --
+                    --         for i = 1, #items do
+                    --             -- items[i].kind = kind
+                    --             items[i].kind_icon = icon
+                    --             items[i].kind_name = 'Emoji'
+                    --         end
+                    --
+                    --         return items
+                    --     end,
+                    --
+                    --     opts = { insert = true },
+                    -- },
                 },
             },
 

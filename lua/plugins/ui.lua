@@ -92,6 +92,9 @@ return {
             maxkeys = 5,
             -- more opts
         },
+        keys = {
+            { '<leader>sk', '<cmd>ShowkeysToggle<CR>', desc = '[S]how [K]eys' },
+        },
     },
 
     {
@@ -599,8 +602,8 @@ return {
                 -- },
             }
 
-            vim.keymap.set('n', '<leader>mt', '<cmd>Neominimap toggle<CR>', { desc = 'Toggle Minimap' })
-            vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })
+            vim.keymap.set('n', '<leader>tm', '<cmd>Neominimap toggle<CR>', { desc = '[T]oggle [M]inimap' })
+            -- vim.keymap.set('n', '<leader>mf', '<cmd>Neominimap toggleFocus<CR>', { desc = 'Toggle Minimap Focus' })
         end,
     },
 

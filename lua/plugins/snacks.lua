@@ -493,18 +493,18 @@ return {
             desc = 'Git Blame Line',
         },
         {
-            '<leader>dm',
+            '<leader>td',
             function()
                 Snacks.toggle.dim():toggle()
             end,
-            desc = 'Toggle Dim',
+            desc = '[T]oggle [D]im',
         },
         {
             '<leader>sb',
             function()
                 Snacks.scratch()
             end,
-            desc = '[Sc]ratch Buffer',
+            desc = '[Sc]ratch [B]uffer',
         },
         {
             '<leader>Z',

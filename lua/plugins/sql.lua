@@ -64,6 +64,9 @@ return {
                     },
                 },
             })
+            vim.keymap.set('n', '<leader>dB', function()
+                require('dbee').toggle()
+            end, { desc = '[D]ata[B]ase' })
         end,
     },
 }
