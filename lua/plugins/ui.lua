@@ -539,7 +539,7 @@ return {
                 auto_enable = true,
                 notification_level = vim.log.levels.OFF,
                 layout = 'float',
-                delay = 500,
+                delay = 50,
                 float = {
                     window_border = 'none',
                     minimap_width = 18,
