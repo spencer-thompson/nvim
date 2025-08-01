@@ -59,12 +59,15 @@ return {
                             return true
                         end
                     end,
-                    function(cmp)
-                        -- if not cmp.is_visible() then
-                        cmp.show({ providers = { 'copilot' } })
-                        return true
-                        -- end
-                    end,
+                    -- function(cmp)
+                    --     vim.lsp.buf.signature_help()
+                    -- end,
+                    -- function(cmp)
+                    --     -- if not cmp.is_visible() then
+                    --     cmp.show({ providers = { 'copilot' } })
+                    --     return true
+                    --     -- end
+                    -- end,
                     -- function(cmp)
                     --     if not cmp.is_visible() then
                     --         cmp.show({ providers = { 'snippets' } })
@@ -72,9 +75,9 @@ return {
                     --     end
                     -- end,
                     -- 'select_and_accept',
-                    'cancel',
-                    'show_and_insert',
-                    -- 'fallback',
+                    -- 'cancel',
+                    -- 'show_and_insert',
+                    'fallback',
                 },
                 ['<C-h>'] = {
                     function(cmp)
@@ -119,8 +122,9 @@ return {
                         --     end
                         -- end,
                         -- 'select_and_accept',
-                        'cancel',
-                        'show_and_insert',
+                        -- 'cancel',
+                        -- 'show_and_insert',
+                        'fallback',
                     },
                     ['<C-h>'] = {
                         function(cmp)
@@ -155,14 +159,14 @@ return {
                 end,
             },
 
-            -- signature = {
-            --     enabled = false,
-            --     window = {
-            --         show_documentation = true,
-            --         winblend = vim.o.pumblend,
-            --         border = 'single',
-            --     },
-            -- },
+            signature = {
+                enabled = true,
+                window = {
+                    show_documentation = true,
+                    winblend = vim.o.pumblend,
+                    border = 'single',
+                },
+            },
 
             fuzzy = { implementation = 'prefer_rust_with_warning' },
 

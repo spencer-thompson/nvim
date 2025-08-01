@@ -33,7 +33,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, { desc = 'Code [A]ction', buffer = event.buf })
         vim.keymap.set('n', 'gD', Snacks.picker.lsp_declarations, { desc = '[D]eclaration', buffer = event.buf })
         vim.keymap.set('n', 'go', Snacks.picker.lsp_type_definitions, { desc = 'Type Definition', buffer = event.buf })
-        -- vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { desc = "", buffer = event.buf })
+        vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, { desc = 'Signature Help', buffer = event.buf })
+        -- vim.keymap.set(
+        --     'n',
+        --     'gs',
+        --     '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+        --     { desc = 'Signature Help', buffer = event.buf }
+        -- )
         vim.keymap.set('n', '<leader>R', vim.lsp.buf.rename, { desc = 'LSP [R]ename', buffer = event.buf }) -- todo change
         -- vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', { desc = "", buffer = event.buf })
         vim.keymap.set('n', 'gC', vim.lsp.buf.code_action, { desc = '[C]ode Action', buffer = event.buf })
