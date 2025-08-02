@@ -26,14 +26,32 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.buf.hover()
             -- end
         end, { desc = 'Show Hover Docs', buffer = event.buf })
+
+        vim.keymap.set('n', 'gra', function()
+            require('tiny-code-action').code_action()
+        end, { desc = 'Code Action' })
+
+        vim.keymap.set('n', 'grr', '<cmd>FzfLua lsp_references<cr>', { desc = 'Lsp References' })
+        vim.keymap.set('n', 'gd', function()
+            require('fzf-lua').lsp_definitions({ jump1 = true })
+        end, { desc = '[G]oto [D]efinition' })
+        vim.keymap.set('n', 'gD', function()
+            require('fzf-lua').lsp_definitions({ jump1 = false })
+        end, { desc = 'Peek [D]efinition' })
+
         -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = "", buffer = event.buf })
-        vim.keymap.set('n', 'gd', Snacks.picker.lsp_definitions, { desc = '[D]efinitions', buffer = event.buf })
-        vim.keymap.set('n', 'gR', Snacks.picker.lsp_references, { desc = '[R]eferences', buffer = event.buf })
-        vim.keymap.set('n', 'gI', Snacks.picker.lsp_implementations, { desc = '[I]mplementations', buffer = event.buf })
-        vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, { desc = 'Code [A]ction', buffer = event.buf })
-        vim.keymap.set('n', 'gD', Snacks.picker.lsp_declarations, { desc = '[D]eclaration', buffer = event.buf })
-        vim.keymap.set('n', 'go', Snacks.picker.lsp_type_definitions, { desc = 'Type Definition', buffer = event.buf })
-        vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, { desc = 'Signature Help', buffer = event.buf })
+        -- vim.keymap.set('n', 'gd', Snacks.picker.lsp_definitions, { desc = '[D]efinitions', buffer = event.buf })
+        -- vim.keymap.set('n', 'gR', Snacks.picker.lsp_references, { desc = '[R]eferences', buffer = event.buf })
+        -- vim.keymap.set('n', 'gI', Snacks.picker.lsp_implementations, { desc = '[I]mplementations', buffer = event.buf })
+        -- vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, { desc = 'Code [A]ction', buffer = event.buf })
+        -- vim.keymap.set('n', 'gD', Snacks.picker.lsp_declarations, { desc = '[D]eclaration', buffer = event.buf })
+        -- vim.keymap.set('n', 'go', Snacks.picker.lsp_type_definitions, { desc = 'Type Definition', buffer = event.buf })
+        vim.keymap.set('i', '<C-l>', function()
+            if require('blink.cmp.completion.windows.menu').win:is_open() then
+                require('blink.cmp').hide()
+            end
+            vim.lsp.buf.signature_help()
+        end, { desc = 'Signature Help', buffer = event.buf })
         -- vim.keymap.set(
         --     'n',
         --     'gs',
