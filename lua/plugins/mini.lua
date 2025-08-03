@@ -76,89 +76,89 @@ return {
                 require('mini.bufremove').delete(0, false)
             end, { desc = '[D]elete current buffer' })
 
-            -- Add a-z/A-Z marks.
-            local function mark_clues()
-                local marks = {}
-                vim.list_extend(marks, vim.fn.getmarklist(vim.api.nvim_get_current_buf()))
-                vim.list_extend(marks, vim.fn.getmarklist())
-
-                return vim.iter(marks)
-                    :map(function(mark)
-                        local key = mark.mark:sub(2, 2)
-
-                        -- Just look at letter marks.
-                        if not string.match(key, '^%a') then
-                            return nil
-                        end
-
-                        -- For global marks, use the file as a description.
-                        -- For local marks, use the line number and content.
-                        local desc
-                        if mark.file then
-                            desc = vim.fn.fnamemodify(mark.file, ':p:~:.')
-                        elseif mark.pos[1] and mark.pos[1] ~= 0 then
-                            local line_num = mark.pos[2]
-                            local lines = vim.fn.getbufline(mark.pos[1], line_num)
-                            if lines and lines[1] then
-                                desc = string.format('%d: %s', line_num, lines[1]:gsub('^%s*', ''))
-                            end
-                        end
-
-                        if desc then
-                            return { mode = 'n', keys = string.format('`%s', key), desc = desc }
-                        end
-                    end)
-                    :totable()
-            end
-
-            -- Clues for recorded macros.
-            local function macro_clues()
-                local res = {}
-                for _, register in ipairs(vim.split('abcdefghijklmnopqrstuvwxyz', '')) do
-                    local keys = string.format('"%s', register)
-                    local ok, desc = pcall(vim.fn.getreg, register)
-                    if ok and desc ~= '' then
-                        ---@cast desc string
-                        desc = string.format('register: %s', desc:gsub('%s+', ' '))
-                        table.insert(res, { mode = 'n', keys = keys, desc = desc })
-                        table.insert(res, { mode = 'v', keys = keys, desc = desc })
-                    end
-                end
-
-                return res
-            end
-
-            -- spell suggestions
-            local function make_spellsuggest_clues(labels)
-                labels = labels or '123456789abcdefghijklmnopqrstuvwxyz'
-                -- labels = labels or '123456789'
-                local labels_arr, n = vim.split(labels, ''), labels:len()
-
-                return function()
-                    -- if started with a count, let default work
-                    local count = vim.v.count
-                    if count and count > 0 then
-                        return {}
-                    end
-                    local word = vim.fn.expand('<cword>')
-                    local suggestions = vim.fn.spellsuggest(word, n)
-                    -- Construct clues for each combination of `z=`+label that will emulate
-                    -- the following keys: `z=` + <label> + <C-u> (clear) + <index> + <CR>
-                    -- This takes advantage of:
-                    -- - Built-in `z=` waits for the whole index to be confirmed with <CR>.
-                    -- - Allows typing any letter before pressing <CR>.
-                    -- - Allows <C-u> to remove all text to the left of cursor.
-                    local res = {}
-                    for i = 1, n do
-                        local label, desc = labels_arr[i], suggestions[i]
-                        local postkeys = '<C-u>' .. i .. '<CR>'
-                        -- local postkeys = '<cmd>' .. i .. 'z=<CR>'
-                        -- local postkeys = i .. '<CR>'
-                        table.insert(res, { mode = 'n', keys = 'z=' .. label, desc = desc, postkeys = postkeys })
-                    end
-                    return res
-                end
-            end
+            -- -- Add a-z/A-Z marks.
+            -- local function mark_clues()
+            --     local marks = {}
+            --     vim.list_extend(marks, vim.fn.getmarklist(vim.api.nvim_get_current_buf()))
+            --     vim.list_extend(marks, vim.fn.getmarklist())
+            --
+            --     return vim.iter(marks)
+            --         :map(function(mark)
+            --             local key = mark.mark:sub(2, 2)
+            --
+            --             -- Just look at letter marks.
+            --             if not string.match(key, '^%a') then
+            --                 return nil
+            --             end
+            --
+            --             -- For global marks, use the file as a description.
+            --             -- For local marks, use the line number and content.
+            --             local desc
+            --             if mark.file then
+            --                 desc = vim.fn.fnamemodify(mark.file, ':p:~:.')
+            --             elseif mark.pos[1] and mark.pos[1] ~= 0 then
+            --                 local line_num = mark.pos[2]
+            --                 local lines = vim.fn.getbufline(mark.pos[1], line_num)
+            --                 if lines and lines[1] then
+            --                     desc = string.format('%d: %s', line_num, lines[1]:gsub('^%s*', ''))
+            --                 end
+            --             end
+            --
+            --             if desc then
+            --                 return { mode = 'n', keys = string.format('`%s', key), desc = desc }
+            --             end
+            --         end)
+            --         :totable()
+            -- end
+            --
+            -- -- Clues for recorded macros.
+            -- local function macro_clues()
+            --     local res = {}
+            --     for _, register in ipairs(vim.split('abcdefghijklmnopqrstuvwxyz', '')) do
+            --         local keys = string.format('"%s', register)
+            --         local ok, desc = pcall(vim.fn.getreg, register)
+            --         if ok and desc ~= '' then
+            --             ---@cast desc string
+            --             desc = string.format('register: %s', desc:gsub('%s+', ' '))
+            --             table.insert(res, { mode = 'n', keys = keys, desc = desc })
+            --             table.insert(res, { mode = 'v', keys = keys, desc = desc })
+            --         end
+            --     end
+            --
+            --     return res
+            -- end
+            --
+            -- -- spell suggestions
+            -- local function make_spellsuggest_clues(labels)
+            --     labels = labels or '123456789abcdefghijklmnopqrstuvwxyz'
+            --     -- labels = labels or '123456789'
+            --     local labels_arr, n = vim.split(labels, ''), labels:len()
+            --
+            --     return function()
+            --         -- if started with a count, let default work
+            --         local count = vim.v.count
+            --         if count and count > 0 then
+            --             return {}
+            --         end
+            --         local word = vim.fn.expand('<cword>')
+            --         local suggestions = vim.fn.spellsuggest(word, n)
+            --         -- Construct clues for each combination of `z=`+label that will emulate
+            --         -- the following keys: `z=` + <label> + <C-u> (clear) + <index> + <CR>
+            --         -- This takes advantage of:
+            --         -- - Built-in `z=` waits for the whole index to be confirmed with <CR>.
+            --         -- - Allows typing any letter before pressing <CR>.
+            --         -- - Allows <C-u> to remove all text to the left of cursor.
+            --         local res = {}
+            --         for i = 1, n do
+            --             local label, desc = labels_arr[i], suggestions[i]
+            --             local postkeys = '<C-u>' .. i .. '<CR>'
+            --             -- local postkeys = '<cmd>' .. i .. 'z=<CR>'
+            --             -- local postkeys = i .. '<CR>'
+            --             table.insert(res, { mode = 'n', keys = 'z=' .. label, desc = desc, postkeys = postkeys })
+            --         end
+            --         return res
+            --     end
+            -- end
 
             -- vim.keymap.set('n', 'z=', function()
             --     local count = vim.v.count
@@ -168,77 +168,77 @@ return {
             --     return count .. 'z='
             -- end, { expr = true })
 
-            require('mini.clue').setup({
-                triggers = {
-                    -- builtins
-                    { mode = 'n', keys = 'g' },
-                    { mode = 'x', keys = 'g' },
-                    { mode = 'n', keys = '`' },
-                    { mode = 'x', keys = '`' },
-                    { mode = 'n', keys = '"' },
-                    { mode = 'x', keys = '"' },
-                    { mode = 'i', keys = '<C-r>' },
-                    { mode = 'c', keys = '<C-r>' },
-                    { mode = 'n', keys = '<C-w>' },
-                    { mode = 'i', keys = '<C-x>' },
-                    { mode = 'n', keys = 'z' },
-                    -- Leader triggers.
-                    { mode = 'n', keys = '<leader>' },
-                    { mode = 'x', keys = '<leader>' },
-                    -- Moving between stuff.
-                    { mode = 'n', keys = '[' },
-                    { mode = 'n', keys = ']' },
-                },
-                clues = {
-                    { mode = 'n', keys = '<leader>b', desc = '+buffer' },
-                    { mode = 'n', keys = '<leader>c', desc = '+code' },
-                    { mode = 'n', keys = '<leader>n', desc = '+notifications' },
-                    -- { mode = 'x', keys = '<leader>c', desc = '+code' },
-                    -- { mode = 'n', keys = '<leader>d', desc = '+debug' },
-                    { mode = 'n', keys = '<leader>g', desc = '+git' },
-                    { mode = 'n', keys = '<leader>f', desc = '+find' },
-                    { mode = 'n', keys = '<leader>n', desc = '+notify' },
-                    { mode = 'n', keys = '<leader>s', desc = '+split/show' },
-                    -- { mode = 'n', keys = '<leader>m', desc = '+minimap' },
-                    -- { mode = 'n', keys = '<leader>o', desc = '+overseer' },
-                    { mode = 'n', keys = '<leader>t', desc = '+toggle' },
-                    { mode = 'n', keys = '<leader>x', desc = '+loclist/quickfix' },
-                    { mode = 'n', keys = '[', desc = '+prev' },
-                    { mode = 'n', keys = ']', desc = '+next' },
-                    -- { mode = 'n', keys = 'z=', postkeys = 'z' },
-                    -- Builtins.
-                    require('mini.clue').gen_clues.builtin_completion(),
-                    require('mini.clue').gen_clues.g(),
-                    require('mini.clue').gen_clues.marks(),
-                    require('mini.clue').gen_clues.registers(),
-                    require('mini.clue').gen_clues.windows(),
-                    require('mini.clue').gen_clues.z(),
-                    -- Custom extras.
-                    mark_clues,
-
-                    macro_clues,
-                    make_spellsuggest_clues(),
-                },
-                window = {
-                    delay = 300,
-                    scroll_down = '<C-d>',
-                    scroll_up = '<C-u>',
-                    config = function(bufnr)
-                        local max_width = 0
-                        for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
-                            max_width = math.max(max_width, vim.fn.strchars(line))
-                        end
-
-                        -- Keep some right padding.
-                        max_width = max_width + 2
-
-                        return {
-                            -- Dynamic width capped at 70.
-                            width = math.min(70, max_width),
-                        }
-                    end,
-                },
-            })
+            -- require('mini.clue').setup({
+            --     triggers = {
+            --         -- builtins
+            --         { mode = 'n', keys = 'g' },
+            --         { mode = 'x', keys = 'g' },
+            --         { mode = 'n', keys = '`' },
+            --         { mode = 'x', keys = '`' },
+            --         { mode = 'n', keys = '"' },
+            --         { mode = 'x', keys = '"' },
+            --         { mode = 'i', keys = '<C-r>' },
+            --         { mode = 'c', keys = '<C-r>' },
+            --         { mode = 'n', keys = '<C-w>' },
+            --         { mode = 'i', keys = '<C-x>' },
+            --         { mode = 'n', keys = 'z' },
+            --         -- Leader triggers.
+            --         { mode = 'n', keys = '<leader>' },
+            --         { mode = 'x', keys = '<leader>' },
+            --         -- Moving between stuff.
+            --         { mode = 'n', keys = '[' },
+            --         { mode = 'n', keys = ']' },
+            --     },
+            --     clues = {
+            --         { mode = 'n', keys = '<leader>b', desc = '+buffer' },
+            --         { mode = 'n', keys = '<leader>c', desc = '+code' },
+            --         { mode = 'n', keys = '<leader>n', desc = '+notifications' },
+            --         -- { mode = 'x', keys = '<leader>c', desc = '+code' },
+            --         -- { mode = 'n', keys = '<leader>d', desc = '+debug' },
+            --         { mode = 'n', keys = '<leader>g', desc = '+git' },
+            --         { mode = 'n', keys = '<leader>f', desc = '+find' },
+            --         { mode = 'n', keys = '<leader>n', desc = '+notify' },
+            --         { mode = 'n', keys = '<leader>s', desc = '+split/show' },
+            --         -- { mode = 'n', keys = '<leader>m', desc = '+minimap' },
+            --         -- { mode = 'n', keys = '<leader>o', desc = '+overseer' },
+            --         { mode = 'n', keys = '<leader>t', desc = '+toggle' },
+            --         { mode = 'n', keys = '<leader>x', desc = '+loclist/quickfix' },
+            --         { mode = 'n', keys = '[', desc = '+prev' },
+            --         { mode = 'n', keys = ']', desc = '+next' },
+            --         -- { mode = 'n', keys = 'z=', postkeys = 'z' },
+            --         -- Builtins.
+            --         require('mini.clue').gen_clues.builtin_completion(),
+            --         require('mini.clue').gen_clues.g(),
+            --         require('mini.clue').gen_clues.marks(),
+            --         require('mini.clue').gen_clues.registers(),
+            --         require('mini.clue').gen_clues.windows(),
+            --         require('mini.clue').gen_clues.z(),
+            --         -- Custom extras.
+            --         mark_clues,
+            --
+            --         macro_clues,
+            --         make_spellsuggest_clues(),
+            --     },
+            --     window = {
+            --         delay = 300,
+            --         scroll_down = '<C-d>',
+            --         scroll_up = '<C-u>',
+            --         config = function(bufnr)
+            --             local max_width = 0
+            --             for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
+            --                 max_width = math.max(max_width, vim.fn.strchars(line))
+            --             end
+            --
+            --             -- Keep some right padding.
+            --             max_width = max_width + 2
+            --
+            --             return {
+            --                 -- Dynamic width capped at 70.
+            --                 width = math.min(70, max_width),
+            --             }
+            --         end,
+            --     },
+            -- })
             require('mini.comment').setup({})
             require('mini.cursorword').setup({})
 

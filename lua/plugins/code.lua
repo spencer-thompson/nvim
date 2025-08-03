@@ -159,14 +159,14 @@ return {
                 end,
             },
 
-            signature = {
-                enabled = true,
-                window = {
-                    show_documentation = true,
-                    winblend = vim.o.pumblend,
-                    border = 'single',
-                },
-            },
+            -- signature = {
+            --     enabled = true,
+            --     window = {
+            --         show_documentation = true,
+            --         winblend = vim.o.pumblend,
+            --         border = 'single',
+            --     },
+            -- },
 
             fuzzy = { implementation = 'prefer_rust_with_warning' },
 

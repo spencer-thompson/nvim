@@ -32,6 +32,7 @@ require('lazy').setup( -- load lazy
         require('plugins.colors'),
         require('plugins.external'),
         require('plugins.format'),
+        require('plugins.fuzzy'),
         require('plugins.fzf'),
         require('plugins.git'),
         require('plugins.language'),

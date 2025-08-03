@@ -17,6 +17,7 @@
   "dbee": { "branch": "master", "commit": "dda517694889a5d238d7aa407403984da9f80cc0" },
   "diffview": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dropbar": { "branch": "master", "commit": "f6ff3785fbcf856c5b828ac1ac849172a8e6142a" },
+  "fff.nvim": { "branch": "main", "commit": "f4a5692c43c08d836ffb737ed32cca8b5f94b53b" },
   "flash": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "fzf-lua": { "branch": "main", "commit": "3e644b863718980da1f50c96620b18d2fb36499c" },
   "gitgraph.nvim": { "branch": "main", "commit": "01e466b32c346a165135dd47d42f1244eca06572" },

@@ -3,13 +3,14 @@ return {
         'folke/which-key.nvim',
         name = 'which-key',
         event = 'VeryLazy',
-        enabled = false,
+        enabled = true,
         -- lazy = true,
         -- dependencies = { 'echasnovski/mini.icons', version = false },
         config = function(opts)
             local wk = require('which-key')
             wk.setup({
                 preset = 'modern',
+                show_help = false,
                 win = {
                     border = 'single',
                 },
@@ -18,20 +19,20 @@ return {
                 { --B
                     { '<leader>b', group = 'buffer' },
                 },
-                { -- D
-                    {
-                        '<leader>dB',
-                        function()
-                            require('dbee').toggle()
-                            -- if not require('dbee').is_open() then
-                            --     vim.cmd([[tabnew]])
-                            --     vim.cmd([[Dbee]])
-                            --     -- require('dbee').toggle()
-                            -- end
-                        end,
-                        desc = '[D]ata[B]ase',
-                    },
-                },
+                -- { -- D
+                --     -- {
+                --     --     '<leader>dB',
+                --     --     function()
+                --     --         require('dbee').toggle()
+                --     --         -- if not require('dbee').is_open() then
+                --     --         --     vim.cmd([[tabnew]])
+                --     --         --     vim.cmd([[Dbee]])
+                --     --         --     -- require('dbee').toggle()
+                --     --         -- end
+                --     --     end,
+                --     --     desc = '[D]ata[B]ase',
+                --     -- },
+                -- },
                 { -- E
                     { '<leader>E', '<cmd>Neotree toggle left<CR>', desc = 'File Tree' },
                     -- { '<leader>e', group = 'explore', icon = '󰙅' }, -- TODO: figure out icons

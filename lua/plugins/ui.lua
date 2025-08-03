@@ -10,6 +10,7 @@ return {
 
     {
         'Sam-programs/cmdline-hl.nvim',
+        enabled = false,
         name = 'cmdline-hl',
         event = 'VimEnter',
         config = function()
@@ -662,7 +663,7 @@ return {
 
     { -- fancy ui like floating search and command
         'folke/noice.nvim',
-        enabled = false,
+        enabled = true,
         -- lazy = true,
         -- name = 'noice',
         event = 'VimEnter',
@@ -675,6 +676,7 @@ return {
                 vim.cmd([[messages clear]])
             end
             require('noice').setup({
+                -- scrollbar = false,
                 messages = {
                     enabled = true,
                     view = 'notify',
