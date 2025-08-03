@@ -128,6 +128,46 @@ return {
                 return res
             end
 
+            -- spell suggestions
+            local function make_spellsuggest_clues(labels)
+                labels = labels or '123456789abcdefghijklmnopqrstuvwxyz'
+                -- labels = labels or '123456789'
+                local labels_arr, n = vim.split(labels, ''), labels:len()
+
+                return function()
+                    -- if started with a count, let default work
+                    local count = vim.v.count
+                    if count and count > 0 then
+                        return {}
+                    end
+                    local word = vim.fn.expand('<cword>')
+                    local suggestions = vim.fn.spellsuggest(word, n)
+                    -- Construct clues for each combination of `z=`+label that will emulate
+                    -- the following keys: `z=` + <label> + <C-u> (clear) + <index> + <CR>
+                    -- This takes advantage of:
+                    -- - Built-in `z=` waits for the whole index to be confirmed with <CR>.
+                    -- - Allows typing any letter before pressing <CR>.
+                    -- - Allows <C-u> to remove all text to the left of cursor.
+                    local res = {}
+                    for i = 1, n do
+                        local label, desc = labels_arr[i], suggestions[i]
+                        local postkeys = '<C-u>' .. i .. '<CR>'
+                        -- local postkeys = '<cmd>' .. i .. 'z=<CR>'
+                        -- local postkeys = i .. '<CR>'
+                        table.insert(res, { mode = 'n', keys = 'z=' .. label, desc = desc, postkeys = postkeys })
+                    end
+                    return res
+                end
+            end
+
+            -- vim.keymap.set('n', 'z=', function()
+            --     local count = vim.v.count
+            --     if not count then
+            --         return '<nop>'
+            --     end
+            --     return count .. 'z='
+            -- end, { expr = true })
+
             require('mini.clue').setup({
                 triggers = {
                     -- builtins
@@ -175,7 +215,9 @@ return {
                     require('mini.clue').gen_clues.z(),
                     -- Custom extras.
                     mark_clues,
+
                     macro_clues,
+                    make_spellsuggest_clues(),
                 },
                 window = {
                     delay = 300,
