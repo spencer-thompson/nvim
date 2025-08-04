@@ -44,6 +44,15 @@ return {
             --    "curl", "wget", "bitsadmin", "go"
             require('dbee').install()
         end,
+        keys = {
+            {
+                '<leader>dB',
+                function()
+                    require('dbee').toggle()
+                end,
+                desc = '[D]ata[B]ase',
+            },
+        },
         config = function()
             require('dbee').setup({
 
