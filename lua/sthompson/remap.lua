@@ -19,10 +19,10 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but
 -- vim.keymap.set('v', '<', '<gv', { desc = 'Dedent' })
 -- vim.keymap.set('v', '>', '>gv', { desc = 'Indent' })
 
-if vim.env.TERM == 'xterm-kitty' then
-    vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
-    vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
-end
+-- if vim.env.TERM == 'xterm-kitty' then
+--     vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+--     vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+-- end
 
 -- diagnostic stuff like errors
 -- vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
@@ -54,8 +54,22 @@ vim.keymap.set('n', 'x', '"_x', { desc = 'No Register' })
 -- center the window when moving
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Center the window' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Center the window' })
-vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Center the window' })
-vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Center the window' })
+-- vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Center the window' })
+-- vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Center the window' })
+vim.keymap.set('n', 'n', function()
+    vim.v.hlsearch = 1
+    vim.defer_fn(function()
+        vim.cmd.nohl()
+    end, 1000)
+    return 'nzzzv'
+end, { desc = 'Jump to next match', expr = true })
+vim.keymap.set('n', 'N', function()
+    vim.v.hlsearch = 1
+    vim.defer_fn(function()
+        vim.cmd.nohl()
+    end, 1000)
+    return 'Nzzzv'
+end, { desc = 'Jump to previous match', expr = true })
 
 -- select word under cursor
 vim.keymap.set(

@@ -47,6 +47,28 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end,
 })
 
+vim.api.nvim_create_autocmd('CmdlineEnter', {
+    group = vim.api.nvim_create_augroup('search_highlight', { clear = true }),
+    desc = 'Start Highlight Search',
+    callback = function(args)
+        if args.match == '/' or args.match == '?' then
+            vim.v.hlsearch = 1
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd('CmdlineLeave', {
+    group = vim.api.nvim_create_augroup('search_highlight', { clear = true }),
+    desc = 'Stop Highlight Search',
+    callback = function(args)
+        if args.match == '/' or args.match == '?' then
+            vim.defer_fn(function()
+                vim.cmd.nohl()
+            end, 1000)
+        end
+    end,
+})
+
 -- vim.api.nvim_create_autocmd('BufLeave', {
 --     group = vim.api.nvim_create_augroup('close_terms', { clear = true }),
 --     desc = 'Close Terminals on Exit',

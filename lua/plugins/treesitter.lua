@@ -28,7 +28,10 @@ return {
                 callback = function(args)
                     local bufnr = args.buf
                     local ft = vim.bo[bufnr].filetype
-                    require('nvim-treesitter').install(ft)
+
+                    if not vim.tbl_contains(require('nvim-treesitter').get_installed(), ft) then
+                        require('nvim-treesitter').install(ft)
+                    end
 
                     local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
                     if not ok or not parser then
