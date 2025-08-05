@@ -535,13 +535,13 @@ return {
             end,
             desc = 'Toggle Terminal',
         },
-        {
-            '<leader>tt',
-            function()
-                Snacks.terminal()
-            end,
-            desc = '[T]oggle [T]erminal',
-        },
+        -- {
+        --     '<leader>tt',
+        --     function()
+        --         Snacks.terminal()
+        --     end,
+        --     desc = '[T]oggle [T]erminal',
+        -- },
         {
             '<leader>sh',
             function()
