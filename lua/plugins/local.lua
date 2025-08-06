@@ -35,7 +35,7 @@ return {
     {
         dir = '~/rk4/keytrack.nvim',
         enabled = true,
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
         name = 'keytrack',
         opts = {
             url = 'https://api.rk4.dev/keytrack/key',

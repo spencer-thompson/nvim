@@ -184,7 +184,12 @@ return {
                         desc = 'Find String',
                         action = ':FzfLua live_grep',
                     },
-                    { icon = '󰋚 ', key = 'o', desc = 'Oldfiles', action = ':FzfLua oldfiles' },
+                    {
+                        icon = '󰄶 ',
+                        key = 'b',
+                        desc = 'Scratch Buffer',
+                        action = ':lua Snacks.scratch()',
+                    },
                     { icon = '󱏒 ', key = 'e', desc = 'Explore files', action = ':lua MiniFiles.open()' },
                     {
                         icon = ' ',
@@ -192,19 +197,13 @@ return {
                         desc = 'Recent Files',
                         action = ':FzfLua oldfiles',
                     },
+                    { icon = '󰋚 ', key = 'o', desc = 'Old Files', action = ':FzfLua oldfiles' },
                     -- {
                     --     icon = ' ',
                     --     key = 'c',
                     --     desc = 'Config',
                     --     action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
                     -- },
-
-                    {
-                        icon = '󰄶 ',
-                        key = 'b',
-                        desc = 'Scratch Buffer',
-                        action = ':lua Snacks.scratch()',
-                    },
 
                     -- {
                     --     icon = ' ',
@@ -229,17 +228,17 @@ return {
                     --     end,
                     -- },
 
-                    {
-                        icon = ' ',
-                        key = 't',
-                        desc = 'Terminal',
-                        action = function()
-                            vim.cmd([[
-                            terminal
-                            startinsert
-                            ]])
-                        end,
-                    },
+                    -- {
+                    --     icon = ' ',
+                    --     key = 't',
+                    --     desc = 'Terminal',
+                    --     action = function()
+                    --         vim.cmd([[
+                    --         terminal
+                    --         startinsert
+                    --         ]])
+                    --     end,
+                    -- },
 
                     {
                         icon = ' ',
@@ -248,6 +247,7 @@ return {
                         section = 'session',
                     },
 
+                    { icon = '󱌣 ', key = 'm', desc = 'Mason', action = ':Mason' },
                     {
                         icon = '󰒲 ',
                         key = 'l',
@@ -256,7 +256,6 @@ return {
                         enabled = package.loaded.lazy ~= nil,
                     },
 
-                    { icon = '󱌣 ', key = 'm', desc = 'Mason', action = ':Mason' },
                     { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
                 },
                 header = [[

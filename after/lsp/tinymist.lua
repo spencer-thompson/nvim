@@ -75,5 +75,8 @@ return {
         formatterMode = 'typstyle',
         outputPath = '$root/$dir/$name',
         exportPdf = 'onSave',
+        lint = {
+            enabled = true,
+        },
     },
 }
