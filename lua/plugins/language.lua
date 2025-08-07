@@ -13,6 +13,15 @@ return {
         },
     },
 
+    -- typst
+    {
+        'chomosuke/typst-preview.nvim',
+        name = 'typst-preview',
+        ft = 'typst',
+        version = '1.*',
+        opts = {}, -- lazy.nvim will implicitly calls `setup {}`
+    },
+
     -- Markdown
     {
         'iamcco/markdown-preview.nvim', -- fancy markdown preview
