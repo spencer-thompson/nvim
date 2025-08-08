@@ -67,8 +67,6 @@ require('lazy').setup( -- load lazy
     }
 )
 
--- require('plugins.autocmds')
-
 Snacks.toggle.line_number():map('<leader>nu')
 
 -- change current line number highlight
