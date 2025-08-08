@@ -1,5 +1,5 @@
 local markers = {
-    -- 'pyproject.toml',
+    'pyproject.toml',
     '.venv/',
     -- '.git',
 }
