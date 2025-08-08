@@ -1,6 +1,10 @@
 if vim.g.neovide then
     -- Font
-    vim.opt.guifont = 'Berkeley Mono:h12'
+    -- vim.opt.guifont = 'Berkeley Mono:h12:#e-subpixelantialias:#h-normal'
+    -- vim.o.guifont = 'Berkeley Mono:h12:#e-subpixelantialias:#h-slight'
+    -- vim.o.guifont = 'Berkeley Mono:h10:#e-subpixelantialias'
+    vim.o.guifont = 'Berkeley Mono:h12:b'
+    -- vim.o.guifont = 'JetBrainsMonoNF:h12'
 
     -- Helper function for transparency formatting
     local alpha = function()
@@ -19,12 +23,12 @@ if vim.g.neovide then
 
     -- vim.g.neovide_transparency = 0.8
     vim.g.neovide_opacity = 0.8
-    -- vim.g.transparency = 0.8
+    vim.g.transparency = 0.8
     vim.g.neovide_window_blurred = true
     vim.g.neovide_floating_blur_amount_x = 2.0
     vim.g.neovide_floating_blur_amount_y = 2.0
 
-    vim.g.neovide_background_color = '#0f1117' .. alpha()
+    -- vim.g.neovide_background_color = '#0f1117' .. alpha()
 
     vim.g.neovide_cursor_vfx_mode = 'wireframe'
     -- vim.g.neovide_cursor_vfx_mode = 'pixiedust'
@@ -47,8 +51,8 @@ if vim.g.neovide then
     -- scaling
     vim.g.neovide_scale_factor = 1.0
 
-    -- vim.g.neovide_text_gamma = 0.0
-    -- vim.g.neovide_text_contrast = 0.0
+    vim.g.neovide_text_gamma = 1.0
+    vim.g.neovide_text_contrast = 0.1
 
     vim.g.neovide_padding_top = 0
     vim.g.neovide_padding_bottom = 0
