@@ -3,6 +3,7 @@ return {
         'dmtrKovalenko/fff.nvim',
         build = 'cargo build --release',
         lazy = true,
+        enabled = false,
         -- or if you are using nixos
         -- build = "nix run .#release",
         opts = {

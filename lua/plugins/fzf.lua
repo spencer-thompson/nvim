@@ -59,7 +59,11 @@ return {
             local actions = require('fzf-lua.actions')
 
             return {
-                'ivy',
+                {
+                    'ivy',
+                    'hide',
+                    -- 'border-fused',
+                },
                 -- Make stuff better combine with the editor.
                 fzf_colors = {
                     true,
@@ -67,7 +71,8 @@ return {
                     info = { 'fg', 'Conditional' },
                     scrollbar = { 'fg', 'Constant' },
                     pointer = { 'fg', 'Constant' },
-                    separator = { 'fg', 'Global' },
+                    -- separator = { 'fg', 'Variable' },
+                    separator = { 'fg', 'Comment' },
                     hl = { 'fg', 'Comment' },
                     ['hl+'] = { 'fg', 'Constant' },
                     ['bg+'] = '-1',
@@ -105,11 +110,11 @@ return {
                     -- height = 0.4,
                     -- width = 1.0,
                     -- row = 1,
-                    -- border = 'single',
+                    border = 'single',
                     -- border = { '', '─', '', '', '', '', '', '' },
                     title_pos = 'center',
                     preview = {
-                        --     -- border = 'single',
+                        border = 'single',
                         --     -- border = { '', '─', '', '', '', '', '', '' },
                         title_pos = 'center',
                         scrollbar = false,

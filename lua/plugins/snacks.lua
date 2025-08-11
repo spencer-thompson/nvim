@@ -147,15 +147,15 @@ return {
             enabled = true,
             preset = {
                 keys = {
-                    -- { icon = ' ', key = 'f', desc = 'Find', action = ':FzfLua files' },
-                    {
-                        icon = ' ',
-                        key = 'f',
-                        desc = 'Find',
-                        action = function()
-                            require('fff').find_files()
-                        end,
-                    },
+                    { icon = ' ', key = 'f', desc = 'Find', action = ':FzfLua files' },
+                    -- {
+                    --     icon = ' ',
+                    --     key = 'f',
+                    --     desc = 'Find',
+                    --     action = function()
+                    --         require('fff').find_files()
+                    --     end,
+                    -- },
                     {
                         icon = '󰎕 ',
                         key = 'n',

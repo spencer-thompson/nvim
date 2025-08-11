@@ -28,6 +28,10 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { desc = 'Exit' }) -- same thing but
 -- vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 -- vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
+-- vim.keymap.set('n', '<leader>cc', function()
+--     vim.diagnostic.setqflist()
+-- end, { desc = 'Quickfix List' })
+
 -- new line above / below cursor
 vim.keymap.set('n', '[o', 'moO<esc>k`o<cmd>delmarks o<cr>', { desc = 'New line above cursor' })
 vim.keymap.set('n', ']o', 'moo<esc>j`o<cmd>delmarks o<cr>', { desc = 'New line below cursor' })
