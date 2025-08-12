@@ -42,7 +42,6 @@ return {
             { '<leader>fm', '<cmd>FzfLua marks<cr>', desc = '[F]ind [M]arks' },
             { '<leader>fM', '<cmd>FzfLua manpages<cr>', desc = '[F]ind [M]anpages' },
             { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = '[F]ind [O]ld files' },
-
             { '<leader>fz', '<cmd>FzfLua zoxide<cr>', desc = '[F]ind [Z]oxide' },
             -- {
             --     '<leader>fr',
