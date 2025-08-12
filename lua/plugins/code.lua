@@ -3,7 +3,7 @@ return {
         'saghen/blink.cmp',
         -- lazy = true,
         build = 'cargo +nightly build --release',
-        event = 'VimEnter',
+        event = { 'InsertEnter', 'CmdlineEnter' },
         dependencies = {
             -- 'rafamadriz/friendly-snippets',
             -- currently I am not using this
@@ -304,16 +304,16 @@ return {
                 end,
                 providers = {
                     lsp = {
-                        score_offset = 5,
+                        score_offset = 3,
                     },
                     snippets = {
-                        score_offset = 5,
+                        score_offset = 3,
                     },
                     lazydev = {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
                         max_items = 12,
-                        score_offset = 5,
+                        score_offset = 3,
                     },
                     copilot = {
                         name = 'Copilot',
@@ -504,6 +504,10 @@ return {
                 kind_icons = require('icons').symbol_kinds,
             },
         },
+        config = function(_, opts)
+            require('blink.cmp').setup(opts)
+            vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities(nil, true) })
+        end,
     },
 
     { -- make TODO + ":" a fancy colored comment.

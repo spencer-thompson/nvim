@@ -6,9 +6,44 @@ return {
         branch = 'main',
         build = ':TSUpdate',
         -- event = 'VeryLazy',
-        -- dependecies = {
-        --     { 'nvim-treesitter/nvim-treesitter-textobjects', name = 'treesitter-textobjects' },
-        -- },
+        dependencies = {
+            {
+                'nvim-treesitter/nvim-treesitter-textobjects',
+                name = 'treesitter-textobjects',
+                branch = 'main',
+                keys = {
+                    {
+                        '<leader>sa',
+                        function()
+                            require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
+                        end,
+                        desc = '[S]wap Next [A]rgument',
+                    },
+                    {
+                        '<leader>sA',
+                        function()
+                            require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
+                        end,
+                        desc = '[S]wap Previous [A]rgument',
+                    },
+                },
+                opts = {
+                    move = {
+                        enable = true,
+                        set_jumps = true,
+                    },
+                    swap = {
+                        enable = true,
+                    },
+                },
+            },
+            {
+                'folke/ts-comments.nvim',
+                name = 'ts-comments',
+                -- event = 'VeryLazy',
+                opts = {},
+            },
+        },
         config = function()
             local group = vim.api.nvim_create_augroup('custom-treesitter', { clear = true })
 
@@ -37,6 +72,9 @@ return {
                     if not ok or not parser then
                         return
                     end
+
+                    vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
                     pcall(vim.treesitter.start)
 

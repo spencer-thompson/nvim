@@ -25,8 +25,8 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.breakindent = true
+-- vim.opt.autoindent = true
+-- vim.opt.breakindent = true
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -34,7 +34,7 @@ vim.opt.splitright = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
-vim.opt.smartindent = true
+-- vim.opt.smartindent = true
 
 vim.opt.wrap = false
 vim.opt.showbreak = '│ ' -- only for wrap -- ┊│▕
@@ -43,7 +43,7 @@ vim.opt.sidescrolloff = 36 -- set to 999 for "always centered"
 -- vim.opt.sidescroll = 0 -- this one for horizontal
 
 vim.opt.linebreak = true
-vim.opt.breakindent = true
+-- vim.opt.breakindent = true
 
 vim.opt.laststatus = 3
 
