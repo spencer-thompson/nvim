@@ -47,9 +47,17 @@ return {
             keymap = {
                 preset = 'default',
                 ['<C-e>'] = { 'cancel', 'hide' },
-                ['<C-y>'] = { 'select_and_accept' },
+                ['<C-y>'] = { 'show', 'select_and_accept' },
                 ['<C-k>'] = { 'select_prev' },
-                ['<C-j>'] = { 'select_next' },
+                ['<C-j>'] = {
+                    function(cmp)
+                        if cmp.is_menu_visible() then
+                            cmp.select_next()
+                            return true
+                        end
+                    end,
+                    'fallback',
+                },
                 ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-l>'] = {
@@ -87,13 +95,15 @@ return {
                         end
                     end,
                     function(cmp)
-                        if not cmp.is_menu_visible() then
-                            cmp.show()
+                        if cmp.is_menu_visible() and not cmp.is_documentation_visible() then
+                            cmp.show_documentation()
+                            return true
+                        elseif cmp.is_menu_visible() and cmp.is_documentation_visible() then
+                            cmp.hide()
                             return true
                         end
                     end,
-                    'show_documentation',
-                    'hide_documentation',
+                    'fallback',
                 },
             },
             cmdline = {
@@ -103,7 +113,7 @@ return {
                 keymap = {
                     preset = 'inherit',
                     ['<C-e>'] = { 'cancel', 'hide' },
-                    ['<C-y>'] = { 'select_and_accept' },
+                    ['<C-y>'] = { 'show', 'select_and_accept' },
                     ['<C-k>'] = { 'select_prev' },
                     ['<C-j>'] = { 'select_next' },
                     ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
@@ -133,16 +143,16 @@ return {
                                 return true
                             end
                         end,
-                        -- function(cmp)
-                        --     if not cmp.is_visible() then
-                        --         cmp.show()
-                        --
-                        --         return true
-                        --     end
-                        -- end,
-                        'show',
-                        'show_documentation',
-                        'hide_documentation',
+                        function(cmp)
+                            if cmp.is_menu_visible() and not cmp.is_documentation_visible() then
+                                cmp.show_documentation()
+                                return true
+                            elseif cmp.is_menu_visible() and cmp.is_documentation_visible() then
+                                cmp.hide()
+                                return true
+                            end
+                        end,
+                        'fallback',
                     },
                 },
                 sources = function()
