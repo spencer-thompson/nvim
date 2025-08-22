@@ -36,7 +36,7 @@ vim.opt_local.commentstring = '// %s'
 --     -- end
 -- end, { desc = 'Typst PDF Preview' })
 
-vim.keymap.set('n', '<leader>r', '<cmd>TypstPreviewToggle<cr>', { desc = 'Typst PDF Preview' })
+vim.keymap.set('n', '<leader>r', '<cmd>TypstPreviewToggle<cr>', { desc = 'Typst PDF Preview', buffer = true })
 
 -- vim.api.nvim_create_autocmd('BufWritePost', {
 --     desc = 'Compile Typst PDF',
