@@ -76,11 +76,14 @@ return {
                     ['hl+'] = { 'fg', 'Constant' },
                     ['bg+'] = '-1',
                     prompt = { 'fg', 'Constant' },
-                    gutter = '-1',
+                    -- ['gutter'] = ' ',
+                    ['gutter'] = '-1',
+                    -- gutter = { 'bg', 'Normal' },
                 },
                 fzf_opts = {
                     ['--info'] = 'inline-right',
                     ['--cycle'] = true,
+                    ['--gutter'] = ' ',
                     ['--layout'] = 'reverse',
                     ['--prompt'] = '||> ',
                     ['--marker'] = icons.shapes.circle.small .. ' ',
@@ -106,7 +109,7 @@ return {
                     },
                 },
                 winopts = {
-                    -- height = 0.4,
+                    height = 0.4,
                     -- width = 1.0,
                     -- row = 1,
                     border = 'single',
@@ -117,7 +120,7 @@ return {
                         --     -- border = { '', '─', '', '', '', '', '', '' },
                         title_pos = 'center',
                         scrollbar = false,
-                        --     layout = 'flex',
+                        layout = 'horizontal',
                         --     vertical = 'up:40%',
                     },
                     on_create = function()
