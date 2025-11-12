@@ -34,7 +34,7 @@ return {
 
     {
         dir = '~/rk4/keytrack.nvim',
-        enabled = true,
+        enabled = false,
         event = 'VeryLazy',
         name = 'keytrack',
         opts = {

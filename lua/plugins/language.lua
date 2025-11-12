@@ -27,7 +27,7 @@ return {
         'iamcco/markdown-preview.nvim', -- fancy markdown preview
         name = 'markdown-preview',
         ft = 'markdown',
-        enabled = true,
+        enabled = false,
         -- build = 'cd app && npm install',
         build = 'cd app && yarn install',
         init = function()
