@@ -46,6 +46,12 @@ return {
         },
         config = function()
             local group = vim.api.nvim_create_augroup('custom-treesitter', { clear = true })
+            local ts_filetypes = vim.iter(require('nvim-treesitter').get_available())
+                :map(function(lang)
+                    return vim.treesitter.language.get_filetypes(lang)
+                end)
+                :flatten()
+                :totable()
 
             require('nvim-treesitter').setup({
                 ensure_installed = {
@@ -59,7 +65,9 @@ return {
             })
 
             vim.api.nvim_create_autocmd('FileType', {
+                desc = 'Setup treesitter for bufffer',
                 group = group,
+                pattern = ts_filetypes,
                 callback = function(args)
                     local bufnr = args.buf
                     local ft = vim.bo[bufnr].filetype
@@ -76,7 +84,7 @@ return {
                     vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-                    pcall(vim.treesitter.start)
+                    vim.treesitter.start(bufnr)
 
                     -- local ft = vim.bo[bufnr].filetype
                     -- if syntax_on[ft] then

@@ -88,6 +88,7 @@ return {
                     'fallback',
                 },
                 ['<C-h>'] = {
+                    'show',
                     function(cmp)
                         if cmp.snippet_active() then
                             cmp.snippet_backward()
@@ -103,7 +104,8 @@ return {
                             return true
                         end
                     end,
-                    'fallback',
+                    -- 'fallback',
+                    --
                 },
             },
             cmdline = {
@@ -137,6 +139,7 @@ return {
                         'fallback',
                     },
                     ['<C-h>'] = {
+                        'show',
                         function(cmp)
                             if cmp.snippet_active() then
                                 cmp.snippet_backward()
@@ -152,7 +155,7 @@ return {
                                 return true
                             end
                         end,
-                        'fallback',
+                        -- 'fallback',
                     },
                 },
                 sources = function()
