@@ -48,22 +48,26 @@ return {
                 preset = 'default',
                 ['<C-e>'] = { 'cancel', 'hide' },
                 ['<C-y>'] = { 'show', 'select_and_accept' },
-                ['<C-k>'] = { 'select_prev' },
-                ['<C-j>'] = {
-                    function(cmp)
-                        if cmp.is_menu_visible() then
-                            cmp.select_next()
-                            return true
-                        end
-                    end,
-                    'fallback',
-                },
+                ['<C-k>'] = { 'select_prev', 'fallback' },
+                ['<C-j>'] = { 'select_next', 'fallback' },
                 ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-l>'] = {
                     function(cmp)
                         if cmp.snippet_active() then
                             cmp.snippet_forward()
+                            return true
+                        end
+                    end,
+                    function(cmp)
+                        if not cmp.is_menu_visible() then
+                            cmp.show()
+                            return true
+                        end
+                    end,
+                    function(cmp)
+                        if cmp.is_menu_visible() then
+                            cmp.show_documentation()
                             return true
                         end
                     end,
@@ -97,10 +101,10 @@ return {
                     end,
                     function(cmp)
                         if cmp.is_menu_visible() and not cmp.is_documentation_visible() then
-                            cmp.show_documentation()
+                            cmp.hide()
                             return true
                         elseif cmp.is_menu_visible() and cmp.is_documentation_visible() then
-                            cmp.hide()
+                            cmp.hide_documentation()
                             return true
                         end
                     end,
@@ -127,6 +131,18 @@ return {
                                 return true
                             end
                         end,
+                        function(cmp)
+                            if not cmp.is_menu_visible() then
+                                cmp.show()
+                                return true
+                            end
+                        end,
+                        function(cmp)
+                            if cmp.is_menu_visible() then
+                                cmp.show_documentation()
+                                return true
+                            end
+                        end,
                         -- function(cmp)
                         --     if not cmp.is_visible() then
                         --         cmp.show({ providers = { 'snippets' } })
@@ -148,10 +164,10 @@ return {
                         end,
                         function(cmp)
                             if cmp.is_menu_visible() and not cmp.is_documentation_visible() then
-                                cmp.show_documentation()
+                                cmp.hide()
                                 return true
                             elseif cmp.is_menu_visible() and cmp.is_documentation_visible() then
-                                cmp.hide()
+                                cmp.hide_documentation()
                                 return true
                             end
                         end,

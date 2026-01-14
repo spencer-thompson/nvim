@@ -83,6 +83,10 @@ vim.keymap.set(
     { desc = 'Select [S]ame Word' }
 )
 
+-- scroll window in insert mode
+vim.keymap.set('i', '<C-k>', '<C-x><C-e>', { desc = 'Move Window Up' })
+vim.keymap.set('i', '<C-j>', '<C-x><C-y>', { desc = 'Move Window Down' })
+
 -- fix last misspelled word and jump back, this is epic
 vim.keymap.set('i', '<C-z>', '<esc>[s1z=gi', { desc = 'Fix last misspelled word' })
 vim.keymap.set('n', '<leader>z', 'mz[s1z=`z<cmd>delmarks z<cr>', { desc = 'Fix last misspelled word' })
