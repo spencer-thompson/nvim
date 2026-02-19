@@ -9,6 +9,7 @@ return {
         --     ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
         --     { 'folke/snacks.nvim', opts = { input = {}, picker = {}, terminal = {} } },
         -- },
+        enabled = false,
         config = function()
             ---@type opencode.Opts
             vim.g.opencode_opts = {
