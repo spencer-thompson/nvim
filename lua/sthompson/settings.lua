@@ -39,7 +39,7 @@ vim.opt.ignorecase = true
 vim.opt.wrap = false
 vim.opt.showbreak = '│ ' -- only for wrap -- ┊│▕
 vim.opt.scrolloff = 10
-vim.opt.sidescrolloff = 36 -- set to 999 for "always centered"
+vim.opt.sidescrolloff = 24 -- set to 999 for "always centered"
 -- vim.opt.sidescroll = 0 -- this one for horizontal
 
 vim.opt.linebreak = true

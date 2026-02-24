@@ -68,6 +68,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { desc = '[I]nlay Hints', buffer = event.buf }
         )
 
+        -- Override the virtual text diagnostic handler so that the most severe diagnostic is shown first.
+        local show_handler = assert(vim.diagnostic.handlers.virtual_text.show)
+        local hide_handler = vim.diagnostic.handlers.virtual_text.hide
+        vim.diagnostic.handlers.virtual_text = {
+            show = function(ns, bufnr, diagnostics, opts)
+                table.sort(diagnostics, function(diag1, diag2)
+                    return diag1.severity > diag2.severity
+                end)
+                return show_handler(ns, bufnr, diagnostics, opts)
+            end,
+            hide = hide_handler,
+        }
+
         -- Diagnostic configuration.
         vim.diagnostic.config({
 
@@ -102,6 +115,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 severity = {
                     min = vim.diagnostic.severity.ERROR,
                 },
+                current_line = true,
             },
             float = {
                 border = 'rounded',

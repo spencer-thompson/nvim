@@ -13,6 +13,7 @@ return {
     },
     settings = {
         Lua = {
+            completion = { callSnippet = 'Replace' },
             format = {
                 enable = true,
                 defaultConfig = {
@@ -32,12 +33,13 @@ return {
                 -- library = vim.api.nvim_get_runtime_file('', true),
                 libary = {
                     vim.env.VIMRUNTIME,
+                    '${3rd}/luv/library',
                 },
             },
             telemetry = {
                 enable = false,
             },
-            hint = { enable = true },
+            hint = { enable = true, arrayIndex = 'Disable' },
         },
     },
 }

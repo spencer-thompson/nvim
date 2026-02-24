@@ -34,6 +34,21 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+-- dynamic sidescrolloff
+vim.api.nvim_create_autocmd({ 'WinResized', 'BufEnter' }, {
+    group = vim.api.nvim_create_augroup('dynamic_sidescrolloff', { clear = true }),
+    desc = 'Dynamic sidescrolloff',
+    callback = function(args)
+        local height = vim.fn.winheight(0)
+        local width = vim.fn.winwidth(0)
+        local factor = 7
+        -- vim.opt.scrolloff = (height > 30) and math.floor(height / 6) or math.floor(height / 12) -- testing .......................................
+        -- vim.opt.sidescrolloff = (width >= 100) and math.floor(width / 5) or math.floor(width / 10)
+        vim.opt.scrolloff = math.floor(height / factor)
+        vim.opt.sidescrolloff = math.floor(width / (factor - 1))
+    end,
+})
+
 -- Go to the last location when opening a buffer
 vim.api.nvim_create_autocmd('BufReadPost', {
     group = vim.api.nvim_create_augroup('last_location', { clear = true }),
