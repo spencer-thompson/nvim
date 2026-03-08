@@ -71,13 +71,21 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 --     { desc = 'Markdown Browser Preview' }
 -- )
 
-vim.keymap.set('n', '<leader>r', function()
-    if vim.api.nvim_buf_get_var(0, 'active_preview') then
-        vim.api.nvim_buf_set_var(0, 'active_preview', false)
-    else
-        vim.api.nvim_buf_set_var(0, 'active_preview', true)
+-- vim.keymap.set('n', '<leader>r', function()
+--     if vim.api.nvim_buf_get_var(0, 'active_preview') then
+--         vim.api.nvim_buf_set_var(0, 'active_preview', false)
+--     else
+--         vim.api.nvim_buf_set_var(0, 'active_preview', true)
+--
+--         async_compile_doc:start()
+--         vim.cmd([[silent !zathura "%:r".pdf &]])
+--     end
+-- end, { desc = 'Markdown PDF Preview' })
 
-        async_compile_doc:start()
-        vim.cmd([[silent !zathura "%:r".pdf &]])
-    end
-end, { desc = 'Markdown PDF Preview' })
+vim.api.nvim_buf_set_keymap(
+    0,
+    'n',
+    '<leader>r',
+    '<cmd>TermExec cmd="aichat --file %:t" dir="%:p:h" direction="float"<CR>',
+    { desc = '[R]un Current File' }
+)
