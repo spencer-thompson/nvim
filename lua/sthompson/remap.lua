@@ -152,3 +152,10 @@ vim.keymap.set('n', '<CR>', function()
         return vim.keycode('<CR>')
     end
 end, { expr = true })
+
+vim.keymap.set(
+    'n',
+    '<leader>cd',
+    '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<cr>',
+    { desc = "[C]hange [D]irectory to current file's" }
+)

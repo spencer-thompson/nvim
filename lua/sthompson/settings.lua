@@ -11,6 +11,7 @@ aa    ]8I "8b,   ,aa   88,     88,   88 88       88 "8a,   ,d88 aa    ]8I
 
 vim.wo.number = true -- line numbers
 vim.opt.rnu = true -- relative line numbers
+-- vim.opt.numberwidth = 2
 
 vim.o.mouse = 'a' -- mouse mode
 vim.o.mousescroll = 'ver:3,hor:0' -- Disable horizontal scrolling.
@@ -144,3 +145,8 @@ vim.o.statuscolumn = '%s' .. left .. '%l'
 -- %l	line number column for currently drawn line
 -- %s	sign column for currently drawn line
 -- %C	fold column for currently drawn line
+--
+
+vim.o.cmdheight = 0 -- NEW won't work as well in old versions < 0.12
+
+vim.cmd.filetype('plugin indent on') -- enable filetype detection, plugins, and indentation

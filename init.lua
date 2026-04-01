@@ -21,4 +21,5 @@ vim.g.maplocalleader = ' '
 require('sthompson')
 
 -- Lazy and all plugins
-require('plugins')
+-- require('plugins')
+require('pack')

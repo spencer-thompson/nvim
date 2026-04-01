@@ -1,0 +1,69 @@
+{
+  "plugins": {
+    "blink-ripgrep.nvim": {
+      "rev": "ffbc2e8012ddc35c8c1f0aee8610fc8c28dab3f6",
+      "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
+    },
+    "blink.cmp": {
+      "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": ">=0.0.0"
+    },
+    "bufferline.nvim": {
+      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
+      "src": "https://github.com/akinsho/bufferline.nvim",
+      "version": ">=0.0.0"
+    },
+    "colorful-menu.nvim": {
+      "rev": "b51a659459df8d078201aefc995db8175ed55e84",
+      "src": "https://github.com/xzbdmw/colorful-menu.nvim"
+    },
+    "conform.nvim": {
+      "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "fzf-lua": {
+      "rev": "c9e7b7bfbd01f949164988ee1684035468e1995c",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "mason.nvim": {
+      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
+      "src": "https://github.com/williamboman/mason.nvim"
+    },
+    "mini.nvim": {
+      "rev": "af5f75c9ce572a4d1f0c77d6fb4ea764d16c1b3c",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "neominimap.nvim": {
+      "rev": "b0fffd0cfbf9c249bc0f08922993579f143a750d",
+      "src": "https://github.com/Isrothy/neominimap.nvim"
+    },
+    "nvim-treesitter": {
+      "rev": "7caec274fd19c12b55902a5b795100d21531391f",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+      "version": "'main'"
+    },
+    "snacks.nvim": {
+      "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
+      "src": "https://github.com/folke/snacks.nvim"
+    },
+    "tokyonight.nvim": {
+      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+      "src": "https://github.com/folke/tokyonight.nvim"
+    },
+    "ts-comments.nvim": {
+      "rev": "123a9fb12e7229342f807ec9e6de478b1102b041",
+      "src": "https://github.com/folke/ts-comments.nvim",
+      "version": "'main'"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
+    }
+  }
+}
