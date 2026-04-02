@@ -4,6 +4,23 @@ vim.pack.add({
 
 require('mini.ai').setup({
     n_lines = 500,
+    mappings = {
+        -- Main textobject prefixes
+        around = 'a',
+        inside = 'i',
+
+        -- Next/last variants
+        -- NOTE: These override built-in LSP selection mappings on Neovim>=0.12
+        -- Map LSP selection manually to use it (see `:h MiniAi.config`)
+        around_next = '',
+        inside_next = '',
+        around_last = '',
+        inside_last = '',
+
+        -- Move cursor to corresponding edge of `a` textobject
+        goto_left = 'g[',
+        goto_right = 'g]',
+    },
     custom_textobjects = {
         o = require('mini.ai').gen_spec.treesitter({ -- code block
             a = { '@block.outer', '@conditional.outer', '@loop.outer' },
@@ -237,7 +254,15 @@ end, { desc = '[D]elete current buffer' })
 require('mini.cmdline').setup({
     autocomplete = { enable = false },
     autocorrect = { enabled = false },
-    autopeek = { enable = true, n_context = 2 },
+    autopeek = {
+        enable = true,
+        n_context = 2,
+        window = {
+            config = {
+                width = 80,
+            },
+        },
+    },
 })
 require('mini.comment').setup({})
 -- require('mini.cursorword').setup({})

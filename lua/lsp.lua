@@ -46,12 +46,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, { desc = 'Code [A]ction', buffer = event.buf })
         -- vim.keymap.set('n', 'gD', Snacks.picker.lsp_declarations, { desc = '[D]eclaration', buffer = event.buf })
         -- vim.keymap.set('n', 'go', Snacks.picker.lsp_type_definitions, { desc = 'Type Definition', buffer = event.buf })
-        vim.keymap.set('i', '<C-l>', function()
-            if require('blink.cmp.completion.windows.menu').win:is_open() then
-                require('blink.cmp').hide()
-            end
-            vim.lsp.buf.signature_help()
-        end, { desc = 'Signature Help', buffer = event.buf })
+
+        -- vim.keymap.set('i', '<C-l>', function()
+        --     if require('blink.cmp.completion.windows.menu').win:is_open() then
+        --         require('blink.cmp').hide()
+        --     end
+        --     vim.lsp.buf.signature_help()
+        -- end, { desc = 'Signature Help', buffer = event.buf })
+
         -- vim.keymap.set(
         --     'n',
         --     'gs',
@@ -83,7 +85,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Diagnostic configuration.
         vim.diagnostic.config({
-
+            status = {
+                format = {
+                    [vim.diagnostic.severity.ERROR] = icons.ERROR,
+                    [vim.diagnostic.severity.WARN] = icons.WARN,
+                    [vim.diagnostic.severity.INFO] = icons.INFO,
+                    [vim.diagnostic.severity.HINT] = icons.HINT,
+                },
+            },
             virtual_text = {
                 severity = {
                     max = vim.diagnostic.severity.WARN,
@@ -118,7 +127,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 current_line = true,
             },
             float = {
-                border = 'rounded',
+                -- border = 'single',
                 source = 'if_many',
                 -- Show severity icons as prefixes.
                 prefix = function(diag)

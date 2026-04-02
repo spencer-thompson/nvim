@@ -1,5 +1,7 @@
-vim.pack.add({
-    'https://github.com/williamboman/mason.nvim',
-})
+vim.schedule(function()
+    vim.pack.add({
+        'https://github.com/williamboman/mason.nvim',
+    })
 
-require('mason').setup()
+    require('mason').setup()
+end)
