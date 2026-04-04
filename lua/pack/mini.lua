@@ -532,7 +532,7 @@ vim.api.nvim_create_autocmd('User', {
     end,
 })
 
-require('mini.statusline').setup()
+-- require('mini.statusline').setup()
 
 require('mini.icons').setup({
     file = {

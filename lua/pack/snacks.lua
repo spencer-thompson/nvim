@@ -44,7 +44,7 @@ require('snacks').setup({
     -- },
     bigfile = { enabled = true },
     picker = { enabled = false },
-    notifier = { enabled = true },
+    -- notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = false },
     scroll = { enabled = false },
@@ -53,12 +53,13 @@ require('snacks').setup({
 
         left = function(win, buf)
             local is_neominimap = vim.bo[buf].filetype == 'neominimap'
-            return is_neominimap and { 'sign' } or { 'mark', 'sign' }
+            return is_neominimap and {} or { 'mark', 'sign' }
         end,
         right = function(win, buf)
             local is_neominimap = vim.bo[buf].filetype == 'neominimap'
-            return is_neominimap and { 'git' } or { 'fold', 'git' }
+            return is_neominimap and { 'sign', 'git' } or { 'fold', 'git' }
         end,
+        refresh = 10,
     },
     words = { enabled = false },
     dashboard = {

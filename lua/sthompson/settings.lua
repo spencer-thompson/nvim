@@ -137,10 +137,11 @@ vim.opt.showtabline = 2
 vim.o.keywordprg = 'wn'
 
 vim.o.winborder = 'single'
-local left = require('icons').lines.left.vertical
-local center = require('icons').lines.center.vertical
-local right = require('icons').lines.right.vertical
-vim.o.statuscolumn = '%s' .. left .. '%l'
+-- local left = require('icons').lines.left.vertical
+-- local center = require('icons').lines.center.vertical
+-- local right = require('icons').lines.right.vertical
+-- vim.o.statuscolumn = '%s' .. left .. '%l'
+-- vim.o.statuscolumn = '%s' .. '%l'
 
 -- %l	line number column for currently drawn line
 -- %s	sign column for currently drawn line
