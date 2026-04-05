@@ -97,6 +97,8 @@ vim.api.nvim_create_autocmd('WinEnter', {
     end,
 })
 
+local neominimap_min_width = 100
+
 vim.g.neominimap = {
     auto_enable = true,
     notification_level = vim.log.levels.OFF,
@@ -124,7 +126,7 @@ vim.g.neominimap = {
     current_line_position = 'percent',
     win_filter = function(winid)
         local current_winid = vim.api.nvim_get_current_win()
-        return winid == current_winid and vim.fn.winwidth(winid) > 100
+        return winid == current_winid and vim.fn.winwidth(winid) > neominimap_min_width
     end,
     exclude_filetypes = {
         'dashboard',
@@ -294,6 +296,8 @@ function map_space:update_status()
     local current_win_info = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
     if
         (current_win_info.wincol + current_win_info.width - 1) == vim.o.columns
+        and current_win_info.width > neominimap_min_width
+        and vim.bo[current_win_info.bufnr].filetype ~= 'help'
         -- and vim.api.nvim_get_mode().mode == 'c'
     then
         -- return '---------------'

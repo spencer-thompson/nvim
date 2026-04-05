@@ -21,8 +21,10 @@ require('blink.cmp').setup({
         ['<C-y>'] = { 'show', 'select_and_accept' },
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
-        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<C-u>'] = { 'scroll_signature_up', 'scroll_documentation_up', 'fallback' },
+        ['<C-d>'] = { 'scroll_signature_down', 'scroll_documentation_down', 'fallback' },
+        -- ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+        -- ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
         ['<C-l>'] = {
             function(cmp)
                 if cmp.snippet_active() then
@@ -64,12 +66,22 @@ require('blink.cmp').setup({
         },
         ['<C-h>'] = {
             'show',
+            'show_signature',
+            'hide_signature',
             function(cmp)
                 if cmp.snippet_active() then
                     cmp.snippet_backward()
                     return true
                 end
             end,
+
+            -- function(cmp)
+            --     if cmp.is_signature_visible() then
+            --         cmp.hide_signature()
+            --         return true
+            --         -- elseif cmp.
+            --     end
+            -- end,
             function(cmp)
                 if cmp.is_menu_visible() and not cmp.is_documentation_visible() then
                     cmp.hide()
@@ -133,6 +145,7 @@ require('blink.cmp').setup({
                         return true
                     end
                 end,
+
                 function(cmp)
                     if cmp.is_menu_visible() and not cmp.is_documentation_visible() then
                         cmp.hide()
@@ -159,14 +172,15 @@ require('blink.cmp').setup({
         end,
     },
 
-    -- signature = {
-    --     enabled = true,
-    --     window = {
-    --         show_documentation = true,
-    --         winblend = vim.o.pumblend,
-    --         border = 'single',
-    --     },
-    -- },
+    signature = {
+        enabled = true,
+        window = {
+            show_documentation = true,
+            winblend = vim.o.pumblend,
+            border = 'single',
+            max_height = 30,
+        },
+    },
 
     fuzzy = { implementation = 'prefer_rust_with_warning' },
 

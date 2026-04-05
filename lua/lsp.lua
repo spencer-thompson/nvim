@@ -1,14 +1,61 @@
 local icons = require('icons').diagnostics
 
+vim.api.nvim_create_autocmd('LspProgress', {
+    callback = function(ev)
+        -- vim.print(ev.data.params.value)
+        local value = ev.data.params.value
+        if value.title ~= '' then -- maybe remove or change later
+            vim.api.nvim_echo({ { value.message or 'Done ' } }, false, {
+                id = 'lsp.' .. ev.data.client_id,
+                kind = 'progress',
+                source = 'vim.lsp',
+                title = value.title,
+                status = value.kind ~= 'end' and 'running' or 'success',
+                percent = value.percentage,
+            })
+        end
+    end,
+})
+
 for filename in (vim.fs.dir('~/.config/nvim/after/lsp')) do
     vim.lsp.enable(filename:match('(.+)%.lua') or filename)
 end
 
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', { desc = 'Open Diagnostic Float' })
 
+local hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+    return hover({
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.4),
+    })
+end
+
+local signature_help = vim.lsp.buf.signature_help
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.signature_help = function()
+    return signature_help({
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.4),
+    })
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        -- if client and client:supports_method('textDocument/signatureHelp') then
+        --     vim.keymap.set('i', '<C-h>', function()
+        --         if require('blink.cmp.completion.windows.menu').win:is_open() then
+        --             require('blink.cmp').hide()
+        --         end
+        --
+        --         vim.lsp.buf.signature_help()
+        --     end, { desc = 'Help' })
+        -- end
+
         -- these will be buffer-local keybindings
         -- because they only work if you have an active language server
         vim.keymap.set('n', 'K', function()
