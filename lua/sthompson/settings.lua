@@ -74,6 +74,7 @@ vim.wo.foldtext = ''
 vim.opt.foldmethod = 'expr'
 vim.opt.foldenable = true
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- set "~" to "`" { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
 vim.opt.fillchars = {

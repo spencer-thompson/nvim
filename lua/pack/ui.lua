@@ -6,14 +6,14 @@ vim.pack.add({
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
 })
 
--- vim.g.lualine_laststatus = vim.o.laststatus
--- if vim.fn.argc(-1) > 0 then
---     -- set an empty statusline till lualine loads
---     vim.o.statusline = ' '
--- else
---     -- hide the statusline on the starter page
---     vim.o.laststatus = 0
--- end
+vim.g.lualine_laststatus = vim.o.laststatus
+if vim.fn.argc(-1) > 0 then
+    -- set an empty statusline till lualine loads
+    vim.o.statusline = ' '
+else
+    -- hide the statusline on the starter page
+    vim.o.laststatus = 0
+end
 
 require('bufferline').setup({
     options = {
@@ -73,21 +73,6 @@ vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Prev Buffer'
 vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '[B', '<cmd>BufferLineMovePrev<cr>', { desc = 'Move buffer prev' })
 vim.keymap.set('n', ']B', '<cmd>BufferLineMoveNext<cr>', { desc = 'Move buffer next' })
-
--- vim.api.nvim_create_autocmd({ 'CmdlineEnter', 'CmdlineLeave' }, {
---     group = vim.api.nvim_create_augroup('ui2_neominimap', {}),
---     callback = function(args)
---         if args.event == 'CmdlineEnter' then
---             -- require('neominimap.api').toggle()
---             vim.g.neominimap.float.margin.bottom = 1
---             -- require('neominimap.api').toggle()
---             require('neominimap.api').refresh()
---         else
---             vim.g.neominimap.float.margin.bottom = 1
---             require('neominimap.api').refresh()
---         end
---     end,
--- })
 
 vim.api.nvim_create_autocmd('WinEnter', {
     group = vim.api.nvim_create_augroup('minimap', { clear = true }),
@@ -168,7 +153,7 @@ vim.g.neominimap = {
     },
     -- winopt = function(opt, winid)
     --     -- opt.signcolumn = 'auto:2'
-    --     -- opt.winblend = 100
+    --     opt.winblend = 50
     -- end,
     -- handlers = {
     --     todo_comments_handler,
@@ -294,10 +279,25 @@ end
 
 function map_space:update_status()
     local current_win_info = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
+
+    local map_enabled = true
+
+    for _, filetype in pairs(vim.g.neominimap.exclude_filetypes) do
+        if vim.bo[current_win_info.bufnr].filetype == filetype then
+            map_enabled = false
+        end
+    end
+
+    for _, buftype in pairs(vim.g.neominimap.exclude_buftypes) do
+        if vim.bo[current_win_info.bufnr].buftype == buftype then
+            map_enabled = false
+        end
+    end
+
     if
         (current_win_info.wincol + current_win_info.width - 1) == vim.o.columns
         and current_win_info.width > neominimap_min_width
-        and vim.bo[current_win_info.bufnr].filetype ~= 'help'
+        and map_enabled
         -- and vim.api.nvim_get_mode().mode == 'c'
     then
         -- return '---------------'
@@ -493,8 +493,6 @@ require('lualine').setup({
             },
             {
                 map_space,
-                -- draw_empty = true,
-                -- padding = 8,
             },
         },
     },
