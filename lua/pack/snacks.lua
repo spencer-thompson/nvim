@@ -231,17 +231,52 @@ require('snacks').setup({
                 {
                     -- icon = '',
                     -- title = 'Welcome Back',
-                    padding = 4,
+                    padding = 2,
                 },
 
-                { icon = '', title = 'MRU ', file = vim.fn.fnamemodify('.', ':~'), padding = 1 },
-                { section = 'recent_files', cwd = true, limit = 5, indent = 2, padding = 1 },
+                {
+                    icon = '',
+                    title = 'MRU ',
+                    file = vim.fn.fnamemodify('.', ':~'),
+                    padding = 1,
+                },
+                {
+                    section = 'recent_files',
+                    cwd = true,
+                    limit = 3,
+                    indent = 2,
+                    padding = 2,
+                },
 
-                { icon = '', title = 'Projects ', padding = 1 },
-                { section = 'projects', limit = 5, indent = 2, padding = 1 },
+                {
+                    icon = '',
+                    title = 'Projects ',
+                    padding = 1,
+                },
+                {
+                    section = 'projects',
+                    limit = 3,
+                    indent = 2,
+                    padding = 2,
+                },
 
                 { icon = '', title = 'MRU ', file = '~/', padding = 1 },
-                { section = 'recent_files', limit = 5, indent = 2, padding = 1 },
+                { section = 'recent_files', limit = 3, indent = 2, padding = 2 },
+
+                {
+                    icon = '󰊢',
+                    title = 'Git Status',
+                    padding = 1,
+                },
+                {
+                    indent = 2,
+                    padding = 1,
+                    section = 'terminal',
+                    enabled = function()
+                        return Snacks.git.get_root() ~= nil
+                    end,
+                    cmd = 'git status --short --branch --renames',
+                },
             },
         },
     },

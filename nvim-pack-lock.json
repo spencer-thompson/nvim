@@ -40,7 +40,8 @@
     },
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
-      "src": "https://github.com/williamboman/mason.nvim"
+      "src": "https://github.com/williamboman/mason.nvim",
+      "version": ">=0.0.0"
     },
     "mini.nvim": {
       "rev": "af5f75c9ce572a4d1f0c77d6fb4ea764d16c1b3c",

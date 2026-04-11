@@ -1,6 +1,6 @@
 vim.schedule(function()
     vim.pack.add({
-        'https://github.com/williamboman/mason.nvim',
+        { src = 'https://github.com/williamboman/mason.nvim', version = vim.version.range('*') },
     })
 
     require('mason').setup()
