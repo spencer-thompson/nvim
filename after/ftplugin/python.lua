@@ -20,3 +20,5 @@ vim.api.nvim_buf_set_keymap(
     '<cmd>TermExec cmd="uv run %:t" dir="%:p:h"<CR>',
     { desc = '[R]un Current File' }
 )
+
+-- vim.cmd([[let g:python_indent.closed_paren_align_last_line = v:false]])
