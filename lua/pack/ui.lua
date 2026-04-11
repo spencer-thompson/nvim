@@ -4,6 +4,13 @@ vim.pack.add({
     { src = 'https://github.com/folke/which-key.nvim' },
     { src = 'https://github.com/folke/todo-comments.nvim' },
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
+    { src = 'https://github.com/rachartier/tiny-cmdline.nvim' },
+})
+
+require('tiny-cmdline').setup({
+    position = {
+        y = '10%',
+    },
 })
 
 vim.g.lualine_laststatus = vim.o.laststatus
