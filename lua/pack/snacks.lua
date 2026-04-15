@@ -197,14 +197,19 @@ require('snacks').setup({
 88P'   `"8a a8P_____88 a8"     "8a`8b     d8' 88 88P'   "88"    "8a
 88       88 8PP""""""" 8b       d8 `8b   d8'  88 88      88      88
 88       88 "8b,   ,aa "8a,   ,a8"  `8b,d8'   88 88      88      88
-88       88  `"Ybbd8"'  `"YbbdP"'     "8"     88 88      88      88
-                ]],
+88       88  `"Ybbd8"'  `"YbbdP"'     "8"     88 88      88      88]],
         },
         sections = {
             {
                 -- pane = 2,
                 -- width = 20,
                 { section = 'header', padding = 0 },
+                {
+                    text = '─────────────────────────────────────────────────────────────────────',
+                    align = 'center',
+                    padding = 2,
+                },
+
                 -- {
                 --     section = 'terminal',
                 --     cmd = 'toilet -f univers -F metal -F crop "neovim"',
@@ -231,7 +236,7 @@ require('snacks').setup({
                 {
                     -- icon = '',
                     -- title = 'Welcome Back',
-                    padding = 2,
+                    padding = 3,
                 },
 
                 {
@@ -265,7 +270,8 @@ require('snacks').setup({
 
                 {
                     icon = '󰊢',
-                    title = 'Git Status',
+                    -- align = 'center',
+                    title = '─── Git Status ───',
                     padding = 1,
                 },
                 {
@@ -276,6 +282,8 @@ require('snacks').setup({
                         return Snacks.git.get_root() ~= nil
                     end,
                     cmd = 'git status --short --branch --renames',
+                    ttl = 5 * 60,
+                    height = 5,
                 },
             },
         },

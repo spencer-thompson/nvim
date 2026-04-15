@@ -1,4 +1,5 @@
 local M = {}
+-- ─
 
 --- Diagnostic severities.
 M.diagnostics = {

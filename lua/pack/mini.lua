@@ -465,7 +465,7 @@ require('mini.files').setup({
         preview = true,
         width_focus = 30,
         width_nofocus = 15,
-        width_preview = 50,
+        width_preview = 80,
     },
 })
 
@@ -531,6 +531,23 @@ vim.api.nvim_create_autocmd('User', {
         -- vim.api.nvim_win_set_config(win_id, config)
     end,
 })
+
+-- vim.api.nvim_create_autocmd('User', {
+--     pattern = 'MiniFilesWindowUpdate',
+--     callback = function(args)
+--         local config = vim.api.nvim_win_get_config(args.data.win_id)
+--         local fs_type = (MiniFiles.get_fs_entry() or {}).fs_type
+--         if fs_type == nil then
+--             return vim.notify('MiniFiles Error')
+--         elseif fs_type == 'directory' then
+--             config.width = 30
+--             vim.api.nvim_win_set_config(args.data.win_id, config)
+--         elseif fs_type == 'file' then
+--             config.width = 80
+--             vim.api.nvim_win_set_config(args.data.win_id, config)
+--         end
+--     end,
+-- })
 
 -- require('mini.statusline').setup()
 
