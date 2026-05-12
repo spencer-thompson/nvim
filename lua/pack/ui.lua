@@ -5,7 +5,10 @@ vim.pack.add({
     { src = 'https://github.com/folke/todo-comments.nvim' },
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
     { src = 'https://github.com/rachartier/tiny-cmdline.nvim' },
+    -- { src = 'https://github.com/mistricky/codesnap.nvim', version = vim.version.range('*') }, -- NOTE: should probably move this
 })
+
+-- require('codesnap').setup()
 
 require('tiny-cmdline').setup({
     position = {
@@ -126,6 +129,7 @@ vim.g.neominimap = {
         'zsh',
         'kitty-scrollback',
         'bigfile',
+        'terminal',
     },
     exclude_buftypes = {
         'nofile',
@@ -133,6 +137,7 @@ vim.g.neominimap = {
         'quickfix',
         'terminal',
         'prompt',
+        'terminal',
     },
     git = {
         enabled = false,

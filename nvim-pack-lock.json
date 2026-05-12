@@ -14,6 +14,11 @@
       "src": "https://github.com/akinsho/bufferline.nvim",
       "version": ">=0.0.0"
     },
+    "codesnap.nvim": {
+      "rev": "0a0941340376439a25d6cd8a4d1d2b372edbfdbd",
+      "src": "https://github.com/mistricky/codesnap.nvim",
+      "version": ">=0.0.0"
+    },
     "colorful-menu.nvim": {
       "rev": "b51a659459df8d078201aefc995db8175ed55e84",
       "src": "https://github.com/xzbdmw/colorful-menu.nvim"
@@ -60,6 +65,11 @@
       "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
+    },
+    "opencode.nvim": {
+      "rev": "a7032d7afa171849194efad36a81d68d6d0357a8",
+      "src": "https://github.com/NickvanDyke/opencode.nvim",
+      "version": ">=0.0.0"
     },
     "rustaceanvim": {
       "rev": "f69c85a955b9a83d495e3dc8d43adb6364a0b765",

@@ -159,3 +159,7 @@ vim.keymap.set(
     '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<cr>',
     { desc = "[C]hange [D]irectory to current file's" }
 )
+
+vim.keymap.set('n', '<leader>bwd', function()
+    vim.notify(vim.fn.expand('%'))
+end)
