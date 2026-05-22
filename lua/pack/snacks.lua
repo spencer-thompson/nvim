@@ -3,7 +3,7 @@ vim.pack.add({
 })
 
 require('snacks').setup({
-    input = { enabled = false },
+    input = { enabled = true },
     indent = {
         enabled = true,
         animate = {
@@ -43,7 +43,7 @@ require('snacks').setup({
     --     -- shell = 'bash',
     -- },
     bigfile = { enabled = true },
-    picker = { enabled = false },
+    picker = { enabled = true },
     -- notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = false },
