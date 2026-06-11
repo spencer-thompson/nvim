@@ -5,6 +5,7 @@ vim.pack.add({
     { src = 'https://github.com/folke/todo-comments.nvim' },
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
     { src = 'https://github.com/rachartier/tiny-cmdline.nvim' },
+    { src = 'https://github.com/stevearc/quicker.nvim' },
     -- { src = 'https://github.com/mistricky/codesnap.nvim', version = vim.version.range('*') }, -- NOTE: should probably move this
 })
 
@@ -263,6 +264,23 @@ end, { desc = 'Next [T]odo' })
 vim.keymap.set('n', '[t', function()
     require('todo-comments').jump_prev()
 end, { desc = 'Previous [T]odo' })
+
+-- QUICKER --
+
+require('quicker').setup({
+    borders = {
+        vert = require('icons').lines.center.vertical,
+    },
+})
+
+local quicker = require('quicker')
+
+-- vim.keymap.set('n', '>', function()
+--     quicker.expand({ before = 2, after = 2, add_to_existing = true })
+-- end, { desc = 'Expand context' })
+-- vim.keymap.set('n', '<', function()
+--     quicker.collapse()
+-- end, { desc = 'Collapse context' })
 
 -- LUALINE --
 

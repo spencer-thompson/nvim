@@ -74,9 +74,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
             -- end
         end, { desc = 'Show Hover Docs', buffer = event.buf })
 
-        vim.keymap.set('n', 'gra', function()
-            require('tiny-code-action').code_action()
-        end, { desc = 'Code Action' })
+        -- vim.keymap.set('n', 'gra', function()
+        --     require('tiny-code-action').code_action()
+        -- end, { desc = 'Code Action' })
 
         vim.keymap.set('n', 'grr', '<cmd>FzfLua lsp_references<cr>', { desc = 'Lsp References' })
         vim.keymap.set('n', 'gd', function()

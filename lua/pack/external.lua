@@ -1,0 +1,3 @@
+-- vim.pack.add({
+--     { src = 'https://github.com/mistricky/codesnap.nvim', version = vim.version.range('*') }, -- NOTE: should probably move this
+-- })

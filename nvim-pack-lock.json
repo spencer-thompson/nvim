@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink-ripgrep.nvim": {
-      "rev": "b7468b1fb69d233d982762f2a4e4f4d37dec0a17",
+      "rev": "eb5eee973f4d296ce88c6253502428d4a88c40b8",
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
@@ -15,7 +15,7 @@
       "version": ">=0.0.0"
     },
     "codesnap.nvim": {
-      "rev": "395828e3ff188f96032224ec34e4fe758b7f2527",
+      "rev": "8e1d1339f6d5ca994841698a6dde3608dd5e2ad1",
       "src": "https://github.com/mistricky/codesnap.nvim",
       "version": ">=0.0.0"
     },
@@ -24,15 +24,19 @@
       "src": "https://github.com/xzbdmw/colorful-menu.nvim"
     },
     "conform.nvim": {
-      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "fff.nvim": {
+      "rev": "ec57eb02a679737dbf4f88520a0a79cc62eb1664",
+      "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "71b45a044c4ef6ecb1910880ef642d5a0e1c02e9",
+      "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "lazydev.nvim": {
@@ -40,16 +44,16 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "lualine.nvim": {
-      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason.nvim": {
-      "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
+      "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/williamboman/mason.nvim",
       "version": ">=0.0.0"
     },
     "mini.nvim": {
-      "rev": "a405061478d8027b4e21214d897ce1eb33115792",
+      "rev": "a59a9b7fb0a42cbcf022938ee5f0724320b66f63",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neominimap.nvim": {
@@ -67,9 +71,13 @@
       "version": "'main'"
     },
     "opencode.nvim": {
-      "rev": "05547308bb931dc5da80a81d282f18e581788752",
+      "rev": "dcff90e3bc97b7a9e9070cc344bc964b007e166f",
       "src": "https://github.com/NickvanDyke/opencode.nvim",
       "version": ">=0.0.0"
+    },
+    "quicker.nvim": {
+      "rev": "4a6883cb13fe097a20a046eb55f6dffd239276e3",
+      "src": "https://github.com/stevearc/quicker.nvim"
     },
     "rustaceanvim": {
       "rev": "f69c85a955b9a83d495e3dc8d43adb6364a0b765",
@@ -77,11 +85,11 @@
       "version": "8.0.0 - 9.0.0"
     },
     "snacks.nvim": {
-      "rev": "0770753c88228f7f15449c6a5b242e3f7cd0d71c",
+      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tiny-cmdline.nvim": {
-      "rev": "ad58747b955d0743ccfd56e97da1a4c1fac89f58",
+      "rev": "b1db8607a78f0c23b3bae08e079b1b7f147619d7",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "todo-comments.nvim": {
@@ -105,6 +113,10 @@
       "rev": "325036ee145ca51d9efb145c09ac16bce3bc8b7d",
       "src": "https://github.com/chomosuke/typst-preview.nvim",
       "version": "1.0.0 - 2.0.0"
+    },
+    "vim-tmux-navigator": {
+      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "src": "https://github.com/christoomey/vim-tmux-navigator"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",

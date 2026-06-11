@@ -24,3 +24,7 @@ vim.schedule(function()
     vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm dir=%:p:h<CR>', { desc = '[T]erminal' })
     vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float dir=%:p:h<CR>', { desc = '[F]loating Terminal' })
 end)
+
+vim.pack.add({
+    { src = 'https://github.com/christoomey/vim-tmux-navigator' },
+})
