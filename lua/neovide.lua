@@ -1,4 +1,6 @@
 if vim.g.neovide then
+    vim.opt.winblend = 100
+    vim.opt.pumblend = 100
     -- Font
     -- vim.opt.guifont = 'Berkeley Mono:h12:#e-subpixelantialias:#h-normal'
     -- vim.o.guifont = 'Berkeley Mono:h12:#e-subpixelantialias:#h-slight'
@@ -25,8 +27,8 @@ if vim.g.neovide then
     vim.g.neovide_opacity = 0.8
     vim.g.transparency = 0.8
     vim.g.neovide_window_blurred = true
-    vim.g.neovide_floating_blur_amount_x = 2.0
-    vim.g.neovide_floating_blur_amount_y = 2.0
+    vim.g.neovide_floating_blur_amount_x = 30
+    vim.g.neovide_floating_blur_amount_y = 30
 
     -- vim.g.neovide_background_color = '#0f1117' .. alpha()
 
@@ -45,8 +47,6 @@ if vim.g.neovide then
     vim.g.neovide_floating_z_height = 10
     vim.g.neovide_light_angle_degrees = 45
     vim.g.neovide_light_radius = 3
-    vim.g.neovide_floating_blur_amount_x = 1.0
-    vim.g.neovide_floating_blur_amount_y = 1.0
     vim.g.neovide_floating_corner_radius = 0.50
     -- scaling
     vim.g.neovide_scale_factor = 1.0
