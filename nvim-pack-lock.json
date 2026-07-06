@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink-ripgrep.nvim": {
-      "rev": "6419e21026bdafda3d808536e1d16867fd492c6a",
+      "rev": "5a3ba7471edd55d1c74692497af799d07fcfcd12",
       "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
     },
     "blink.cmp": {
@@ -28,7 +28,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fff.nvim": {
-      "rev": "e0a9e08a3a6467ebb8d4b2889f1c21c3b36ba3e6",
+      "rev": "960e689d427d8e66d0d2baf00cc40f870452f632",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "flash.nvim": {
@@ -36,7 +36,7 @@
       "src": "https://github.com/folke/flash.nvim"
     },
     "fzf-lua": {
-      "rev": "39da6060d53659acf3ec118200bc48721b29b8fd",
+      "rev": "774150bc05f774af1df614f55d156b3318c6decd",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "lazydev.nvim": {
@@ -53,7 +53,7 @@
       "version": ">=0.0.0"
     },
     "mini.nvim": {
-      "rev": "dc8a9918c3b1bc18a5fcd04d39b6d658074c0886",
+      "rev": "d74190c1528aaf12ba5f3a29d03524c6b81e18b3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neominimap.nvim": {

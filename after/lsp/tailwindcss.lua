@@ -99,7 +99,6 @@ return {
     end,
     workspace_required = true,
     root_markers = {
-        '.git',
         'tailwind.config.js',
         'tailwind.config.cjs',
         'tailwind.config.mjs',

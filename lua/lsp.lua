@@ -1,5 +1,74 @@
 local icons = require('icons').diagnostics
 
+local diagnostic_sources = {
+    ['Lua Diagnostics.'] = 'lua',
+    ['Lua Syntax Check.'] = 'lua',
+}
+
+-- Override the virtual text diagnostic handler so the most severe diagnostic is shown first.
+local virtual_text_handler = vim.diagnostic.handlers.virtual_text
+if not virtual_text_handler._sthompson_severity_sorted then
+    local show_handler = assert(virtual_text_handler.show)
+    local hide_handler = virtual_text_handler.hide
+
+    vim.diagnostic.handlers.virtual_text = {
+        _sthompson_severity_sorted = true,
+        show = function(ns, bufnr, diagnostics, opts)
+            local sorted = vim.list_extend({}, diagnostics)
+            table.sort(sorted, function(diag1, diag2)
+                return diag1.severity < diag2.severity
+            end)
+            return show_handler(ns, bufnr, sorted, opts)
+        end,
+        hide = hide_handler,
+    }
+end
+
+vim.diagnostic.config({
+    status = {
+        format = {
+            [vim.diagnostic.severity.ERROR] = icons.ERROR,
+            [vim.diagnostic.severity.WARN] = icons.WARN,
+            [vim.diagnostic.severity.INFO] = icons.INFO,
+            [vim.diagnostic.severity.HINT] = icons.HINT,
+        },
+    },
+    virtual_text = {
+        severity = {
+            max = vim.diagnostic.severity.WARN,
+        },
+
+        prefix = '',
+        spacing = 2,
+        format = function(diagnostic)
+            local message = icons[vim.diagnostic.severity[diagnostic.severity]]
+            if diagnostic.source then
+                message = string.format('%s %s', message, diagnostic_sources[diagnostic.source] or diagnostic.source)
+            end
+            if diagnostic.code then
+                message = string.format('%s[%s]', message, diagnostic.code)
+            end
+
+            return message .. ' '
+        end,
+    },
+    virtual_lines = {
+        severity = {
+            min = vim.diagnostic.severity.ERROR,
+        },
+        current_line = true,
+    },
+    float = {
+        source = 'if_many',
+        prefix = function(diag)
+            local level = vim.diagnostic.severity[diag.severity]
+            local prefix = string.format(' %s ', icons[level])
+            return prefix, 'Diagnostic' .. level:gsub('^%l', string.upper)
+        end,
+    },
+    signs = false,
+})
+
 vim.api.nvim_create_autocmd('LspProgress', {
     callback = function(ev)
         -- vim.print(ev.data.params.value)
@@ -117,82 +186,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { desc = '[I]nlay Hints', buffer = event.buf }
         )
 
-        -- Override the virtual text diagnostic handler so that the most severe diagnostic is shown first.
-        local show_handler = assert(vim.diagnostic.handlers.virtual_text.show)
-        local hide_handler = vim.diagnostic.handlers.virtual_text.hide
-        vim.diagnostic.handlers.virtual_text = {
-            show = function(ns, bufnr, diagnostics, opts)
-                table.sort(diagnostics, function(diag1, diag2)
-                    return diag1.severity > diag2.severity
-                end)
-                return show_handler(ns, bufnr, diagnostics, opts)
-            end,
-            hide = hide_handler,
-        }
-
-        -- Diagnostic configuration.
-        vim.diagnostic.config({
-            status = {
-                format = {
-                    [vim.diagnostic.severity.ERROR] = icons.ERROR,
-                    [vim.diagnostic.severity.WARN] = icons.WARN,
-                    [vim.diagnostic.severity.INFO] = icons.INFO,
-                    [vim.diagnostic.severity.HINT] = icons.HINT,
-                },
-            },
-            virtual_text = {
-                severity = {
-                    max = vim.diagnostic.severity.WARN,
-                },
-
-                prefix = '',
-                spacing = 2,
-                format = function(diagnostic)
-                    -- Use shorter, nicer names for some sources:
-                    local special_sources = {
-                        ['Lua Diagnostics.'] = 'lua',
-                        ['Lua Syntax Check.'] = 'lua',
-                    }
-
-                    local message = icons[vim.diagnostic.severity[diagnostic.severity]]
-                    if diagnostic.source then
-                        message =
-                            string.format('%s %s', message, special_sources[diagnostic.source] or diagnostic.source)
-                    end
-                    if diagnostic.code then
-                        message = string.format('%s[%s]', message, diagnostic.code)
-                    end
-
-                    return message .. ' '
-                end,
-            },
-            virtual_lines = {
-                -- current_line = true,
-                severity = {
-                    min = vim.diagnostic.severity.ERROR,
-                },
-                current_line = true,
-            },
-            float = {
-                -- border = 'single',
-                source = 'if_many',
-                -- Show severity icons as prefixes.
-                prefix = function(diag)
-                    local level = vim.diagnostic.severity[diag.severity]
-                    local prefix = string.format(' %s ', icons[level])
-                    return prefix, 'Diagnostic' .. level:gsub('^%l', string.upper)
-                end,
-            },
-            -- Disable signs in the gutter.
-            signs = false,
-            -- signs = {
-            --     text = {
-            --         [vim.diagnostic.severity.ERROR] = icons.ERROR,
-            --         [vim.diagnostic.severity.WARN] = icons.WARN,
-            --         [vim.diagnostic.severity.INFO] = icons.INFO,
-            --         [vim.diagnostic.severity.HINT] = icons.HINT,
-            --     },
-            -- },
-        })
     end,
 })

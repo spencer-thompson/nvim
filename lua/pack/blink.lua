@@ -221,9 +221,15 @@ require('blink.cmp').setup({
                     label = {
                         width = { fill = true, max = 50 },
                         text = function(ctx)
+                            if ctx.source_id ~= 'lsp' then
+                                return ctx.label
+                            end
                             return require('colorful-menu').blink_components_text(ctx)
                         end,
                         highlight = function(ctx)
+                            if ctx.source_id ~= 'lsp' then
+                                return {}
+                            end
                             return require('colorful-menu').blink_components_highlight(ctx)
                         end,
                     },
@@ -320,6 +326,12 @@ require('blink.cmp').setup({
             lsp = {
                 score_offset = 3,
             },
+            path = {
+                async = true,
+                opts = {
+                    max_entries = 1000,
+                },
+            },
             snippets = {
                 score_offset = 3,
             },
@@ -406,6 +418,11 @@ require('blink.cmp').setup({
                 name = 'Ripgrep',
                 score_offset = -3,
                 async = true,
+                enabled = function()
+                    local root = vim.fs.root(0, '.git')
+                    local home = vim.uv.os_homedir()
+                    return root ~= nil and (home == nil or vim.fs.normalize(root) ~= vim.fs.normalize(home))
+                end,
                 opts = {
                     -- the minimum length of the current word to start searching
                     prefix_min_len = 3,
@@ -430,19 +447,30 @@ require('blink.cmp').setup({
                             context_size = 5,
 
                             -- The maximum file size of a file that ripgrep should include in its search.
-                            max_filesize = '1M',
+                            max_filesize = '256K', -- was 1M
 
                             -- Enable fallback to neovim cwd if project_root_marker is not found. Default: `true`, which means to use the cwd.
-                            project_root_fallback = true,
+                            project_root_fallback = false,
 
                             -- The casing to use for the search in a format that ripgrep accepts. Defaults to "--ignore-case".
-                            search_casing = '--ignore-case',
+                            search_casing = '--smart-case',
 
                             -- (advanced) Any additional options you want to give to ripgrep.
-                            additional_rg_options = {},
+                            additional_rg_options = {
+                                '--glob',
+                                '!**/node_modules/**',
+                                '--glob',
+                                '!**/.venv/**',
+                                '--glob',
+                                '!**/dist/**',
+                                '--glob',
+                                '!**/target/**',
+                                '--glob',
+                                '!**/coverage/**',
+                            },
 
-                            -- Absolute root paths where the rg command will not be executed.
-                            ignore_paths = { 'dict/' },
+                            -- -- Absolute root paths where the rg command will not be executed.
+                            -- ignore_paths = { 'dict/' },
 
                             -- Any additional paths to search in, in addition to the project root.
                             additional_paths = {},

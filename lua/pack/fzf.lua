@@ -122,8 +122,19 @@ require('fzf-lua').setup({
     },
 })
 
-vim.keymap.set('n', '<leader>ff', function()
+local function project_root()
     local dir = vim.fs.root(0, { '.git' })
+    local home = vim.uv.os_homedir()
+
+    if dir and home and vim.fs.normalize(dir) == vim.fs.normalize(home) then
+        return nil
+    end
+
+    return dir
+end
+
+vim.keymap.set('n', '<leader>ff', function()
+    local dir = project_root()
     if dir then
         FzfLua.files({ cwd = dir })
     else

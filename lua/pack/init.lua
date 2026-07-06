@@ -21,3 +21,5 @@ require('pack.motions')
 require('pack.language')
 require('pack.ui')
 require('pack.ai')
+
+require('lsp')
