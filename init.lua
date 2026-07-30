@@ -20,6 +20,5 @@ vim.g.maplocalleader = ' '
 -- My Base Keymaps and options
 require('sthompson')
 
--- Lazy and all plugins
--- require('plugins')
+-- Plugins
 require('pack')
