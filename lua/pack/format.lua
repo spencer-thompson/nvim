@@ -30,7 +30,7 @@ vim.schedule(function()
             -- java = { "google-java-format" },
             -- kotlin = { "ktlint" },
             -- ruby = { "standardrb" },
-            markdown = { 'rumdl' },
+            -- markdown = { 'rumdl' },
             -- erb = { "htmlbeautifier" },
             html = { 'prettierd' },
             bash = { 'shfmt' },
